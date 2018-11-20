@@ -1,0 +1,83 @@
+.newsletter-content{
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+
+    .social-icons{
+		display:flex;
+		align-items:center;
+		
+		ul{
+			display:block;
+			padding-left:0;
+			margin-bottom:0;
+			li:first-child{
+				margin-right:15px;
+				font-size: 16px;
+    			text-transform: uppercase;
+				color:$white;
+			}
+			li{
+				display:inline-block;
+			}
+			.icon{
+				a{
+					background-color:darken($blue, 5%);
+					color:$white;
+					font-size:22px;
+					width:40px;
+					height:40px;
+					display:flex;
+					justify-content:center;
+					align-items:center;
+					text-decoration:none;
+					border-radius:4px;
+					
+					
+					&:hover{
+						background-color:$red;
+					}
+				}
+			}
+		}
+	}
+	label{
+		color: $white;
+		font-size: 16px;
+		text-transform: uppercase;
+		margin-bottom: 0;
+		margin-left:50px;
+		
+		line-height: 50px;
+	}
+    form {
+		float: right;
+    	width: 420px;
+        position: relative;
+
+        input {
+            border-radius: 50px;
+            height: 50px;
+            width: 100%;
+            color: #000;
+            border: none;
+            background: #fff;
+            padding: 0 20px;
+            font-size: 15px;
+        }
+        button {
+            border: none;
+            background:$red;
+            height: 50px;
+            line-height: 50px;
+            color: #fff;
+            padding: 0 30px;
+            position: absolute;
+            right: -1px;
+            top: 0px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 0 50px 50px 0px;
+        }
+    }
+}

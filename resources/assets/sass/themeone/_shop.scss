@@ -1,0 +1,37 @@
+.shop-area{
+	margin-bottom:40px;
+    .toolbar{
+        border: 1px solid $gray-400;
+        border-radius: 4px;
+        margin: 0;
+        text-align: right;
+        padding: 13px 15px;
+
+        .form-group{
+            padding-right: 0;
+        }
+    }
+
+    .products{
+		display:block;
+        padding-left: 15px;
+        
+        .product{
+
+            .thumb{
+                img{
+                    transform: translateY(-24%);
+                }
+            }
+        }
+    }
+	
+	.load-more-area{
+		text-align:center;
+		padding-top:15px;
+		border-top:3px solid $gray-400;
+		display:block;
+		float:left;
+		width:100%;
+	}
+}

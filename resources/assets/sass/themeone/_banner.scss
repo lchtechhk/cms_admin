@@ -1,0 +1,31 @@
+.banner-area{
+    padding-left: 15px;
+    padding-right: 15px;
+    
+   
+    .banner-single{
+        border-right: 1px solid $gray-300;
+		
+        .fa{
+			float:left;
+            color: $red;
+            font-size:35px;
+			width: 50px;
+			margin-left: -15px;
+    		text-align: center;
+        }
+        .title{
+			padding-left: 50px;
+            font-size:$font-size-base;
+			margin-bottom:5px;
+        }
+        p{
+			padding-left: 50px;
+			font-size:$font-size-base;
+            margin-bottom: 0;
+        }
+    }
+    .banner-single.last{
+        border-right-width: 0;
+    }
+}

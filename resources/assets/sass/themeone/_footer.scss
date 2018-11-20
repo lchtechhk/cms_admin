@@ -1,0 +1,116 @@
+footer{
+    .single-footer{
+        p{
+            font-size: $font-size-base;
+        }
+		h5{
+			font-size:$font-size-md;
+			margin-bottom:30px;
+		}
+		
+		.contact-list{
+            li{
+                display:block;
+                list-style: none;
+                font-size: $font-size-base;
+                margin-bottom: 10px;
+
+                .fa{
+					font-size:$font-size-md;
+                    color:$red;
+                    text-align: center;
+                    width: 20px;
+                }
+            }
+        }
+        .links-list{
+            li{
+                list-style: none;
+                display: block;
+				margin-bottom:7px;
+
+                a{
+					display:block;
+                    font-size: $font-size-base;
+                    color:$gray-700;
+                    .fa{
+                        margin-right: 4px;
+                    }
+					
+					&:hover{
+						color:$red;
+					}
+                }
+            }
+        }
+        .cat-list{
+			li{
+				display:inline-block;
+				margin-bottom:5px;
+				margin-right:5px;
+				
+				a{
+					display:block;
+					font-size:$font-size-sm;
+					border-radius:4px;
+					background-color:$gray-200;
+					padding-left:10px;
+					padding-right:10px;
+					padding-top:5px;
+					padding-bottom:5px;
+					color:$gray-700;
+					text-decoration:none;
+					
+					
+					&:hover{
+						background-color:$red;
+						color:$white;
+					}
+				}
+			}
+		}
+    }
+}
+
+.footer{
+    .footer-image{
+		
+        img{
+            margin-bottom: 15px;
+        }        
+    }
+	.footer-info{
+		text-align:right;
+        p{
+            font-size: $font-size-sm;
+        }
+    }
+	.container{
+		position:relative;
+		.floating-top{
+			
+			position: absolute;
+			right:-50px;
+			bottom: 12px;
+
+			a{
+				text-align:center;
+				width: 50px;
+				line-height: 44px;
+				height: 50px;
+				background-color:$white;
+				border-radius: 200px;
+				color:$gray-600;
+				border:2px solid $gray-600;
+				font-size: $font-size-lg;
+				text-decoration: none;
+				
+				&:hover{
+					background-color:$red;
+					border-color:transparent;
+					color:$white;
+				}
+			}
+		}
+	}
+}
