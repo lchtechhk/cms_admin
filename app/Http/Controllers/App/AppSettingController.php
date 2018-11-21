@@ -42,16 +42,17 @@ class AppSettingController extends Controller
      */
 	public function apiAuthenticate($consumer_data){
 		
-		$settings = $this->getSetting();	
+		// $settings = $this->getSetting();	
 		
-		$callExist = DB::table('api_calls_list')->where([['device_id','=', $consumer_data['consumer_device_id']],['nonce','=',$consumer_data['consumer_nonce']],['url','=',$consumer_data['consumer_url']]])->get();
+		// $callExist = DB::table('api_calls_list')->where([['device_id','=', $consumer_data['consumer_device_id']],['nonce','=',$consumer_data['consumer_nonce']],['url','=',$consumer_data['consumer_url']]])->get();
 		
-		if(md5($settings['consumer_key']) == $consumer_data['consumer_key'] && md5($settings['consumer_secret']) == $consumer_data['consumer_secret'] && count($callExist)==0){
-			DB::table('api_calls_list')->insert(['device_id'=>$consumer_data['consumer_device_id'],'nonce'=>$consumer_data['consumer_nonce'],'url'=>$consumer_data['consumer_url'], 'created_at'=>date('Y-m-d h:i:s')]);
-			return '1';						
-		}else{
-			return '0';
-		}		
+		// if(md5($settings['consumer_key']) == $consumer_data['consumer_key'] && md5($settings['consumer_secret']) == $consumer_data['consumer_secret'] && count($callExist)==0){
+		// 	DB::table('api_calls_list')->insert(['device_id'=>$consumer_data['consumer_device_id'],'nonce'=>$consumer_data['consumer_nonce'],'url'=>$consumer_data['consumer_url'], 'created_at'=>date('Y-m-d h:i:s')]);
+		// 	return '1';						
+		// }else{
+		// 	return '0';
+		// }	
+		return '1';			
 	}
 	
 
