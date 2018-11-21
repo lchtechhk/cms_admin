@@ -75,148 +75,106 @@
         <!-- ./col -->
       </div>
 
-      <div class="row">
-      <div class="col-sm-12">
-          <div class="nav-tabs-custom">
-          <div class="box-header with-border">
-            <h3 class="box-title"> {{ trans('labels.addedSaleReport') }}</h3>
-            <div class="box-tools pull-right">
-               <p class="notify-colors"><span class="sold-content" data-toggle="tooltip" data-placement="bottom" title="Sold Products"></span> {{ trans('labels.soldProducts') }}  <span class="purchased-content" data-toggle="tooltip" data-placement="bottom" title="Added Products"></span>{{ trans('labels.addedProducts') }} </p>
-               </div>
-            </div>
-          {!! Form::hidden('reportBase',  $result['reportBase'] , array('id'=>'reportBase')) !!}
-            <ul class="nav nav-tabs">
-              <li class="{{ Request::is('admin/dashboard/last_year') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/last_year')}}">{{ trans('labels.lastYear') }}</a></li>
-              <li class="{{ Request::is('admin/dashboard/last_month') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/last_month')}}">{{ trans('labels.LastMonth') }}</a></li>
-              <li class="{{ Request::is('admin/dashboard/this_month') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/this_month')}}">{{ trans('labels.thisMonth') }}</a></li>
-              <li style="width: 33%"><a href="#" data-toggle="tab">
-                  <div class="input-group ">
-                  	 <div class="input-group-btn">
-                        <button type="button" class="btn btn-default" aria-label="Help">{{ trans('labels.custom') }}</button> 
-                     </div>
-                     
-                     <input class="form-control reservation dateRange" readonly value="" name="dateRange" aria-label="Text input with multiple buttons ">
-                     <div class="input-group-btn"><button type="button" class="btn btn-primary getRange" >{{ trans('labels.go') }}</button> </div> 
-                   </div>
-                </a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="active tab-pane" id="activity">
-                <!-- Post -->
-                <div class="chart">
-                    <!-- Sales Chart Canvas -->
-                    <canvas id="salesChart" style="height: 400px;"></canvas>
-                  </div>
-                <!-- /.post -->
+      <!-- <div class="row">
+        <div class="col-sm-12">
+            <div class="nav-tabs-custom">
+              <div class="box-header with-border">
+                <h3 class="box-title"> {{ trans('labels.addedSaleReport') }}</h3>
+                <div class="box-tools pull-right">
+                  <p class="notify-colors"><span class="sold-content" data-toggle="tooltip" data-placement="bottom" title="Sold Products"></span> {{ trans('labels.soldProducts') }}  <span class="purchased-content" data-toggle="tooltip" data-placement="bottom" title="Added Products"></span>{{ trans('labels.addedProducts') }} </p>
+                </div>
               </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
-          </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <div class="col-md-12" style="display: none">
-          <div class="box">
-            <div class="box-header with-border">
-              <!--<h3 class="box-title pull-left">Monthly Report</h3>-->
-            
-              <div class="col-xs-12 col-lg-4"> 
-              	<div class="input-group">
-                   	<div class="input-group-btn">
-                    	<button type="button" class="btn btn-default" aria-label="Help">{{ trans('labels.customDate') }}</button> 
+              {!! Form::hidden('reportBase',  $result['reportBase'] , array('id'=>'reportBase')) !!}
+              <ul class="nav nav-tabs">
+                <li class="{{ Request::is('admin/dashboard/last_year') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/last_year')}}">{{ trans('labels.lastYear') }}</a></li>
+                <li class="{{ Request::is('admin/dashboard/last_month') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/last_month')}}">{{ trans('labels.LastMonth') }}</a></li>
+                <li class="{{ Request::is('admin/dashboard/this_month') ? 'active' : '' }}"><a href="{{ URL::to('admin/dashboard/this_month')}}">{{ trans('labels.thisMonth') }}</a></li>
+                <li style="width: 33%"><a href="#" data-toggle="tab">
+                    <div class="input-group ">
+                      <div class="input-group-btn">
+                          <button type="button" class="btn btn-default" aria-label="Help">{{ trans('labels.custom') }}</button> 
+                      </div>
+                      
+                      <input class="form-control reservation dateRange" readonly value="" name="dateRange" aria-label="Text input with multiple buttons ">
+                      <div class="input-group-btn"><button type="button" class="btn btn-primary getRange" >{{ trans('labels.go') }}</button> </div> 
                     </div>
-                	<input class="form-control" aria-label="Text input with multiple buttons">
-                    <div class="input-group-btn">                    	
-                        <button type="button" class="btn btn-primary">{{ trans('labels.go') }}</button> 
-                    </div> 
-                </div>
-              </div>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <!--<div class="btn-group">
-                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-wrench"></i></button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </div>-->
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <p class="text-center">
-                    <strong>{{ trans('labels.sales') }}: 1 Jan, 2014 - 30 Jul, 2014</strong>
-                  </p>
-
+                  </a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="active tab-pane" id="activity">
                   <div class="chart">
-                    <!-- Sales Chart Canvas -->
-                    <canvas id="salesChart" style="height: 400px;"></canvas>
-                  </div>
-                  <!-- /.chart-responsive -->
-                </div>
-                <!-- /.col -->
-                
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- ./box-body -->
-            <div class="box-footer" style="display: none">
-              <div class="row">
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
-                    <h5 class="description-header">$35,210.43</h5>
-                    <span class="description-text">{{ trans('labels.total_revenue') }}</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
-                    <h5 class="description-header">$10,390.90</h5>
-                    <span class="description-text">{{ trans('labels.total_cost') }}</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block border-right">
-                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
-                    <h5 class="description-header">$24,813.53</h5>
-                    <span class="description-text">{{ trans('labels.total_profit') }}</span>
-                  </div>
-                  <!-- /.description-block -->
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-3 col-xs-6">
-                  <div class="description-block">
-                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
-                    <h5 class="description-header">1200</h5>
-                    <span class="description-text">{{ trans('labels.goal_completions') }}</span>
-                  </div>
-                  <!-- /.description-block -->
+                      <canvas id="salesChart" style="height: 400px;"></canvas>
+                    </div>
                 </div>
               </div>
-              <!-- /.row -->
             </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+          <div class="col-md-12" style="display: none">
+            <div class="box">
+              <div class="box-header with-border">              
+                <div class="col-xs-12 col-lg-4"> 
+                  <div class="input-group">
+                      <div class="input-group-btn">
+                        <button type="button" class="btn btn-default" aria-label="Help">{{ trans('labels.customDate') }}</button> 
+                      </div>
+                    <input class="form-control" aria-label="Text input with multiple buttons">
+                      <div class="input-group-btn">                    	
+                          <button type="button" class="btn btn-primary">{{ trans('labels.go') }}</button> 
+                      </div> 
+                  </div>
+                </div>
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="text-center">
+                      <strong>{{ trans('labels.sales') }}: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                    </p>
+                    <div class="chart">
+                      <canvas id="salesChart" style="height: 400px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer" style="display: none">
+                <div class="row">
+                  <div class="col-sm-3 col-xs-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                      <h5 class="description-header">$35,210.43</h5>
+                      <span class="description-text">{{ trans('labels.total_revenue') }}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-xs-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                      <h5 class="description-header">$10,390.90</h5>
+                      <span class="description-text">{{ trans('labels.total_cost') }}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-xs-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                      <h5 class="description-header">$24,813.53</h5>
+                      <span class="description-text">{{ trans('labels.total_profit') }}</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-xs-6">
+                    <div class="description-block">
+                      <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                      <h5 class="description-header">1200</h5>
+                      <span class="description-text">{{ trans('labels.goal_completions') }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div> -->
 
       <!-- Main row -->
       <div class="row">
@@ -417,7 +375,7 @@
             </div>
             <!-- /.box-body -->
           </div>
-          <div class="box box-primary">
+          <!-- <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">{{ trans('labels.RecentlyAddedProducts') }}</h3>
               <div class="box-tools pull-right">
@@ -426,7 +384,6 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <ul class="products-list product-list-in-box">
               @foreach($result['recentProducts'] as $recentProducts)
@@ -437,20 +394,15 @@
                   <div class="product-info">
                     <a href="{{ URL::to('admin/editproduct') }}/{{ $recentProducts->products_id }}" class="product-title">{{ $recentProducts->products_name }}
                       <span class="label label-warning label-succes pull-right">{{ $result['currency'][19]->value }}{{ floatval($recentProducts->products_price) }}</span></a>
-                        <!--<span class="product-description">
-                          {{ stripslashes($recentProducts->products_description) }}
-                        </span>-->
                   </div>
                 </li>
               @endforeach
               </ul>
             </div>
-            <!-- /.box-body -->
             <div class="box-footer text-center">
               <a href="{{ URL::to('admin/products') }}" class="uppercase" data-toggle="tooltip" data-placement="bottom" title="View All Products">{{ trans('labels.viewAllProducts') }}</a>
             </div>
-            <!-- /.box-footer -->
-          </div>
+          </div> -->
           <!-- /.box -->
         </div>
         <!-- /.col -->

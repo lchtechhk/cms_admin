@@ -97,39 +97,39 @@
                         </div>
                       </div>
                       
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="inputName" class="col-sm-2 control-label">{{ trans('labels.Address') }} </label>
-    
                         <div class="col-sm-10">
                           {!! Form::text('address', auth()->guard('admin')->user()->address, array('class'=>'form-control', 'id'=>'address'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                          {{ trans('labels.AddressText') }}</span>
+                            {{ trans('labels.AddressText') }}
+                          </span>
                         </div>
-                      </div>
-                      <div class="form-group">
+                      </div> -->
+                      <!-- <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">{{ trans('labels.City') }}
                         </label>
-    
                         <div class="col-sm-10">
-                         {!! Form::text('city', auth()->guard('admin')->user()->city, array('class'=>'form-control', 'id'=>'city'))!!}
-                         <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CityText') }}</span>
+                          {!! Form::text('city', auth()->guard('admin')->user()->city, array('class'=>'form-control', 'id'=>'city'))!!}
+                          <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CityText') }}
+                          </span>
                         </div>
-                      </div>
-                      <div class="form-group">
+                      </div> -->
+                      <!-- <div class="form-group">
                         <label for="inputSkills" class="col-sm-2 control-label">{{ trans('labels.Country') }}</label>
-    					<div class="col-sm-10">                       
-                            <select class="form-control" name="country" id="entry_country_id">
-                            	<option value="">{{ trans('labels.SelectCountry') }}</option>
-                            	@foreach($result['countries'] as $countries)
-                            		<option @if(auth()->guard('admin')->user()->country==$countries->countries_id) selected @endif value="{{ $countries->countries_id }}">{{ $countries->countries_name }}</option>
-                                @endforeach
-                            </select>
-                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryText') }}</span>
+                        <div class="col-sm-10">                       
+                          <select class="form-control" name="country" id="entry_country_id">
+                            <option value="">{{ trans('labels.SelectCountry') }}</option>
+                            @foreach($result['countries'] as $countries)
+                              <option @if(auth()->guard('admin')->user()->country==$countries->countries_id) selected @endif value="{{ $countries->countries_id }}">{{ $countries->countries_name }}</option>
+                              @endforeach
+                          </select>
+                          <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryText') }}</span>
                         </div>
-                      </div>
-                      <div class="form-group">
+                      </div> -->
+                      <!-- <div class="form-group">
                         <label for="inputSkills" class="col-sm-2 control-label">{{ trans('labels.State') }}</label>
-    					<div class="col-sm-10">
+    					          <div class="col-sm-10">
                            <select class="form-control zoneContent" name="state">
                             	<option value="">{{ trans('labels.SelectZone') }}</option>
                             	@foreach($result['zones'] as $zones)
@@ -138,14 +138,13 @@
                             </select>
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.SelectZoneText') }}</span>
                         </div>
-                      </div>
-                      <div class="form-group">
+                      </div> -->
+                      <!-- <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">{{ trans('labels.ZipCode') }}</label>
-    
                         <div class="col-sm-10">
                          {!! Form::text('zip', auth()->guard('admin')->user()->zip, array('class'=>'form-control', 'id'=>'zip'))!!}
                         </div>
-                      </div>
+                      </div> -->
                       <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">{{ trans('labels.Phone') }}</label>
     
