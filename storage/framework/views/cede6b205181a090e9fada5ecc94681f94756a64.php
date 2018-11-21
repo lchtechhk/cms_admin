@@ -104,7 +104,7 @@
                                 <strong><?php echo e(trans('labels.Weight')); ?>: </strong>  <?php echo e($product->products_weight); ?><?php echo e($product->products_weight_unit); ?><br>
                                 <strong><?php echo e(trans('labels.Viewed')); ?>: </strong>  <?php echo e($product->products_viewed); ?><br>
                                 <?php if(!empty($product->specials_id)): ?>
-								<strong class="badge bg-light-blue"><?php echo e(trans('labels.Special Product')); ?></strong><br>
+								                <strong class="badge bg-light-blue"><?php echo e(trans('labels.Special Product')); ?></strong><br>
                               	<strong><?php echo e(trans('labels.SpecialPrice')); ?>: </strong>  <?php echo e($product->specials_products_price); ?><br>
                               	  <?php if(!empty($product->specials_id)>0): ?>
                               	  <strong><?php echo e(trans('labels.ExpiryDate')); ?>: </strong>  
@@ -121,8 +121,15 @@
                             </td>
                             <td>
                              	<strong><?php echo e(trans('labels.AddedDate')); ?>: </strong> <?php echo e($product->products_date_added); ?><br>
-                           		<strong><?php echo e(trans('labels.ModifiedDate')); ?>: </strong><?php echo e($product->products_last_modified); ?>
+                           		<strong><?php echo e(trans('labels.ModifiedDate')); ?>: </strong><?php echo e($product->products_last_modified); ?><br>
+                              <strong><?php echo e(trans('labels.Status')); ?>: </strong>
+                              <?php if($product->products_status == 1 ): ?>
+                                <?php echo e(trans('labels.active')); ?>
 
+                              <?php else: ?> 
+                                <?php echo e(trans('labels.inactive')); ?>
+
+                              <?php endif; ?>
                             </td>
                            
                             <td>

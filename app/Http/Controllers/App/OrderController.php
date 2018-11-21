@@ -539,12 +539,13 @@ class OrderController extends Controller
 	
 	//addtoorder
 	public function addtoorder(Request $request){
+		Log::info('addtoorder : ' . $request);
 		$consumer_data 		 				  =  array();
 		$consumer_data['consumer_key'] 	 	  =  request()->header('consumer-key');
 		$consumer_data['consumer_secret']	  =  request()->header('consumer-secret');
 		$consumer_data['consumer_nonce']	  =  request()->header('consumer-nonce');	
 		$consumer_data['consumer_device_id']  =  request()->header('consumer-device-id');	
-		$consumer_data['consumer_url']  	  =  __FUNCTION__;
+		$consumer_xdata['consumer_url']  	  =  __FUNCTION__;
 		$authController = new AppSettingController();
 		$authenticate = $authController->apiAuthenticate($consumer_data);
 		if($authenticate==1){
@@ -557,9 +558,9 @@ class OrderController extends Controller
 			$delivery_firstname  	          		=   $request->delivery_firstname;
 			$delivery_lastname            			=   $request->delivery_lastname;
 			$delivery_street_address            	=   $request->delivery_street_address;
-			$delivery_suburb            			=   $request->delivery_suburb;
-			$delivery_city            				=   $request->delivery_city;
-			$delivery_postcode            			=   $request->delivery_postcode;
+			$delivery_suburb            			=   '';//$request->delivery_suburb;
+			$delivery_city            				=   '';//$request->delivery_city;
+			$delivery_postcode            			=   '';//$request->delivery_postcode;
 			
 			$delivery = DB::table('zones')->where('zone_name', '=', $request->delivery_zone)->get();
 			
@@ -573,9 +574,9 @@ class OrderController extends Controller
 			$billing_firstname            			=   $request->billing_firstname;
 			$billing_lastname            			=   $request->billing_lastname;
 			$billing_street_address            		=   $request->billing_street_address;
-			$billing_suburb	            			=   $request->billing_suburb;
-			$billing_city            				=   $request->billing_city;
-			$billing_postcode            			=   $request->billing_postcode;
+			$billing_suburb	            			=   '';//$request->billing_suburb;
+			$billing_city            				=   '';//$request->billing_city;
+			$billing_postcode            			=   '';//$request->billing_postcode;
 			
 			$billing = DB::table('zones')->where('zone_name', '=', $request->billing_zone)->get();
 			
@@ -667,13 +668,9 @@ class OrderController extends Controller
 				$braintree_private_key = $payments_setting[0]->braintree_private_key;
 				
 				//brain tree credential
-				require_once app_path('braintree/Braintree.php');
-				
-				if ($result->success) 
-				{
-					
-				if($result->transaction->id)
-					{
+				require_once app_path('braintree/Braintree.php');	
+				if ($result->success) {
+					if($result->transaction->id){
 						$order_information = array(
 							'braintree_id'=>$result->transaction->id,
 							'status'=>$result->transaction->status,
@@ -683,9 +680,7 @@ class OrderController extends Controller
 							'merchantAccountId'=>$result->transaction->merchantAccountId,
 							'subMerchantAccountId'=>$result->transaction->subMerchantAccountId,
 							'masterMerchantAccountId'=>$result->transaction->masterMerchantAccountId,
-							//'orderId'=>$result->transaction->orderId,
 							'createdAt'=>time(),
-	//						'updatedAt'=>$result->transaction->updatedAt->date,
 							'token'=>$result->transaction->creditCard['token'],
 							'bin'=>$result->transaction->creditCard['bin'],
 							'last4'=>$result->transaction->creditCard['last4'],
@@ -695,15 +690,11 @@ class OrderController extends Controller
 							'customerLocation'=>$result->transaction->creditCard['customerLocation'],
 							'cardholderName'=>$result->transaction->creditCard['cardholderName']
 						);
-						
 						$payment_status = "success";
-						
 					}
-				} 
-				else
-					{
+				}else{
 						$payment_status = "failed";
-					}
+				}
 					
 			}else if($payment_method == 'stripe'){				#### stipe payment
 				
@@ -758,7 +749,7 @@ class OrderController extends Controller
 				$payment_method = 'Cash on Delivery';
 				$payment_status='success';
 				
-			} else if($payment_method == 'paypal'){
+			}else if($payment_method == 'paypal'){
 				
 				$paymentName = DB::table('payment_description')->where([['language_id',$request->language_id],['payment_name',$payments_setting[0]->paypal_name]])->get();
 				$paymentMethodName = $paymentName[0]->name;
@@ -766,7 +757,9 @@ class OrderController extends Controller
 				$payment_status='success';
 				$order_information = $request->nonce;
 					
-			} 			
+			}else if ($payment_method == 'cash_on_delivery'){
+				$payment_status='success';
+			}		
 			
 			//check if order is verified
 			if($payment_status=='success'){
@@ -803,7 +796,7 @@ class OrderController extends Controller
 						 'billing_country'  =>  $billing_country,
 						 //'billing_address_format_id' => $billing_address_format_id,
 						 
-						 'payment_method'  =>  $paymentMethodName,
+						 'payment_method'  =>  $payment_method,
 						 'cc_type' => $cc_type,
 						 'cc_owner'  => $cc_owner,
 						 'cc_number' =>$cc_number,
@@ -822,6 +815,7 @@ class OrderController extends Controller
 						 'coupon_amount' 	 =>		$coupon_amount,
 						 'total_tax'		 =>		$total_tax,
 						 'ordered_source' 	 => 	'2',
+						 'customer_remark'    =>     $comments,
 					]);
 				
 				 //orders status history
@@ -1005,8 +999,9 @@ class OrderController extends Controller
 					->join('products', 'products.products_id','=', 'orders_products.products_id')
 					->LeftJoin('products_to_categories','products_to_categories.products_id','=','products.products_id')
 					->LeftJoin('categories_description','categories_description.categories_id','=','products_to_categories.categories_id')
-					->select('orders_products.*', 'products.products_image as image', 'categories_description.*')
-					->where('orders_products.orders_id', '=', $orders_id)->where('categories_description.language_id','=', $language_id)->get();
+					->LeftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
+					->select('orders_products.*', 'products.products_image as image', 'categories_description.*','categories.parent_id as parent_id')
+					->where('parent_id', '>', 0)->where('orders_products.orders_id', '=', $orders_id)->where('categories_description.language_id','=', $language_id)->get();
 					$k = 0;
 					$product = array();
 					foreach($orders_products as $orders_products_data){

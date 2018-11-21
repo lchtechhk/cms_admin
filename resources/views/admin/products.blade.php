@@ -104,7 +104,7 @@
                                 <strong>{{ trans('labels.Weight') }}: </strong>  {{ $product->products_weight }}{{ $product->products_weight_unit }}<br>
                                 <strong>{{ trans('labels.Viewed') }}: </strong>  {{ $product->products_viewed }}<br>
                                 @if(!empty($product->specials_id))
-								<strong class="badge bg-light-blue">{{ trans('labels.Special Product') }}</strong><br>
+								                <strong class="badge bg-light-blue">{{ trans('labels.Special Product') }}</strong><br>
                               	<strong>{{ trans('labels.SpecialPrice') }}: </strong>  {{ $product->specials_products_price }}<br>
                               	  @if(!empty($product->specials_id)>0)
                               	  <strong>{{ trans('labels.ExpiryDate') }}: </strong>  
@@ -120,7 +120,13 @@
                             </td>
                             <td>
                              	<strong>{{ trans('labels.AddedDate') }}: </strong> {{ $product->products_date_added }}<br>
-                           		<strong>{{ trans('labels.ModifiedDate') }}: </strong>{{ $product->products_last_modified }}
+                           		<strong>{{ trans('labels.ModifiedDate') }}: </strong>{{ $product->products_last_modified }}<br>
+                              <strong>{{ trans('labels.Status') }}: </strong>
+                              @if($product->products_status == 1 )
+                                {{trans('labels.active')}}
+                              @else 
+                                {{trans('labels.inactive')}}
+                              @endif
                             </td>
                            
                             <td>

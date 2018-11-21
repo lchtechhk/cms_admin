@@ -77,7 +77,8 @@ return [
 	'link_site_settings' => 'Settings (Website)',
 	'link_order_status' => 'Order Status',
 	'link_setting' => 'Settings',
-	
+	'active' => 'Active',
+	'inactive'=>'Inactive',
 	//common labels
 	'breadcrumb_dashboard'=>'Dashboard',
 	
