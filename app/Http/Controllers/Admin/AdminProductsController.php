@@ -22,6 +22,7 @@ use App\Administrator;
 //for authenitcate login data
 use Auth;
 
+use Log;
 //for requesting a value 
 use Illuminate\Http\Request;
 class AdminProductsController extends Controller
@@ -159,6 +160,7 @@ class AdminProductsController extends Controller
 		
 		if($request->hasFile('products_image') and in_array($request->products_image->extension(), $extensions)){
 			$image = $request->products_image;
+			$image = Image::make($image)->orientate(); 
 			$fileName = time().'.'.$image->getClientOriginalName();
 			$image->move('resources/assets/images/product_images/', $fileName);
 			$uploadImage = 'resources/assets/images/product_images/'.$fileName; 
@@ -1103,7 +1105,8 @@ class AdminProductsController extends Controller
 	
 	//updateattributes
 	public function updateattributes(Request $request){
-		
+		Log::info('updateattributes : ' . $request);
+
 		$title = array('pageTitle' => Lang::get("labels.EditAttributes"));
 		
 		$attributes = array();	
