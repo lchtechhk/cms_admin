@@ -17,7 +17,7 @@ use DB;
 //for password encryption or hash protected
 use Hash;
 use App\Administrator;
-
+use Log;
 //for authenitcate login data
 use Auth;
 
@@ -95,7 +95,7 @@ class AdminTaxController extends Controller
 	public function updatecountry(Request $request){
 		
 		$title = array('pageTitle' => Lang::get("labels.EditCountry"));
-		
+		// Log::info('title : ' . $title);
 		$countryData = array();		
 		$countryData['message'] = Lang::get("labels.CountryUpdatedMessage");
 				

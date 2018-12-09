@@ -50,6 +50,7 @@ return [
 	'link_main_categories'=>'Categories',
 	'link_sub_categories'=>'Sub Categories',
 	'link_products' => 'Products',
+	'location'=>'Location',
 	'link_all_products'=>'Products',
 	'products_attributes'=>'Products Attributes',
 	'link_news' => 'News',
