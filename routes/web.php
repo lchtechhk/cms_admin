@@ -177,6 +177,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/deletecountry', 'AdminTaxController@deletecountry');
 
 			//zones
+			Route::get('/listingCities', 'AdminTaxController@listingCities');
 			Route::get('/listingZones', 'AdminTaxController@listingZones');
 			Route::get('/addZone', 'AdminTaxController@addZone');
 			Route::post('/addNewZone', 'AdminTaxController@addNewZone');

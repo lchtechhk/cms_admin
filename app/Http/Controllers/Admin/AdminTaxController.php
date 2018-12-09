@@ -46,10 +46,30 @@ class AdminTaxController extends Controller
 		
 		$countryData['message'] = $message;
 		$countryData['countries'] = $countries;
-		
+		Log::info('[countries] - countryData : ' . json_encode($countryData));
 		return view("admin.countries",$title)->with('countryData', $countryData);
 	}
 	
+	// listingCities
+	public function listingCities(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
+		
+		$result = array();
+		$message = array();
+		$errorMessage = array();
+			
+		$zones = DB::table('zones')
+			->LeftJoin('countries','zones.zone_country_id','=','countries.countries_id')
+			->paginate(60);
+		
+		
+		$result['message'] = $message;
+		$result['zones'] = $zones;
+		
+		Log::info('result : ' . json_encode($result));
+		return view("admin.listingZones",$title)->with('result', $result);
+	}
+
 	//addcountry
 	public function addcountry(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCountry") );

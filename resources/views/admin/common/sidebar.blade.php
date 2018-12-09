@@ -75,7 +75,19 @@
             <span>{{ trans('labels.location') }}</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ Request::is('admin/countries') ? 'active' : '' }} {{ Request::is('admin/addcountry') ? 'active' : '' }} {{ Request::is('admin/editcountry/*') ? 'active' : '' }} "><a href="{{ URL::to('admin/countries')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_countries') }}</a></li>
+            <li class="{{ Request::is('admin/countries') ? 'active' : '' }} 
+                        {{ Request::is('admin/addcountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/editcountry/*') ? 'active' : '' }} ">
+              <a href="{{ URL::to('admin/countries')}}">
+                <i class="fa fa-circle-o"></i> {{ trans('labels.link_countries') }}
+              </a>
+            </li>
+            <li class="{{ Request::is('admin/listingCities') ? 'active' : '' }} ">
+              <a href="{{ URL::to('admin/listingCities')}}">
+                <i class="fa fa-circle-o"></i> 
+                {{ trans('labels.cities') }}
+              </a>
+            </li>
             <!-- <li class="{{ Request::is('admin/taxclass') ? 'active' : '' }} {{ Request::is('admin/addtaxclass') ? 'active' : '' }} {{ Request::is('admin/editTaxClass/*') ? 'active' : '' }} "><a href="{{ URL::to('admin/taxclass')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_tax_classes') }}</a></li>
             <li class="{{ Request::is('admin/taxrates') ? 'active' : '' }} {{ Request::is('admin/addtaxrate') ? 'active' : '' }} {{ Request::is('admin/edittaxrate/*') ? 'active' : '' }} "><a href="{{ URL::to('admin/taxrates')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_tax_rates') }}</a></li> -->
             <li class="{{ Request::is('admin/listingZones') ? 'active' : '' }} {{ Request::is('admin/addZone') ? 'active' : '' }} {{ Request::is('admin/editZone/*') ? 'active' : '' }}"><a href="{{ URL::to('admin/listingZones')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_zones') }}</a></li>

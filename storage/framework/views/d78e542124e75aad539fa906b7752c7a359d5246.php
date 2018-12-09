@@ -75,7 +75,21 @@
             <span><?php echo e(trans('labels.location')); ?></span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li class="<?php echo e(Request::is('admin/countries') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addcountry') ? 'active' : ''); ?> <?php echo e(Request::is('admin/editcountry/*') ? 'active' : ''); ?> "><a href="<?php echo e(URL::to('admin/countries')); ?>"><i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_countries')); ?></a></li>
+            <li class="<?php echo e(Request::is('admin/countries') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/addcountry') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/editcountry/*') ? 'active' : ''); ?> ">
+              <a href="<?php echo e(URL::to('admin/countries')); ?>">
+                <i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_countries')); ?>
+
+              </a>
+            </li>
+            <li class="<?php echo e(Request::is('admin/listingCities') ? 'active' : ''); ?> ">
+              <a href="<?php echo e(URL::to('admin/listingCities')); ?>">
+                <i class="fa fa-circle-o"></i> 
+                <?php echo e(trans('labels.cities')); ?>
+
+              </a>
+            </li>
             <!-- <li class="<?php echo e(Request::is('admin/taxclass') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addtaxclass') ? 'active' : ''); ?> <?php echo e(Request::is('admin/editTaxClass/*') ? 'active' : ''); ?> "><a href="<?php echo e(URL::to('admin/taxclass')); ?>"><i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_tax_classes')); ?></a></li>
             <li class="<?php echo e(Request::is('admin/taxrates') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addtaxrate') ? 'active' : ''); ?> <?php echo e(Request::is('admin/edittaxrate/*') ? 'active' : ''); ?> "><a href="<?php echo e(URL::to('admin/taxrates')); ?>"><i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_tax_rates')); ?></a></li> -->
             <li class="<?php echo e(Request::is('admin/listingZones') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addZone') ? 'active' : ''); ?> <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>"><a href="<?php echo e(URL::to('admin/listingZones')); ?>"><i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_zones')); ?></a></li>
