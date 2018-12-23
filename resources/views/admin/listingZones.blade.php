@@ -55,12 +55,12 @@
                   <tbody>
                     @foreach ($result['zones'] as $key=>$zones)
                         <tr>
-                            <td>{{ $zones->zone_id }}</td>
-                            <td>{{ $zones->zone_name }}</td>
-                            <td>{{ $zones->zone_code }}</td>
-                            <td>{{ $zones->countries_name }}</td>
-                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editZone/{{ $zones->zone_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                            <a  data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deletezoneId" zone_id ="{{ $zones->zone_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <td>{{ $zones->id }}</td>
+                            <td>{{ $zones->name }}</td>
+                            <td>{{ $zones->code }}</td>
+                            <td>{{ $zones->countries_id }}</td>
+                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editZone/{{ $zones->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                            <a  data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deletezoneId" id ="{{ $zones->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                     @endforeach
@@ -89,7 +89,7 @@
 		  </div>
 		  {!! Form::open(array('url' =>'admin/deleteZone', 'name'=>'deleteZone', 'id'=>'deleteZone', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'zone_id')) !!}
+				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteZoneText') }}</p>
 		  </div>

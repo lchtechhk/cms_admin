@@ -4,7 +4,7 @@ namespace App\Providers;
 use DB;
 use Illuminate\Support\ServiceProvider;
 use Session;
-
+use Log;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -12,8 +12,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot(){
+		DB::listen(function ($query) {
+			// Log::notice($query->bindings);
+            // $query->sql
+            // $query->bindings
+            // $query->time
+        });
          // Using Closure based composers...
 		$result = array();
         $orders = DB::table('orders')

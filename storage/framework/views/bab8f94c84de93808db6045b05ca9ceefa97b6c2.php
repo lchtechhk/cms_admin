@@ -1119,7 +1119,12 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#countries_id').val(countries_id);
 		$("#deleteCountryModal").modal('show');
 	});
-	
+	//deleteCityModel
+	$(document).on('click', '#deleteCityId', function(){
+		var cities_id = $(this).attr('cities_id');
+		$('#cities_id').val(cities_id);
+		$("#deleteCityModal").modal('show');
+	});
 	//deleteZoneModal
 	$(document).on('click', '#deletezoneId', function(){
 		var zone_id = $(this).attr('zone_id');

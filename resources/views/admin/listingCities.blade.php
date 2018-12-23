@@ -1,43 +1,39 @@
 @extends('admin.layout')
 @section('content')
 <div class="content-wrapper"> 
-  <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> {{ trans('labels.Zones') }} <small> {{ trans('labels.ListingAllZones') }}...</small> </h1>
+    <h1> {{ trans('labels.Cities') }} <small> {{ trans('labels.ListingAllCities') }}...</small> </h1>
     <ol class="breadcrumb">
       <li><a href="{{ URL::to('admin/dashboard/this_month')}}"><i class="fa fa-dashboard"></i> {{ trans('labels.breadcrumb_dashboard') }}</a></li>
-      <li class="active"> {{ trans('labels.Zones') }}</li>
+      <li class="active"> {{ trans('labels.Cities') }}</li>
     </ol>
   </section>
-  
-  <!--  content -->
   <section class="content"> 
-    <!-- Info boxes --> 
-    
-    <!-- /.row -->
-
     <div class="row">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">{{ trans('labels.ListingAllZones') }} </h3>
+            <h3 class="box-title">{{ trans('labels.ListingAllCities') }} </h3>
             <div class="box-tools pull-right">
-            	<a href="addZone" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddZone') }}</a>
+            	<a href="addCity" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddCity') }}</a>
             </div>
           </div>
-          
-          <!-- /.box-header -->
+
           <div class="box-body">
             <div class="row">
-              <div class="col-xs-12">              		
-				  @if (count($errors) > 0)
-					  @if($errors->any())
-						<div class="alert alert-success alert-dismissible" role="alert">
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  {{$errors->first()}}
-						</div>
-					  @endif
-				  @endif
+              <div class="col-xs-12">           		
+                  @if(!empty($result['status']) && $result['status'] == 'success')
+                      <div class="alert alert-success alert-dismissible" role="alert">
+                  @elseif (!empty($result['status']) && $result['status'] == 'fail')
+                      <div class="alert alert-danger alert-dismissible" role="alert">
+                  @endif
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      @if(!empty($result['message']))
+                        {{ $result['message'] }}
+                      @endif
+                      </div>
               </div>
             </div>
             <div class="row">
@@ -46,66 +42,63 @@
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
-                      <th>{{ trans('labels.Zone') }}</th>
-                      <th>{{ trans('labels.Code') }}</th>
                       <th>{{ trans('labels.Country') }}</th>
+                      <th>{{ trans('labels.City') }}</th>
+                      <th>{{ trans('labels.Code') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($result['zones'] as $key=>$zones)
+                    @foreach ($result['cities'] as $key=>$cities)
                         <tr>
-                            <td>{{ $zones->zone_id }}</td>
-                            <td>{{ $zones->zone_name }}</td>
-                            <td>{{ $zones->zone_code }}</td>
-                            <td>{{ $zones->countries_name }}</td>
-                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editZone/{{ $zones->zone_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                            <a  data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deletezoneId" zone_id ="{{ $zones->zone_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                           </td>
+                            <td>{{ $cities->cities_id }}</td>
+                            <td>{{ $cities->countries_name }}</td>
+                            <td>{{ $cities->cities_name }}</td>
+                            <td>{{ $cities->cities_code }}</td>
+                            <td>
+                                <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCity/{{ $cities->cities_id }}" class="badge bg-light-blue">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a> 
+                                <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCityId"  cities_id ="{{$cities->cities_id}}" class="badge bg-red">
+                                  <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                   </tbody>
                 </table>
                 <div class="col-xs-12 text-right">
-                	{{$result['zones']->links('vendor.pagination.default')}}
+                	{{$result['cities']->links('vendor.pagination.default')}}
                 </div>
               </div>
             </div>
           </div>
-          <!-- /.box-body --> 
         </div>
-        <!-- /.box --> 
       </div>
-      <!-- /.col --> 
     </div>
-    <!-- /.row --> 
-        <!-- deleteZoneModal -->
-	<div class="modal fade" id="deleteZoneModal" tabindex="-1" role="dialog" aria-labelledby="deleteZoneModalLabel">
+	<div class="modal fade" id="deleteCityModal" tabindex="-1" role="dialog" aria-labelledby="deleteCityModalLabel">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="deleteZoneModalLabel">{{ trans('labels.DeleteZone') }}</h4>
+			<h4 class="modal-title" id="deleteCityModalLabel">{{ trans('labels.DeleteCity') }}</h4>
 		  </div>
-		  {!! Form::open(array('url' =>'admin/deleteZone', 'name'=>'deleteZone', 'id'=>'deleteZone', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'zone_id')) !!}
-		  <div class="modal-body">						
-			  <p>{{ trans('labels.DeleteZoneText') }}</p>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Cancel') }}</button>
-			<button type="submit" class="btn btn-primary" id="deleteZone">{{ trans('labels.Delete') }}</button>
-		  </div>
-		  {!! Form::close() !!}
+        @if (!empty($cities) && !empty($cities->cities_id))
+          {!! Form::open(array('url' =>'admin/deleteCity', 'name'=>'deleteCity', 'id'=>'deleteCity', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+              {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
+              {!! Form::hidden('id',  $cities->cities_id , array('class'=>'form-control', 'id'=>'cities_id')) !!}
+            <div class="modal-body">						
+              <p>{{ trans('labels.DeleteCityText') }}</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Cancel') }}</button>
+            <button type="submit" class="btn btn-primary" id="deleteCity">{{ trans('labels.Delete') }}</button>
+            </div>
+          {!! Form::close() !!}
+        @endif
 		</div>
 	  </div>
 	</div>
-    
-    <!--  row --> 
-    
-    <!-- /.row --> 
   </section>
-  <!-- /.content --> 
 </div>
 @endsection 

@@ -56,12 +56,12 @@
                   @if(count($countryData['countries'])>0)
                     @foreach ($countryData['countries'] as $key=>$countries)
                         <tr>
-                            <td>{{ $countries->countries_id }}</td>
-                            <td>{{ $countries->countries_name }}</td>
-                            <td>{{ $countries->countries_iso_code_2 }}</td>
-                            <td>{{ $countries->countries_iso_code_3 }}</td>
-                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editcountry/{{ $countries->countries_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                            <a  data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}" id="deleteCountryId" countries_id ="{{ $countries->countries_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <td>{{ $countries->id }}</td>
+                            <td>{{ $countries->name }}</td>
+                            <td>{{ $countries->iso_code_1 }}</td>
+                            <td>{{ $countries->iso_code_2 }}</td>
+                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editcountry/{{ $countries->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                            <a  data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}" id="deleteCountryId" id ="{{ $countries->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                     @endforeach
@@ -95,7 +95,7 @@
 		  </div>
 		  {!! Form::open(array('url' =>'admin/deletecountry', 'name'=>'deleteCountry', 'id'=>'deleteCountry', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'countries_id')) !!}
+				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteCountryText') }}</p>
 		  </div>

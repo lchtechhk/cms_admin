@@ -34,7 +34,7 @@
                       {!! Form::hidden('id',  $countryData['country'][0]->countries_id , array('class'=>'form-control', 'id'=>'id')) !!}
                       
                       <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryName') }}</label>
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryName') }}<span style="color:red">★</label>
                         <div class="col-sm-10 col-md-4">
                           {!! Form::text('countries_name', $countryData['country'][0]->countries_name, array('class'=>'form-control field-validat', 'id'=>'countries_name'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryNameText') }}</span>

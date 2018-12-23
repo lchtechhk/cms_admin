@@ -40,7 +40,7 @@ class AdminTaxController extends Controller
 		$errorMessage = array();
 		
 		$countries = DB::table('countries')
-			->orderBy('countries_id','ASC')
+			->orderBy('id','ASC')
 			->paginate(60);
 		
 		
@@ -53,21 +53,17 @@ class AdminTaxController extends Controller
 	// listingCities
 	public function listingCities(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
-		
 		$result = array();
 		$message = array();
-		$errorMessage = array();
-			
-		$zones = DB::table('zones')
-			->LeftJoin('countries','zones.zone_country_id','=','countries.countries_id')
+		$errorMessage = array();	
+		$cities = DB::table('view_county_city')
+			->orderBy('countries_id','ASC')
 			->paginate(60);
-		
-		
 		$result['message'] = $message;
-		$result['zones'] = $zones;
-		
-		Log::info('result : ' . json_encode($result));
-		return view("admin.listingZones",$title)->with('result', $result);
+		$result['cities'] = $cities;
+
+		// Log::info('result : ' . json_encode($result));
+		return view("admin.listingCities",$title)->with('result', $result);
 	}
 
 	//addcountry
@@ -152,6 +148,7 @@ class AdminTaxController extends Controller
 		
 		
 		$result['message'] = $message;
+		$result['status'] = 'success';
 		$result['zones'] = $zones;
 		
 		return view("admin.listingZones",$title)->with('result', $result);
@@ -170,7 +167,7 @@ class AdminTaxController extends Controller
 		
 		return view("admin.addZone", $title)->with('result', $result);
 	}
-	
+
 	//addNewZone	
 	public function addNewZone(Request $request){
 		
@@ -221,7 +218,7 @@ class AdminTaxController extends Controller
 		$country = DB::table('countries')->where('countries_id', $request->id)->get();		
 		$countryData['country'] = $country;	
 				
-		return redirect()->back()->withErrors([Lang::get("labels.ZoneUpdatedTax")]);
+		return redirect()->back()->withErrors([Lang::get("labels.CityUpdatedTax")]);
 	}
 	
 	//deleteZone
