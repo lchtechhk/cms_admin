@@ -8,9 +8,10 @@ use Log;
      abstract class BaseApiService extends BaseDao{ 
         
         public function add($request,$success_msg,$fail_msg){
+            $request['status'] = 'active';
             $request['create_date'] = date("Y-m-d H:i:s");
             $request['edit_date'] = date("Y-m-d H:i:s");
-            Log::info('[edit_date] ' . $request['edit_date']);	
+            Log::info('[edit_date] ' . json_encode($request->all()));	
 			$insert_id = $this->db_prepareInsert($this->getTable(),$request->all());
 			//
             $result = array();	
