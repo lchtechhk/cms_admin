@@ -169,13 +169,15 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
 
 			//countries
-			Route::get('/countries', 'AdminTaxController@countries');
-			Route::get('/addcountry', 'AdminTaxController@addcountry');
-			Route::post('/addnewcountry', 'AdminTaxController@addnewcountry');
-			Route::get('/editcountry/{id}', 'AdminTaxController@editcountry');
-			Route::post('/updatecountry', 'AdminTaxController@updatecountry');
-			Route::post('/deletecountry', 'AdminTaxController@deletecountry');
-			
+			// Route::post('/deletecountry', 'AdminTaxController@deletecountry');
+
+			//Country
+			Route::get('/editCountry/{id}', 'AdminCountryController@view_editCountry');
+			Route::get('/addCountry', 'AdminCountryController@view_addCountry');
+			Route::get('/listingCountry', 'AdminCountryController@listingCountry');
+			Route::post('/deleteCountry','AdminCountryController@deleteCountry');
+			Route::post('/editCountry/{id}', 'AdminCountryController@update');
+			Route::post('/addNewCountry', 'AdminCountryController@add');
 			
 			//City
 			Route::get('/editCity/{id}', 'AdminCityController@view_editCity');

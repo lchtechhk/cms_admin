@@ -1,11 +1,4 @@
 <?php
-/*
-Project Name: IonicEcommerce
-Project URI: http://ionicecommerce.com
-Author: VectorCoder Team
-Author URI: http://vectorcoder.com/
-Version: 2.8
-*/
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
@@ -35,34 +28,29 @@ class AdminCityController extends Controller {
 	public function add(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCity"));
 		$result = $this->CityService->add($request,"labels.CityAddedMessage","labels.CityAddedMessageFail");
-		$result['operation'] = 'add';
 		return $this->CityService->redirect_view($result,$title);
 	}
 
 	public function update(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditCity"));
 		$result = $this->CityService->update($request,"labels.CityAddedMessage","labels.CityAddedMessageFail");
-		$result['operation'] = 'edit';
-		$result['request'] = $request;
 		return $this->CityService->redirect_view($result,$title);
 
 	}
 	public function deleteCity(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCities"));		
 		$result = $this->CityService->delete($request,"labels.CityDeletedTax","labels.CityDeletedTaxFail");
-		$result['operation'] = 'delete';
 		return $this->CityService->redirect_view($result,$title);
 	}
 
 	// listingCities
 	public function listingCities(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
+		$title = array('pageTitle' => Lang::get("labels.ListingCities"));		
 		$result = array();
-		$result['operation'] = 'delete';
+		$result['operation'] = 'listing';
 		return $this->CityService->redirect_view($result,$title);
-		// Log::info('result : ' . json_encode($result));
 	}
-
+	//view_addCity
 	public function view_addCity(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCity"));
 		$result = array();
@@ -70,7 +58,7 @@ class AdminCityController extends Controller {
 		$result['operation'] = 'add';
 		return $this->CityService->redirect_view($result,$title);
 	}
-    //editCity
+    //view_editCity
 	public function view_editCity(Request $request){	
 		$title = array('pageTitle' => Lang::get("labels.EditCity"));
 		$result = array();

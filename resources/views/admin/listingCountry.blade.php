@@ -22,7 +22,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.ListingCountries') }} </h3>
             <div class="box-tools pull-right">
-            	<a href="addcountry" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddCountry') }}</a>
+            	<a href="addCountry" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddCountry') }}</a>
             </div>
           </div>
           
@@ -30,14 +30,7 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">              		
-				  @if (count($errors) > 0)
-					  @if($errors->any())
-						<div class="alert alert-success alert-dismissible" role="alert">
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  {{$errors->first()}}
-						</div>
-					  @endif
-				  @endif
+                @include('layouts/responseMessage')
               </div>
             </div>
             <div class="row">
@@ -53,15 +46,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                  @if(count($countryData['countries'])>0)
-                    @foreach ($countryData['countries'] as $key=>$countries)
+                  @if(count($result['countries'])>0)
+                    @foreach ($result['countries'] as $key=>$countries)
                         <tr>
                             <td>{{ $countries->id }}</td>
                             <td>{{ $countries->name }}</td>
                             <td>{{ $countries->iso_code_1 }}</td>
                             <td>{{ $countries->iso_code_2 }}</td>
-                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editcountry/{{ $countries->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                            <a  data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}" id="deleteCountryId" id ="{{ $countries->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCountry/{{ $countries->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                            <a  data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}" id="deleteCountryId" countries_id ="{{ $countries->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                            </td>
                         </tr>
                     @endforeach
@@ -73,7 +66,7 @@
                   </tbody>
                 </table>
                 <div class="col-xs-12 text-right">
-                	{{$countryData['countries']->links('vendor.pagination.default')}}
+                	{{$result['countries']->links('vendor.pagination.default')}}
                 </div>
               </div>
             </div>
@@ -93,9 +86,9 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title" id="deleteCountryModalLabel">{{ trans('labels.DeleteCountry') }}</h4>
 		  </div>
-		  {!! Form::open(array('url' =>'admin/deletecountry', 'name'=>'deleteCountry', 'id'=>'deleteCountry', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+		  {!! Form::open(array('url' =>'admin/deleteCountry', 'name'=>'deleteCountry', 'id'=>'deleteCountry', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
+				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'countries_id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteCountryText') }}</p>
 		  </div>

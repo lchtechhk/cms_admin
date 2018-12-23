@@ -78,7 +78,7 @@
             <li class="<?php echo e(Request::is('admin/countries') ? 'active' : ''); ?> 
                         <?php echo e(Request::is('admin/addcountry') ? 'active' : ''); ?> 
                         <?php echo e(Request::is('admin/editcountry/*') ? 'active' : ''); ?> ">
-              <a href="<?php echo e(URL::to('admin/countries')); ?>">
+              <a href="<?php echo e(URL::to('admin/listingCountry')); ?>">
                 <i class="fa fa-circle-o"></i> <?php echo e(trans('labels.link_countries')); ?>
 
               </a>

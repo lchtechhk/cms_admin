@@ -33,7 +33,6 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                     return view("admin.listingCities", $title)->with('result', $result);	
                 break;
             }
-
         }
     }
 ?>

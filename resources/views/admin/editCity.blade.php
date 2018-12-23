@@ -30,18 +30,7 @@
             <div class="row">
               <div class="col-xs-12">
               	  <div class="box box-info"><br>
-                    @if(!empty($result['status']) && $result['status'] == 'success')
-                      <div class="alert alert-success alert-dismissible" role="alert">
-                    @elseif (!empty($result['status']) && $result['status'] == 'fail')
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                    @endif
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      @if(!empty($result['message']))
-                        {{ $result['message'] }}
-                      @endif
-                      </div>
+                  @include('layouts/responseMessage')
                   <div class="box-body">
                     {!! Form::open(array('url' =>'admin/editCity/'.$result["city"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                     {!! Form::hidden('id', $result['city'][0]->id, array('class'=>'form-control', 'id'=>'city_name'))!!}

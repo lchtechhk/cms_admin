@@ -22,6 +22,7 @@ use Log;
                 $result['status'] = 'fail';
 				$result['message'] =  Lang::get($fail_msg);
             }
+            $result['operation'] = 'add';
             return $result;
 
         }
@@ -36,6 +37,8 @@ use Log;
                 $result['status'] = 'fail';
 				$result['message'] =  Lang::get($fail_msg);
             }
+            $result['operation'] = 'edit';
+		    $result['request'] = $request;
             return $result;
         }
         public function delete($request,$success_msg,$fail_msg){
@@ -49,6 +52,7 @@ use Log;
                 $result['status'] = 'fail';
 				$result['message'] =  Lang::get($fail_msg);
             }
+            $result['operation'] = 'delete';
             return $result;
         }
         // public function add_multiple();

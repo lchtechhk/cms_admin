@@ -20,20 +20,14 @@
             <div class="row">
               <div class="col-xs-12">
                 <div class="box box-info"><br>
-                  @if(count($countryData['message'])>0)
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      {{ $countryData['message'] }}
-                    </div>						
-                  @endif   
-
-                  {!! Form::open(array('url' =>'admin/addnewcountry', 'method'=>'post', 'class' => 'form-horizontal  form-validate', 'enctype'=>'multipart/form-data')) !!}
+                  @include('layouts/responseMessage')
+                  {!! Form::open(array('url' =>'admin/addNewCountry', 'method'=>'post', 'class' => 'form-horizontal  form-validate', 'enctype'=>'multipart/form-data')) !!}
                     <div class="box-body">
                       <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryName') }}
                         </label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('countries_name',  '', array('class'=>'form-control  field-validate', 'id'=>'countries_name'))!!}
+                            {!! Form::text('name',  '', array('class'=>'form-control  field-validate', 'id'=>'countries_name'))!!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                             {{ trans('labels.CountryNameText') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -44,7 +38,7 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode2') }}
                         </label>
                         <div class="col-sm-10 col-md-4">
-                          {!! Form::text('countries_iso_code_2',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_2'))!!}
+                          {!! Form::text('iso_code_1',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_2'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                           {{ trans('labels.ISOCode2Text') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -55,7 +49,7 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode3') }}
                         </label>
                         <div class="col-sm-10 col-md-4">
-                          {!! Form::text('countries_iso_code_3',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_3'))!!}
+                          {!! Form::text('iso_code_2',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_3'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                           {{ trans('labels.ISOCode3Text') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
@@ -64,7 +58,7 @@
 
                       <div class="box-footer text-center">
                         <button type="submit" class="btn btn-primary">{{ trans('labels.AddCountry') }}</button>
-                        <a href="{{ URL::to('admin/countries')}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
+                        <a href="{{ URL::to('admin/listingCountry')}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
                       </div>
                     </div>
                   {!! Form::close() !!}

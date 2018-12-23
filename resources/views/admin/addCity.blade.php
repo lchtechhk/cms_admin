@@ -30,24 +30,8 @@
             <div class="row">
               <div class="col-xs-12">
                 <div class="box box-info"><br>
-                    @if(!empty($result['status']) && $result['status'] == 'success')
-                      <div class="alert alert-success alert-dismissible" role="alert">
-                    @elseif (!empty($result['status']) && $result['status'] == 'fail')
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                    @endif
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      @if(!empty($result['message']))
-                        {{ $result['message'] }}
-                      @endif
-                    </div>
-
-                  <!--<div class="box-header with-border"> <h3 class="box-title">Edit category</h3> </div>-->
-                  <!-- /.box-header -->
-                  <!-- form start -->
+                  @include('layouts/responseMessage')
                   <div class="box-body">
-
                     {!! Form::open(array('url' =>'admin/addNewCity', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                     <div class="form-group">
                       <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Country') }}<span style="color:red">★

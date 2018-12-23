@@ -22,18 +22,7 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">           		
-                  @if(!empty($result['status']) && $result['status'] == 'success')
-                      <div class="alert alert-success alert-dismissible" role="alert">
-                  @elseif (!empty($result['status']) && $result['status'] == 'fail')
-                      <div class="alert alert-danger alert-dismissible" role="alert">
-                  @endif
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      @if(!empty($result['message']))
-                        {{ $result['message'] }}
-                      @endif
-                      </div>
+              @include('layouts/responseMessage')
               </div>
             </div>
             <div class="row">
@@ -83,10 +72,9 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title" id="deleteCityModalLabel">{{ trans('labels.DeleteCity') }}</h4>
 		  </div>
-        @if (!empty($cities) && !empty($cities->cities_id))
           {!! Form::open(array('url' =>'admin/deleteCity', 'name'=>'deleteCity', 'id'=>'deleteCity', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
               {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-              {!! Form::hidden('id',  $cities->cities_id , array('class'=>'form-control', 'id'=>'cities_id')) !!}
+              {!! Form::hidden('id',  '' , array('class'=>'form-control', 'id'=>'cities_id')) !!}
             <div class="modal-body">						
               <p>{{ trans('labels.DeleteCityText') }}</p>
             </div>
@@ -95,7 +83,6 @@
             <button type="submit" class="btn btn-primary" id="deleteCity">{{ trans('labels.Delete') }}</button>
             </div>
           {!! Form::close() !!}
-        @endif
 		</div>
 	  </div>
 	</div>

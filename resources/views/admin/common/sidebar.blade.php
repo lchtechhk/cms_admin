@@ -78,7 +78,7 @@
             <li class="{{ Request::is('admin/countries') ? 'active' : '' }} 
                         {{ Request::is('admin/addcountry') ? 'active' : '' }} 
                         {{ Request::is('admin/editcountry/*') ? 'active' : '' }} ">
-              <a href="{{ URL::to('admin/countries')}}">
+              <a href="{{ URL::to('admin/listingCountry')}}">
                 <i class="fa fa-circle-o"></i> {{ trans('labels.link_countries') }}
               </a>
             </li>
