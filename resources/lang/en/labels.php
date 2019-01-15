@@ -17,6 +17,10 @@ return [
 	'ListingAllArea'=>'Listing All Area',
 	'deleteAreaText'=>'Delete Area Text',
 	'AddArea'=>'Add Area',
+	'CreateDate'=>'Create Date',
+	'EditDate'=>'Edit Date',
+	'CreateBy'=>'Create By',
+	'EditBy'=>'Edit By',
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',

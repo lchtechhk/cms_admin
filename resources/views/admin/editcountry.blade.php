@@ -27,8 +27,16 @@
 
                   {!! Form::open(array('url' =>'admin/editCountry/'.$result['countries'][0]->id, 'method'=>'post', 'class' => 'form-horizontal field-validat', 'enctype'=>'multipart/form-data')) !!}
                     <div class="box-body">      
-                      {!! Form::hidden('id',  $result['countries'][0]->id , array('class'=>'form-control', 'id'=>'id')) !!}
                       
+                      <div class="form-group">
+                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ID') }}<span style="color:red">★</label>
+                          <div class="col-sm-10 col-md-4">
+                            {!! Form::text('id',  $result['countries'][0]->id , array('class'=>'form-control', 'id'=>'id','readonly'=>'true')) !!}
+                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryNameText') }}</span>
+                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                          </div>
+                      </div>
+ 
                       <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryName') }}<span style="color:red">★</label>
                         <div class="col-sm-10 col-md-4">
@@ -54,6 +62,25 @@
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ISOCode3Text') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span style="color:red">★</label>
+                          <div class="col-sm-10 col-md-4">
+                            {!! Form::text('create_date',  $result['countries'][0]->create_date, array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
+                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
+                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span style="color:red">★</label>
+                          <div class="col-sm-10 col-md-4">
+                            {!! Form::text('edit_date',  $result['countries'][0]->edit_date, array('class'=>'form-control', 'id'=>'edit_date','readonly'=>'true')) !!}
+                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
+                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                          </div>
                       </div>
 
                       <div class="box-footer text-center">
