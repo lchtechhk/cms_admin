@@ -4,8 +4,8 @@ use Log;
 use DB;
 use App\Http\Controllers\Admin\Service\BaseApiService;
      class CountryService extends BaseApiService{
-        function __construct($table){
-            $this->setTable($table);
+        function __construct(){
+            $this->setTable('countries');
             
         }
         function getListing(){

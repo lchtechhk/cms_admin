@@ -22,7 +22,7 @@ class AdminCountryController extends Controller {
 	protected $CountryService;
 
 	public function __construct(){
-		$this->CountryService = new CountryService('countries');
+		$this->CountryService = new CountryService();
 	}
 
 	public function add(Request $request){

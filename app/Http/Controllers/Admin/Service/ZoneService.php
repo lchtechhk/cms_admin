@@ -3,13 +3,13 @@ namespace App\Http\Controllers\Admin\Service;
 use Log;
 use DB;
 use App\Http\Controllers\Admin\Service\BaseApiService;
-     class CityService extends BaseApiService{
-        private $CountryService;
+     class ZoneService extends BaseApiService{
+        private $CityService;
         private $View_CCityService;
         function __construct(){
-            $this->setTable('cities');
-            $this->CountryService = new CountryService('countries');
-            $this->View_CCityService = new View_CCityService('view_country_city');
+            $this->setTable('zones');
+            $this->CityService = new CityService('cities');
+            $this->View_CCityService = new View_CCityService();
         }
 
         function redirect_view($result,$title){

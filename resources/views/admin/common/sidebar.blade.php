@@ -69,28 +69,56 @@
         </li>
         
         
-        <li class="treeview {{ Request::is('admin/countries') ? 'active' : '' }} {{ Request::is('admin/addcountry') ? 'active' : '' }} {{ Request::is('admin/editcountry/*') ? 'active' : '' }} {{ Request::is('admin/listingZones') ? 'active' : '' }} {{ Request::is('admin/addZone') ? 'active' : '' }} {{ Request::is('admin/editZone/*') ? 'active' : '' }} {{ Request::is('admin/taxclass') ? 'active' : '' }} {{ Request::is('admin/addtaxclass') ? 'active' : '' }} {{ Request::is('admin/editTaxClass/*') ? 'active' : '' }} {{ Request::is('admin/taxrates') ? 'active' : '' }} {{ Request::is('admin/addtaxrate') ? 'active' : '' }} {{ Request::is('admin/edittaxrate/*') ? 'active' : '' }}">
+        <li class="treeview 
+                      {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
+                      {{ Request::is('admin/addCountry') ? 'active' : '' }} 
+                      {{ Request::is('admin/editCountry/*') ? 'active' : '' }} 
+                      {{ Request::is('admin/listingCities') ? 'active' : '' }}
+                      {{ Request::is('admin/addCity') ? 'active' : '' }}
+                      {{ Request::is('admin/editCity/*') ? 'active' : '' }}
+                      {{ Request::is('admin/listingArea') ? 'active' : '' }}
+                      {{ Request::is('admin/addArea') ? 'active' : '' }}
+                      {{ Request::is('admin/editArea/*') ? 'active' : '' }}
+                      {{ Request::is('admin/listingZones') ? 'active' : '' }} 
+                      {{ Request::is('admin/addZone') ? 'active' : '' }} 
+                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
           <a href="#">
             <i class="fa fa-money" aria-hidden="true"></i>
             <span>{{ trans('labels.location') }}</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ Request::is('admin/countries') ? 'active' : '' }} 
-                        {{ Request::is('admin/addcountry') ? 'active' : '' }} 
-                        {{ Request::is('admin/editcountry/*') ? 'active' : '' }} ">
+            <li class="{{ Request::is('admin/listingCountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/addCountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/editCountry/*') ? 'active' : '' }} ">
               <a href="{{ URL::to('admin/listingCountry')}}">
-                <i class="fa fa-circle-o"></i> {{ trans('labels.link_countries') }}
+                <i class="fa fa-circle-o"></i> 
+                {{ trans('labels.link_countries') }}
               </a>
             </li>
-            <li class="{{ Request::is('admin/listingCities') ? 'active' : '' }} ">
+            <li class="{{ Request::is('admin/listingCities') ? 'active' : '' }} 
+                       {{ Request::is('admin/addCity') ? 'active' : '' }}
+                       {{ Request::is('admin/editCity?*') ? 'active' : '' }}">
               <a href="{{ URL::to('admin/listingCities')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.cities') }}
               </a>
             </li>
-            <!-- <li class="{{ Request::is('admin/taxclass') ? 'active' : '' }} {{ Request::is('admin/addtaxclass') ? 'active' : '' }} {{ Request::is('admin/editTaxClass/*') ? 'active' : '' }} "><a href="{{ URL::to('admin/taxclass')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_tax_classes') }}</a></li>
-            <li class="{{ Request::is('admin/taxrates') ? 'active' : '' }} {{ Request::is('admin/addtaxrate') ? 'active' : '' }} {{ Request::is('admin/edittaxrate/*') ? 'active' : '' }} "><a href="{{ URL::to('admin/taxrates')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_tax_rates') }}</a></li> -->
-            <li class="{{ Request::is('admin/listingZones') ? 'active' : '' }} {{ Request::is('admin/addZone') ? 'active' : '' }} {{ Request::is('admin/editZone/*') ? 'active' : '' }}"><a href="{{ URL::to('admin/listingZones')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_zones') }}</a></li>
+            <li class="{{ Request::is('admin/listingArea') ? 'active' : '' }} 
+                       {{ Request::is('admin/addArea') ? 'active' : '' }}
+                       {{ Request::is('admin/editArea/*') ? 'active' : '' }}">
+              <a href="{{ URL::to('admin/listingArea')}}">
+                <i class="fa fa-circle-o"></i> 
+                {{ trans('labels.link_area') }}
+              </a>
+            </li>
+            <li class="{{ Request::is('admin/listingZones') ? 'active' : '' }} 
+                      {{ Request::is('admin/addZone') ? 'active' : '' }} 
+                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
+              <a href="{{ URL::to('admin/listingZones')}}">
+                <i class="fa fa-circle-o"></i> 
+                {{ trans('labels.link_zones') }}
+              </a>
+            </li>
           </ul>
         </li>
         

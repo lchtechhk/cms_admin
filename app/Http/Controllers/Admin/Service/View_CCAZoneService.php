@@ -4,9 +4,9 @@ use Log;
 use DB;
 
 use App\Http\Controllers\Admin\Service\BaseApiService;
-     class View_CountryCityService extends BaseApiService{
-        function __construct($table){
-            $this->setTable($table);
+     class View_CCAZoneService extends BaseApiService{
+        function __construct(){
+            $this->setTable('view_country_city_area_zone');
         }
 
         function getListing(){

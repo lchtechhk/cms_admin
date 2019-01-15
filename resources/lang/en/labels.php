@@ -11,8 +11,12 @@ return [
     | messages that we need to display to the user. You are free to modify
     | these language lines according to your application's requirements.
     |
-    */
-	
+	*/
+	// Jamie
+	'Area'=>'Area',
+	'ListingAllArea'=>'Listing All Area',
+	'deleteAreaText'=>'Delete Area Text',
+	'AddArea'=>'Add Area',
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',
@@ -63,6 +67,7 @@ return [
 	'link_tax_classes' => 'Tax Classes',
 	'link_tax_rates' => 'Tax Rates',
 	'link_zones' => 'Zones',
+	'link_area' => 'Area',
 	'link_coupons' => 'Coupons',
 	'link_notifications' => 'Notifications',
 	'link_devices' => 'Devices',
@@ -471,6 +476,8 @@ return [
 	'CityUpdatedFail' => 'City has been updated failure!',
 	'EditZone' => 'Edit Zone',
 	'EditCity' => 'Edit City',
+	'EditArea' => 'Edit Area',
+
 	'ZoneAddedMessage' => 'Zone has been added successfully!',
 	'CityAddedMessage' => 'City has been added successfully!',
 	'CityAddedMessageFail' => 'City has been added failure!',
@@ -482,6 +489,17 @@ return [
 	'CountryAddedMessage' => 'Country has been added successfully!',
 	'Countries' => 'Countries',
 	'CountryName' => 'Country Name',
+	'AreaDeletedMessage' => 'Area has been deleted successfully!',
+	'AreaDeletedFail' => 'Area has been deleted failure!',
+	'AreaUpdatedMessage' => 'Area has been updated successfully!',
+	'AreaAddedMessage' => 'Area has been added successfully!',
+	'Area' => 'Area',
+	'AreaName' => 'Area Name',
+	// Jamie
+	'ListingCountry'=> 'Listing Country',
+	'ListingCity'=>'Listing City',
+	'ListingArea'=>'Listing Area',
+	'ListingZone'=>'Listing Zone',
 	'ISOCode2' => 'ISO Code 2',
 	'ISOCode3' => 'ISO Code 3',
 	'DeleteCountry' => 'Delete Country',

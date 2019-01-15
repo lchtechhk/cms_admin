@@ -187,6 +187,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/editCity/{id}', 'AdminCityController@update');
 			Route::post('/addNewCity', 'AdminCityController@add');
 
+			//Area
+			Route::get('/editArea/{id}', 'AdminAreaController@view_editArea');
+			Route::get('/addArea', 'AdminAreaController@view_addArea');
+			Route::get('/listingArea', 'AdminAreaController@listingArea');
+			Route::post('/deleteArea','AdminAreaController@deleteArea');
+			Route::post('/editArea/{id}', 'AdminAreaController@update');
+			Route::post('/addNewArea', 'AdminAreaController@add');
+
 			//zones
 			Route::get('/listingZones', 'AdminTaxController@listingZones');
 			Route::get('/addZone', 'AdminTaxController@addZone');
