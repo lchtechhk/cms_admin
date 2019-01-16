@@ -42,6 +42,7 @@
                       <th>{{ trans('labels.CountryName') }}</th>
                       <th>{{ trans('labels.ISOCode2') }}</th>
                       <th>{{ trans('labels.ISOCode3') }}</th>
+                      <th>{{ trans('labels.Status') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
@@ -53,6 +54,8 @@
                             <td>{{ $countries->name }}</td>
                             <td>{{ $countries->iso_code_1 }}</td>
                             <td>{{ $countries->iso_code_2 }}</td>
+                            <td>{{ $countries->status }}</td>
+
                             <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCountry/{{ $countries->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                             <a  data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}" id="deleteCountryId" countries_id ="{{ $countries->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                            </td>

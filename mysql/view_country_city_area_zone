@@ -1,0 +1,23 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `view_country_city_area_zone` AS
+    SELECT 
+        `countries`.`id` AS `countries_id`,
+        `countries`.`name` AS `countries_name`,
+        `cities`.`id` AS `cities_id`,
+        `cities`.`name` AS `cities_name`,
+        `cities`.`code` AS `cities_code`,
+        `area`.`id` AS `area_id`,
+        `area`.`name` AS `area_name`,
+        `area`.`code` AS `area_code`,
+        `zones`.`id` AS `zone_id`,
+        `zones`.`name` AS `zone_name`,
+        `zones`.`code` AS `zone_code`,
+        `zones`.`status` AS `zone_status`
+    FROM
+        (((`zones`
+        LEFT JOIN `area` ON ((`zones`.`area_id` = `area`.`id`)))
+        LEFT JOIN `cities` ON ((`area`.`city_id` = `cities`.`id`)))
+        LEFT JOIN `countries` ON ((`cities`.`countries_id` = `countries`.`id`)))

@@ -21,6 +21,7 @@ return [
 	'EditDate'=>'Edit Date',
 	'CreateBy'=>'Create By',
 	'EditBy'=>'Edit By',
+	'Status'=>'Status',
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',

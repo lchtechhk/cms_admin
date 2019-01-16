@@ -34,6 +34,7 @@
                       <th>{{ trans('labels.Country') }}</th>
                       <th>{{ trans('labels.City') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
+                      <th>{{ trans('labels.Status') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
@@ -44,6 +45,7 @@
                             <td>{{ $cities->countries_name }}</td>
                             <td>{{ $cities->cities_name }}</td>
                             <td>{{ $cities->cities_code }}</td>
+                            <td>{{ $cities->cities_status }}</td>
                             <td>
                                 <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCity/{{ $cities->cities_id }}" class="badge bg-light-blue">
                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
