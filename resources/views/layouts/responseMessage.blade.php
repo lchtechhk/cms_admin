@@ -3,10 +3,9 @@
 @elseif (!empty($result['status']) && $result['status'] == 'fail')
     <div class="alert alert-danger alert-dismissible" role="alert">
 @endif
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-        @if(!empty($result['message']))
-            {{ $result['message'] }}
-        @endif
+    
+@if(!empty($result['message']))
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ $result['message'] }}
     </div>
+@endif

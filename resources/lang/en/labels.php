@@ -22,6 +22,14 @@ return [
 	'CreateBy'=>'Create By',
 	'EditBy'=>'Edit By',
 	'Status'=>'Status',
+	'ZoneDeleted'=>'Zone Has Been Deleted Successful',
+	'ZoneDeletedFail'=>'Zone Has Been Deleted failure',
+	'ChooseZoneArea'=>'Choose A Area',
+	'ListingAllCity'=>'Listing All City',
+	'link_district'=>'District',
+	'ListingDistricts'=>'Listing Districts',
+	'addDistrict'=>'Listing Districts',
+
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',

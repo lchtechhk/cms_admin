@@ -1,30 +1,20 @@
 @extends('admin.layout')
 @section('content')
 <div class="content-wrapper"> 
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1> {{ trans('labels.EditCountry') }} <small>{{ trans('labels.EditCountry') }}...</small> </h1>
-    <ol class="breadcrumb">
-       <li><a href="{{ URL::to('admin/dashboard/this_month') }}"><i class="fa fa-dashboard"></i> {{ trans('labels.breadcrumb_dashboard') }}</a></li>
-      <li><a href="{{ URL::to('admin/countries')}}"><i class="fa fa-dashboard"></i>{{ trans('labels.ListingCountries') }}</a></li>
-      <li class="active">{{ trans('labels.EditCountry') }}</li>
-    </ol>
-  </section>
-  
-  <!-- Main content -->
-  <section class="content"> 
+  @include('layouts/edit_header')
+  <section class="content">
     <div class="row">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">{{ trans('labels.EditCountry') }}</h3>
+            <h3 class="box-title">{{ trans('labels.Edit'.$result['label']) }}</h3>
           </div>
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
-                <div class="box box-info"><br>             
+                <div class="box box-info"><br>
                   @include('layouts/responseMessage')
-
+                  <div class="box-body">
                   {!! Form::open(array('url' =>'admin/editCountry/'.$result['countries'][0]->id, 'method'=>'post', 'class' => 'form-horizontal field-validat', 'enctype'=>'multipart/form-data')) !!}
                     <div class="box-body">      
                       

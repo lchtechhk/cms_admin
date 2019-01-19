@@ -85,6 +85,10 @@
 
                       <?php echo e(Request::is('admin/editArea/*') ? 'active' : ''); ?>
 
+                      <?php echo e(Request::is('admin/listingDistrict') ? 'active' : ''); ?>
+
+                      <?php echo e(Request::is('admin/addDistrict') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/editDistrict/*') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/listingZones') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/addZone') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>">
@@ -119,6 +123,15 @@
               <a href="<?php echo e(URL::to('admin/listingArea')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.link_area')); ?>
+
+              </a>
+            </li>
+            <li class="<?php echo e(Request::is('admin/listingDistrict') ? 'active' : ''); ?> 
+                       <?php echo e(Request::is('admin/addDistrict') ? 'active' : ''); ?> 
+                       <?php echo e(Request::is('admin/editDistrict/*') ? 'active' : ''); ?>">
+              <a href="<?php echo e(URL::to('admin/listingDistrict')); ?>">
+                <i class="fa fa-circle-o"></i> 
+                <?php echo e(trans('labels.link_district')); ?>
 
               </a>
             </li>

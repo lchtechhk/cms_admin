@@ -30,14 +30,7 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">              		
-				  @if (count($errors) > 0)
-					  @if($errors->any())
-						<div class="alert alert-success alert-dismissible" role="alert">
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  {{$errors->first()}}
-						</div>
-					  @endif
-				  @endif
+                @include('layouts/responseMessage')
               </div>
             </div>
             <div class="row">
@@ -46,21 +39,30 @@
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
+                      <th>{{ trans('labels.Country') }}</th>
+                      <th>{{ trans('labels.City') }}</th>
+                      <th>{{ trans('labels.Area') }}</th>
                       <th>{{ trans('labels.Zone') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
-                      <th>{{ trans('labels.Country') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($result['zones'] as $key=>$zones)
                         <tr>
-                            <td>{{ $zones->id }}</td>
-                            <td>{{ $zones->name }}</td>
-                            <td>{{ $zones->code }}</td>
-                            <td>{{ $zones->countries_id }}</td>
-                            <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editZone/{{ $zones->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                            <a  data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deletezoneId" id ="{{ $zones->id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            <td>{{ $zones->zone_id }}</td>
+                            <td>{{ $zones->countries_name }}</td>
+                            <td>{{ $zones->cities_name }}</td>
+                            <td>{{ $zones->area_name }}</td>
+                            <td>{{ $zones->zone_name }}</td>
+                            <td>{{ $zones->zone_code }}</td>
+                            <td>
+                              <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editZone/{{ $zones->zone_id }}" class="badge bg-light-blue">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a> 
+                              <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteZoneId" zone_id="{{ $zones->zone_id }}" class="badge bg-red">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                              </a>
                            </td>
                         </tr>
                     @endforeach
@@ -89,7 +91,7 @@
 		  </div>
 		  {!! Form::open(array('url' =>'admin/deleteZone', 'name'=>'deleteZone', 'id'=>'deleteZone', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
+				  {!! Form::text('id',  '', array('class'=>'form-control', 'id'=>'zone_id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteZoneText') }}</p>
 		  </div>

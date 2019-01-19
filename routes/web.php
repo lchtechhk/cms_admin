@@ -195,13 +195,21 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/editArea/{id}', 'AdminAreaController@update');
 			Route::post('/addNewArea', 'AdminAreaController@add');
 
+			//District
+			Route::get('/editDistrict/{id}', 'AdminDistrictController@view_editDistrict');
+			Route::get('/addDistrict', 'AdminDistrictController@view_addDistrict');
+			Route::get('/listingDistrict', 'AdminDistrictController@listingDistrict');
+			Route::post('/deleteDistrict','AdminDistrictController@deleteDistrict');
+			Route::post('/editDistrict/{id}', 'AdminDistrictController@update');
+			Route::post('/addNewDistrict', 'AdminDistrictController@add');
+
 			//zones
-			Route::get('/listingZones', 'AdminTaxController@listingZones');
-			Route::get('/addZone', 'AdminTaxController@addZone');
-			Route::post('/addNewZone', 'AdminTaxController@addNewZone');
-			Route::get('/editZone/{id}', 'AdminTaxController@editZone');
-			Route::post('/updateZone', 'AdminTaxController@updateZone');
-			Route::post('/deleteZone', 'AdminTaxController@deleteZone');
+			Route::get('/editZone/{id}', 'AdminZoneController@view_editZone');
+			Route::get('/addZone', 'AdminZoneController@view_addZone');
+			Route::get('/listingZones', 'AdminZoneController@listingZones');
+			Route::post('/deleteZone','AdminZoneController@deleteZone');
+			Route::post('/editZone/{id}', 'AdminZoneController@update');
+			Route::post('/addNewZone', 'AdminZoneController@add');
 
 			//tax class
 			Route::get('/taxclass', 'AdminTaxController@taxclass');

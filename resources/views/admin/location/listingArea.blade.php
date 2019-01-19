@@ -15,7 +15,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.ListingAllArea') }} </h3>
             <div class="box-tools pull-right">
-            	<a href="addCity" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddCity') }}</a>
+            	<a href="addArea" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddArea') }}</a>
             </div>
           </div>
 

@@ -1,26 +1,19 @@
-@extends('admin.layout')
-@section('content')
-  <div class="content-wrapper"> 
-    <section class="content-header">
-      <h1> {{ trans('labels.AddCountry') }} <small>{{ trans('labels.AddCountry') }}...</small> </h1>
-      <ol class="breadcrumb">
-        <li><a href="{{ URL::to('admin/dashboard/this_month')}}"><i class="fa fa-dashboard"></i> {{ trans('labels.breadcrumb_dashboard') }}</a></li>
-        <li><a href="{{ URL::to('admin/countries')}}"><i class="fa fa-dashboard"></i>{{ trans('labels.ListingCountries') }} </a></li>
-        <li class="active">{{ trans('labels.AddCountry') }} </li>
-      </ol>
-    </section>
-    <section class="content"> 
+@extends('admin.layout') @section('content')
+<div class="content-wrapper">
+  @include('layouts/add_header')
+  <section class="content">
     <div class="row">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">{{ trans('labels.AddCountry') }}</h3>
+            <h3 class="box-title">{{ trans('labels.Add'.$result['label']) }}</h3>
           </div>
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
+                  <div class="box-body">
                   {!! Form::open(array('url' =>'admin/addNewCountry', 'method'=>'post', 'class' => 'form-horizontal  form-validate', 'enctype'=>'multipart/form-data')) !!}
                     <div class="box-body">
                       <div class="form-group">

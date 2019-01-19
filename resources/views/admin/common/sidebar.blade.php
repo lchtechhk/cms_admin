@@ -79,6 +79,9 @@
                       {{ Request::is('admin/listingArea') ? 'active' : '' }}
                       {{ Request::is('admin/addArea') ? 'active' : '' }}
                       {{ Request::is('admin/editArea/*') ? 'active' : '' }}
+                      {{ Request::is('admin/listingDistrict') ? 'active' : '' }}
+                      {{ Request::is('admin/addDistrict') ? 'active' : '' }} 
+                      {{ Request::is('admin/editDistrict/*') ? 'active' : '' }} 
                       {{ Request::is('admin/listingZones') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
                       {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
@@ -109,6 +112,14 @@
               <a href="{{ URL::to('admin/listingArea')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_area') }}
+              </a>
+            </li>
+            <li class="{{ Request::is('admin/listingDistrict') ? 'active' : '' }} 
+                       {{ Request::is('admin/addDistrict') ? 'active' : '' }} 
+                       {{ Request::is('admin/editDistrict/*') ? 'active' : '' }}">
+              <a href="{{ URL::to('admin/listingDistrict')}}">
+                <i class="fa fa-circle-o"></i> 
+                {{ trans('labels.link_district') }}
               </a>
             </li>
             <li class="{{ Request::is('admin/listingZones') ? 'active' : '' }} 

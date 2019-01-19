@@ -1,35 +1,18 @@
 @extends('admin.layout')
 @section('content')
 <div class="content-wrapper"> 
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1> {{ trans('labels.EditArea') }} <small>{{ trans('labels.EditArea') }}...</small> </h1>
-    <ol class="breadcrumb">
-      <li><a href="{{ URL::to('admin/dashboard/this_month')}}"><i class="fa fa-dashboard"></i> {{ trans('labels.breadcrumb_dashboard') }}</a></li>
-      <li><a href="../listingCities"><i class="fa fa-dashboard"></i>{{ trans('labels.ListingAllCities') }}</a></li>
-      <li class="active">{{ trans('labels.EditArea') }}</li>
-    </ol>
-  </section>
-  
-  <!-- Main content -->
-  <section class="content"> 
-    <!-- Info boxes --> 
-    
-    <!-- /.row -->
-
+  @include('layouts/edit_header')
+  <section class="content">
     <div class="row">
       <div class="col-md-12">
-        
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">{{ trans('labels.EditArea') }}</h3>
+            <h3 class="box-title">{{ trans('labels.Edit'.$result['label']) }}</h3>
           </div>
-          
-          <!-- /.box-header -->
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
-              	  <div class="box box-info"><br>
+                <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">
                     {!! Form::open(array('url' =>'admin/editArea/'.$result["area"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}

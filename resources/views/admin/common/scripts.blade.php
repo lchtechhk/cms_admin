@@ -1125,8 +1125,15 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#cities_id').val(cities_id);
 		$("#deleteCityModal").modal('show');
 	});
+	// deleteAreaModal
+	$(document).on('click', '#deleteAreaId', function(){
+		var area_id = $(this).attr('area_id');
+		$('#area_id').val(area_id);
+		$("#deleteAreaModal").modal('show');
+	});
+
 	//deleteZoneModal
-	$(document).on('click', '#deletezoneId', function(){
+	$(document).on('click', '#deleteZoneId', function(){
 		var zone_id = $(this).attr('zone_id');
 		$('#zone_id').val(zone_id);
 		$("#deleteZoneModal").modal('show');

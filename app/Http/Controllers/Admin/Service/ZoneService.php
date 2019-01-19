@@ -4,33 +4,34 @@ use Log;
 use DB;
 use App\Http\Controllers\Admin\Service\BaseApiService;
      class ZoneService extends BaseApiService{
-        private $CityService;
-        private $View_CCityService;
+        private $AreaService;
+        private $View_CCAZoneService;
         function __construct(){
             $this->setTable('zones');
-            $this->CityService = new CityService('cities');
-            $this->View_CCityService = new View_CCityService();
+            $this->AreaService = new AreaService();
+            $this->View_CCAZoneService = new View_CCAZoneService();
         }
 
         function redirect_view($result,$title){
+            $result['label'] = "Zone";
             switch($result['operation']){
                 case 'listing':
-                    $result['cities'] = $this->View_CCityService->getListing();
-                    return view("admin.listingCities", $title)->with('result', $result);
+                    $result['zones'] = $this->View_CCAZoneService->getListing();
+                    return view("admin.location.listingzones", $title)->with('result', $result);
                 break;
                 case 'add':
-                    $result['countries'] = $this->CountryService->findAll();
-                    return view("admin.addCity", $title)->with('result', $result);
+                    $result['area'] = $this->AreaService->findAll();
+                    return view("admin.location.addZone", $title)->with('result', $result);
                 break;
 
                 case 'edit':
-                    $result['city'] = $this->findById($result['request']->id);
-                    $result['countries'] = $this->CountryService->findAll();
-                    return view("admin.editCity", $title)->with('result', $result);		
+                    $result['zones'] = $this->findById($result['request']->id);
+                    $result['area'] = $this->AreaService->findAll();
+                    return view("admin.location.editZone", $title)->with('result', $result);		
                 break;
                 case 'delete': 
-                    $result['cities'] = $this->View_CCityService->getListing();
-                    return view("admin.listingCities", $title)->with('result', $result);	
+                    $result['zones'] = $this->View_CCAZoneService->getListing();
+                    return view("admin.location.listingzones", $title)->with('result', $result);	
                 break;
             }
         }

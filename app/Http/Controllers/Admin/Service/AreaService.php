@@ -13,24 +13,25 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         }
 
         function redirect_view($result,$title){
+            $result['label'] = "Area";
             switch($result['operation']){
                 case 'listing':
                     $result['area'] = $this->View_CCAreaService->getListing();
-                    return view("admin.listingArea", $title)->with('result', $result);
+                    return view("admin.location.listingArea", $title)->with('result', $result);
                 break;
                 case 'add':
                     $result['city'] = $this->CityService->findAll();
-                    return view("admin.addArea", $title)->with('result', $result);
+                    return view("admin.location.addArea", $title)->with('result', $result);
                 break;
 
                 case 'edit':
                     $result['city'] = $this->CityService->findAll();
                     $result['area'] = $this->findById($result['request']->id);
-                    return view("admin.editArea", $title)->with('result', $result);		
+                    return view("admin.location.editArea", $title)->with('result', $result);		
                 break;
                 case 'delete': 
                     $result['area'] = $this->View_CCAreaService->getListing();
-                    return view("admin.listingArea", $title)->with('result', $result);	
+                    return view("admin.location.listingArea", $title)->with('result', $result);	
                 break;
             }
         }

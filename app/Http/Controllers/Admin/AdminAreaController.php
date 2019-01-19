@@ -51,9 +51,9 @@ class AdminAreaController extends Controller {
 		$result['operation'] = 'listing';
 		return $this->AreaService->redirect_view($result,$title);
 	}
-	//view_addCountry
-	public function view_addCountry(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddCountry"));
+	//view_AddArea
+	public function view_addArea(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddArea"));
 		$result = array();
 		$result['request'] = $request;
 		$result['operation'] = 'add';
