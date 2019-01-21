@@ -44,7 +44,7 @@ class AdminCityController extends Controller {
 	}
 
 	// listingCities
-	public function listingCities(Request $request){
+	public function listingCity(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCities"));		
 		$result = array();
 		$result['operation'] = 'listing';

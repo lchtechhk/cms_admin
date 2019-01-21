@@ -56,10 +56,7 @@
                         </div>
                       </div>
 
-                      <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">{{ trans('labels.Add'.$result['label']) }}</button>
-                        <a href="../listingCities" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
-                      </div>
+                      @include('layouts/submit_back_button')
                     {!! Form::close() !!}
                   </div>
                 </div>

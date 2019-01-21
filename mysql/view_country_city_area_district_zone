@@ -2,7 +2,7 @@ CREATE
     ALGORITHM = UNDEFINED 
     DEFINER = `root`@`localhost` 
     SQL SECURITY DEFINER
-VIEW `view_country_city_area_zone` AS
+VIEW `view_country_city_area_district_zone` AS
     SELECT 
         `countries`.`id` AS `countries_id`,
         `countries`.`name` AS `countries_name`,
@@ -12,12 +12,17 @@ VIEW `view_country_city_area_zone` AS
         `area`.`id` AS `area_id`,
         `area`.`name` AS `area_name`,
         `area`.`code` AS `area_code`,
+        `district`.`id` AS `district_id`,
+        `district`.`name` AS `district_name`,
+        `district`.`code` AS `district_code`,
+        `district`.`status` AS `district_status`,
         `zones`.`id` AS `zone_id`,
         `zones`.`name` AS `zone_name`,
         `zones`.`code` AS `zone_code`,
         `zones`.`status` AS `zone_status`
     FROM
-        (((`zones`
-        LEFT JOIN `area` ON ((`zones`.`area_id` = `area`.`id`)))
+        ((((`zones`
+        LEFT JOIN `district` ON ((`zones`.`district_id` = `district`.`id`)))
+        LEFT JOIN `area` ON ((`district`.`area_id` = `area`.`id`)))
         LEFT JOIN `cities` ON ((`area`.`city_id` = `cities`.`id`)))
         LEFT JOIN `countries` ON ((`cities`.`countries_id` = `countries`.`id`)))

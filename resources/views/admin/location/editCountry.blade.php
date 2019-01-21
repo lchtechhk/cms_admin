@@ -73,10 +73,7 @@
                           </div>
                       </div>
 
-                      <div class="box-footer text-center">
-                        <button type="submit" class="btn btn-primary">{{ trans('labels.Update') }}</button>
-                        <a href="{{ URL::to('admin/listingCountry')}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
-                      </div>
+                      @include('layouts/submit_back_button')
                       
                     </div>
                   {!! Form::close() !!}

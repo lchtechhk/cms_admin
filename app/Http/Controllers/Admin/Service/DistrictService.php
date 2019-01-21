@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             $result['label'] = "District";
             switch($result['operation']){
                 case 'listing':
-                    $result['Districts'] = $this->View_CCADistrictService->getListing();
+                    $result['district'] = $this->View_CCADistrictService->getListing();
                     return view("admin.location.listingDistrict", $title)->with('result', $result);
                 break;
                 case 'add':
@@ -25,12 +25,12 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                 break;
 
                 case 'edit':
-                    $result['Districts'] = $this->findById($result['request']->id);
+                    $result['district'] = $this->findById($result['request']->id);
                     $result['area'] = $this->AreaService->findAll();
                     return view("admin.location.editDistrict", $title)->with('result', $result);		
                 break;
                 case 'delete': 
-                    $result['Districts'] = $this->View_CCADistrictService->getListing();
+                    $result['district'] = $this->View_CCADistrictService->getListing();
                     return view("admin.location.listingDistrict", $title)->with('result', $result);	
                 break;
             }

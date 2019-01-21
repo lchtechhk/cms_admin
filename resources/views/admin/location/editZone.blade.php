@@ -26,15 +26,15 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Country') }}</label>
+                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.District') }}</label>
                             <div class="col-sm-10 col-md-4">
-                              <select name="zone_area_id" class='form-control field-validate'>
-                                  @foreach( $result['area'] as $area_data)
+                              <select name="district_id" class='form-control field-validate'>
+                                  @foreach( $result['district'] as $district_data)
                                   <option
-                                    @if( $area_data->id == $result['zones'][0]->id)
+                                    @if( $district_data->id == $result['district'][0]->id)
                                         selected
                                       @endif
-                                    value="{{ $area_data->id }}"> {{ $area_data->name }} </option>
+                                    value="{{ $district_data->id }}"> {{ $district_data->name }} </option>
                                   @endforeach
                               </select>
                               <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseZoneArea') }}</span>
@@ -78,10 +78,7 @@
                           </div>
                         </div>
 
-                        <div class="box-footer text-center">
-                          <button type="submit" class="btn btn-primary">{{ trans('labels.Update') }}</button>
-                          <a href="../listingZones" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
-                        </div>
+                        @include('layouts/submit_back_button')
                       {!! Form::close() !!}
                     </div>
                   </div>

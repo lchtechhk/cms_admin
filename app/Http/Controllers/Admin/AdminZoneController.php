@@ -44,7 +44,7 @@ class AdminZoneController extends Controller {
 	}
 
 	// listingZones
-	public function listingZones(Request $request){
+	public function listingZone(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
 		$result = array();
 		$result['operation'] = 'listing';

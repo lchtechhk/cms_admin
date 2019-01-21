@@ -29,7 +29,10 @@ return [
 	'link_district'=>'District',
 	'ListingDistricts'=>'Listing Districts',
 	'addDistrict'=>'Listing Districts',
-
+	'ListCountry'=>'List All Country',
+	'ListCity'=>'List All City',
+	'ListArea'=>'List All Area',
+	'ListZone'=>'List All Zone',
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',

@@ -73,7 +73,7 @@
                       {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/addCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/editCountry/*') ? 'active' : '' }} 
-                      {{ Request::is('admin/listingCities') ? 'active' : '' }}
+                      {{ Request::is('admin/listingCity') ? 'active' : '' }}
                       {{ Request::is('admin/addCity') ? 'active' : '' }}
                       {{ Request::is('admin/editCity/*') ? 'active' : '' }}
                       {{ Request::is('admin/listingArea') ? 'active' : '' }}
@@ -82,7 +82,7 @@
                       {{ Request::is('admin/listingDistrict') ? 'active' : '' }}
                       {{ Request::is('admin/addDistrict') ? 'active' : '' }} 
                       {{ Request::is('admin/editDistrict/*') ? 'active' : '' }} 
-                      {{ Request::is('admin/listingZones') ? 'active' : '' }} 
+                      {{ Request::is('admin/listingZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
                       {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
           <a href="#">
@@ -98,10 +98,10 @@
                 {{ trans('labels.link_countries') }}
               </a>
             </li>
-            <li class="{{ Request::is('admin/listingCities') ? 'active' : '' }} 
+            <li class="{{ Request::is('admin/listingCity') ? 'active' : '' }} 
                        {{ Request::is('admin/addCity') ? 'active' : '' }}
                        {{ Request::is('admin/editCity?*') ? 'active' : '' }}">
-              <a href="{{ URL::to('admin/listingCities')}}">
+              <a href="{{ URL::to('admin/listingCity')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.cities') }}
               </a>
@@ -122,10 +122,10 @@
                 {{ trans('labels.link_district') }}
               </a>
             </li>
-            <li class="{{ Request::is('admin/listingZones') ? 'active' : '' }} 
+            <li class="{{ Request::is('admin/listingZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
                       {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
-              <a href="{{ URL::to('admin/listingZones')}}">
+              <a href="{{ URL::to('admin/listingZone')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_zones') }}
               </a>

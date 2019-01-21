@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             switch($result['operation']){
                 case 'listing':
                     $result['cities'] = $this->View_CCityService->getListing();
-                    return view("admin.location.listingCities", $title)->with('result', $result);
+                    return view("admin.location.listingCity", $title)->with('result', $result);
                 break;
                 case 'add':
                     $result['countries'] = $this->CountryService->findAll();
@@ -31,7 +31,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                 break;
                 case 'delete': 
                     $result['cities'] = $this->View_CCityService->getListing();
-                    return view("admin.location.listingCities", $title)->with('result', $result);	
+                    return view("admin.location.listingCity", $title)->with('result', $result);	
                 break;
             }
         }

@@ -1132,6 +1132,13 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deleteAreaModal").modal('show');
 	});
 
+	//deleteDistrictModal
+	$(document).on('click', '#deleteDistrictModal', function(){
+		var district_id = $(this).attr('district_id');
+		$('#district_id').val(district_id);
+		$("#deleteDistrictModal").modal('show');
+	});
+
 	//deleteZoneModal
 	$(document).on('click', '#deleteZoneId', function(){
 		var zone_id = $(this).attr('zone_id');

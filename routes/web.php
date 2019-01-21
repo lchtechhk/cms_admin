@@ -182,7 +182,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//City
 			Route::get('/editCity/{id}', 'AdminCityController@view_editCity');
 			Route::get('/addCity', 'AdminCityController@view_addCity');
-			Route::get('/listingCities', 'AdminCityController@listingCities');
+			Route::get('/listingCity', 'AdminCityController@listingCity');
 			Route::post('/deleteCity','AdminCityController@deleteCity');
 			Route::post('/editCity/{id}', 'AdminCityController@update');
 			Route::post('/addNewCity', 'AdminCityController@add');
@@ -206,7 +206,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//zones
 			Route::get('/editZone/{id}', 'AdminZoneController@view_editZone');
 			Route::get('/addZone', 'AdminZoneController@view_addZone');
-			Route::get('/listingZones', 'AdminZoneController@listingZones');
+			Route::get('/listingZone', 'AdminZoneController@listingZone');
 			Route::post('/deleteZone','AdminZoneController@deleteZone');
 			Route::post('/editZone/{id}', 'AdminZoneController@update');
 			Route::post('/addNewZone', 'AdminZoneController@add');

@@ -36,7 +36,7 @@ class AdminAreaController extends Controller {
 		$result = $this->AreaService->update($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
 		return $this->AreaService->redirect_view($result,$title);
 	}
-	public function deleteCountry(Request $request){
+	public function deleteArea(Request $request){
         // Log::info('[delete request id] : ' . $request->id);
 		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
 		$result = $this->AreaService->delete($request,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
