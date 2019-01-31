@@ -23,6 +23,7 @@
                       <th>{{ trans('labels.City') }}</th>
                       <th>{{ trans('labels.Area') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
+                      <th>{{ trans('labels.Status') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
@@ -34,6 +35,7 @@
                             <td>{{ $area->cities_name }}</td>
                             <td>{{ $area->area_name }}</td>
                             <td>{{ $area->area_code }}</td>
+                            <td>{{ $area->area_status }}</td>
                             <td>
                                 <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editArea/{{ $area->area_id }}" class="badge bg-light-blue">
                                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

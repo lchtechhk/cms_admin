@@ -54,7 +54,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DistrictCode') }}</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('code', $result['district'][0]->code, array('class'=>'form-control field-validate', 'id'=>'code'))!!}
+                            {!! Form::text('code', $result['district'][0]->code, array('class'=>'form-control', 'id'=>'code'))!!}
                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.DistrictCodeText') }}</span>
                                 <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>

@@ -35,7 +35,8 @@
                     if(array_key_exists($column, $data)){
                         $object = array();
                         $count = (preg_match('/.*(date|datetime|char|text).*/i', $column_type));
-                        $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
+                        $value = isset($data[$column]) ? html_entity_decode($data[$column]) :NULL;
+                        // $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
                         $answer = $this->out_put_value($count,$value);
                         $target_array["$column"] = $answer;
                     }
@@ -63,7 +64,8 @@
                     if(array_key_exists($column, $data)){
                         $object = array();
                         $count = (preg_match('/.*(date|datetime|char|text).*/i', $column_type));
-                        $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
+                        // $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
+                        $value = isset($data[$column]) ? html_entity_decode($data[$column]) :NULL;
                         $answer = $this->out_put_value($count,$value);
                         $target_array["$column"] = $answer;
                     }
@@ -83,10 +85,10 @@
         private function out_put_value($count,$value){
             $query_part_2 = '';
             if(empty($value)){
-                $query_part_2 .= "NULL"; 
+                $query_part_2 .= NULL; 
             }else{
                 if($count == 1){
-                    $query_part_2 .= "$value";
+                    $query_part_2 .= $value;
                 }else {
                     $query_part_2 .= $value;
                 }

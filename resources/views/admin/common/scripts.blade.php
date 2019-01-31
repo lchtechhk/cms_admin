@@ -1133,7 +1133,7 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 
 	//deleteDistrictModal
-	$(document).on('click', '#deleteDistrictModal', function(){
+	$(document).on('click', '#deleteDistrictId', function(){
 		var district_id = $(this).attr('district_id');
 		$('#district_id').val(district_id);
 		$("#deleteDistrictModal").modal('show');

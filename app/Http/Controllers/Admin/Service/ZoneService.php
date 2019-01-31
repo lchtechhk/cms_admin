@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             switch($result['operation']){
                 case 'listing':
                     $result['zones'] = $this->View_CCADZoneService->getListing();
-                    return view("admin.location.listingzone", $title)->with('result', $result);
+                    return view("admin.location.listingZone", $title)->with('result', $result);
                 break;
                 case 'add':
                     $result['district'] = $this->DistrictService->findAll();
@@ -31,7 +31,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                 break;
                 case 'delete': 
                     $result['zones'] = $this->View_CCADZoneService->getListing();
-                    return view("admin.location.listingzones", $title)->with('result', $result);	
+                    return view("admin.location.listingZone", $title)->with('result', $result);	
                 break;
             }
         }

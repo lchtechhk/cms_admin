@@ -24,6 +24,7 @@
                       <th>{{ trans('labels.Area') }}</th>
                       <th>{{ trans('labels.District') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
+                      <th>{{ trans('labels.Status') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
@@ -36,6 +37,7 @@
                             <td>{{ $district->area_name }}</td>
                             <td>{{ $district->district_name }}</td>
                             <td>{{ $district->district_code }}</td>
+                            <td>{{ $district->district_status }}</td>
                             <td>
                               <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editDistrict/{{ $district->district_id }}" class="badge bg-light-blue">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -66,7 +68,7 @@
 		  </div>
 		  {!! Form::open(array('url' =>'admin/deleteDistrict', 'name'=>'deleteDistrict', 'id'=>'deleteDistrict', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::text('id',  '', array('class'=>'form-control', 'id'=>'district_id')) !!}
+				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'district_id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteDistrictText') }}</p>
 		  </div>

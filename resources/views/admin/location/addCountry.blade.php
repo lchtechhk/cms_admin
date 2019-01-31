@@ -28,17 +28,17 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode2') }}
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryCode') }}
                         </label>
                         <div class="col-sm-10 col-md-4">
-                          {!! Form::text('iso_code_1',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_2'))!!}
+                          {!! Form::text('iso_code_1',  '', array('class'=>'form-control', 'id'=>'iso_code_1'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                          {{ trans('labels.ISOCode2Text') }}</span>
+                          {{ trans('labels.CountryCode') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode3') }}
                         </label>
                         <div class="col-sm-10 col-md-4">
@@ -47,7 +47,7 @@
                           {{ trans('labels.ISOCode3Text') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
-                      </div>
+                      </div> --}}
 
                       @include('layouts/submit_back_button')
                     </div>

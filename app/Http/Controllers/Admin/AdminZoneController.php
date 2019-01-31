@@ -27,17 +27,17 @@ class AdminZoneController extends Controller {
 
 	public function add(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddZone"));
-		$result = $this->ZoneService->add($request,"labels.ZoneAddedMessage","labels.CityAddedMessageFail");
+		$result = $this->ZoneService->add($request,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
 		return $this->ZoneService->redirect_view($result,$title);
 	}
 
 	public function update(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditZone"));
-		$result = $this->ZoneService->update($request,"labels.ZoneAddedMessage","labels.CityAddedMessageFail");
+		$result = $this->ZoneService->update($request,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
 		return $this->ZoneService->redirect_view($result,$title);
 
 	}
-	public function deleteCity(Request $request){
+	public function deleteZone(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
 		$result = $this->ZoneService->delete($request,"labels.ZoneDeleted","labels.ZoneDeletedFail");
 		return $this->ZoneService->redirect_view($result,$title);

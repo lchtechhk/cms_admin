@@ -12,7 +12,8 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         function getListing(){
             $result = DB::table($this->getTable())
             ->where('district_status','=','active')
-			->orderBy('countries_id','ASC')
+            ->orderBy('countries_id','ASC')
+            ->orderBy('district_id','ASC')
             ->paginate(60);
             return $result;
         }

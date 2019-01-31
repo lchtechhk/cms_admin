@@ -27,17 +27,17 @@ class AdminDistrictController extends Controller {
 
 	public function add(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddDistrict"));
-		$result = $this->DistrictService->add($request,"labels.DistrictAddedMessage","labels.CityAddedMessageFail");
+		$result = $this->DistrictService->add($request,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
 		return $this->DistrictService->redirect_view($result,$title);
 	}
 
 	public function update(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
-		$result = $this->DistrictService->update($request,"labels.DistrictAddedMessage","labels.CityAddedMessageFail");
+		$result = $this->DistrictService->update($request,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
 		return $this->DistrictService->redirect_view($result,$title);
 
 	}
-	public function deleteCity(Request $request){
+	public function deleteDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingDistricts"));		
 		$result = $this->DistrictService->delete($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
 		return $this->DistrictService->redirect_view($result,$title);

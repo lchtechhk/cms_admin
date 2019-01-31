@@ -71,7 +71,7 @@
 		  </div>
 		  {!! Form::open(array('url' =>'admin/deleteZone', 'name'=>'deleteZone', 'id'=>'deleteZone', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
 				  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-				  {!! Form::text('id',  '', array('class'=>'form-control', 'id'=>'zone_id')) !!}
+				  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'zone_id')) !!}
 		  <div class="modal-body">						
 			  <p>{{ trans('labels.DeleteZoneText') }}</p>
 		  </div>
@@ -83,11 +83,6 @@
 		</div>
 	  </div>
 	</div>
-    
-    <!--  row --> 
-    
-    <!-- /.row --> 
   </section>
-  <!-- /.content --> 
 </div>
 @endsection 

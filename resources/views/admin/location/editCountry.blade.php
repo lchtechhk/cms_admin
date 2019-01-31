@@ -45,14 +45,14 @@
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode3') }}</label>
                         <div class="col-sm-10 col-md-4">
                           {!! Form::text('iso_code_2', $result['countries'][0]->iso_code_2, array('class'=>'form-control field-validat', 'id'=>'countries_iso_code_3'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ISOCode3Text') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
-                      </div>
+                      </div> --}}
 
 
                       <div class="form-group">
