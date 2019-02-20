@@ -165,7 +165,8 @@ return [
 		Collective\Html\HtmlServiceProvider::class,
 		Karlomikus\Theme\ThemeServiceProvider::class,
 	    Laravel\Socialite\SocialiteServiceProvider::class,
-		
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -233,7 +234,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 		'Theme' => Karlomikus\Theme\Facade\Theme::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

@@ -26,11 +26,12 @@
     22 => 'Collective\\Html\\HtmlServiceProvider',
     23 => 'Karlomikus\\Theme\\ThemeServiceProvider',
     24 => 'Laravel\\Socialite\\SocialiteServiceProvider',
-    25 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    26 => 'App\\Providers\\AppServiceProvider',
-    27 => 'App\\Providers\\AuthServiceProvider',
-    28 => 'App\\Providers\\EventServiceProvider',
-    29 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    26 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    27 => 'App\\Providers\\AppServiceProvider',
+    28 => 'App\\Providers\\AuthServiceProvider',
+    29 => 'App\\Providers\\EventServiceProvider',
+    30 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -45,10 +46,11 @@
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Karlomikus\\Theme\\ThemeServiceProvider',
-    11 => 'App\\Providers\\AppServiceProvider',
-    12 => 'App\\Providers\\AuthServiceProvider',
-    13 => 'App\\Providers\\EventServiceProvider',
-    14 => 'App\\Providers\\RouteServiceProvider',
+    11 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    12 => 'App\\Providers\\AppServiceProvider',
+    13 => 'App\\Providers\\AuthServiceProvider',
+    14 => 'App\\Providers\\EventServiceProvider',
+    15 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

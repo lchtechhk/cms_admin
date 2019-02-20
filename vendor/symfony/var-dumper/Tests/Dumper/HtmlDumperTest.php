@@ -22,10 +22,6 @@ class HtmlDumperTest extends TestCase
 {
     public function testGet()
     {
-        if (ini_get('xdebug.file_link_format') || get_cfg_var('xdebug.file_link_format')) {
-            $this->markTestSkipped('A custom file_link_format is defined.');
-        }
-
         require __DIR__.'/../Fixtures/dumb-var.php';
 
         $dumper = new HtmlDumper('php://output');
@@ -51,7 +47,7 @@ class HtmlDumperTest extends TestCase
         $dumpId = $dumpId[0];
         $res = (int) $var['res'];
 
-        $r = \defined('HHVM_VERSION') ? '' : '<a class=sf-dump-ref>#%d</a>';
+        $r = defined('HHVM_VERSION') ? '' : '<a class=sf-dump-ref>#%d</a>';
         $this->assertStringMatchesFormat(
             <<<EOTXT
 <foo></foo><bar><span class=sf-dump-note>array:24</span> [<samp>

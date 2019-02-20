@@ -2,7 +2,7 @@
 
 namespace League\Flysystem\Util;
 
-use finfo;
+use Finfo;
 use ErrorException;
 
 /**
@@ -19,18 +19,17 @@ class MimeType
      */
     public static function detectByContent($content)
     {
-        if ( ! class_exists('finfo') || ! is_string($content)) {
-            return null;
+        if ( ! class_exists('Finfo') || ! is_string($content)) {
+            return;
         }
         try {
-            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $finfo = new Finfo(FILEINFO_MIME_TYPE);
 
             return $finfo->buffer($content) ?: null;
-        // @codeCoverageIgnoreStart
         } catch( ErrorException $e ) {
             // This is caused by an array to string conversion error.
         }
-    } // @codeCoverageIgnoreEnd
+    }
 
     /**
      * Detects MIME Type based on file extension.
@@ -57,7 +56,7 @@ class MimeType
     /**
      * @param string $filename
      *
-     * @return string|null MIME Type or NULL if no extension detected
+     * @return string
      */
     public static function detectByFilename($filename)
     {
@@ -154,8 +153,6 @@ class MimeType
             'rtf'   => 'text/rtf',
             'xml'   => 'application/xml',
             'xsl'   => 'application/xml',
-            'dmn'   => 'application/octet-stream',
-            'bpmn'  => 'application/octet-stream',
             'mpeg'  => 'video/mpeg',
             'mpg'   => 'video/mpeg',
             'mpe'   => 'video/mpeg',
@@ -165,7 +162,6 @@ class MimeType
             'movie' => 'video/x-sgi-movie',
             'doc'   => 'application/msword',
             'docx'  => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'docm'  => 'application/vnd.ms-word.template.macroEnabled.12',
             'dot'   => 'application/msword',
             'dotx'  => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'xlsx'  => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -215,18 +211,6 @@ class MimeType
             'cdr'   => 'application/cdr',
             'wma'   => 'audio/x-ms-wma',
             'jar'   => 'application/java-archive',
-            'tex'   => 'application/x-tex',
-            'latex' => 'application/x-latex',
-            'odt'   => 'application/vnd.oasis.opendocument.text',
-            'ods'   => 'application/vnd.oasis.opendocument.spreadsheet',
-            'odp'   => 'application/vnd.oasis.opendocument.presentation',
-            'odg'   => 'application/vnd.oasis.opendocument.graphics',
-            'odc'   => 'application/vnd.oasis.opendocument.chart',
-            'odf'   => 'application/vnd.oasis.opendocument.formula',
-            'odi'   => 'application/vnd.oasis.opendocument.image',
-            'odm'   => 'application/vnd.oasis.opendocument.text-master',
-            'odb'   => 'application/vnd.oasis.opendocument.database',
-            'ott'   => 'application/vnd.oasis.opendocument.text-template',
         ];
     }
 }

@@ -126,10 +126,6 @@ EODUMP;
 
     public function testHtmlDump()
     {
-        if (ini_get('xdebug.file_link_format') || get_cfg_var('xdebug.file_link_format')) {
-            $this->markTestSkipped('A custom file_link_format is defined.');
-        }
-
         $e = $this->getTestException(1);
         ExceptionCaster::$srcContext = -1;
 
@@ -164,16 +160,16 @@ EODUMP;
      */
     public function testFrameWithTwig()
     {
-        require_once \dirname(__DIR__).'/Fixtures/Twig.php';
+        require_once dirname(__DIR__).'/Fixtures/Twig.php';
 
         $f = array(
             new FrameStub(array(
-                'file' => \dirname(__DIR__).'/Fixtures/Twig.php',
+                'file' => dirname(__DIR__).'/Fixtures/Twig.php',
                 'line' => 20,
                 'class' => '__TwigTemplate_VarDumperFixture_u75a09',
             )),
             new FrameStub(array(
-                'file' => \dirname(__DIR__).'/Fixtures/Twig.php',
+                'file' => dirname(__DIR__).'/Fixtures/Twig.php',
                 'line' => 21,
                 'class' => '__TwigTemplate_VarDumperFixture_u75a09',
                 'object' => new \__TwigTemplate_VarDumperFixture_u75a09(null, __FILE__),
