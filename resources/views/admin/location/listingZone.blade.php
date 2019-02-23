@@ -15,7 +15,7 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="zone" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
