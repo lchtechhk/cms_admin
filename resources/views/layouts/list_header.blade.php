@@ -1,15 +1,14 @@
-{{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script src="../resources/assets/js/main.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <script src="../resources/assets/js/table-data.js"></script>
 		<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				TableData.init();
-			});
-  </script> --}}
+      var jQuery_1_9_1 = $.noConflict(true);
+        jQuery_1_9_1(document).ready( function () {
+        // jQuery_1_9_1('#example1').DataTable();
+        TableData.init();
+      } );
+  </script>
 <section class="content-header">
     <h1>
       {{ trans('labels.List'.$result['label']) }}
