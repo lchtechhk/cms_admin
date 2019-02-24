@@ -37,9 +37,8 @@ class AdminAreaController extends Controller {
 		return $this->AreaService->redirect_view($result,$title);
 	}
 	public function deleteArea(Request $request){
-        // Log::info('[delete request id] : ' . $request->id);
-		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
-		$result = $this->AreaService->delete($request,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
+		$title = array('pageTitle' => Lang::get("labels.ListingArea"));	
+		$result = $this->AreaService->delete_relative($request,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
 		return $this->AreaService->redirect_view($result,$title);
 	}
 

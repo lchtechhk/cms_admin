@@ -38,9 +38,8 @@ class AdminCityController extends Controller {
 	}
 	public function deleteCity(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCities"));	
-		// $request['delete_relative_table'] = array('city','area','district','zone');
-		$result = $this->CityService->delete($request,"labels.CityDeletedTax","labels.CityDeletedTaxFail");
-		// return $this->CityService->redirect_view($result,$title);
+		$result = $this->CityService->delete_relative($request,"labels.CityDeletedTax","labels.CityDeletedTaxFail"); 
+		return $this->CityService->redirect_view($result,$title);
 	}
 
 	// listingCities

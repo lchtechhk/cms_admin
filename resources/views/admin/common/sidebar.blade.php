@@ -72,19 +72,29 @@
         <li class="treeview 
                       {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/addCountry') ? 'active' : '' }} 
-                      {{ Request::is('admin/editCountry/*') ? 'active' : '' }} 
+                      {{ Request::is('admin/addNewCountry') ? 'active' : '' }} 
+                      {{ Request::is('admin/editCountry/*') ? 'active' : '' }}   
+                      {{ Request::is('admin/deleteCountry') ? 'active' : '' }}                    
                       {{ Request::is('admin/listingCity') ? 'active' : '' }}
                       {{ Request::is('admin/addCity') ? 'active' : '' }}
+                      {{ Request::is('admin/addNewCity') ? 'active' : '' }} 
                       {{ Request::is('admin/editCity/*') ? 'active' : '' }}
+                      {{ Request::is('admin/deleteCity') ? 'active' : '' }} 
                       {{ Request::is('admin/listingArea') ? 'active' : '' }}
                       {{ Request::is('admin/addArea') ? 'active' : '' }}
+                      {{ Request::is('admin/addNewArea') ? 'active' : '' }} 
                       {{ Request::is('admin/editArea/*') ? 'active' : '' }}
+                      {{ Request::is('admin/deleteArea') ? 'active' : '' }} 
                       {{ Request::is('admin/listingDistrict') ? 'active' : '' }}
                       {{ Request::is('admin/addDistrict') ? 'active' : '' }} 
+                      {{ Request::is('admin/addNewDistrict') ? 'active' : '' }} 
                       {{ Request::is('admin/editDistrict/*') ? 'active' : '' }} 
+                      {{ Request::is('admin/deleteDistrict') ? 'active' : '' }} 
                       {{ Request::is('admin/listingZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
-                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
+                      {{ Request::is('admin/addNewZone') ? 'active' : '' }} 
+                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}
+                      {{ Request::is('admin/deleteZone') ? 'active' : '' }}" >
           <a href="#">
             <i class="fa fa-money" aria-hidden="true"></i>
             <span>{{ trans('labels.location') }}</span> <i class="fa fa-angle-left pull-right"></i>
@@ -92,7 +102,9 @@
           <ul class="treeview-menu">
             <li class="{{ Request::is('admin/listingCountry') ? 'active' : '' }} 
                         {{ Request::is('admin/addCountry') ? 'active' : '' }} 
-                        {{ Request::is('admin/editCountry/*') ? 'active' : '' }} ">
+                        {{ Request::is('admin/addNewCountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/editCountry/*') ? 'active' : '' }} 
+                        {{ Request::is('admin/deleteCountry') ? 'active' : '' }} ">
               <a href="{{ URL::to('admin/listingCountry')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_countries') }}
@@ -100,7 +112,8 @@
             </li>
             <li class="{{ Request::is('admin/listingCity') ? 'active' : '' }} 
                        {{ Request::is('admin/addCity') ? 'active' : '' }}
-                       {{ Request::is('admin/editCity?*') ? 'active' : '' }}">
+                       {{ Request::is('admin/editCity?*') ? 'active' : '' }}
+                       {{ Request::is('admin/deleteCity') ? 'active' : '' }}" >
               <a href="{{ URL::to('admin/listingCity')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.cities') }}
@@ -108,7 +121,9 @@
             </li>
             <li class="{{ Request::is('admin/listingArea') ? 'active' : '' }} 
                        {{ Request::is('admin/addArea') ? 'active' : '' }}
-                       {{ Request::is('admin/editArea/*') ? 'active' : '' }}">
+                       {{ Request::is('admin/addNewArea') ? 'active' : '' }} 
+                       {{ Request::is('admin/editArea/*') ? 'active' : '' }}
+                       {{ Request::is('admin/deleteArea') ? 'active' : '' }}">
               <a href="{{ URL::to('admin/listingArea')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_area') }}
@@ -116,7 +131,9 @@
             </li>
             <li class="{{ Request::is('admin/listingDistrict') ? 'active' : '' }} 
                        {{ Request::is('admin/addDistrict') ? 'active' : '' }} 
-                       {{ Request::is('admin/editDistrict/*') ? 'active' : '' }}">
+                       {{ Request::is('admin/addNewDistrict') ? 'active' : '' }} 
+                       {{ Request::is('admin/editDistrict/*') ? 'active' : '' }}
+                       {{ Request::is('admin/deleteDistrict') ? 'active' : '' }} ">
               <a href="{{ URL::to('admin/listingDistrict')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_district') }}
@@ -124,7 +141,9 @@
             </li>
             <li class="{{ Request::is('admin/listingZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
-                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}">
+                      {{ Request::is('admin/addNewZone') ? 'active' : '' }} 
+                      {{ Request::is('admin/editZone/*') ? 'active' : '' }}
+                      {{ Request::is('admin/deleteZone') ? 'active' : '' }}">
               <a href="{{ URL::to('admin/listingZone')}}">
                 <i class="fa fa-circle-o"></i> 
                 {{ trans('labels.link_zones') }}

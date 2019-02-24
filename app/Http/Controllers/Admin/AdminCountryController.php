@@ -37,9 +37,8 @@ class AdminCountryController extends Controller {
 		return $this->CountryService->redirect_view($result,$title);
 	}
 	public function deleteCountry(Request $request){
-        // Log::info('[delete request id] : ' . $request->id);
 		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
-		$result = $this->CountryService->delete($request,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
+		$result = $this->CountryService->delete_relative($request,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
 		return $this->CountryService->redirect_view($result,$title);
 	}
 

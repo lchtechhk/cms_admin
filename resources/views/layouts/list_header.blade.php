@@ -6,7 +6,6 @@
 		<script>
       var jQuery_1_9_1 = $.noConflict(true);
         jQuery_1_9_1(document).ready( function () {
-        // jQuery_1_9_1('#example1').DataTable();
         TableData.init();
       } );
   </script>

@@ -4,7 +4,7 @@ use Lang;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Dao\BaseDao;
 use Log;
-
+use DB;
      abstract class BaseApiService extends BaseDao{ 
         
         public function add($request,$success_msg,$fail_msg){
@@ -57,8 +57,14 @@ use Log;
         }
         // public function add_multiple();
         // public function update_multiple();
-        // public function delete_multiple(); 
 
+        public function throwException($result,$error_msg,$is_rollback){
+            Log::error($error_msg);
+            $result['status'] = 'fail';
+            $result['message'] =  $error_msg;
+            if($is_rollback)DB::connection()->getPdo()->rollBack();
+            return $result;
+        }
         public abstract function redirect_view($result,$title);
     }
 ?>

@@ -72,26 +72,37 @@
         <li class="treeview 
                       <?php echo e(Request::is('admin/listingCountry') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/addCountry') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/addNewCountry') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?>   
+                      <?php echo e(Request::is('admin/deleteCountry') ? 'active' : ''); ?>                    
                       <?php echo e(Request::is('admin/listingCity') ? 'active' : ''); ?>
 
                       <?php echo e(Request::is('admin/addCity') ? 'active' : ''); ?>
 
+                      <?php echo e(Request::is('admin/addNewCity') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/editCity/*') ? 'active' : ''); ?>
 
+                      <?php echo e(Request::is('admin/deleteCity') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/listingArea') ? 'active' : ''); ?>
 
                       <?php echo e(Request::is('admin/addArea') ? 'active' : ''); ?>
 
+                      <?php echo e(Request::is('admin/addNewArea') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/editArea/*') ? 'active' : ''); ?>
 
+                      <?php echo e(Request::is('admin/deleteArea') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/listingDistrict') ? 'active' : ''); ?>
 
                       <?php echo e(Request::is('admin/addDistrict') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/addNewDistrict') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/editDistrict/*') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/deleteDistrict') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/listingZone') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/addZone') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>">
+                      <?php echo e(Request::is('admin/addNewZone') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>
+
+                      <?php echo e(Request::is('admin/deleteZone') ? 'active' : ''); ?>" >
           <a href="#">
             <i class="fa fa-money" aria-hidden="true"></i>
             <span><?php echo e(trans('labels.location')); ?></span> <i class="fa fa-angle-left pull-right"></i>
@@ -99,7 +110,9 @@
           <ul class="treeview-menu">
             <li class="<?php echo e(Request::is('admin/listingCountry') ? 'active' : ''); ?> 
                         <?php echo e(Request::is('admin/addCountry') ? 'active' : ''); ?> 
-                        <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?> ">
+                        <?php echo e(Request::is('admin/addNewCountry') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/deleteCountry') ? 'active' : ''); ?> ">
               <a href="<?php echo e(URL::to('admin/listingCountry')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.link_countries')); ?>
@@ -109,7 +122,9 @@
             <li class="<?php echo e(Request::is('admin/listingCity') ? 'active' : ''); ?> 
                        <?php echo e(Request::is('admin/addCity') ? 'active' : ''); ?>
 
-                       <?php echo e(Request::is('admin/editCity?*') ? 'active' : ''); ?>">
+                       <?php echo e(Request::is('admin/editCity?*') ? 'active' : ''); ?>
+
+                       <?php echo e(Request::is('admin/deleteCity') ? 'active' : ''); ?>" >
               <a href="<?php echo e(URL::to('admin/listingCity')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.cities')); ?>
@@ -119,7 +134,10 @@
             <li class="<?php echo e(Request::is('admin/listingArea') ? 'active' : ''); ?> 
                        <?php echo e(Request::is('admin/addArea') ? 'active' : ''); ?>
 
-                       <?php echo e(Request::is('admin/editArea/*') ? 'active' : ''); ?>">
+                       <?php echo e(Request::is('admin/addNewArea') ? 'active' : ''); ?> 
+                       <?php echo e(Request::is('admin/editArea/*') ? 'active' : ''); ?>
+
+                       <?php echo e(Request::is('admin/deleteArea') ? 'active' : ''); ?>">
               <a href="<?php echo e(URL::to('admin/listingArea')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.link_area')); ?>
@@ -128,7 +146,10 @@
             </li>
             <li class="<?php echo e(Request::is('admin/listingDistrict') ? 'active' : ''); ?> 
                        <?php echo e(Request::is('admin/addDistrict') ? 'active' : ''); ?> 
-                       <?php echo e(Request::is('admin/editDistrict/*') ? 'active' : ''); ?>">
+                       <?php echo e(Request::is('admin/addNewDistrict') ? 'active' : ''); ?> 
+                       <?php echo e(Request::is('admin/editDistrict/*') ? 'active' : ''); ?>
+
+                       <?php echo e(Request::is('admin/deleteDistrict') ? 'active' : ''); ?> ">
               <a href="<?php echo e(URL::to('admin/listingDistrict')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.link_district')); ?>
@@ -137,7 +158,10 @@
             </li>
             <li class="<?php echo e(Request::is('admin/listingZone') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/addZone') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>">
+                      <?php echo e(Request::is('admin/addNewZone') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>
+
+                      <?php echo e(Request::is('admin/deleteZone') ? 'active' : ''); ?>">
               <a href="<?php echo e(URL::to('admin/listingZone')); ?>">
                 <i class="fa fa-circle-o"></i> 
                 <?php echo e(trans('labels.link_zones')); ?>

@@ -19,9 +19,24 @@
             Log::info('['.$this->getTable().'] -- findById : ' . json_encode($result));
             return $result;
         }
+        public function findByColumn_IdArray($column,$target_column,$id){
+            $result = DB::table($this->getTable())->where($column, $id)->get();
+            $id_array = array();
+            foreach($result as $row){
+                $id = $row->$target_column;
+                $id_array[] = $id;
+            }
+            Log::info('['.$this->getTable().'] -- findByColumn_IdArray : ' . json_encode($id_array));
+            return $id_array;
+        }
         public function db_prepareDelete($id){
             $result = DB::table($this->getTable())->where('id', $id)->delete();
             Log::info('['.$this->getTable().'] -- Deleted : ' . json_encode($result));
+            return $result;
+        }
+        public function customMultipleDelete($table,$id_array){
+            $result = DB::table($table)->where('id', $id_array)->delete();
+            Log::info('['.$table.'] -- CustomMultipleDelete : ' . json_encode($result));
             return $result;
         }
         public function db_prepareInsert($table, $data){

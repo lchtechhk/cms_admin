@@ -3,6 +3,7 @@
 <div class="content-wrapper">
   @include('layouts/list_header')
   <section class="content">
+    @include('layouts/responseMessage')
     <div class="row">
       <div class="col-md-12">
         <div class="box">

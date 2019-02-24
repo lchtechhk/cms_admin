@@ -39,7 +39,7 @@ class AdminDistrictController extends Controller {
 	}
 	public function deleteDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingDistricts"));		
-		$result = $this->DistrictService->delete($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
+		$result = $this->DistrictService->delete_relative($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
 		return $this->DistrictService->redirect_view($result,$title);
 	}
 
