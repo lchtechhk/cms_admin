@@ -26,3 +26,8 @@ VIEW `view_country_city_area_district_zone` AS
         LEFT JOIN `area` ON ((`district`.`area_id` = `area`.`id`)))
         LEFT JOIN `cities` ON ((`area`.`city_id` = `cities`.`id`)))
         LEFT JOIN `countries` ON ((`cities`.`countries_id` = `countries`.`id`)))
+    WHERE
+        ((`countries`.`id` IS NOT NULL)
+            AND (`cities`.`id` IS NOT NULL)
+            AND (`area`.`id` IS NOT NULL)
+            AND (`district`.`id` IS NOT NULL))

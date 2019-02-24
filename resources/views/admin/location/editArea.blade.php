@@ -21,7 +21,7 @@
               <div class="form-group">
                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ID') }}<span style="color:red">★</label>
                 <div class="col-sm-10 col-md-4">
-                  {!! Form::text('id',  $result['city'][0]->id , array('class'=>'form-control', 'id'=>'id','readonly'=>'true')) !!}
+                  {!! Form::text('id',  $result['area'][0]->id , array('class'=>'form-control', 'id'=>'id','readonly'=>'true')) !!}
                   <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryNameText') }}</span>
                   <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                 </div>

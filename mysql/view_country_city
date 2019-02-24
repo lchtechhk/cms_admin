@@ -9,7 +9,9 @@ VIEW `view_country_city` AS
         `cities`.`id` AS `cities_id`,
         `cities`.`name` AS `cities_name`,
         `cities`.`code` AS `cities_code`,
-        `cities`.`status`AS `cities_status`
+        `cities`.`status` AS `cities_status`
     FROM
         (`cities`
         LEFT JOIN `countries` ON ((`cities`.`countries_id` = `countries`.`id`)))
+    WHERE
+        (`countries`.`id` IS NOT NULL)

@@ -45,7 +45,6 @@ class AdminAreaController extends Controller {
 
 	// listingArea
 	public function listingArea(Request $request){
-        Log::info('listingArea : ' . json_encode($request));
 		$title = array('pageTitle' => Lang::get("labels.ListingArea"));		
 		$result = array();
 		$result['operation'] = 'listing';

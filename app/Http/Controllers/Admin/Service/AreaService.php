@@ -25,8 +25,9 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                 break;
 
                 case 'edit':
-                    $result['city'] = $this->CityService->findAll();
+                    $result['city'] = $this->CityService->findAll(); 
                     $result['area'] = $this->findById($result['request']->id);
+                    // Log::error('message : ' .json_encode($result['area']));
                     return view("admin.location.editArea", $title)->with('result', $result);		
                 break;
                 case 'delete': 
