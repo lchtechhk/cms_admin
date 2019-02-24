@@ -19,10 +19,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Service\CityService;
 
 class AdminCityController extends Controller {
-	protected $CityService;
-
+	private $CityService;
 	public function __construct(){
-		$this->CityService = new CityService('cities');
+		$this->CityService = new CityService();
 	}
 
 	public function add(Request $request){
@@ -38,9 +37,10 @@ class AdminCityController extends Controller {
 
 	}
 	public function deleteCity(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingCities"));		
+		$title = array('pageTitle' => Lang::get("labels.ListingCities"));	
+		// $request['delete_relative_table'] = array('city','area','district','zone');
 		$result = $this->CityService->delete($request,"labels.CityDeletedTax","labels.CityDeletedTaxFail");
-		return $this->CityService->redirect_view($result,$title);
+		// return $this->CityService->redirect_view($result,$title);
 	}
 
 	// listingCities

@@ -12,6 +12,25 @@
             <a href="add{{$result['label']}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.Add'.$result['label']) }}</a>
             </div>
           </div>
+          <div class="box-header">
+            <div class="row">
+                <div class="col-md-2">
+                  @include('filter/country_search')
+                </div>
+                <div class="col-md-2">
+                  @include('filter/city_search')   
+                </div>
+            </div> 
+            <br/>
+            <div class="row">
+                <div class="col-md-2">
+                  @include('filter/area_search')   
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div> 
+          </div>
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">

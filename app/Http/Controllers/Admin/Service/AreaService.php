@@ -3,12 +3,19 @@ namespace App\Http\Controllers\Admin\Service;
 use Log;
 use DB;
 use App\Http\Controllers\Admin\Service\BaseApiService;
+use App\Http\Controllers\Admin\Service\View_CCAreaService;
+use App\Http\Controllers\Admin\Service\CountryService;
+use App\Http\Controllers\Admin\Service\CityService;
+
      class AreaService extends BaseApiService{
+        private $CountryService;
         private $CityService;
+        
         private $View_CCAreaService;
         function __construct(){
             $this->setTable('area');
-            $this->CityService = new CityService('cities');
+            $this->CountryService = new CountryService();
+            $this->CityService = new CityService();
             $this->View_CCAreaService = new View_CCAreaService();
         }
 
@@ -16,6 +23,8 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             $result['label'] = "Area";
             switch($result['operation']){
                 case 'listing':
+                    $result['country_search'] = $this->CountryService->findAll();
+                    $result['city_search'] = $this->CityService->findAll();
                     $result['area'] = $this->View_CCAreaService->getListing();
                     return view("admin.location.listingArea", $title)->with('result', $result);
                 break;
@@ -31,6 +40,8 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
                     return view("admin.location.editArea", $title)->with('result', $result);		
                 break;
                 case 'delete': 
+                    $result['country_search'] = $this->CountryService->findAll();
+                    $result['city_search'] = $this->CityService->findAll();
                     $result['area'] = $this->View_CCAreaService->getListing();
                     return view("admin.location.listingArea", $title)->with('result', $result);	
                 break;
