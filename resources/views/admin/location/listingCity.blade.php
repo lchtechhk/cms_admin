@@ -16,6 +16,11 @@
           <div class="box-header">
               @include('filter/country_search')
           </div>
+          <div class="box-header">
+            @include('element/back_btn')
+              <div style="" name="m_client" class="btn btn-primary" 
+              onclick='cust_filtering("city",[{"id":"country_search","index":1}])' >Search</div>
+          </div>
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
@@ -23,6 +28,7 @@
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
+                      <th>{{ trans('labels.CountryId') }}</th>
                       <th>{{ trans('labels.Country') }}</th>
                       <th>{{ trans('labels.City') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
@@ -34,6 +40,7 @@
                     @foreach ($result['cities'] as $key=>$cities)
                         <tr>
                             <td>{{ $cities->cities_id }}</td>
+                            <td>{{ $cities->countries_id }}</td>
                             <td>{{ $cities->countries_name }}</td>
                             <td>{{ $cities->cities_name }}</td>
                             <td>{{ $cities->cities_code }}</td>
