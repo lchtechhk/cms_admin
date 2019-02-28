@@ -28,7 +28,7 @@
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
-                      <th>{{ trans('labels.CountryId') }}</th>
+                      <th class="display_controller" >{{ trans('labels.CountryId') }}</th>
                       <th>{{ trans('labels.Country') }}</th>
                       <th>{{ trans('labels.City') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
@@ -40,7 +40,7 @@
                     @foreach ($result['cities'] as $key=>$cities)
                         <tr>
                             <td>{{ $cities->cities_id }}</td>
-                            <td>{{ $cities->countries_id }}</td>
+                            <td class="display_controller">{{ $cities->countries_id }}</td>
                             <td>{{ $cities->countries_name }}</td>
                             <td>{{ $cities->cities_name }}</td>
                             <td>{{ $cities->cities_code }}</td>

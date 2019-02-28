@@ -32,6 +32,11 @@
                 </div>
             </div> 
           </div>
+          <div class="box-header">
+              @include('element/back_btn')
+                <div style="" name="m_client" class="btn btn-primary" 
+                onclick='cust_filtering("district",[{"id":"country_search","index":1},{"id":"city_search","index":3},{"id":"area_search","index":5}])' >Search</div>
+          </div>
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
@@ -39,8 +44,11 @@
                   <thead>
                     <tr>
                       <th>{{ trans('labels.ID') }}</th>
-                      <th>{{ trans('labels.Country') }}</th>
+                      <th class="display_controller" >{{ trans('labels.CountryId') }}</th>
+                      <th>{{ trans('labels.Country')}}
+                      <th class="display_controller" >{{ trans('labels.CityId') }}</th>
                       <th>{{ trans('labels.City') }}</th>
+                      <th class="display_controller" >{{ trans('labels.AreaId') }}</th>
                       <th>{{ trans('labels.Area') }}</th>
                       <th>{{ trans('labels.District') }}</th>
                       <th>{{ trans('labels.Code') }}</th>
@@ -52,8 +60,11 @@
                     @foreach ($result['district'] as $key=>$district)
                         <tr>
                             <td>{{ $district->district_id }}</td>
+                            <td class="display_controller">{{ $district->countries_id }}</td>
                             <td>{{ $district->countries_name }}</td>
+                            <td class="display_controller">{{ $district->cities_id }}</td>
                             <td>{{ $district->cities_name }}</td>
+                            <td class="display_controller">{{ $district->area_id }}</td>
                             <td>{{ $district->area_name }}</td>
                             <td>{{ $district->district_name }}</td>
                             <td>{{ $district->district_code }}</td>
