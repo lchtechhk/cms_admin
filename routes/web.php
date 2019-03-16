@@ -138,7 +138,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 			//customers
-			Route::get('/customers', 'AdminCustomersController@customers');
+			Route::get('/listingCustomers', 'AdminCustomersController@listingCustomers');
 			Route::get('/addcustomers', 'AdminCustomersController@addcustomers');
 			Route::post('/addnewcustomers', 'AdminCustomersController@addnewcustomers');
 

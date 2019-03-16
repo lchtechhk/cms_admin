@@ -62,9 +62,13 @@
           </ul>
         </li>
         
-        <li class="treeview <?php echo e(Request::is('admin/customers') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/addcustomers') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/editcustomers/*') ? 'active' : ''); ?>">
-          <a href="<?php echo e(URL::to('admin/customers')); ?>">
-            <i class="fa fa-users" aria-hidden="true"></i> <span><?php echo e(trans('labels.link_customers')); ?></span>
+        <li class="treeview 
+          <?php echo e(Request::is('admin/listingCustomers') ? 'active' : ''); ?>  
+          <?php echo e(Request::is('admin/addcustomers') ? 'active' : ''); ?> 
+          <?php echo e(Request::is('admin/editcustomers/*') ? 'active' : ''); ?>">
+          <a href="<?php echo e(URL::to('admin/listingCustomers')); ?>">
+            <i class="fa fa-users" aria-hidden="true"></i> 
+            <span><?php echo e(trans('labels.link_customers')); ?></span>
           </a>
         </li>
         

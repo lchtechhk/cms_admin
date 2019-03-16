@@ -15,7 +15,6 @@ use App;
 use Lang;
 use DB;
 //for password encryption or hash protected
-
 use Hash;
 use App\Administrator;
 
@@ -23,16 +22,27 @@ use App\Administrator;
 use Auth;
 //for redirect
 use Illuminate\Support\Facades\Redirect;
-//use Illuminate\Foundation\Auth\ThrottlesLogins;
-//use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 //for requesting a value 
 use Illuminate\Http\Request;
-//use Illuminate\Routing\Controller;
 
-class AdminCustomersController extends Controller
-{
+use App\Http\Controllers\Admin\Service\CustomersService;
+
+class AdminCustomersController extends Controller{
+	protected $CustomersService;
+
+	public function __construct(){
+		$this->CustomersService = new CustomersService();
+	}
+
 	//add listingCustomers
+	public function listingCustomers(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingCustomers"));
+		$result = array();
+		$result['operation'] = 'listing';
+		return $this->CustomersService->redirect_view($result,$title);
+	}
+
 	public function customers(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCustomers"));
 		$language_id            				=   '1';			

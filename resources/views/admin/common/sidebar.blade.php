@@ -62,9 +62,13 @@
           </ul>
         </li>
         
-        <li class="treeview {{ Request::is('admin/customers') ? 'active' : '' }}  {{ Request::is('admin/addcustomers') ? 'active' : '' }}  {{ Request::is('admin/editcustomers/*') ? 'active' : '' }}">
-          <a href="{{ URL::to('admin/customers')}}">
-            <i class="fa fa-users" aria-hidden="true"></i> <span>{{ trans('labels.link_customers') }}</span>
+        <li class="treeview 
+          {{ Request::is('admin/listingCustomers') ? 'active' : '' }}  
+          {{ Request::is('admin/addcustomers') ? 'active' : '' }} 
+          {{ Request::is('admin/editcustomers/*') ? 'active' : '' }}">
+          <a href="{{ URL::to('admin/listingCustomers')}}">
+            <i class="fa fa-users" aria-hidden="true"></i> 
+            <span>{{ trans('labels.link_customers') }}</span>
           </a>
         </li>
         

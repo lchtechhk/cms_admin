@@ -1,13 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <div class="content-wrapper"> 
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1> <?php echo e(trans('labels.Customers')); ?> <small><?php echo e(trans('labels.ListingAllCustomers')); ?>...</small> </h1>
-    <ol class="breadcrumb">
-      <li><a href="<?php echo e(URL::to('admin/dashboard/this_month')); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('labels.breadcrumb_dashboard')); ?></a></li>
-      <li class="active"><?php echo e(trans('labels.Customers')); ?></li>
-    </ol>
-  </section>
+  <?php echo $__env->make('layouts/list_header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
   
   <!-- Main content -->
   <section class="content"> 
