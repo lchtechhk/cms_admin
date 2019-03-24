@@ -11,7 +11,15 @@ use DB;
             $request['status'] = 'active';
             $request['create_date'] = date("Y-m-d H:i:s");
             $request['edit_date'] = date("Y-m-d H:i:s");
-            Log::info('[edit_date] ' . json_encode($request->all()));	
+            if($request->hasFile('newImage') and in_array($request->newImage->extension(), $extensions)){
+				$image = $request->newImage;
+				$fileName = time().'.'.$image->getClientOriginalName();
+				$image->move('resources/assets/images/user_profile/', $fileName);
+				$request['customers_picture'] = 'resources/assets/images/user_profile/'.$fileName; 
+			}	else{
+				$request['customers_picture'] = '';
+    		}	
+            Log::info('[add] ' . json_encode($request->all()));	
 			$insert_id = $this->db_prepareInsert($this->getTable(),$request->all());
 			//
             $result = array();	
@@ -24,8 +32,8 @@ use DB;
             }
             $result['operation'] = 'add';
             return $result;
-
         }
+
         public function update($request,$success_msg,$fail_msg){
             $request['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdate($this->getTable(),$request->all(),$request->id);

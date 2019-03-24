@@ -86,7 +86,7 @@
                       </div>
                       <h4>
                         {{ $newCustomer->customers_firstname }} {{ $newCustomer->customers_lastname }}
-                        <small><i class="fa fa-clock-o"></i> {{ date('d/m/Y', $newCustomer->created_at) }}</small>
+                        {{-- <small><i class="fa fa-clock-o"></i> {{ date('d/m/Y', $newCustomer->created_at) }}</small> --}}
                       </h4>
                       <p></p>
                     </a>

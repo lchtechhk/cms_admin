@@ -40,7 +40,8 @@
                       <div class="col-sm-10 col-md-4">
                         {!! Form::text('name', '', array('class'=>'form-control field-validate', 'id'=>'name'))!!}
                         <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                          {{ trans('labels.AreaNameText') }}</span>
+                          {{ trans('labels.AreaNameText') }}
+                        </span>
                         <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                       </div>
                     </div>

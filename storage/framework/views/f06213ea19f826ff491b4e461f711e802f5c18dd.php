@@ -88,7 +88,7 @@
                       <h4>
                         <?php echo e($newCustomer->customers_firstname); ?> <?php echo e($newCustomer->customers_lastname); ?>
 
-                        <small><i class="fa fa-clock-o"></i> <?php echo e(date('d/m/Y', $newCustomer->created_at)); ?></small>
+                        
                       </h4>
                       <p></p>
                     </a>

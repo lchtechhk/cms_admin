@@ -10,7 +10,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.ListingAllCustomers') }} </h3>
             <div class="box-tools pull-right">
-                <a href="{{ URL::to('admin/addcustomers')}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddNewCustomers') }}</a>
+                <a href="{{ URL::to('admin/addCustomer')}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddNewCustomers') }}</a>
             </div>
           </div>
           <div class="box-body">

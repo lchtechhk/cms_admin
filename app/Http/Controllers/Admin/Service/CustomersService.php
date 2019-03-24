@@ -22,23 +22,35 @@ class CustomersService extends BaseApiService{
     }
 
     function redirect_view($result,$title){
-        $result['label'] = "Customers";
+        $result['label'] = "Customer";
         switch($result['operation']){
             case 'listing':
                 $result['customers'] = $this->getListing();
                 Log::info(json_encode($result['customers']));
-                return view("admin.listingCustomers", $title)->with('result', $result);
+                return view("admin.customer.listingCustomer", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.location.addCustomers", $title)->with('result', $result);
+                // $customerData = array();
+                // $message = array();
+                // $errorMessage = array();
+                
+                // //get function from ManufacturerController controller
+                // $myVar = new AddressController();
+                // $customerData['countries'] = $myVar->getAllCountries();
+                
+                
+                // $customerData['message'] = $message;
+                // $customerData['errorMessage'] = $errorMessage;
+        
+                return view("admin.customer.addCustomer", $title)->with('result', $result);
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.location.editCustomers", $title)->with('result', $result);		
+                return view("admin.location.editCustomer", $title)->with('result', $result);		
             break;
             case 'delete': 
                 $result['customers'] = $this->getListing();
-                return view("admin.location.listingCustomers", $title)->with('result', $result);	
+                return view("admin.location.listingCustomer", $title)->with('result', $result);	
             break;
         }
     }

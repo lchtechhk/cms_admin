@@ -18,6 +18,7 @@ use DB;
 use Hash;
 use App\Administrator;
 
+use Log;
 //for authenitcate login data
 use Auth;
 //for redirect
@@ -35,119 +36,81 @@ class AdminCustomersController extends Controller{
 		$this->CustomersService = new CustomersService();
 	}
 
-	//add listingCustomers
-	public function listingCustomers(Request $request){
+	//add listingCustomer
+	public function listingCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCustomers"));
 		$result = array();
 		$result['operation'] = 'listing';
 		return $this->CustomersService->redirect_view($result,$title);
+}
+
+	//view_AddArea
+	public function view_addCustomer(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddArea"));
+		$result = array();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+		return $this->CustomersService->redirect_view($result,$title);
 	}
 
-	public function customers(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingCustomers"));
-		$language_id            				=   '1';			
-		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
-		
-		$customers = DB::table('customers')
-			->LeftJoin('address_book','address_book.address_book_id','=', 'customers.customers_default_address_id')
-			->LeftJoin('countries','countries.id','=', 'address_book.entry_country_id')
-			->LeftJoin('zones','zones.id','=', 'address_book.entry_zone_id')
-			->LeftJoin('customers_info','customers_info.customers_info_id','=', 'customers.customers_id')
-			->select('customers.*', 'address_book.entry_gender as entry_gender', 'address_book.entry_company as entry_company', 'address_book.entry_firstname as entry_firstname', 'address_book.entry_lastname as entry_lastname', 'address_book.entry_street_address as entry_street_address', 'address_book.entry_suburb as entry_suburb', 'address_book.entry_postcode as entry_postcode', 'address_book.entry_city as entry_city', 'address_book.entry_state as entry_state', 'countries.*', 'zones.*')
-			->orderBy('customers.customers_id','ASC')
-			->paginate(50);
-			
-		$result = array();
-		$index = 0;
-		foreach($customers as $customers_data){
-			array_push($result, $customers_data);
-			
-			$devices = DB::table('devices')->where('customers_id','=',$customers_data->customers_id)->orderBy('register_date','DESC')->take(1)->get();
-			$result[$index]->devices = $devices;
-			$index++;
-		}
-		
-		$customerData['message'] = $message;
-		$customerData['errorMessage'] = $errorMessage;
-		$customerData['result'] = $customers;
-		
-		return view("admin.customers",$title)->with('customers', $customerData);
-	}
-	
 	//add addcustomers page
-	public function addcustomers(Request $request){
+	public function addNewCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
-		$language_id            				=   '1';	
-		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
-		
-		//get function from ManufacturerController controller
-		$myVar = new AddressController();
-		$customerData['countries'] = $myVar->getAllCountries();
-		
-		
-		$customerData['message'] = $message;
-		$customerData['errorMessage'] = $errorMessage;
-		
-		return view("admin.addcustomers",$title)->with('customers', $customerData);
+		$result = $this->CustomersService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+		return $this->CustomersService->redirect_view($result,$title);
 	}
 	
 	//add addcustomers data and redirect to address
-	public function addnewcustomers(Request $request){
+	// public function addNewCustomer(Request $request){
 				
-		$language_id            				=   '1';
+	// 	$language_id            				=   '1';
 		
-		//get function from other controller
-		$myVar = new AdminSiteSettingController();	
-		$extensions = $myVar->imageType();			
+	// 	//get function from other controller
+	// 	$myVar = new AdminSiteSettingController();	
+	// 	$extensions = $myVar->imageType();			
 		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
+	// 	$customerData = array();
+	// 	$message = array();
+	// 	$errorMessage = array();
 		
-		//check email already exists
-		$existEmail = DB::table('customers')->where('email', '=', $request->email)->get();
-		if(count($existEmail)>0){
-			$title = array('pageTitle' => 'Add Customer');
+	// 	//check email already exists
+	// 	$existEmail = DB::table('customers')->where('email', '=', $request->email)->get();
+	// 	if(count($existEmail)>0){
+	// 		$title = array('pageTitle' => 'Add Customer');
 			
-			$customerData['message'] = $message;
-			$customerData['errorMessage'] = 'Email address already exist.';
-			return view("admin.addcustomers",$title)->with('customers', $customerData);
-		}else{
+	// 		$customerData['message'] = $message;
+	// 		$customerData['errorMessage'] = 'Email address already exist.';
+	// 		return view("admin.addcustomers",$title)->with('customers', $customerData);
+	// 	}else{
 						
-			if($request->hasFile('newImage') and in_array($request->newImage->extension(), $extensions)){
-				$image = $request->newImage;
-				$fileName = time().'.'.$image->getClientOriginalName();
-				$image->move('resources/assets/images/user_profile/', $fileName);
-				$customers_picture = 'resources/assets/images/user_profile/'.$fileName; 
-			}	else{
-				$customers_picture = '';
-			}			
+	// 		if($request->hasFile('newImage') and in_array($request->newImage->extension(), $extensions)){
+	// 			$image = $request->newImage;
+	// 			$fileName = time().'.'.$image->getClientOriginalName();
+	// 			$image->move('resources/assets/images/user_profile/', $fileName);
+	// 			$customers_picture = 'resources/assets/images/user_profile/'.$fileName; 
+	// 		}	else{
+	// 			$customers_picture = '';
+	// 		}			
 			
-			$customers_id = DB::table('customers')->insertGetId([
-						'customers_gender'   		 	=>   $request->customers_gender,
-						'customers_firstname'		 	=>   $request->customers_firstname,
-						'customers_lastname'		 	=>   $request->customers_lastname,
-						'customers_dob'	 			 	=>	 $request->customers_dob,
-						'customers_gender'   		 	=>   $request->customers_gender,
-						'email'	 	=>   $request->email,
-						'customers_default_address_id' 	=>   $request->customers_default_address_id,
-						'customers_telephone'	 		=>	 $request->customers_telephone,
-						'customers_fax'   				=>   $request->customers_fax,
-						'password'		 				=>   Hash::make($request->password),
-						'isActive'		 	 			=>   $request->isActive,
-						'customers_picture'	 			=>	 $customers_picture,
-						'created_at'					 =>	 time()
-						]);
+	// 		$customers_id = DB::table('customers')->insertGetId([
+	// 					'customers_gender'   		 	=>   $request->customers_gender,
+	// 					'customers_firstname'		 	=>   $request->customers_firstname,
+	// 					'customers_lastname'		 	=>   $request->customers_lastname,
+	// 					'customers_dob'	 			 	=>	 $request->customers_dob,
+	// 					'customers_gender'   		 	=>   $request->customers_gender,
+	// 					'email'	 	=>   $request->email,
+	// 					'customers_default_address_id' 	=>   $request->customers_default_address_id,
+	// 					'customers_telephone'	 		=>	 $request->customers_telephone,
+	// 					'customers_fax'   				=>   $request->customers_fax,
+	// 					'password'		 				=>   Hash::make($request->password),
+	// 					'isActive'		 	 			=>   $request->isActive,
+	// 					'customers_picture'	 			=>	 $customers_picture,
+	// 					'created_at'					 =>	 time()
+	// 					]);
 					
-			return redirect('admin/addaddress/'.$customers_id);		
-		}
-	}
+	// 		return redirect('admin/addaddress/'.$customers_id);		
+	// 	}
+	// }
 	
 	
 	//addcustomers data and redirect to address
