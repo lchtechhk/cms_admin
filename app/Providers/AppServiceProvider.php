@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
          // Using Closure based composers...
 		$result = array();
         $orders = DB::table('orders')
-				->leftJoin('customers','customers.customers_id','=','orders.customers_id')
+				->leftJoin('customers','customers.id','=','orders.customers_id')
 				->where('orders.is_seen','=', 0)
 				->orderBy('orders_id','desc')
 				->get();
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 		//new customers
 		$newCustomers = DB::table('customers')
 				->where('is_seen','=', 0)
-				->orderBy('customers_id','desc')
+				->orderBy('id','desc')
 				->get();
 				
 		//products low in quantity

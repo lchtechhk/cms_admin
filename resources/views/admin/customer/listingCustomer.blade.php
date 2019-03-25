@@ -34,7 +34,8 @@
                    @if (count($result['customers']) > 0)
                       @foreach ($result['customers']  as $key=>$listingCustomers)
                         <tr>
-                          <td>{{ $listingCustomers->customers_id }}</td>
+                            {{-- <td>{{ json_encode($listingCustomers) }}</td> --}}
+                          <td>{{ $listingCustomers->id }}</td>
                           <td>
                             @if(!empty($listingCustomers->customers_picture))
                               <img src="../{{ $listingCustomers->customers_picture }}" style="width: 50px; float: left; margin-right: 10px">
@@ -73,11 +74,11 @@
                                   {{ trans('labels.Action') }} <span class="caret"></span>
                                 </a>
                               <ul class="dropdown-menu">
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="editcustomers/{{ $listingCustomers->customers_id }}">{{ trans('labels.EditCustomers') }}</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="editCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
                                   <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="addaddress/{{ $listingCustomers->customers_id }}">{{ trans('labels.EditAddress') }}</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="addaddress/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
                                   <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" customers_id="{{ $listingCustomers->customers_id }}">{{ trans('labels.Delete') }}</a></li>
+                                  <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" id="{{ $listingCustomers->id }}">{{ trans('labels.Delete') }}</a></li>
                               </ul>
                               </li>
                             </ul>
@@ -107,7 +108,7 @@
           </div>
           {!! Form::open(array('url' =>'admin/deletecustomers', 'name'=>'deleteCustomer', 'id'=>'deleteCustomer', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
                   {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-                  {!! Form::hidden('customers_id',  '', array('class'=>'form-control', 'id'=>'customers_id')) !!}
+                  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
           <div class="modal-body">                        
               <p>{{ trans('labels.DeleteCustomerText') }}</p>
           </div>

@@ -28,12 +28,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Admin\Service\CustomersService;
+use App\Http\Controllers\Admin\Service\UploadService;
 
 class AdminCustomersController extends Controller{
-	protected $CustomersService;
+	private $CustomersService;
+    private $UploadService;
 
 	public function __construct(){
 		$this->CustomersService = new CustomersService();
+		$this->UploadService = new UploadService();
 	}
 
 	//add listingCustomer
@@ -52,9 +55,17 @@ class AdminCustomersController extends Controller{
 		$result['operation'] = 'add';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
-
+	//view_EditArea
+	public function view_editCustomer(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+		$result = array();
+		$result['request'] = $request;
+		$result['operation'] = 'edit';
+		return $this->CustomersService->redirect_view($result,$title);
+	}
 	//add addcustomers page
 	public function addNewCustomer(Request $request){
+		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
 		$result = $this->CustomersService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
 		return $this->CustomersService->redirect_view($result,$title);
@@ -258,26 +269,26 @@ class AdminCustomersController extends Controller{
 	}
 	
 	
-	//editcustomers data and redirect to address
-	public function editcustomers(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
-		$language_id             =   '1';	
-		$customers_id        	 =   $request->id;			
+	// //editcustomers data and redirect to address
+	// public function editcustomers(Request $request){
+	// 	$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+	// 	$language_id             =   '1';	
+	// 	$customers_id        	 =   $request->id;			
 		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
+	// 	$customerData = array();
+	// 	$message = array();
+	// 	$errorMessage = array();
 		
-		DB::table('customers')->where('customers_id', '=', $customers_id)->update(['is_seen' => 1 ]);
+	// 	DB::table('customers')->where('customers_id', '=', $customers_id)->update(['is_seen' => 1 ]);
 		
-		$customers = DB::table('customers')->where('customers_id','=', $customers_id)->get();
+	// 	$customers = DB::table('customers')->where('customers_id','=', $customers_id)->get();
 		
-		$customerData['message'] = $message;
-		$customerData['errorMessage'] = $errorMessage;
-		$customerData['customers'] = $customers;
+	// 	$customerData['message'] = $message;
+	// 	$customerData['errorMessage'] = $errorMessage;
+	// 	$customerData['customers'] = $customers;
 		
-		return view("admin.editcustomers",$title)->with('data', $customerData);
-	}
+	// 	return view("admin.editcustomers",$title)->with('data', $customerData);
+	// }
 		
 	//add addcustomers data and redirect to address
 	public function updatecustomers(Request $request){

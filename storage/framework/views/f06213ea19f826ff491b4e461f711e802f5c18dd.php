@@ -77,7 +77,7 @@
                 <ul class="menu">
                 <?php $__currentLoopData = $newCustomers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $newCustomer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <li><!-- start message -->
-                    <a href="<?php echo e(URL::to("admin/editCustomers")); ?>/<?php echo e($newCustomer->customers_id); ?>">
+                    <a href="<?php echo e(URL::to("admin/editCustomers")); ?>/<?php echo e($newCustomer->id); ?>">
                       <div class="pull-left">
                          <?php if(!empty($newCustomer->customers_picture)): ?>
                             <img src="<?php echo e(asset('').'/'.$newCustomer->customers_picture); ?>" class="img-circle">

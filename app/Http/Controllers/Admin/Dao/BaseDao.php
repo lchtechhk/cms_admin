@@ -6,7 +6,7 @@
     use DB;
     use Log;
 
-    abstract class BaseDao {
+    abstract class BaseDao{
         protected $table;
 
         public function findAll(){

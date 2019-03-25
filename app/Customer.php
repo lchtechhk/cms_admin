@@ -35,7 +35,7 @@ class Customer extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 	
 	//use user id of admin
-	protected $primaryKey = 'customers_id';
+	protected $primaryKey = 'id';
 	
 	//public $table = true;
 	

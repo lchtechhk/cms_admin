@@ -140,6 +140,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//customers
 			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
 			Route::get('/addCustomer', 'AdminCustomersController@view_addCustomer');
+			Route::get('/editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
 			Route::post('/addNewCustomer', 'AdminCustomersController@addNewCustomer');
 
 
@@ -151,7 +152,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/deleteAddress', 'AdminCustomersController@deleteAddress');
 			Route::post('/getZones', 'AdminCustomersController@getZones');
 			//edit customer
-			Route::get('/editcustomers/{id}', 'AdminCustomersController@editcustomers');
+			// Route::get('/editcustomers/{id}', 'AdminCustomersController@editcustomers');
 			Route::post('/updatecustomers', 'AdminCustomersController@updatecustomers');
 			Route::post('/deletecustomers', 'AdminCustomersController@deletecustomers');
 

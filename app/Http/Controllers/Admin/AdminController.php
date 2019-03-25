@@ -126,7 +126,7 @@ class AdminController extends Controller
 		$result['totalProducts'] = count($products);
 		
 		$customers = DB::table('customers')
-			->LeftJoin('customers_info','customers_info.customers_info_id','=', 'customers.customers_id')
+			->LeftJoin('customers_info','customers_info.customers_info_id','=', 'customers.id')
 			->orderBy('customers_info.customers_info_date_account_created','DESC')
 			->get();
 		

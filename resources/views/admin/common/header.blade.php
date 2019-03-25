@@ -76,7 +76,7 @@
                 <ul class="menu">
                 @foreach($newCustomers as $newCustomer)
                   <li><!-- start message -->
-                    <a href="{{ URL::to("admin/editCustomers")}}/{{ $newCustomer->customers_id}}">
+                    <a href="{{ URL::to("admin/editCustomers")}}/{{ $newCustomer->id}}">
                       <div class="pull-left">
                          @if(!empty($newCustomer->customers_picture))
                             <img src="{{asset('').'/'.$newCustomer->customers_picture}}" class="img-circle">
