@@ -1,0 +1,62 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `cms`.`view_customer` AS
+    SELECT 
+        `cms`.`customers`.`id` AS `id`,
+        `cms`.`customers`.`customers_gender` AS `customers_gender`,
+        `cms`.`customers`.`customers_firstname` AS `customers_firstname`,
+        `cms`.`customers`.`customers_lastname` AS `customers_lastname`,
+        `cms`.`customers`.`customers_dob` AS `customers_dob`,
+        `cms`.`customers`.`email` AS `email`,
+        `cms`.`customers`.`user_name` AS `user_name`,
+        `cms`.`customers`.`customers_default_address_id` AS `customers_default_address_id`,
+        `cms`.`customers`.`customers_telephone` AS `customers_telephone`,
+        `cms`.`customers`.`customers_fax` AS `customers_fax`,
+        `cms`.`customers`.`password` AS `password`,
+        `cms`.`customers`.`customers_newsletter` AS `customers_newsletter`,
+        `cms`.`customers`.`fb_id` AS `fb_id`,
+        `cms`.`customers`.`google_id` AS `google_id`,
+        `cms`.`customers`.`customers_picture` AS `customers_picture`,
+        `cms`.`customers`.`is_seen` AS `is_seen`,
+        `cms`.`customers`.`remember_token` AS `remember_token`,
+        `cms`.`customers`.`create_date` AS `create_date`,
+        `cms`.`customers`.`create_by_id` AS `create_by_id`,
+        `cms`.`customers`.`edit_date` AS `edit_date`,
+        `cms`.`customers`.`edit_by_id` AS `edit_by_id`,
+        `cms`.`customers`.`status` AS `status`,
+        `cms`.`address_book`.`entry_gender` AS `entry_gender`,
+        `cms`.`address_book`.`entry_company` AS `entry_company`,
+        `cms`.`address_book`.`entry_firstname` AS `entry_firstname`,
+        `cms`.`address_book`.`entry_lastname` AS `entry_lastname`,
+        `cms`.`address_book`.`entry_street_address` AS `entry_street_address`,
+        `cms`.`address_book`.`entry_suburb` AS `entry_suburb`,
+        `cms`.`address_book`.`entry_postcode` AS `entry_postcode`,
+        `cms`.`address_book`.`entry_city` AS `entry_city`,
+        `cms`.`address_book`.`entry_state` AS `entry_state`,
+        `cms`.`countries`.`id` AS `countries_id`,
+        `cms`.`countries`.`name` AS `countries_name`,
+        `cms`.`countries`.`iso_code_1` AS `icountries_so_code_1`,
+        `cms`.`countries`.`iso_code_2` AS `countries_iso_code_2`,
+        `cms`.`countries`.`address_format_id` AS `countries_address_format_id`,
+        `cms`.`countries`.`create_date` AS `countries_create_date`,
+        `cms`.`countries`.`create_by_id` AS `countries_create_by_id`,
+        `cms`.`countries`.`edit_date` AS `countries_edit_date`,
+        `cms`.`countries`.`edit_by_id` AS `countries_edit_by_id`,
+        `cms`.`countries`.`status` AS `countries_status`,
+        `cms`.`zones`.`id` AS `izones_d`,
+        `cms`.`zones`.`name` AS `zones_name`,
+        `cms`.`zones`.`code` AS `zones_code`,
+        `cms`.`zones`.`district_id` AS `zones_district_id`,
+        `cms`.`zones`.`create_date` AS `zones_create_date`,
+        `cms`.`zones`.`create_by_id` AS `zones_create_by_id`,
+        `cms`.`zones`.`edit_date` AS `zones_edit_date`,
+        `cms`.`zones`.`edit_by_id` AS `zones_edit_by_id`,
+        `cms`.`zones`.`status` AS `zones_status`
+    FROM
+        ((((`cms`.`customers`
+        LEFT JOIN `cms`.`address_book` ON ((`cms`.`address_book`.`address_book_id` = `cms`.`customers`.`customers_default_address_id`)))
+        LEFT JOIN `cms`.`countries` ON ((`cms`.`countries`.`id` = `cms`.`address_book`.`entry_country_id`)))
+        LEFT JOIN `cms`.`zones` ON ((`cms`.`zones`.`id` = `cms`.`address_book`.`entry_zone_id`)))
+        LEFT JOIN `cms`.`customers_info` ON ((`cms`.`customers_info`.`customers_info_id` = `cms`.`customers`.`id`)))

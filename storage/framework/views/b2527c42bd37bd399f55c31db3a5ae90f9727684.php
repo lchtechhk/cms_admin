@@ -216,7 +216,7 @@
                             <?php else: ?>
                                <img src="<?php echo e(asset('').'/resources/assets/images/default_images/user.png'); ?>">
                             <?php endif; ?>
-                          <a class="users-list-name" href="<?php echo e(URL::to('admin/editcustomers')); ?>/<?php echo e($recentCustomers->customers_id); ?>"><?php echo e($recentCustomers->customers_firstname); ?> <?php echo e($recentCustomers->customers_lastname); ?></a>
+                          <a class="users-list-name" href="<?php echo e(URL::to('admin/editcustomers')); ?>/<?php echo e($recentCustomers->id); ?>"><?php echo e($recentCustomers->customers_firstname); ?> <?php echo e($recentCustomers->customers_lastname); ?></a>
                           <span class="users-list-date"><?php echo e(date('d-M', strtotime($recentCustomers->customers_info_date_account_created))); ?></span>
                         </li>
                         <?php endif; ?>

@@ -118,7 +118,7 @@
                           <div class="col-sm-10 col-md-4">
                             <select class='form-control field-validate' name="status">
                                   <option value="active">{{ trans('labels.Active') }}</option>
-                                  <option value="active">{{ trans('labels.Inactive') }}</option>
+                                  <option value="inactive">{{ trans('labels.Inactive') }}</option>
                             </select>
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                           {{ trans('labels.StatusText') }}</span>
