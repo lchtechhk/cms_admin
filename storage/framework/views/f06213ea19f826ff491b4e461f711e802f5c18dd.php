@@ -1,68 +1,59 @@
 <header class="main-header">
-
-    <!-- Logo -->
     <a href="<?php echo e(URL::to('admin/dashboard/this_month')); ?>" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini" style="font-size:12px"><b><?php echo e(trans('labels.admin')); ?></b></span>
-      <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b><?php echo e(trans('labels.admin')); ?></b></span>
     </a>
-
-    <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only"><?php echo e(trans('labels.toggle_navigation')); ?></span>
       </a>
-		<div id="countdown" style="
-    width: 350px;
-    margin-top: 13px !important;
-    position: absolute;
-    font-size: 16px;
-    color: #ffffff;
-    display: inline-block;
-    margin-left: -175px;
-    left: 50%;
-"></div>
-      <!-- Navbar Right Menu -->
+      <div id="countdown" style="
+          width: 350px;
+          margin-top: 13px !important;
+          position: absolute;
+          font-size: 16px;
+          color: #ffffff;
+          display: inline-block;
+          margin-left: -175px;
+          left: 50%;">
+      </div>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-list-ul"></i>
               <span class="label label-success"><?php echo e(count($unseenOrders)); ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header"><?php echo e(trans('labels.you_have')); ?> <?php echo e(count($unseenOrders)); ?> <?php echo e(trans('labels.new_orders')); ?></li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                <?php $__currentLoopData = $unseenOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unseenOrder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><!-- start message -->
-                    <a href="<?php echo e(URL::to("admin/viewOrder")); ?>/<?php echo e($unseenOrder->orders_id); ?>">
-                      <div class="pull-left">
-                        
-                         <?php if(!empty($unseenOrder->customers_picture)): ?>
-                            <img src="<?php echo e(asset('').'/'.$unseenOrder->customers_picture); ?>" class="img-circle" alt="<?php echo e($unseenOrder->customers_name); ?> Image">
-                            <?php else: ?>
-                            <img src="<?php echo e(asset('').'/resources/assets/images/default_images/user.png'); ?>" class="img-circle" alt="<?php echo e($unseenOrder->customers_name); ?> Image">
-                         <?php endif; ?>
-                                                  
-                      </div>
-                      <h4>
-                        <?php echo e($unseenOrder->customers_name); ?>
+              <li class="header">
+                <?php echo e(trans('labels.you_have')); ?> <?php echo e(count($unseenOrders)); ?> <?php echo e(trans('labels.new_orders')); ?>
 
-                        <small><i class="fa fa-clock-o"></i> <?php echo e(date('d/m/Y', strtotime($unseenOrder->date_purchased))); ?></small>
-                      </h4>
-                      <p>Ordered Products (<?php echo e($unseenOrder->total_products); ?>)</p>
-                    </a>
-                  </li>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  <!-- end message -->
+              </li>
+              <li>
+                <ul class="menu">
+                  <?php $__currentLoopData = $unseenOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unseenOrder): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li>
+                      <a href="<?php echo e(URL::to("admin/viewOrder")); ?>/<?php echo e($unseenOrder->orders_id); ?>">
+                        <div class="pull-left">
+                          
+                          <?php if(!empty($unseenOrder->customers_picture)): ?>
+                              <img src="<?php echo e(asset('').'/'.$unseenOrder->customers_picture); ?>" class="img-circle" alt="<?php echo e($unseenOrder->customers_name); ?> Image">
+                              <?php else: ?>
+                              <img src="<?php echo e(asset('').'/resources/assets/images/default_images/user.png'); ?>" class="img-circle" alt="<?php echo e($unseenOrder->customers_name); ?> Image">
+                          <?php endif; ?>
+                                                    
+                        </div>
+                        <h4>
+                          <?php echo e($unseenOrder->customers_name); ?>
+
+                          <small><i class="fa fa-clock-o"></i> <?php echo e(date('d/m/Y', strtotime($unseenOrder->date_purchased))); ?></small>
+                        </h4>
+                        <p>Ordered Products (<?php echo e($unseenOrder->total_products); ?>)</p>
+                      </a>
+                    </li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
               </li>
-              <!--<li class="footer"><a href="#">See All Messages</a></li>-->
             </ul>
           </li>
           <li class="dropdown messages-menu">
@@ -71,36 +62,35 @@
               <span class="label label-warning"><?php echo e(count($newCustomers)); ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header"><?php echo e(count($newCustomers)); ?> <?php echo e(trans('labels.new_users')); ?></li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                <?php $__currentLoopData = $newCustomers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $newCustomer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><!-- start message -->
-                    <a href="<?php echo e(URL::to("admin/editCustomers")); ?>/<?php echo e($newCustomer->id); ?>">
-                      <div class="pull-left">
-                         <?php if(!empty($newCustomer->customers_picture)): ?>
-                            <img src="<?php echo e(asset('').'/'.$newCustomer->customers_picture); ?>" class="img-circle">
-                            <?php else: ?>
-                            <img src="<?php echo e(asset('').'/resources/assets/images/default_images/user.png'); ?>" class="img-circle" alt="<?php echo e($newCustomer->customers_firstname); ?> Image">
-                         <?php endif; ?>
-                      </div>
-                      <h4>
-                        <?php echo e($newCustomer->customers_firstname); ?> <?php echo e($newCustomer->customers_lastname); ?>
+              <li class="header">
+                <?php echo e(count($newCustomers)); ?> 
+                <?php echo e(trans('labels.new_users')); ?>
 
-                        
-                      </h4>
-                      <p></p>
-                    </a>
-                  </li>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  <!-- end message -->
+              </li>
+              <li>
+                <ul class="menu">
+                  <?php $__currentLoopData = $newCustomers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $newCustomer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li>
+                      <a href="<?php echo e(URL::to("admin/editCustomers")); ?>/<?php echo e($newCustomer->id); ?>">
+                        <div class="pull-left">
+                          <?php if(!empty($newCustomer->customers_picture)): ?>
+                              <img src="<?php echo e(asset('').'/'.$newCustomer->customers_picture); ?>" class="img-circle">
+                              <?php else: ?>
+                              <img src="<?php echo e(asset('').'/resources/assets/images/default_images/user.png'); ?>" class="img-circle" alt="<?php echo e($newCustomer->customers_firstname); ?> Image">
+                          <?php endif; ?>
+                        </div>
+                        <h4>
+                          <?php echo e($newCustomer->customers_firstname); ?> <?php echo e($newCustomer->customers_lastname); ?>
+
+                        </h4>
+                        <p></p>
+                      </a>
+                    </li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
               </li>
-              <!--<li class="footer"><a href="#">See All Messages</a></li>-->
             </ul>
           </li>
-          
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-th"></i>
@@ -109,10 +99,9 @@
             <ul class="dropdown-menu">
               <li class="header"><?php echo e(count($lowInQunatity)); ?> <?php echo e(trans('labels.products_are_in_low_quantity')); ?></li>
               <li>
-                <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                 <?php $__currentLoopData = $lowInQunatity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lowInQunatity): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><!-- start message -->
+                  <li>
                     <a href="<?php echo e(URL::to("admin/editProduct")); ?>/<?php echo e($lowInQunatity->products_id); ?>">
                       <div class="pull-left">                         
                          <img src="<?php echo e(asset('').'/'.$lowInQunatity->products_image); ?>" class="img-circle" >

@@ -42,7 +42,6 @@ class CustomersService extends BaseApiService{
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);
-                Log::info('id : ' . $result['request']->id);
                 return view("admin.customer.editCustomer", $title)->with('result', $result);		
             break;
             case 'delete': 

@@ -28,14 +28,18 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Admin\Service\CustomersService;
+use App\Http\Controllers\Admin\Service\View_CustomersService;
+
 use App\Http\Controllers\Admin\Service\UploadService;
 
 class AdminCustomersController extends Controller{
 	private $CustomersService;
+	private $View_CustomersService;
     private $UploadService;
 
 	public function __construct(){
 		$this->CustomersService = new CustomersService();
+		$this->View_CustomersService = new View_CustomersService();
 		$this->UploadService = new UploadService();
 	}
 
@@ -71,6 +75,27 @@ class AdminCustomersController extends Controller{
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 	
+	//edit updateCustomer
+	public function updateCustomer(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+		$email = $request['email'];
+		$id = $request['id'];
+		$own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
+		$duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
+
+		Log::info('own_email_count : ' . $own_email_count);
+		if($own_email_count > 1 ){
+			unset($request['email']);
+		}else if($own_email_count == 0 && $duplicate_email_count > 0){
+			$result['request'] = $request;
+			$result['operation'] = 'edit';
+			$result['status'] = 'fail';
+			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
+			return $this->CustomersService->redirect_view($result,$title);
+		}
+		$result = $this->CustomersService->update($request,"labels.CustomerAddedMessage","labels.CustomerAddedMessageFail");
+		return $this->CustomersService->redirect_view($result,$title);
+	}
 	//add addcustomers data and redirect to address
 	// public function addNewCustomer(Request $request){
 				

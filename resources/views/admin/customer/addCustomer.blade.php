@@ -45,16 +45,16 @@
                         </div> 
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Gender') }}</label>
-                                <div class="col-sm-10 col-md-4">
-                                    <label>
-                                      <input type="radio" name="customers_gender" value="1" class="minimal" checked> {{ trans('labels.Male') }} 
-                                    </label><br>
+                              <div class="col-sm-10 col-md-4">
+                                  <label>
+                                    <input type="radio" name="customers_gender" value="1" class="minimal" checked> {{ trans('labels.Male') }} 
+                                  </label><br>
 
-                                    <label>
-                                      <input type="radio" name="customers_gender" value="0" class="minimal"> {{ trans('labels.Female') }}
-                                    </label>
-                                    
-                                </div>
+                                  <label>
+                                    <input type="radio" name="customers_gender" value="0" class="minimal"> {{ trans('labels.Female') }}
+                                  </label>
+                                  
+                              </div>
                           </div>                            
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Picture') }} </label>

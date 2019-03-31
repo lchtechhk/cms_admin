@@ -18,6 +18,28 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             Log::info('[View_CustomersService] -- getListing : ] '. json_encode($result, JSON_UNESCAPED_UNICODE));
             return $result;
         }
+        function findByEmail($email){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email);
+            Log::info('[View_CustomersService] -- findByEmail : ] '. json_encode($result, JSON_UNESCAPED_UNICODE));
+            return $result;
+        }
+        function getCountForEmailExisting($email,$id){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email)
+            ->where('id','!=',$id)
+            ->count();
+            Log::info('[View_CustomersService] -- getCountForEmailExisting : ] '. $result);
+            return $result;
+        }
+        function getCountByEmailAndId($email,$id){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email)
+            ->where('id','=',$id)
+            ->count();
+            Log::info('[View_CustomersService] -- getCountByEmail : ] '. $result);
+            return $result;
+        }
         function redirect_view($result,$title){
         }
     }
