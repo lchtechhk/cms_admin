@@ -14,7 +14,7 @@ class CustomersService extends BaseApiService{
 
     }
     function getListing(){
-        return $this->View_CustomersService->getListing();
+        return $this->View_CustomersService->getListingWithOutStatus();
     }
 
     function redirect_view($result,$title){

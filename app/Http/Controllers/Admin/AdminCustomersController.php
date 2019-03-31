@@ -49,7 +49,7 @@ class AdminCustomersController extends Controller{
 		$result = array();
 		$result['operation'] = 'listing';
 		return $this->CustomersService->redirect_view($result,$title);
-}
+	}
 
 	//view_AddArea
 	public function view_addCustomer(Request $request){
@@ -62,6 +62,7 @@ class AdminCustomersController extends Controller{
 	//view_EditArea
 	public function view_editCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		$result = array();
 		$result['request'] = $request;
 		$result['operation'] = 'edit';
@@ -69,8 +70,25 @@ class AdminCustomersController extends Controller{
 	}
 	//add addcustomers page
 	public function addNewCustomer(Request $request){
-		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
+		$email = $request['email'];
+		$id = $request['id'];
+		$own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
+		$duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
+		Log::info('id : ' . $id);
+		Log::info('own_email_count : ' . $own_email_count);
+		Log::info('duplicate_email_count : ' . $duplicate_email_count);
+
+		if($own_email_count > 1 ){
+			unset($request['email']);
+		}else if($own_email_count == 0 && $duplicate_email_count > 0){
+			$result['request'] = $request;
+			$result['operation'] = 'add';
+			$result['status'] = 'fail';
+			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
+			return $this->CustomersService->redirect_view($result,$title);
+		}
+		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		$result = $this->CustomersService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
 		return $this->CustomersService->redirect_view($result,$title);
 	}
@@ -82,8 +100,6 @@ class AdminCustomersController extends Controller{
 		$id = $request['id'];
 		$own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
 		$duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
-
-		Log::info('own_email_count : ' . $own_email_count);
 		if($own_email_count > 1 ){
 			unset($request['email']);
 		}else if($own_email_count == 0 && $duplicate_email_count > 0){
@@ -93,6 +109,7 @@ class AdminCustomersController extends Controller{
 			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
 			return $this->CustomersService->redirect_view($result,$title);
 		}
+		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		$result = $this->CustomersService->update($request,"labels.CustomerAddedMessage","labels.CustomerAddedMessageFail");
 		return $this->CustomersService->redirect_view($result,$title);
 	}

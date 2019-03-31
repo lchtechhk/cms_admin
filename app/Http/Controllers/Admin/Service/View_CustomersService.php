@@ -9,6 +9,15 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             $this->setTable('view_customer');
         }
 
+        function getListingWithOutStatus(){
+            $result = DB::table($this->getTable())
+            ->orderBy('countries_id','ASC')
+            ->orderBY('zones_id','ASC')
+            ->paginate(60);
+            Log::info('[View_CustomersService] -- getListing : ] '. json_encode($result, JSON_UNESCAPED_UNICODE));
+            return $result;
+        }
+
         function getListing(){
             $result = DB::table($this->getTable())
             ->where('status','=','active')
