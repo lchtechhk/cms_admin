@@ -31,16 +31,18 @@ use App\Http\Controllers\Admin\Service\CustomersService;
 use App\Http\Controllers\Admin\Service\View_CustomersService;
 
 use App\Http\Controllers\Admin\Service\UploadService;
+use App\Http\Controllers\Admin\Service\CountryService;
 
 class AdminCustomersController extends Controller{
 	private $CustomersService;
 	private $View_CustomersService;
-    private $UploadService;
-
+	private $UploadService;
+	private $CountryService;
 	public function __construct(){
 		$this->CustomersService = new CustomersService();
 		$this->View_CustomersService = new View_CustomersService();
 		$this->UploadService = new UploadService();
+		$this->CountryService = new CountryService();
 	}
 
 	//add listingCustomer
@@ -59,6 +61,38 @@ class AdminCustomersController extends Controller{
 		$result['operation'] = 'add';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
+
+	//addcustomers data and redirect to address
+	public function view_addAddress(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddAddress"));
+				
+		$language_id            				=   $request->language_id;
+		$customers_id            				=   $request->id;		
+		
+		$customerData = array();
+		$message = array();
+		$errorMessage = array();
+		
+		// $customer_addresses = DB::table('address_book')
+		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
+		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
+		// 	->where('customers_id', '=', $customers_id)->get();	
+		$customer_addresses = array();
+		
+		$countries = $this->CountryService->findAll();
+
+
+		$customerData['message'] = $message;
+		$customerData['errorMessage'] = $errorMessage;
+		$customerData['customer_addresses'] = $customer_addresses;	
+		$customerData['countries'] = $countries;
+		// $customerData['customers_id'] = 1;	
+		$customerData['customers_id'] = $customers_id;	
+
+		
+		return view("admin.addaddress",$title)->with('data', $customerData);
+	}
+
 	//view_EditArea
 	public function view_editCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
@@ -165,33 +199,6 @@ class AdminCustomersController extends Controller{
 	// 	}
 	// }
 	
-	
-	//addcustomers data and redirect to address
-	public function addaddress(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddAddress"));
-				
-		$language_id            				=   $request->language_id;
-		$customers_id            				=   $request->id;		
-		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
-		
-		$customer_addresses = DB::table('address_book')
-			->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
-			->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
-			->where('customers_id', '=', $customers_id)->get();	
-		
-		$countries = DB::table('countries')->get();	
-		
-		$customerData['message'] = $message;
-		$customerData['errorMessage'] = $errorMessage;
-		$customerData['customer_addresses'] = $customer_addresses;	
-		$customerData['countries'] = $countries;
-		$customerData['customers_id'] = $customers_id;	
-		
-		return view("admin.addaddress",$title)->with('data', $customerData);
-	}
 	
 	//add Customer address
 	public function addNewCustomerAddress(Request $request){

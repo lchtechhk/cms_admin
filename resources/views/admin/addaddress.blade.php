@@ -154,7 +154,7 @@
                       <select id="entry_country_id" class="form-control" name="entry_country_id">	
                          <option value="">{{ trans('labels.SelectCountry') }}</option>
                          @foreach($data['countries'] as $countries_data)
-                          <option value="{{ $countries_data->countries_id }}">{{ $countries_data->countries_name }}</option>
+                          <option value="{{ $countries_data->id }}">{{ $countries_data->name }}</option>
                          @endforeach										 
                       </select>
                   </div>

@@ -76,7 +76,7 @@
                               <ul class="dropdown-menu">
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="editCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
                                   <li role="presentation" class="divider"></li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="addaddress/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="addAddress/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
                                   <li role="presentation" class="divider"></li>
                                   <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" id="{{ $listingCustomers->id }}">{{ trans('labels.Delete') }}</a></li>
                               </ul>
