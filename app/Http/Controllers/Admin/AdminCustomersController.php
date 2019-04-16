@@ -33,7 +33,11 @@ use App\Http\Controllers\Admin\Service\View_CustomersService;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\CountryService;
 
+use App\Http\Controllers\Admin\Service\AddressBookService;
+
+
 class AdminCustomersController extends Controller{
+	private $AddressBookService;
 	private $CustomersService;
 	private $View_CustomersService;
 	private $UploadService;
@@ -43,6 +47,7 @@ class AdminCustomersController extends Controller{
 		$this->View_CustomersService = new View_CustomersService();
 		$this->UploadService = new UploadService();
 		$this->CountryService = new CountryService();
+		$this->AddressBookService = new AddressBookService();
 	}
 
 	//add listingCustomer
@@ -53,44 +58,31 @@ class AdminCustomersController extends Controller{
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
-	//view_AddArea
+	//view_AddCustomer
 	public function view_addCustomer(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddArea"));
+		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
 		$result = array();
 		$result['request'] = $request;
 		$result['operation'] = 'add';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
-	//addcustomers data and redirect to address
-	public function view_addAddress(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddAddress"));
+	//view_AddAddress
+	public function listingCustomerAddress(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingCustomerAddress"));
 				
 		$language_id            				=   $request->language_id;
 		$customers_id            				=   $request->id;		
 		
-		$customerData = array();
-		$message = array();
-		$errorMessage = array();
-		
+		$result = array();
+		$result['operation'] = 'listing';
+		$result['customers_id'] = $customers_id;
 		// $customer_addresses = DB::table('address_book')
 		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
 		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
 		// 	->where('customers_id', '=', $customers_id)->get();	
-		$customer_addresses = array();
-		
-		$countries = $this->CountryService->findAll();
 
-
-		$customerData['message'] = $message;
-		$customerData['errorMessage'] = $errorMessage;
-		$customerData['customer_addresses'] = $customer_addresses;	
-		$customerData['countries'] = $countries;
-		// $customerData['customers_id'] = 1;	
-		$customerData['customers_id'] = $customers_id;	
-
-		
-		return view("admin.addaddress",$title)->with('data', $customerData);
+		return $this->AddressBookService->redirect_view($result,$title);
 	}
 
 	//view_EditArea

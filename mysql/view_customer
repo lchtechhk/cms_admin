@@ -26,18 +26,8 @@ VIEW `cms`.`view_customer` AS
         `cms`.`customers`.`edit_date` AS `edit_date`,
         `cms`.`customers`.`edit_by_id` AS `edit_by_id`,
         `cms`.`customers`.`status` AS `status`,
-        `cms`.`address_book`.`entry_gender` AS `entry_gender`,
-        `cms`.`address_book`.`entry_company` AS `entry_company`,
-        `cms`.`address_book`.`entry_firstname` AS `entry_firstname`,
-        `cms`.`address_book`.`entry_lastname` AS `entry_lastname`,
-        `cms`.`address_book`.`entry_street_address` AS `entry_street_address`,
-        `cms`.`address_book`.`entry_suburb` AS `entry_suburb`,
-        `cms`.`address_book`.`entry_postcode` AS `entry_postcode`,
-        `cms`.`address_book`.`entry_city` AS `entry_city`,
-        `cms`.`address_book`.`entry_state` AS `entry_state`,
-        `cms`.`countries`.`id` AS `countries_id`,
         `cms`.`countries`.`name` AS `countries_name`,
-        `cms`.`countries`.`iso_code_1` AS `icountries_so_code_1`,
+        `cms`.`countries`.`iso_code_1` AS `countries_so_code_1`,
         `cms`.`countries`.`iso_code_2` AS `countries_iso_code_2`,
         `cms`.`countries`.`address_format_id` AS `countries_address_format_id`,
         `cms`.`countries`.`create_date` AS `countries_create_date`,
@@ -45,18 +35,31 @@ VIEW `cms`.`view_customer` AS
         `cms`.`countries`.`edit_date` AS `countries_edit_date`,
         `cms`.`countries`.`edit_by_id` AS `countries_edit_by_id`,
         `cms`.`countries`.`status` AS `countries_status`,
-        `cms`.`zones`.`id` AS `izones_d`,
+        `cms`.`address_book`.`company` AS `entry_company`,
+        `cms`.`address_book`.`firstname` AS `entry_firstname`,
+        `cms`.`address_book`.`lastname` AS `entry_lastname`,
+        `cms`.`address_book`.`countries_id` AS `countries_id`,
+        `cms`.`address_book`.`cities_id` AS `cities_id`,
+        `cms`.`address_book`.`area_id` AS `area_id`,
+        `cms`.`address_book`.`district_id` AS `district_id`,
+        `cms`.`address_book`.`zone_id` AS `zones_id`,
         `cms`.`zones`.`name` AS `zones_name`,
         `cms`.`zones`.`code` AS `zones_code`,
-        `cms`.`zones`.`district_id` AS `zones_district_id`,
+        `cms`.`zones`.`district_id` AS `zone_district_id`,
         `cms`.`zones`.`create_date` AS `zones_create_date`,
         `cms`.`zones`.`create_by_id` AS `zones_create_by_id`,
         `cms`.`zones`.`edit_date` AS `zones_edit_date`,
         `cms`.`zones`.`edit_by_id` AS `zones_edit_by_id`,
-        `cms`.`zones`.`status` AS `zones_status`
+        `cms`.`zones`.`status` AS `zones_status`,
+        `cms`.`address_book`.`create_date` AS `entry_create_date`,
+        `cms`.`address_book`.`create_by_id` AS `entry_create_by_id`,
+        `cms`.`address_book`.`edit_date` AS `entry_edit_date`,
+        `cms`.`address_book`.`edit_by_id` AS `entry_edit_by_id`,
+        `cms`.`address_book`.`status` AS `entry_status`,
+        `cms`.`address_book`.`address` AS `entry_address`
     FROM
         ((((`cms`.`customers`
-        LEFT JOIN `cms`.`address_book` ON ((`cms`.`address_book`.`address_book_id` = `cms`.`customers`.`customers_default_address_id`)))
-        LEFT JOIN `cms`.`countries` ON ((`cms`.`countries`.`id` = `cms`.`address_book`.`entry_country_id`)))
-        LEFT JOIN `cms`.`zones` ON ((`cms`.`zones`.`id` = `cms`.`address_book`.`entry_zone_id`)))
+        LEFT JOIN `cms`.`address_book` ON ((`cms`.`address_book`.`id` = `cms`.`customers`.`customers_default_address_id`)))
+        LEFT JOIN `cms`.`countries` ON ((`cms`.`countries`.`id` = `cms`.`address_book`.`customer_id`)))
+        LEFT JOIN `cms`.`zones` ON ((`cms`.`zones`.`id` = `cms`.`address_book`.`zone_id`)))
         LEFT JOIN `cms`.`customers_info` ON ((`cms`.`customers_info`.`customers_info_id` = `cms`.`customers`.`id`)))
