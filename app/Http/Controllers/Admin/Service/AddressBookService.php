@@ -16,38 +16,34 @@ class AddressBookService extends BaseApiService{
         $this->CountryService = new CountryService();
         $this->View_CCADZoneService = new View_CCADZoneService();
     }
-    function getListing(){
-        $countries = $this->View_CCADZoneService->findAll();
+    function getListing($result,$title){
+        $customer_id = $result['customer_id'];
+        $zones = $this->View_CCADZoneService->findAll();
+        $result['zones'] = $zones;
+        $customer_address = $this->findByColumnAndId('customer_id',$customer_id);
+        $result['customer_address'] = $customer_address;
+        Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
+        return $result;
     }
-
     function redirect_view($result,$title){
         $result['label'] = "AddAddress";
         switch($result['operation']){
             case 'listing':
-                $countries = $this->View_CCADZoneService->findAll();
-                $result['countries'] = $countries;
-                $customer_address = array();
-                $result['customer_address'] = $customer_address;
-                
-                Log::info('[Addressbooking] -- getListing : ' .json_encode($countries));
+                $result = $this->getListing($result,$title);
                 return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
 
             break;
             case 'add':
-                $countries = $this->CountryService->findAll();
-                $result['countries'] = $countries;
-        
-                $customer_address = array();
-                $result['customer_address'] = $customer_address;	
-                return view("admin.customer.addAddress",$title)->with('result', $result);
+                $result = $this->getListing($result,$title);
+                return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.customer.editCustomer", $title)->with('result', $result);		
+                return view("admin.customer.listingCustomerAddress", $title)->with('result', $result);		
             break;
             case 'delete': 
                 $result['customers'] = $this->getListing();
-                return view("admin.location.listingCustomer", $title)->with('result', $result);	
+                return view("admin.location.listingCustomerAddress", $title)->with('result', $result);	
             break;
         }
     }

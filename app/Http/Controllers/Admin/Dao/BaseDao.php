@@ -14,6 +14,11 @@
             Log::info('['.$this->getTable().'] -- findAll : ' . json_encode($result));
             return $result;
         }
+        public function findByColumnAndId($field,$id){
+            $result = DB::table($this->getTable())->where($field, $id)->get();
+            Log::info('['.$this->getTable().'] -- findByColumnAndId : ' . json_encode($result));
+            return $result;
+        }
         public function findById($id){
             $result = DB::table($this->getTable())->where('id', $id)->get();
             Log::info('['.$this->getTable().'] -- findById : ' . json_encode($result));

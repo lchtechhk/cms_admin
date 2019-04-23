@@ -72,17 +72,55 @@ class AdminCustomersController extends Controller{
 		$title = array('pageTitle' => Lang::get("labels.ListingCustomerAddress"));
 				
 		$language_id            				=   $request->language_id;
-		$customers_id            				=   $request->id;		
+		$customer_id            				=   $request->id;		
 		
 		$result = array();
 		$result['operation'] = 'listing';
-		$result['customers_id'] = $customers_id;
+		$result['customer_id'] = $customer_id;
 		// $customer_addresses = DB::table('address_book')
 		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
 		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
 		// 	->where('customers_id', '=', $customers_id)->get();	
 
 		return $this->AddressBookService->redirect_view($result,$title);
+	}
+
+	//add Customer address
+	public function addNewCustomerAddress(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddCustomerAddress"));
+		$customer_id            				=   $request->id;		
+
+		$result = $this->AddressBookService->add($request,"labels.AddressAddedMessage","labels.AddressAddedMessageFail");
+		$result['customer_id'] = $customer_id;
+		// return $this->AddressBookService->redirect_view($result,$title);
+
+		// $address_id = DB::table('address_book')->insertGetId([
+		// 				'customers_id'   		=>   $request->customers_id,
+		// 				'entry_gender'		 	=>   $request->entry_gender,
+		// 				'entry_company'		 	=>   $request->entry_company,
+		// 				'entry_firstname'	 	=>	 $request->entry_firstname,
+		// 				'entry_lastname'   		=>   $request->entry_lastname,
+		// 				'entry_street_address'	=>   $request->entry_street_address,
+		// 				'entry_suburb' 			=>   $request->entry_suburb,
+		// 				'entry_postcode'	 	=>	 $request->entry_postcode,
+		// 				'entry_city'   			=>   $request->entry_city,
+		// 				'entry_state'		 	=>   $request->entry_state,
+		// 				'entry_country_id'		=>   $request->entry_country_id,
+		// 				'entry_zone_id'	 		=>	 $request->entry_zone_id
+		// 				]);
+						
+		// //set default address
+		// if($request->is_default=='1'){
+		// 		DB::table('customers')->where('customers_id','=', $request->customers_id)->update([
+		// 				'customers_default_address_id'		 	=>   $address_id
+		// 				]);
+		// }
+		
+		// $customer_addresses = DB::table('address_book')
+		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
+		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
+		// 	->where('customers_id', '=', $request->customers_id)->get();
+		// 	return ($customer_addresses);
 	}
 
 	//view_EditArea
@@ -192,37 +230,7 @@ class AdminCustomersController extends Controller{
 	// }
 	
 	
-	//add Customer address
-	public function addNewCustomerAddress(Request $request){
-				
-		$address_id = DB::table('address_book')->insertGetId([
-						'customers_id'   		=>   $request->customers_id,
-						'entry_gender'		 	=>   $request->entry_gender,
-						'entry_company'		 	=>   $request->entry_company,
-						'entry_firstname'	 	=>	 $request->entry_firstname,
-						'entry_lastname'   		=>   $request->entry_lastname,
-						'entry_street_address'	=>   $request->entry_street_address,
-						'entry_suburb' 			=>   $request->entry_suburb,
-						'entry_postcode'	 	=>	 $request->entry_postcode,
-						'entry_city'   			=>   $request->entry_city,
-						'entry_state'		 	=>   $request->entry_state,
-						'entry_country_id'		=>   $request->entry_country_id,
-						'entry_zone_id'	 		=>	 $request->entry_zone_id
-						]);
-						
-		//set default address
-		if($request->is_default=='1'){
-				DB::table('customers')->where('customers_id','=', $request->customers_id)->update([
-						'customers_default_address_id'		 	=>   $address_id
-						]);
-		}
-		
-		$customer_addresses = DB::table('address_book')
-			->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
-			->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
-			->where('customers_id', '=', $request->customers_id)->get();
-			return ($customer_addresses);
-	}
+
 	
 	//edit Customers address
 	public function editAddress(Request $request){
