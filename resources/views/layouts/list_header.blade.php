@@ -20,7 +20,7 @@
       {{ trans('labels.List'.$result['label']) }}
       <small>{{ trans('labels.List'.$result['label']) }}...</small>
     </h1>
-    {{-- <ol class="breadcrumb">
+    <ol class="breadcrumb">
       <li>
         <a href="{{ URL::to('admin/dashboard/this_month')}}">
           <i class="fa fa-dashboard"></i>
@@ -32,6 +32,7 @@
           <i class="fa fa-dashboard"></i>{{ trans('labels.Listing'.$result['label']) }}</a>
       </li>
       <li class="active">{{ trans('labels.List'.$result['label']) }}</li>
-    </ol> --}}
+    </ol>
 </section>
   
+{{$operation = empty($result['operation']) ? '' : $result['operation'];}}

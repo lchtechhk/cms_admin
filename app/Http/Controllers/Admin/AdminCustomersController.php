@@ -50,7 +50,7 @@ class AdminCustomersController extends Controller{
 		$this->AddressBookService = new AddressBookService();
 	}
 
-	//add listingCustomer
+	//listingCustomer
 	public function listingCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCustomers"));
 		$result = array();
@@ -67,7 +67,17 @@ class AdminCustomersController extends Controller{
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
-	//view_AddAddress
+	//view_editCustomer
+	public function view_editCustomer(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+		$result = array();
+		$result['request'] = $request;
+		$result['operation'] = 'edit';
+		return $this->CustomersService->redirect_view($result,$title);
+	}
+
+	//listingCustomerAddress
 	public function listingCustomerAddress(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCustomerAddress"));
 				
@@ -81,8 +91,36 @@ class AdminCustomersController extends Controller{
 		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
 		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
 		// 	->where('customers_id', '=', $customers_id)->get();	
-
 		return $this->AddressBookService->redirect_view($result,$title);
+	}
+	//view_edit_customer_address
+	public function view_editAddress(Request $request){
+		$customers_id            =   $request->customers_id;	
+		$address_book_id         =   $request->address_book_id;
+	}
+	//edit Customers address
+	public function editAddress(Request $request){
+				
+		$customers_id            =   $request->customers_id;	
+		$address_book_id         =   $request->address_book_id;	
+		
+		$customer_addresses = DB::table('address_book')
+			->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
+			->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
+			->where('address_book_id', '=', $address_book_id)->get();	
+		
+		$countries = DB::table('countries')->get();	
+		$zones = DB::table('zones')->where('zone_country_id','=', $customer_addresses[0]->entry_country_id)->get();
+		
+		$customers = DB::table('customers')->where('customers_id','=', $customers_id)->get();	
+		
+		$customerData['customers_id'] = $customers_id;	
+		$customerData['customer_addresses'] = $customer_addresses;	
+		$customerData['countries'] = $countries;
+		$customerData['zones'] = $zones;
+		$customerData['customers'] = $customers;
+		
+		return view("admin/editAddressForm")->with('data', $customerData);
 	}
 
 	//add Customer address
@@ -123,15 +161,17 @@ class AdminCustomersController extends Controller{
 		// 	return ($customer_addresses);
 	}
 
-	//view_EditArea
-	public function view_editCustomer(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
-		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+	//edit Customer address
+	public function editCustomerAddress(Request $request){
+		$customers_id = $request->customers_id;	
+		$id = $request->address_book_id;	
 		$result = array();
-		$result['request'] = $request;
+		$result['id'] = $id;
+		$result['customers_id'] = $customers_id;
 		$result['operation'] = 'edit';
-		return $this->CustomersService->redirect_view($result,$title);
+		return $this->AddressBookService->redirect_view($result,'');
 	}
+
 	//add addcustomers page
 	public function addNewCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
@@ -228,34 +268,6 @@ class AdminCustomersController extends Controller{
 	// 		return redirect('admin/addaddress/'.$customers_id);		
 	// 	}
 	// }
-	
-	
-
-	
-	//edit Customers address
-	public function editAddress(Request $request){
-				
-		$customers_id            =   $request->customers_id;	
-		$address_book_id         =   $request->address_book_id;	
-		
-		$customer_addresses = DB::table('address_book')
-			->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
-			->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
-			->where('address_book_id', '=', $address_book_id)->get();	
-		
-		$countries = DB::table('countries')->get();	
-		$zones = DB::table('zones')->where('zone_country_id','=', $customer_addresses[0]->entry_country_id)->get();
-		
-		$customers = DB::table('customers')->where('customers_id','=', $customers_id)->get();	
-		
-		$customerData['customers_id'] = $customers_id;	
-		$customerData['customer_addresses'] = $customer_addresses;	
-		$customerData['countries'] = $countries;
-		$customerData['zones'] = $zones;
-		$customerData['customers'] = $customers;
-		
-		return view("admin/editAddressForm")->with('data', $customerData);
-	}
 	
 	//update Customers address
 	public function updateAddress(Request $request){

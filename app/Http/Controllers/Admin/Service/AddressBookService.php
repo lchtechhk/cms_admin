@@ -38,8 +38,12 @@ class AddressBookService extends BaseApiService{
                 return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
             break;
             case 'edit':
-                $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.customer.listingCustomerAddress", $title)->with('result', $result);		
+                $customers_id = $result['customers_id'];
+                $id = $result['id'];
+                $result['address'] = array();
+                $result_array = $this->findById($id);
+                $result['address'] = $result_array[0];
+                return view("admin/customer/addressDialog")->with('result', $result);
             break;
             case 'delete': 
                 $result['customers'] = $this->getListing();
