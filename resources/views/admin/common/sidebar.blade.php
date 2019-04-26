@@ -72,7 +72,7 @@
         </li>
         
         
-        {{-- <li class="treeview 
+        <li class="treeview 
                       {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/addCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/addNewCountry') ? 'active' : '' }} 
@@ -153,7 +153,7 @@
               </a>
             </li>
           </ul>
-        </li> --}}
+        </li>
         
         {{-- <li class="treeview {{ Request::is('admin/coupons') ? 'active' : '' }} {{ Request::is('admin/editcoupons/*') ? 'active' : '' }}">
           <a href="{{ URL::to('admin/coupons')}}" ><i class="fa fa-tablet" aria-hidden="true"></i> <span>{{ trans('labels.link_coupons') }}</span></a>

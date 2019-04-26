@@ -24,39 +24,43 @@
           <div class="box-body">
             <div class="row">
               <div class="col-xs-12">
-                <table id="city" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>{{ trans('labels.ID') }}</th>
-                      <th class="display_controller" >{{ trans('labels.CountryId') }}</th>
-                      <th>{{ trans('labels.Country') }}</th>
-                      <th>{{ trans('labels.City') }}</th>
-                      <th>{{ trans('labels.Code') }}</th>
-                      <th>{{ trans('labels.Status') }}</th>
-                      <th>{{ trans('labels.Action') }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($result['cities'] as $key=>$cities)
+                <div class="table-wrap" style="fro">
+                  <div class="table">
+                    <table id="city" class="table table-bordered table-striped">
+                      <thead>
                         <tr>
-                            <td>{{ $cities->cities_id }}</td>
-                            <td class="display_controller">{{ $cities->countries_id }}</td>
-                            <td>{{ $cities->countries_name }}</td>
-                            <td>{{ $cities->cities_name }}</td>
-                            <td>{{ $cities->cities_code }}</td>
-                            <td>{{ $cities->cities_status }}</td>
-                            <td>
-                                <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCity/{{ $cities->cities_id }}" class="badge bg-light-blue">
-                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                </a> 
-                                <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCityId"  cities_id ="{{$cities->cities_id}}" class="badge bg-red">
-                                  <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-                            </td>
+                          <th>{{ trans('labels.ID') }}</th>
+                          <th class="display_controller" >{{ trans('labels.CountryId') }}</th>
+                          <th>{{ trans('labels.Country') }}</th>
+                          <th>{{ trans('labels.City') }}</th>
+                          <th>{{ trans('labels.Code') }}</th>
+                          <th>{{ trans('labels.Status') }}</th>
+                          <th>{{ trans('labels.Action') }}</th>
                         </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                      </thead>
+                      <tbody>
+                        @foreach ($result['cities'] as $key=>$cities)
+                            <tr>
+                                <td>{{ $cities->cities_id }}</td>
+                                <td class="display_controller">{{ $cities->countries_id }}</td>
+                                <td>{{ $cities->countries_name }}</td>
+                                <td>{{ $cities->cities_name }}</td>
+                                <td>{{ $cities->cities_code }}</td>
+                                <td>{{ $cities->cities_status }}</td>
+                                <td>
+                                    <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editCity/{{ $cities->cities_id }}" class="badge bg-light-blue">
+                                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a> 
+                                    <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCityId"  cities_id ="{{$cities->cities_id}}" class="badge bg-red">
+                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <div class="col-xs-12 text-right">
                 	{{$result['cities']->links('vendor.pagination.default')}}
                 </div>

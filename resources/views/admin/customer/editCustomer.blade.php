@@ -113,8 +113,8 @@
                           </label>
                           <div class="col-sm-10 col-md-4">
                             <select class="form-control" name="status">
-                              <option value="active" {{print_selected_value('active',$result['customers'][0]->status)}}>{{ trans('labels.Active') }}</option>
-                              <option value="inactive" {{print_selected_value('inactive',$result['customers'][0]->status)}}>{{ trans('labels.Inactive') }}</option>
+                              <option value="active" {{print_selected_value($result['operation'],'active',$result['customers'][0]->status)}}>{{ trans('labels.Active') }}</option>
+                              <option value="inactive" {{print_selected_value($result['operation'],'inactive',$result['customers'][0]->status)}}>{{ trans('labels.Inactive') }}</option>
                             </select>
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.StatusText') }}</span>
                           </div>

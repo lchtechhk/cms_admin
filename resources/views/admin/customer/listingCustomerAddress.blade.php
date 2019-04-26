@@ -20,48 +20,52 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>{{ trans('labels.ID') }}</th>
-                      <th>{{ trans('labels.BasicInfo') }}</th>
-                      <th>{{ trans('labels.AddressInfo') }}</th>
-                      <th>{{ trans('labels.Action') }}</th>
-                    </tr>
-                  </thead>
-                  <tbody class="contentAttribute">                   
-                    @if (count($result['customer_address']) > 0)
-                      @foreach($result['customer_address'] as $customer_address)
-                        <tr>
-                            <td>{{ $customer_address->id }}</td>
-                            <td>
-                                <strong>{{ trans('labels.Company') }}:</strong> {{ $customer_address->company }}<br>
-                                <strong>{{ trans('labels.FirstName') }}:</strong> {{ $customer_address->firstname }}<br>
-                                <strong>{{ trans('labels.LastName') }}:</strong> {{ $customer_address->lastname }}
-                            </td>
-                            <td>
-                                <strong>{{ trans('labels.Zone') }}:</strong> {{ $customer_address->zone_id }}<br>
-                            </td>
-                            <td>
-                                <a class="badge bg-light-blue editAddressModal" customer_id = '{{$result['customer_id']}}' address_book_id = "{{$customer_address->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                    
-                                {{-- <a customers_id = '{{ $result['customers_id'] }}' id = "{{ $customer_address->id }}" class="badge bg-red deleteAddressModal"><i class="fa fa-trash " aria-hidden="true"></i></a></td> --}}
-                        </tr> 
-                      @endforeach
-                    @else
-                      <tr>
-                          <td colspan="5">{{ trans('labels.NoRecordFound') }}</td>
-                      </tr>
-                    @endif
-                  </tbody>
-                </table>
+                  <div class="table-wrap" style="fro">
+                      <div class="table">
+                        <table id="customer_address" class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th>{{ trans('labels.ID') }}</th>
+                              <th>{{ trans('labels.BasicInfo') }}</th>
+                              <th>{{ trans('labels.AddressInfo') }}</th>
+                              <th>{{ trans('labels.Action') }}</th>
+                            </tr>
+                          </thead>
+                          <tbody class="contentAttribute">                   
+                            @if (count($result['customer_address']) > 0)
+                              @foreach($result['customer_address'] as $customer_address)
+                                <tr>
+                                    <td>{{ $customer_address->id }}</td>
+                                    <td>
+                                        <strong>{{ trans('labels.Company') }}:</strong> {{ $customer_address->company }}<br>
+                                        <strong>{{ trans('labels.FirstName') }}:</strong> {{ $customer_address->firstname }}<br>
+                                        <strong>{{ trans('labels.LastName') }}:</strong> {{ $customer_address->lastname }}
+                                    </td>
+                                    <td>
+                                        <strong>{{ trans('labels.Zone') }}:</strong> {{ $customer_address->zone_id }}<br>
+                                    </td>
+                                    <td>
+                                        <a class="badge bg-light-blue editAddressModal" customer_id = '{{$result['customer_id']}}' address_book_id = "{{$customer_address->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                            
+                                        {{-- <a customers_id = '{{ $result['customers_id'] }}' id = "{{ $customer_address->id }}" class="badge bg-red deleteAddressModal"><i class="fa fa-trash " aria-hidden="true"></i></a></td> --}}
+                                </tr> 
+                              @endforeach
+                            @else
+                              <tr>
+                                  <td colspan="5">{{ trans('labels.NoRecordFound') }}</td>
+                              </tr>
+                            @endif
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                  </div>
               </div>
               <div class="box-footer text-center">
                 <a href="{{ URL::to('admin/customers')}}" class="btn btn-primary">{{ trans('labels.SaveComplete') }}</a>
             </div>
           </div>
-          @include('admin/customer/addressDialog.blade')
+          @include('admin/customer/addressDialog')
           <!-- editAddressModal -->
           <div id="editAddressModal"></div>
           {{-- <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel">
@@ -94,7 +98,7 @@
               </div>
             </div>
           </div> --}}
-          @include('admin/customer/deleteAddressDialog.blade')
+          @include('admin/customer/deleteAddressDialog')
         </div>
       </div>
     </div>

@@ -40,13 +40,15 @@ class AddressBookService extends BaseApiService{
             case 'edit':
                 $customers_id = $result['customers_id'];
                 $id = $result['id'];
+                $zones = $this->View_CCADZoneService->findAll();
                 $result['address'] = array();
                 $result_array = $this->findById($id);
                 $result['address'] = $result_array[0];
+                $result['zones'] = $zones;
                 return view("admin/customer/addressDialog")->with('result', $result);
             break;
             case 'delete': 
-                $result['customers'] = $this->getListing();
+            $result = $this->getListing($result,$title);
                 return view("admin.location.listingCustomerAddress", $title)->with('result', $result);	
             break;
         }

@@ -95,8 +95,14 @@ class AdminCustomersController extends Controller{
 	}
 	//view_edit_customer_address
 	public function view_editAddress(Request $request){
-		$customers_id            =   $request->customers_id;	
-		$address_book_id         =   $request->address_book_id;
+		Log::info('message');
+		return 'mess';
+		// $title = array('pageTitle' => Lang::get("labels.EditCustomer"));
+		// $this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+		// $result = array();
+		// $result['request'] = $request;
+		// $result['operation'] = 'edit';
+		// return $this->CustomersService->redirect_view($result,$title);
 	}
 	//edit Customers address
 	public function editAddress(Request $request){

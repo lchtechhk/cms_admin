@@ -385,8 +385,9 @@ $(document).on('click', '#addAddress', function(e){
 $(document).on('click', '.editAddressModal', function(){
 	var customers_id = $(this).attr('customers_id');
 	var address_book_id = $(this).attr('address_book_id');
+	console.log('editAddressModal');
 	$.ajax({
-		url: "{{ URL::to('admin/editCustomerAddress')}}",
+		url: "{{ URL::to('admin/view_editAddress')}}",
 		type: "POST",
 		data: '&customers_id='+customers_id+'&address_book_id='+address_book_id,
 		success: function (data) {
