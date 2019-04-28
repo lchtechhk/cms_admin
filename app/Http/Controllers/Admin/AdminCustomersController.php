@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\CountryService;
 
 use App\Http\Controllers\Admin\Service\AddressBookService;
-
+use function GuzzleHttp\json_encode;
 
 class AdminCustomersController extends Controller{
 	private $AddressBookService;
@@ -95,8 +95,21 @@ class AdminCustomersController extends Controller{
 	}
 	//view_edit_customer_address
 	public function view_editAddress(Request $request){
-		Log::info('message');
-		return 'mess';
+		$result = array();
+		$customer_id            =   $request->customer_id;	
+		$id         =   $request->id;	
+
+		Log::info('[Addressbooking] -- request : ' .json_encode($request->input()));
+		Log::info('[Addressbooking] -- customer_id : ' .$customer_id);
+		Log::info('[Addressbooking] -- id : ' .$id);
+		$result['operation'] = 'edit';
+		$result['id'] = $id;
+		// return view("admin/editAddressForm");
+		return $this->AddressBookService->redirect_view($result,'');
+		// $this->AddressBookService->redirect_view($result,'');
+		// return "123";
+
+		// return 'mess';
 		// $title = array('pageTitle' => Lang::get("labels.EditCustomer"));
 		// $this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
 		// $result = array();
@@ -133,38 +146,9 @@ class AdminCustomersController extends Controller{
 	public function addNewCustomerAddress(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCustomerAddress"));
 		$customer_id            				=   $request->id;		
-
 		$result = $this->AddressBookService->add($request,"labels.AddressAddedMessage","labels.AddressAddedMessageFail");
 		$result['customer_id'] = $customer_id;
-		// return $this->AddressBookService->redirect_view($result,$title);
-
-		// $address_id = DB::table('address_book')->insertGetId([
-		// 				'customers_id'   		=>   $request->customers_id,
-		// 				'entry_gender'		 	=>   $request->entry_gender,
-		// 				'entry_company'		 	=>   $request->entry_company,
-		// 				'entry_firstname'	 	=>	 $request->entry_firstname,
-		// 				'entry_lastname'   		=>   $request->entry_lastname,
-		// 				'entry_street_address'	=>   $request->entry_street_address,
-		// 				'entry_suburb' 			=>   $request->entry_suburb,
-		// 				'entry_postcode'	 	=>	 $request->entry_postcode,
-		// 				'entry_city'   			=>   $request->entry_city,
-		// 				'entry_state'		 	=>   $request->entry_state,
-		// 				'entry_country_id'		=>   $request->entry_country_id,
-		// 				'entry_zone_id'	 		=>	 $request->entry_zone_id
-		// 				]);
-						
-		// //set default address
-		// if($request->is_default=='1'){
-		// 		DB::table('customers')->where('customers_id','=', $request->customers_id)->update([
-		// 				'customers_default_address_id'		 	=>   $address_id
-		// 				]);
-		// }
-		
-		// $customer_addresses = DB::table('address_book')
-		// 	->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
-		// 	->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
-		// 	->where('customers_id', '=', $request->customers_id)->get();
-		// 	return ($customer_addresses);
+		return $this->AddressBookService->redirect_view($result,$title);
 	}
 
 	//edit Customer address

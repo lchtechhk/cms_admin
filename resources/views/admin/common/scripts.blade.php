@@ -353,47 +353,50 @@ $(document).on('change', '#entry_country_id', function(e){
 	
 });
 
-//ajax call for submit value
-$(document).on('click', '#addAddress', function(e){
-	$("#loader").show();
-	var formData = $('#addAddressFrom').serialize();
-	$.ajax({
-		url: '{{ URL::to("admin/addNewCustomerAddress")}}',
-		type: "POST",
-		data: formData,
-		async: false,
-		success: function (res) {
+// //ajax call for submit value
+// $(document).on('click', '#addAddress', function(e){
+// 	$("#loader").show();
+// 	var formData = $('#addAddressFrom').serialize();
+// 	$.ajax({
+// 		url: '{{ URL::to("admin/addNewCustomerAddress")}}',
+// 		type: "POST",
+// 		data: formData,
+// 		async: false,
+// 		success: function (res) {
 			
-			if(res.length != ''){
-				$('#addAdressModal').modal('hide');
-				var i;
-				var showData = [];
-				for (i = 0; i < res.length; ++i) {
-					var j = i + 1;
+// 			if(res.length != ''){
+// 				$('#addAdressModal').modal('hide');
+// 				var i;
+// 				var showData = [];
+// 				for (i = 0; i < res.length; ++i) {
+// 					var j = i + 1;
 					
-					showData[i] = "<tr><td>"+j+"</td><td><strong>Company:</strong> "+res[i].entry_company+"<br><strong>First Name:</strong> "+res[i].entry_firstname+"<br><strong>Last Name:</strong> "+res[i].entry_lastname+"</td><td><strong>Street:</strong> "+res[i].entry_street_address+"<br><strong>Suburb:</strong> "+res[i].entry_suburb+"<br><strong>Postcode:</strong> "+res[i].entry_postcode+"<br><strong>City:</strong> "+res[i].entry_city+"<br><strong>State:</strong> "+res[i].entry_state+"<br><strong>Zone:</strong> "+res[i].zone_name+"<br><strong>Country:</strong> "+res[i].countries_name+"</td><td><a class='badge bg-light-blue editAddressModal' customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a><a customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' class='badge bg-red deleteAddressModal'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
+// 					showData[i] = "<tr><td>"+j+"</td><td><strong>Company:</strong> "+res[i].entry_company+"<br><strong>First Name:</strong> "+res[i].entry_firstname+"<br><strong>Last Name:</strong> "+res[i].entry_lastname+"</td><td><strong>Street:</strong> "+res[i].entry_street_address+"<br><strong>Suburb:</strong> "+res[i].entry_suburb+"<br><strong>Postcode:</strong> "+res[i].entry_postcode+"<br><strong>City:</strong> "+res[i].entry_city+"<br><strong>State:</strong> "+res[i].entry_state+"<br><strong>Zone:</strong> "+res[i].zone_name+"<br><strong>Country:</strong> "+res[i].countries_name+"</td><td><a class='badge bg-light-blue editAddressModal' customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a><a customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' class='badge bg-red deleteAddressModal'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
 
-				}
-				$(".contentAttribute").html(showData);
-			}else{
-			}
-		},
-	});
-});
+// 				}
+// 				$(".contentAttribute").html(showData);
+// 			}else{
+// 			}
+// 		},
+// 	});
+// });
 
 //editAddressModal
 $(document).on('click', '.editAddressModal', function(){
-	var customers_id = $(this).attr('customers_id');
-	var address_book_id = $(this).attr('address_book_id');
+	var customer_id = $(this).attr('customer_id');
+	var id = $(this).attr('id');
 	console.log('editAddressModal');
 	$.ajax({
 		url: "{{ URL::to('admin/view_editAddress')}}",
 		type: "POST",
-		data: '&customers_id='+customers_id+'&address_book_id='+address_book_id,
+		data: '&customer_id='+customer_id+'&id='+id,
 		success: function (data) {
-			console.log(JSON.stringify(data));
-			$('#editAddressModaleditContent').html(data); 
-			$('#editAddressModal').modal('show');
+			// console.log(JSON.stringify(data));
+			console.log(data);
+			// $('.editContent').html(data); 
+			// $('#editAddressModal').modal('show');
+			$('#addressDialog').html(data); 
+			$('#addressDialog').modal('show');
 		},
 		dataType: 'html'
 	});

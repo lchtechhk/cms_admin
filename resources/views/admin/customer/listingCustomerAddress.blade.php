@@ -31,23 +31,23 @@
                               <th>{{ trans('labels.Action') }}</th>
                             </tr>
                           </thead>
-                          <tbody class="contentAttribute">                   
+                          <tbody class="contentAttribute">       
                             @if (count($result['customer_address']) > 0)
                               @foreach($result['customer_address'] as $customer_address)
                                 <tr>
-                                    <td>{{ $customer_address->id }}</td>
-                                    <td>
-                                        <strong>{{ trans('labels.Company') }}:</strong> {{ $customer_address->company }}<br>
-                                        <strong>{{ trans('labels.FirstName') }}:</strong> {{ $customer_address->firstname }}<br>
-                                        <strong>{{ trans('labels.LastName') }}:</strong> {{ $customer_address->lastname }}
-                                    </td>
-                                    <td>
-                                        <strong>{{ trans('labels.Zone') }}:</strong> {{ $customer_address->zone_id }}<br>
-                                    </td>
-                                    <td>
-                                        <a class="badge bg-light-blue editAddressModal" customer_id = '{{$result['customer_id']}}' address_book_id = "{{$customer_address->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                            
-                                        {{-- <a customers_id = '{{ $result['customers_id'] }}' id = "{{ $customer_address->id }}" class="badge bg-red deleteAddressModal"><i class="fa fa-trash " aria-hidden="true"></i></a></td> --}}
+                                  <td>{{ $customer_address->id }}</td>
+                                  <td>
+                                      <strong>{{ trans('labels.Company') }}:</strong> {{ $customer_address->company }}<br>
+                                      <strong>{{ trans('labels.FirstName') }}:</strong> {{ $customer_address->firstname }}<br>
+                                      <strong>{{ trans('labels.LastName') }}:</strong> {{ $customer_address->lastname }}
+                                  </td>
+                                  <td>
+                                      <strong>{{ trans('labels.Zone') }}:</strong> {{ $customer_address->zone_id }}<br>
+                                  </td>
+                                  <td>
+                                      <a class="badge bg-light-blue editAddressModal" customer_id = '{{$result['customer_id']}}' id = "{{$customer_address->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                      {{-- <a customers_id = '{{ $result['customers_id'] }}' id = "{{ $customer_address->id }}" class="badge bg-red deleteAddressModal"><i class="fa fa-trash " aria-hidden="true"></i></a></td> --}}
+                                  </td>
                                 </tr> 
                               @endforeach
                             @else
@@ -65,15 +65,9 @@
                 <a href="{{ URL::to('admin/customers')}}" class="btn btn-primary">{{ trans('labels.SaveComplete') }}</a>
             </div>
           </div>
-          @include('admin/customer/addressDialog')
-          <!-- editAddressModal -->
-          <div id="editAddressModal"></div>
-          {{-- <div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content editContent">             
-              </div>
-            </div>
-          </div> --}}
+          <div class="modal fade" id="addressDialog" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
+            @include('admin/customer/addressDialog')
+          </div>
           <!-- deleteAddressModal -->
           {{-- <div class="modal fade" id="deleteAddressModal" tabindex="-1" role="dialog" aria-labelledby="deleteAddressModalLabel">
             <div class="modal-dialog" role="document">
