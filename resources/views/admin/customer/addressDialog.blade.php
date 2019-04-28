@@ -7,10 +7,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="addressLabel">{{ trans('labels.AddAddress') }}</h4>
       </div>
-      @if ($result['operation'] == 'add')
-      {!! Form::open(array('url' =>'admin/addNewCustomerAddress', 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-      @elseif ($result['operation'] == 'listing')
-      {!! Form::open(array('url' =>'admin/addNewCustomerAddress', 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+     
+      @if ($result['operation'] == 'listing' || $result['operation'] == 'add' )
+      {{Log::info('asdsa : ' . $result['customer_id'])}}
+      {!! Form::open(array('url' =>, 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @elseif ($result['operation'] == 'edit')
       {!! Form::open(array('url' =>'admin/editCustomerAddress', 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @endif
@@ -81,9 +81,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Close') }}</button>
-        @if ($result['operation'] == 'add')
-          <button type="submit" class="btn btn-primary" id="addAddress">{{ trans('labels.AddAddress') }}</button>
-        @elseif ($result['operation'] == 'listing')
+        @if ($result['operation'] == 'listing' || $result['operation'] == 'add' )
           <button type="submit" class="btn btn-primary" id="addAddress">{{ trans('labels.AddAddress') }}</button>
         @elseif ($result['operation'] == 'edit')
           <button type="submit" class="btn btn-primary" id="editAddress">{{ trans('labels.EditAddress') }}</button>

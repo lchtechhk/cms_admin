@@ -147,7 +147,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 			//add adddresses against customers
 			Route::get('/listingCustomerAddress/{id}/', 'AdminCustomersController@listingCustomerAddress');
-			Route::post('/addNewCustomerAddress', 'AdminCustomersController@addNewCustomerAddress');
+			Route::post('/addNewCustomerAddress/{id}', 'AdminCustomersController@addNewCustomerAddress');
 			Route::post('/editCustomerAddress', 'AdminCustomersController@editCustomerAddress');
 			Route::post('/view_editAddress', 'AdminCustomersController@view_editAddress');
 			Route::post('/updateAddress', 'AdminCustomersController@updateAddress');

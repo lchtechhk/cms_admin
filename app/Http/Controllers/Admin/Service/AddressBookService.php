@@ -33,13 +33,13 @@ class AddressBookService extends BaseApiService{
         switch($result['operation']){
             case 'listing':
                 $result = $this->getListing($result,$title);
-                return view("admin.customer.listingCustomerAddress", $title)->with('result', $result);
+                return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
 
             break;
             case 'add':
             Log::info('jamieadd: ' .json_encode($result));
                 $result = $this->getListing($result,$title);
-                return view("admin.customer.listingCustomerAddress", ['id' => $result['customer_id']],$title)->with('result', $result);
+                return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
             break;
             case 'edit':
                 $id = $result['id'];
