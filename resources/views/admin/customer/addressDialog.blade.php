@@ -10,9 +10,9 @@
      
       @if ($result['operation'] == 'listing' || $result['operation'] == 'add' )
       {{Log::info('asdsa : ' . $result['customer_id'])}}
-      {!! Form::open(array('url' =>, 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+      {!! Form::open(array('url' => array('admin/addNewCustomerAddress/'.$result['customer_id']), 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @elseif ($result['operation'] == 'edit')
-      {!! Form::open(array('url' =>'admin/editCustomerAddress', 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+      {!! Form::open(array('url' => array('admin/editCustomerAddress/'.$result['customer_id']), 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @endif
       {!! Form::text('customer_id',  empty($result['customer_id']) ? '' :  print_value($result['operation'],$result['customer_id']) , array('class'=>'form-control', 'id'=>'customer_id')) !!}
       <div class="modal-body">    
