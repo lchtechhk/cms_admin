@@ -76,7 +76,7 @@
                                       {{ trans('labels.Action') }} <span class="caret"></span>
                                     </a>
                                   <ul class="dropdown-menu">
-                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="editCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
+                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="updateCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
                                       <li role="presentation" class="divider"></li>
                                       <li role="presentation"><a role="menuitem" tabindex="-1" href="listingCustomerAddress/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
                                       <li role="presentation" class="divider"></li>
@@ -110,7 +110,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="deleteCustomerModalLabel">{{ trans('labels.DeleteCustomer') }}</h4>
           </div>
-          {!! Form::open(array('url' =>'admin/deletecustomers', 'name'=>'deleteCustomer', 'id'=>'deleteCustomer', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+          {!! Form::open(array('url' =>'admin/deleteCustomer', 'name'=>'deleteCustomer', 'id'=>'deleteCustomer', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
                   {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
                   {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
           <div class="modal-body">                        

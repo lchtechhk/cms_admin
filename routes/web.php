@@ -136,28 +136,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateAppLabel/', 'AdminAppLabelsController@updateAppLabel');
 			Route::get('/applabel', 'AdminAppLabelsController@manageAppLabel');
 
-
-			//customers
-			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
-			Route::get('/addCustomer', 'AdminCustomersController@view_addCustomer');
-			Route::get('/editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
-			Route::post('/addNewCustomer', 'AdminCustomersController@addNewCustomer');
-			Route::post('/editCustomer', 'AdminCustomersController@updateCustomer');
-
-
-			//add adddresses against customers
-			Route::get('/listingCustomerAddress/{id}/', 'AdminCustomersController@listingCustomerAddress');
-			Route::post('/addNewCustomerAddress/{id}', 'AdminCustomersController@addNewCustomerAddress');
-			Route::post('/editCustomerAddress', 'AdminCustomersController@editCustomerAddress');
-			Route::post('/view_editAddress', 'AdminCustomersController@view_editAddress');
-			Route::post('/updateAddress', 'AdminCustomersController@updateAddress');
-			Route::post('/deleteAddress', 'AdminCustomersController@deleteAddress');
-			Route::post('/getZones', 'AdminCustomersController@getZones');
-			//edit customer
-			// Route::get('/editcustomers/{id}', 'AdminCustomersController@editcustomers');
-			Route::post('/updatecustomers', 'AdminCustomersController@updatecustomers');
-			Route::post('/deletecustomers', 'AdminCustomersController@deletecustomers');
-
 			//orders
 			Route::get('/orders', 'AdminOrdersController@orders');		
 			Route::get('/vieworder/{id}', 'AdminOrdersController@vieworder');
@@ -171,8 +149,31 @@ Route::group(['prefix' => 'admin'], function () {
 			//generate application key
 			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
 
-			//countries
-			// Route::post('/deletecountry', 'AdminTaxController@deletecountry');
+			//Customer
+			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
+			Route::get('/view_addCustomer', 'AdminCustomersController@view_addCustomer');
+			Route::get('/view_editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
+			Route::post('/addCustomer', 'AdminCustomersController@addCustomer');
+			Route::post('/updateCustomer', 'AdminCustomersController@updateCustomer');
+			Route::post('/deleteCustomer', 'AdminCustomersController@deletecustomer');
+
+			//Address Book 
+			Route::get('/listingAddressBook/{id}/', 'AdminAddressBookController@listingAddressBook');
+			Route::post('/view_addAddressBook', 'AdminAddressBookController@view_addAddressBook');
+			Route::post('/view_editAddressBook', 'AdminAddressBookController@view_editAddressBook');
+
+			Route::post('/addAddressBook/{id}', 'AdminAddressBookController@addAddressBook');
+			Route::post('/updateAddressBook', 'AdminAddressBookController@updateAddressBook');
+			Route::post('/deleteAddressBook', 'AdminAddressBookController@deleteAddressBook');
+
+			//add adddresses against customers
+			// Route::get('/listingCustomerAddress/{id}/', 'AdminCustomersController@listingCustomerAddress');
+			// Route::post('/addNewCustomerAddress/{id}', 'AdminCustomersController@addNewCustomerAddress');
+			// Route::post('/editCustomerAddress', 'AdminCustomersController@editCustomerAddress');
+			// Route::post('/view_editAddress', 'AdminCustomersController@view_editAddress');
+			// Route::post('/updateAddress', 'AdminCustomersController@updateAddress');
+			// Route::post('/deleteAddress', 'AdminCustomersController@deleteAddress');
+			// Route::post('/getZones', 'AdminCustomersController@getZones');
 
 			//Country
 			Route::get('/editCountry/{id}', 'AdminCountryController@view_editCountry');

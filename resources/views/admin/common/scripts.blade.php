@@ -381,13 +381,29 @@ $(document).on('change', '#entry_country_id', function(e){
 // 	});
 // });
 
+//AddAddress
+$(document).on('click', '.addAddressModal', function(){
+	console.log('addAddressModal');
+	$.ajax({
+		url: "{{ URL::to('admin/view_addAddressBook')}}",
+		type: "POST",
+		data: '',
+		success: function (data) {
+			console.log(data);
+			$('#addressDialog').html(data); 
+			$('#addressDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
 //editAddressModal
 $(document).on('click', '.editAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');
 	var id = $(this).attr('id');
 	console.log('editAddressModal');
 	$.ajax({
-		url: "{{ URL::to('admin/view_editAddress')}}",
+		url: "{{ URL::to('admin/view_editAddressBook')}}",
 		type: "POST",
 		data: '&customer_id='+customer_id+'&id='+id,
 		success: function (data) {

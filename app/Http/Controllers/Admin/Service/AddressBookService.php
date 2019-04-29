@@ -37,20 +37,19 @@ class AddressBookService extends BaseApiService{
 
             break;
             case 'add':
-            Log::info('jamieadd: ' .json_encode($result));
-                $result = $this->getListing($result,$title);
-                return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
+                $zones = $this->View_CCADZoneService->findAll();
+                $result['zones'] = $zones;
+                Log::info('add'.json_encode($result['address']));
+                return view("admin.customer.addressDialog")->with('result', $result);
             break;
             case 'edit':
                 $id = $result['id'];
-                Log::info('[Addressbooking] -- id : ' .$id);
                 $zones = $this->View_CCADZoneService->findAll();
                 $result['address'] = array();
                 $result_array = $this->findById($id);
                 $result['address'] = $result_array[0];
                 $result['zones'] = $zones;
-                Log::info('level'.json_encode($result['address']));
-                // return view("admin.customer.addressDialog")->with('result', $result);
+                // Log::info('edit'.json_encode($result['address']));
                 return view("admin.customer.addressDialog")->with('result', $result);
 
             break;
