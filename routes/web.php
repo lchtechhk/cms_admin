@@ -62,6 +62,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updatemanufacturer', 'AdminManufacturerController@updatemanufacturer');
 			Route::post('/deletemanufacturer', 'AdminManufacturerController@deletemanufacturer');
 
+			//Jamie Manufacturer
+			Route::get('/listManufacturer', 'AdminProductsController@listManufacturer');
+			Route::get('/view_addManufacturer', 'AdminProductsController@view_addManufacturer');
+			Route::get('/view_editManufacturer/{id}', 'AdminProductsController@view_editManufacturer');
+			Route::post('/addManufacturer', 'AdminProductsController@addManufacturer');
+			Route::post('/updateManufacturer', 'AdminProductsController@updateManufacturer');
+			Route::post('/deleteManufacturer', 'AdminProductsController@deleteManufacturer');
+
 			//main categories
 			Route::get('/categories', 'AdminCategoriesController@categories');
 			Route::get('/addcategory', 'AdminCategoriesController@addcategory');
@@ -70,6 +78,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updatecategory', 'AdminCategoriesController@updatecategory');
 			Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
 
+			//Jamie Categories
+			Route::get('/listCategories', 'AdminProductsController@listCategories');
+			Route::get('/view_addCategories', 'AdminProductsController@view_addCategories');
+			Route::get('/view_editCategories/{id}', 'AdminProductsController@view_editCategories');
+			Route::post('/addCategories', 'AdminProductsController@addCategories');
+			Route::post('/updateCategories', 'AdminProductsController@updateCategories');
+			Route::post('/deleteCategories', 'AdminProductsController@deleteCategories');
+
 			//sub categories
 			Route::get('/subcategories', 'AdminCategoriesController@subcategories');
 			Route::get('/addsubcategory', 'AdminCategoriesController@addsubcategory');
@@ -77,13 +93,15 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/editsubcategory/{id}', 'AdminCategoriesController@editsubcategory');
 			Route::post('/updatesubcategory', 'AdminCategoriesController@updatesubcategory');
 			Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
-			
 			Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
-			//products
-			Route::get('/products', 'AdminProductsController@products');
-			Route::get('/addproduct', 'AdminProductsController@addproduct');
-			Route::post('/addnewproduct', 'AdminProductsController@addnewproduct');
+			//Jamie Categories
+			Route::get('/listSubCategories', 'AdminProductsController@listSubCategories');
+			Route::get('/view_addSubCategories', 'AdminProductsController@view_addSubCategories');
+			Route::get('/view_editSubCategories/{id}', 'AdminProductsController@view_editSubCategories');
+			Route::post('/addSubCategories', 'AdminProductsController@addSubCategories');
+			Route::post('/updateSubCategories', 'AdminProductsController@updateSubCategories');
+			Route::post('/deleteSubCategories', 'AdminProductsController@deleteSubCategories');
 
 			//add attribute against newly added product
 			Route::get('/addproductattribute/{id}/', 'AdminProductsController@addproductattribute');
@@ -136,12 +154,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateAppLabel/', 'AdminAppLabelsController@updateAppLabel');
 			Route::get('/applabel', 'AdminAppLabelsController@manageAppLabel');
 
-			//orders
-			Route::get('/orders', 'AdminOrdersController@orders');		
-			Route::get('/vieworder/{id}', 'AdminOrdersController@vieworder');
-			Route::post('/updateOrder', 'AdminOrdersController@updateOrder');
-			Route::post('/deleteOrder', 'AdminOrdersController@deleteOrder');
-			
 			//alert setting
 			Route::get('/alertsetting', 'AdminSiteSettingController@alertSetting');
 			Route::post('/updateAlertSetting', 'AdminSiteSettingController@updateAlertSetting');
@@ -149,8 +161,21 @@ Route::group(['prefix' => 'admin'], function () {
 			//generate application key
 			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
 
+			//products
+			Route::get('/products', 'AdminProductsController@products');
+			Route::get('/addproduct', 'AdminProductsController@addproduct');
+			Route::post('/addnewproduct', 'AdminProductsController@addnewproduct');
+
+			//Jamie products
+			Route::get('/listProduct', 'AdminProductsController@listProduct');
+			Route::get('/view_addProduct', 'AdminProductsController@view_addProduct');
+			Route::get('/view_editProduct/{id}', 'AdminProductsController@view_editProduct');
+			Route::post('/addProduct', 'AdminProductsController@addProduct');
+			Route::post('/updateProduct', 'AdminProductsController@updateProduct');
+			Route::post('/deleteProduct', 'AdminProductsController@deleteProduct');
+
 			//Customer
-			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
+			Route::get('/listCustomer', 'AdminCustomersController@listingCustomer');
 			Route::get('/view_addCustomer', 'AdminCustomersController@view_addCustomer');
 			Route::get('/view_editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
 			Route::post('/addCustomer', 'AdminCustomersController@addCustomer');
@@ -215,6 +240,28 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/editZone/{id}', 'AdminZoneController@update');
 			Route::post('/addNewZone', 'AdminZoneController@add');
 
+			//orders
+			Route::get('/orders', 'AdminOrdersController@orders');		
+			Route::get('/vieworder/{id}', 'AdminOrdersController@vieworder');
+			Route::post('/updateOrder', 'AdminOrdersController@updateOrder');
+			Route::post('/deleteOrder', 'AdminOrdersController@deleteOrder');
+			
+			//Jamie orders
+			Route::get('/listOrder', 'AdminSiteSettingController@listOrder');
+			Route::get('/view_addOrder', 'AdminSiteSettingController@view_addOrder');
+			Route::get('/view_editOrder/{id}', 'AdminSiteSettingController@view_editOrder');
+			Route::post('/addOrder', 'AdminSiteSettingController@addOrder');
+			Route::post('/updateOrder', 'AdminSiteSettingController@updateOrder');
+			Route::post('/deleteOrder', 'AdminSiteSettingController@deleteOrder');
+
+			//orderstatus
+			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');
+			Route::get('/addorderstatus', 'AdminSiteSettingController@addorderstatus');
+			Route::post('/addNewOrderStatus', 'AdminSiteSettingController@addNewOrderStatus');
+			Route::get('/editorderstatus/{id}', 'AdminSiteSettingController@editorderstatus');
+			Route::post('/updateOrderStatus', 'AdminSiteSettingController@updateOrderStatus');
+			Route::post('/deleteOrderStatus', 'AdminSiteSettingController@deleteOrderStatus');
+
 			//tax class
 			Route::get('/taxclass', 'AdminTaxController@taxclass');
 			Route::get('/addtaxclass', 'AdminTaxController@addtaxclass');
@@ -244,14 +291,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/paymentsetting', 'AdminPaymentController@paymentsetting');
 			Route::post('/updatePaymentSetting', 'AdminPaymentController@updatePaymentSetting');
 
-			//orders
-			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');
-			Route::get('/addorderstatus', 'AdminSiteSettingController@addorderstatus');
-			Route::post('/addNewOrderStatus', 'AdminSiteSettingController@addNewOrderStatus');
-			Route::get('/editorderstatus/{id}', 'AdminSiteSettingController@editorderstatus');
-			Route::post('/updateOrderStatus', 'AdminSiteSettingController@updateOrderStatus');
-			Route::post('/deleteOrderStatus', 'AdminSiteSettingController@deleteOrderStatus');
-			
 			//units
 			Route::get('/units', 'AdminSiteSettingController@units');
 			Route::get('/addunit', 'AdminSiteSettingController@addunit');
