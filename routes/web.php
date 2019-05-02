@@ -175,7 +175,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/deleteProduct', 'AdminProductsController@deleteProduct');
 
 			//Customer
-			Route::get('/listCustomer', 'AdminCustomersController@listingCustomer');
+			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
 			Route::get('/view_addCustomer', 'AdminCustomersController@view_addCustomer');
 			Route::get('/view_editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
 			Route::post('/addCustomer', 'AdminCustomersController@addCustomer');
@@ -187,8 +187,8 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/view_addAddressBook', 'AdminAddressBookController@view_addAddressBook');
 			Route::post('/view_editAddressBook', 'AdminAddressBookController@view_editAddressBook');
 
-			Route::post('/addAddressBook/{id}', 'AdminAddressBookController@addAddressBook');
-			Route::post('/updateAddressBook', 'AdminAddressBookController@updateAddressBook');
+			Route::post('/addAddressBook/{customer_id}', 'AdminAddressBookController@addAddressBook');
+			Route::post('/updateAddressBook/{id}/', 'AdminAddressBookController@updateAddressBook');
 			Route::post('/deleteAddressBook', 'AdminAddressBookController@deleteAddressBook');
 
 			//add adddresses against customers

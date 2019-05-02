@@ -8,11 +8,12 @@
         <h4 class="modal-title" id="addressLabel">{{ trans('labels.AddAddress') }}</h4>
       </div>
      
-      @if ($result['operation'] == 'listing' || $result['operation'] == 'add' )
-      {{Log::info('asdsa : ' . $result['customer_id'])}}
-      {!! Form::open(array('url' => array('admin/addNewCustomerAddress/'.$result['customer_id']), 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-      @elseif ($result['operation'] == 'edit')
-      {!! Form::open(array('url' => array('admin/editCustomerAddress/'.$result['customer_id']), 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+      @if ($result['operation'] == 'listing' || $result['operation'] == 'view_add' )
+      {{-- {{Log::info('asdsa : ' . $result['customer_id'])}} --}}
+      {{-- {{Log::info('asdsa : ' . json_encode($result))}} --}}
+      {!! Form::open(array('url' => array('admin/addAddressBook/'.$result['customer_id']), 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
+      @elseif ($result['operation'] == 'view_edit')
+      {!! Form::open(array('url' => array('admin/updateAddressBook/'.$result['id']), 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @endif
       {!! Form::text('customer_id',  empty($result['customer_id']) ? '' :  print_value($result['operation'],$result['customer_id']) , array('class'=>'form-control', 'id'=>'customer_id')) !!}
       <div class="modal-body">    
@@ -81,9 +82,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Close') }}</button>
-        @if ($result['operation'] == 'listing' || $result['operation'] == 'add' )
+        @if ($result['operation'] == 'listing' || $result['operation'] == 'view_add' )
           <button type="submit" class="btn btn-primary" id="addAddress">{{ trans('labels.AddAddress') }}</button>
-        @elseif ($result['operation'] == 'edit')
+        @elseif ($result['operation'] == 'view_edit')
           <button type="submit" class="btn btn-primary" id="editAddress">{{ trans('labels.EditAddress') }}</button>
         @endif
       </div>

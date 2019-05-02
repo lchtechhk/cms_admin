@@ -76,9 +76,9 @@
                                       {{ trans('labels.Action') }} <span class="caret"></span>
                                     </a>
                                   <ul class="dropdown-menu">
-                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="updateCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
+                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="view_editCustomer/{{ $listingCustomers->id }}">{{ trans('labels.EditCustomers') }}</a></li>
                                       <li role="presentation" class="divider"></li>
-                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="listingCustomerAddress/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
+                                      <li role="presentation"><a role="menuitem" tabindex="-1" href="listingAddressBook/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
                                       <li role="presentation" class="divider"></li>
                                       <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" id="{{ $listingCustomers->id }}">{{ trans('labels.Delete') }}</a></li>
                                   </ul>

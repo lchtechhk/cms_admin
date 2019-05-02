@@ -383,11 +383,12 @@ $(document).on('change', '#entry_country_id', function(e){
 
 //AddAddress
 $(document).on('click', '.addAddressModal', function(){
-	console.log('addAddressModal');
+	var customer_id = $(this).attr('customer_id');
+	console.log('addAddressModal -- customer_id : ' + customer_id);
 	$.ajax({
 		url: "{{ URL::to('admin/view_addAddressBook')}}",
 		type: "POST",
-		data: '',
+		data: '&customer_id='+customer_id,
 		success: function (data) {
 			console.log(data);
 			$('#addressDialog').html(data); 
@@ -401,7 +402,9 @@ $(document).on('click', '.addAddressModal', function(){
 $(document).on('click', '.editAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');
 	var id = $(this).attr('id');
-	console.log('editAddressModal');
+	console.log('customer_id  : ' + customer_id );
+	console.log('id  : ' + id );
+
 	$.ajax({
 		url: "{{ URL::to('admin/view_editAddressBook')}}",
 		type: "POST",

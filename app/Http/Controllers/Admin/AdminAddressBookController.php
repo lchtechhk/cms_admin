@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\Service\CountryService;
 use App\Http\Controllers\Admin\Service\AddressBookService;
 use function GuzzleHttp\json_encode;
 
-class AdminCustomersController extends Controller{
+class AdminAddressBookController extends Controller{
 	private $AddressBookService;
 	private $CustomersService;
 	private $View_CustomersService;
@@ -58,25 +58,26 @@ class AdminCustomersController extends Controller{
     //view_addAddressBook
 	public function view_addAddressBook(Request $request){
         $result = array();
-        $result['operation'] = 'add';
-		// $customer_id            =   $request->customer_id;	
-		// $id         =   $request->id;	
-
-		// $result['operation'] = 'add';
-		// $result['id'] = $id;
+        $result['operation'] = 'view_add';
+		$customer_id            =   $request->customer_id;	
+		$id         =   $request->id;	
+		$result['customer_id'] = $customer_id;
+		$result['id'] = $id;
 		return $this->AddressBookService->redirect_view($result,'');
     }
 
 	//view_editAddressBook
 	public function view_editAddressBook(Request $request){
 		$result = array();
+		$result['operation'] = 'view_edit';
 		$customer_id            =   $request->customer_id;	
 		$id         =   $request->id;	
 
-		Log::info('[Addressbooking] -- request : ' .json_encode($request->input()));
-		Log::info('[Addressbooking] -- customer_id : ' .$customer_id);
-		Log::info('[Addressbooking] -- id : ' .$id);
-		$result['operation'] = 'edit';
+		// Log::info('[Addressbooking] -- request : ' .json_encode($request->input()));
+		// Log::info('[Addressbooking] -- customer_id : ' .$customer_id);
+		// Log::info('[Addressbooking] -- id : ' .$id);
+		
+		$result['customer_id'] = $customer_id;
 		$result['id'] = $id;
 		return $this->AddressBookService->redirect_view($result,'');
     }
@@ -84,7 +85,7 @@ class AdminCustomersController extends Controller{
     //addAddressBook
 	public function addAddressBook(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCustomerAddress"));
-		$customer_id            				=   $request->id;		
+		$customer_id            				=   $request->customer_id;		
 		$result = $this->AddressBookService->add($request,"labels.AddressAddedMessage","labels.AddressAddedMessageFail");
 		$result['customer_id'] = $customer_id;
 		return $this->AddressBookService->redirect_view($result,$title);
@@ -92,17 +93,14 @@ class AdminCustomersController extends Controller{
 
     //updateAddressBook
 	public function updateAddressBook(Request $request){
-		$result = array();
+		$title = array('pageTitle' => Lang::get("labels.AddCustomerAddress"));
 		$customer_id            =   $request->customer_id;	
 		$id         =   $request->id;	
-
-		Log::info('[Addressbooking] -- request : ' .json_encode($request->input()));
-		Log::info('[Addressbooking] -- customer_id : ' .$customer_id);
-		Log::info('[Addressbooking] -- id : ' .$id);
-		$result['operation'] = 'edit';
+		$result = $this->AddressBookService->update($request,"labels.AddressUpdateMessage","labels.AddressUpdatedMessageFail");
 		$result['id'] = $id;
-		// return view("admin/editAddressForm");
-		return $this->AddressBookService->redirect_view($result,'');
+		$result['customer_id'] = $customer_id;
+
+		return $this->AddressBookService->redirect_view($result,$title);
     }
 
 	//delete Customers address

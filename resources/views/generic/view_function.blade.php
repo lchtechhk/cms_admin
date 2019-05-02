@@ -8,14 +8,14 @@
     // }
     function print_value($operation,$data){
         $value = '';
-        if($operation == 'edit' || $operation == 'listing' || $operation == 'changeable'){
+        if($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable'){
             $value .= $data;
         }
         return $value;
     }
     function print_selected_value($operation,$data,$selected_value){
         $value = '';
-        if( ($operation == 'edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data) && !empty($selected_value) && $data == $selected_value){
+        if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data) && !empty($selected_value) && $data == $selected_value){
             $value .= "selected";
         }
         return $value;

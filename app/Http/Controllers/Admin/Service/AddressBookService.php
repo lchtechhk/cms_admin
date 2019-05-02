@@ -25,31 +25,32 @@ class AddressBookService extends BaseApiService{
         $customer_address = $this->findByColumnAndId('customer_id',$customer_id);
         $result['customer_address'] = $customer_address;
         $result['customer_id'] = $customer_id;
-        // Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
+        Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
         return $result;
     }
     function redirect_view($result,$title){
         $result['label'] = "AddAddress";
         switch($result['operation']){
+            case 'add':
+            case 'edit':
             case 'listing':
                 $result = $this->getListing($result,$title);
-                return view("admin.customer.listingCustomerAddress",$title)->with('result', $result);
-
+                return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
-            case 'add':
+            case 'view_add':
                 $zones = $this->View_CCADZoneService->findAll();
                 $result['zones'] = $zones;
-                Log::info('add'.json_encode($result['address']));
+                // Log::info('add'.json_encode($result['address']));
                 return view("admin.customer.addressDialog")->with('result', $result);
             break;
-            case 'edit':
+            case 'view_edit':
                 $id = $result['id'];
                 $zones = $this->View_CCADZoneService->findAll();
                 $result['address'] = array();
                 $result_array = $this->findById($id);
                 $result['address'] = $result_array[0];
                 $result['zones'] = $zones;
-                // Log::info('edit'.json_encode($result['address']));
+                // Log::info('edit'.json_encode($result));
                 return view("admin.customer.addressDialog")->with('result', $result);
 
             break;

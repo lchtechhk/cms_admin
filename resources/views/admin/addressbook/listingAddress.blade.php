@@ -11,7 +11,7 @@
             <h3 class="box-title">{{ trans('labels.ListingCustomerAddresses') }}</h3>
             <div class="box-tools pull-right">
                 {{-- <button type="button" class="btn btn-block btn-primary addAddressModal" data-toggle="modal" data-target="#addressDialog">{{ trans('labels.AddAddress') }}</button> --}}
-              <button type="button" class="btn btn-block btn-primary addAddressModal" data-toggle="modal">{{ trans('labels.AddAddress') }}</button>
+              <button type="button" class="btn btn-block btn-primary addAddressModal" customer_id = '{{$result['customer_id']}}' data-toggle="modal">{{ trans('labels.AddAddress') }}</button>
             </div>
           </div>
           <div class="box-body">
