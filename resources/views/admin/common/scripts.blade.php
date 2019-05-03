@@ -1010,8 +1010,8 @@ $(document).on('click', '#updateAddress', function(e){
 	
 	//deleteCustomerModal
 	$(document).on('click', '#deleteCustomerFrom', function(){
-		var customers_id = $(this).attr('customers_id');
-		$('#customers_id').val(customers_id);
+		var customer_id = $(this).attr('customer_id');
+		$('#delete_customer_id').val(customer_id);
 		$("#deleteCustomerModal").modal('show');
 	});
 	

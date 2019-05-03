@@ -43,8 +43,22 @@ use App\Http\Controllers\Admin\AdminSiteSettingController;
 		    $result['request'] = $request;
             return $result;
         }
-        public function delete($request,$success_msg,$fail_msg){
-            $delete_id = $this->db_prepareDelete($request->id);
+        public function deleteByKey_Value($key,$id,$success_msg,$fail_msg){
+            $delete_id = $this->db_prepareDeleteKey_Value($key,$id);
+            Log::info('[delete_id] : ' . $delete_id);
+            $result = array();
+            if($delete_id === null){
+                $result['status'] = 'fail';
+				$result['message'] =  Lang::get($fail_msg);
+            }else {
+                $result['status'] = 'success';
+				$result['message'] =  Lang::get($success_msg);
+            }
+            $result['operation'] = 'delete';
+            return $result;
+        }
+        public function delete($id,$success_msg,$fail_msg){
+            $delete_id = $this->db_prepareDelete($id);
             Log::info('[delete_id] : ' . $delete_id);
             $result = array();
             if(!empty($delete_id) && $delete_id > 0){
@@ -64,7 +78,7 @@ use App\Http\Controllers\Admin\AdminSiteSettingController;
             Log::error($error_msg);
             $result['status'] = 'fail';
             $result['message'] =  $error_msg;
-            if($is_rollback)DB::connection()->getPdo()->rollBack();
+            if($is_rollback)DB::rollBack();
             return $result;
         }
         public abstract function redirect_view($result,$title);

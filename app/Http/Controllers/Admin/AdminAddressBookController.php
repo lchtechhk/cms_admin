@@ -109,7 +109,7 @@ class AdminAddressBookController extends Controller{
 		$customer_id            =   $request->customer_id;	
 		$id         =   $request->id;	
 	
-		$result = $this->AddressBookService->delete($request,"labels.AddressUpdateMessage","labels.AddressUpdatedMessageFail");
+		$result = $this->AddressBookService->delete($id,"labels.AddressDeletedMessage","labels.AddressDeletedMessageFail");
 		$result['id'] = $id;
 		$result['customer_id'] = $customer_id;
 		return $this->AddressBookService->redirect_view($result,$title);

@@ -180,7 +180,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/view_editCustomer/{id}', 'AdminCustomersController@view_editCustomer');
 			Route::post('/addCustomer', 'AdminCustomersController@addCustomer');
 			Route::post('/updateCustomer', 'AdminCustomersController@updateCustomer');
-			Route::post('/deleteCustomer', 'AdminCustomersController@deletecustomer');
+			Route::post('/deleteCustomer', 'AdminCustomersController@deleteCustomer');
 
 			//Address Book 
 			Route::get('/listingAddressBook/{id}/', 'AdminAddressBookController@listingAddressBook');

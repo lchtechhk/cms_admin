@@ -33,11 +33,9 @@ use App\Http\Controllers\Admin\Service\View_CustomersService;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\CountryService;
 
-use App\Http\Controllers\Admin\Service\AddressBookService;
 use function GuzzleHttp\json_encode;
 
 class AdminCustomersController extends Controller{
-	private $AddressBookService;
 	private $CustomersService;
 	private $View_CustomersService;
 	private $UploadService;
@@ -47,7 +45,6 @@ class AdminCustomersController extends Controller{
 		$this->View_CustomersService = new View_CustomersService();
 		$this->UploadService = new UploadService();
 		$this->CountryService = new CountryService();
-		$this->AddressBookService = new AddressBookService();
 	}
 
 	//listingCustomer
@@ -124,13 +121,14 @@ class AdminCustomersController extends Controller{
 	}
 
 	//deleteProduct
-	public function deletecustomer(Request $request){
-		$customers_id = $request->customers_id;
-		
-		DB::table('customers')->where('customers_id','=', $customers_id)->delete();
-		DB::table('address_book')->where('customers_id','=', $customers_id)->delete();
-		
-		return redirect()->back()->withErrors([Lang::get("labels.DeleteCustomerMessage")]);
+	public function deleteCustomer(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.DeleteCustomer"));
+		$customer_id = $request->id;
+		$param = array();
+		$param['customer_id'] = $customer_id;
+		$result = $this->CustomersService->deleteCustomer($param);
+		return $this->CustomersService->redirect_view($result,$title);
+
 	}
 
 }

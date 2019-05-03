@@ -10,7 +10,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.ListingAllCustomers') }} </h3>
             <div class="box-tools pull-right">
-                <a href="{{ URL::to('admin/addCustomer')}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddNewCustomers') }}</a>
+                <a href="{{ URL::to('admin/view_addCustomer')}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.AddNewCustomers') }}</a>
             </div>
           </div>
           <div class="box-body">
@@ -80,7 +80,7 @@
                                       <li role="presentation" class="divider"></li>
                                       <li role="presentation"><a role="menuitem" tabindex="-1" href="listingAddressBook/{{ $listingCustomers->id }}">{{ trans('labels.EditAddress') }}</a></li>
                                       <li role="presentation" class="divider"></li>
-                                      <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" id="{{ $listingCustomers->id }}">{{ trans('labels.Delete') }}</a></li>
+                                      <li role="presentation"><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteCustomerFrom" customer_id="{{ $listingCustomers->id }}">{{ trans('labels.Delete') }}</a></li>
                                   </ul>
                                   </li>
                                 </ul>
@@ -103,27 +103,7 @@
       </div>
     </div> 
     <!-- deleteCustomerModal -->
-    <div class="modal fade" id="deleteCustomerModal" tabindex="-1" role="dialog" aria-labelledby="deleteCustomerModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="deleteCustomerModalLabel">{{ trans('labels.DeleteCustomer') }}</h4>
-          </div>
-          {!! Form::open(array('url' =>'admin/deleteCustomer', 'name'=>'deleteCustomer', 'id'=>'deleteCustomer', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-                  {!! Form::hidden('action',  'delete', array('class'=>'form-control')) !!}
-                  {!! Form::hidden('id',  '', array('class'=>'form-control', 'id'=>'id')) !!}
-          <div class="modal-body">                        
-              <p>{{ trans('labels.DeleteCustomerText') }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Close') }}</button>
-            <button type="submit" class="btn btn-primary">{{ trans('labels.DeleteCustomer') }}</button>
-          </div>
-          {!! Form::close() !!}
-        </div>
-      </div>
-    </div>
+    @include('admin/customer/deleteCustomerDialog')
     
     <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel">
       <div class="modal-dialog" role="document">
