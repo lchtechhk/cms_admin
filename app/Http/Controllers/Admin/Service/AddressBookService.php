@@ -33,6 +33,7 @@ class AddressBookService extends BaseApiService{
         switch($result['operation']){
             case 'add':
             case 'edit':
+            case 'delete':
             case 'listing':
                 $result = $this->getListing($result,$title);
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
@@ -41,7 +42,7 @@ class AddressBookService extends BaseApiService{
                 $zones = $this->View_CCADZoneService->findAll();
                 $result['zones'] = $zones;
                 // Log::info('add'.json_encode($result['address']));
-                return view("admin.customer.addressDialog")->with('result', $result);
+                return view("admin.addressbook.addressDialog")->with('result', $result);
             break;
             case 'view_edit':
                 $id = $result['id'];
@@ -51,12 +52,8 @@ class AddressBookService extends BaseApiService{
                 $result['address'] = $result_array[0];
                 $result['zones'] = $zones;
                 // Log::info('edit'.json_encode($result));
-                return view("admin.customer.addressDialog")->with('result', $result);
+                return view("admin.addressbook.addressDialog")->with('result', $result);
 
-            break;
-            case 'delete': 
-                $result = $this->getListing($result,$title);
-                return view("admin.location.listingCustomerAddress", $title)->with('result', $result);	
             break;
         }
     }

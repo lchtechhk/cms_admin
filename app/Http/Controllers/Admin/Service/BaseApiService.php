@@ -46,7 +46,7 @@ use App\Http\Controllers\Admin\AdminSiteSettingController;
         public function delete($request,$success_msg,$fail_msg){
             $delete_id = $this->db_prepareDelete($request->id);
             Log::info('[delete_id] : ' . $delete_id);
-
+            $result = array();
             if(!empty($delete_id) && $delete_id > 0){
                 $result['status'] = 'success';
 				$result['message'] =  Lang::get($success_msg);

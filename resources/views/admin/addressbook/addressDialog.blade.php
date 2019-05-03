@@ -9,8 +9,6 @@
       </div>
      
       @if ($result['operation'] == 'listing' || $result['operation'] == 'view_add' )
-      {{-- {{Log::info('asdsa : ' . $result['customer_id'])}} --}}
-      {{-- {{Log::info('asdsa : ' . json_encode($result))}} --}}
       {!! Form::open(array('url' => array('admin/addAddressBook/'.$result['customer_id']), 'name'=>'addAddressFrom', 'id'=>'addAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @elseif ($result['operation'] == 'view_edit')
       {!! Form::open(array('url' => array('admin/updateAddressBook/'.$result['id']), 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}

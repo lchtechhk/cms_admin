@@ -47,7 +47,7 @@
                                   </td>
                                   <td>
                                       <a class="badge bg-light-blue editAddressModal" customer_id = '{{$result['customer_id']}}' id = "{{$customer_address->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                      {{-- <a customers_id = '{{ $result['customers_id'] }}' id = "{{ $customer_address->id }}" class="badge bg-red deleteAddressModal"><i class="fa fa-trash " aria-hidden="true"></i></a></td> --}}
+                                      <a class="badge bg-red deleteAddressModal" customer_id = '{{ $result['customer_id'] }}' id = "{{ $customer_address->id }}"><i class="fa fa-trash " aria-hidden="true"></i></a></td>
                                   </td>
                                 </tr> 
                               @endforeach
@@ -68,10 +68,10 @@
           </div>
           <!-- addressDialog -->
           <div class="modal fade" id="addressDialog" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/customer/addressDialog')
+            @include('admin/addressbook/addressDialog')
           </div>
           <!-- deleteAddressModal -->
-          @include('admin/customer/deleteAddressDialog')
+          @include('admin/addressbook/deleteAddressDialog')
         </div>
       </div>
     </div>

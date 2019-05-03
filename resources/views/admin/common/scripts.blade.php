@@ -353,34 +353,6 @@ $(document).on('change', '#entry_country_id', function(e){
 	
 });
 
-// //ajax call for submit value
-// $(document).on('click', '#addAddress', function(e){
-// 	$("#loader").show();
-// 	var formData = $('#addAddressFrom').serialize();
-// 	$.ajax({
-// 		url: '{{ URL::to("admin/addNewCustomerAddress")}}',
-// 		type: "POST",
-// 		data: formData,
-// 		async: false,
-// 		success: function (res) {
-			
-// 			if(res.length != ''){
-// 				$('#addAdressModal').modal('hide');
-// 				var i;
-// 				var showData = [];
-// 				for (i = 0; i < res.length; ++i) {
-// 					var j = i + 1;
-					
-// 					showData[i] = "<tr><td>"+j+"</td><td><strong>Company:</strong> "+res[i].entry_company+"<br><strong>First Name:</strong> "+res[i].entry_firstname+"<br><strong>Last Name:</strong> "+res[i].entry_lastname+"</td><td><strong>Street:</strong> "+res[i].entry_street_address+"<br><strong>Suburb:</strong> "+res[i].entry_suburb+"<br><strong>Postcode:</strong> "+res[i].entry_postcode+"<br><strong>City:</strong> "+res[i].entry_city+"<br><strong>State:</strong> "+res[i].entry_state+"<br><strong>Zone:</strong> "+res[i].zone_name+"<br><strong>Country:</strong> "+res[i].countries_name+"</td><td><a class='badge bg-light-blue editAddressModal' customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a><a customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' class='badge bg-red deleteAddressModal'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
-
-// 				}
-// 				$(".contentAttribute").html(showData);
-// 			}else{
-// 			}
-// 		},
-// 	});
-// });
-
 //AddAddress
 $(document).on('click', '.addAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');
@@ -564,44 +536,18 @@ $(document).on('click', '#updateAddress', function(e){
 	
 	//deleteAddressModal
 	$(document).on('click', '.deleteAddressModal', function(){
-		var customers_id = $(this).attr('customers_id');
-		var address_book_id = $(this).attr('address_book_id');
-		$('#customers_id').val(customers_id);
-		$('#address_book_id').val(address_book_id);
+		var customer_id = $(this).attr('customer_id');
+		var id = $(this).attr('id');
+		console.log('customer_id : ' + customer_id)
+		console.log('id : ' + id)
+
+		$('#delete_customer_id').val(customer_id);
+		$('#delete_id').val(id);
 		$('#deleteAddressModal').modal('show');
 	});
 		
 	//deleteAddress
-	$(document).on('click', '#deleteAddressBtn', function(){
-		$("#loader").show();
-		var formData = $('#deleteAddress').serialize();
-		console.log(formData);
-		$.ajax({
-			url: "{{ URL::to('admin/deleteAddress')}}",
-			type: "POST",
-			data: formData,
-			success: function (res) {
-				//$('.deleteEmbed').html(res); 
-				//alert(res);
-				$('#deleteAddressModal').modal('hide');
-				if(res.length != ''){
-					var i;
-					var showData = [];
-					for (i = 0; i < res.length; ++i) {
-					
-					var j = i + 1;
-					showData[i] = "<tr><td>"+j+"</td><td><strong>Company:</strong> "+res[i].entry_company+"<br><strong>First Name:</strong> "+res[i].entry_firstname+"<br><strong>Last Name:</strong> "+res[i].entry_lastname+"</td><td><strong>Street:</strong> "+res[i].entry_street_address+"<br><strong>Suburb:</strong> "+res[i].entry_suburb+"<br><strong>Postcode:</strong> "+res[i].entry_postcode+"<br><strong>City:</strong> "+res[i].entry_city+"<br><strong>State:</strong> "+res[i].entry_state+"<br><strong>Zone:</strong> "+res[i].zone_name+"<br><strong>Country:</strong> "+res[i].countries_name+"</td><td><a class='badge bg-light-blue editAddressModal' customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a><a customers_id = '"+res[i].customers_id+"' address_book_id = '"+res[i].address_book_id+"' class='badge bg-red deleteAddressModal'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
 
-					}
-					//$(".contentAttribute").html(showData);
-					
-				}else{
-					var showData = "<tr><td colspan='5'><strong>No record found!</strong> Please click on '<strong>Add Address</strong>' to add address.</td></tr>";
-				}
-					$(".contentAttribute").html(showData);
-			},
-		});
-	});
 	
 	//device id
 	/*$(document).on('click', '#deletedeviceId', function(){

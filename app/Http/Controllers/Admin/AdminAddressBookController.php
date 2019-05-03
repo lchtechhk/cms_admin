@@ -96,7 +96,7 @@ class AdminAddressBookController extends Controller{
 		$title = array('pageTitle' => Lang::get("labels.AddCustomerAddress"));
 		$customer_id            =   $request->customer_id;	
 		$id         =   $request->id;	
-		$result = $this->AddressBookService->update($request,"labels.AddressUpdateMessage","labels.AddressUpdatedMessageFail");
+		$result = $this->AddressBookService->update($request,"labels.AddressDeletedMessage","labels.AddressDeletedMessageFail");
 		$result['id'] = $id;
 		$result['customer_id'] = $customer_id;
 
@@ -105,17 +105,13 @@ class AdminAddressBookController extends Controller{
 
 	//delete Customers address
 	public function deleteAddressBook(Request $request){
-				
-		$customers_id            =   $request->customers_id;	
-		$address_book_id         =   $request->address_book_id;	
-		
-		DB::table('address_book')->where('address_book_id','=', $address_book_id)->delete();
-		
-		$customer_addresses = DB::table('address_book')
-			->leftJoin('zones', 'zones.zone_id', '=', 'address_book.entry_zone_id')
-			->leftJoin('countries', 'countries.countries_id', '=', 'address_book.entry_country_id')
-			->where('customers_id', '=', $request->customers_id)->get();
-			
-		return ($customer_addresses);
+		$title = array('pageTitle' => Lang::get("labels.ListingCustomerAddress"));
+		$customer_id            =   $request->customer_id;	
+		$id         =   $request->id;	
+	
+		$result = $this->AddressBookService->delete($request,"labels.AddressUpdateMessage","labels.AddressUpdatedMessageFail");
+		$result['id'] = $id;
+		$result['customer_id'] = $customer_id;
+		return $this->AddressBookService->redirect_view($result,$title);
 	}
 }
