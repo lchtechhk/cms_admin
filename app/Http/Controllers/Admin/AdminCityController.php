@@ -25,7 +25,7 @@ class AdminCityController extends Controller {
 	}
 
 	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddCity"));
+		$title = array('pageTitle' => Lang::get("labels.AddCity")); 
 		$result = $this->CityService->add($request,"labels.CityAddedMessage","labels.CityAddedMessageFail");
 		return $this->CityService->redirect_view($result,$title);
 	}
