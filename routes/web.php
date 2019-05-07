@@ -79,12 +79,12 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
 
 			//Jamie Categories
-			Route::get('/listCategories', 'AdminProductsController@listCategories');
-			Route::get('/view_addCategories', 'AdminProductsController@view_addCategories');
-			Route::get('/view_editCategories/{id}', 'AdminProductsController@view_editCategories');
-			Route::post('/addCategories', 'AdminProductsController@addCategories');
-			Route::post('/updateCategories', 'AdminProductsController@updateCategories');
-			Route::post('/deleteCategories', 'AdminProductsController@deleteCategories');
+			Route::get('/listCategory', 'AdminCategoryController@listCategory');
+			Route::get('/view_addCategory', 'AdminCategoryController@view_addCategory');
+			Route::get('/view_editCategory/{id}', 'AdminCategoryController@view_editCategory');
+			Route::post('/addCategory', 'AdminCategoryController@addCategory');
+			Route::post('/updateCategory', 'AdminCategoryController@updateCategory');
+			Route::post('/deleteCategory', 'AdminCategoryController@deleteCategory');
 
 			//sub categories
 			Route::get('/subcategories', 'AdminCategoriesController@subcategories');
@@ -96,12 +96,12 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
 			//Jamie Categories
-			Route::get('/listSubCategories', 'AdminProductsController@listSubCategories');
-			Route::get('/view_addSubCategories', 'AdminProductsController@view_addSubCategories');
-			Route::get('/view_editSubCategories/{id}', 'AdminProductsController@view_editSubCategories');
-			Route::post('/addSubCategories', 'AdminProductsController@addSubCategories');
-			Route::post('/updateSubCategories', 'AdminProductsController@updateSubCategories');
-			Route::post('/deleteSubCategories', 'AdminProductsController@deleteSubCategories');
+			Route::get('/listSubCategory', 'AdminSubCategoryController@listSubCategory');
+			Route::get('/view_addSubCategory', 'AdminSubCategoryController@view_addSubCategory');
+			Route::get('/view_editSubCategory/{id}', 'AdminSubCategoryController@view_editSubCategory');
+			Route::post('/addSubCategory', 'AdminSubCategoryController@addSubCategory');
+			Route::post('/updateSubCategory', 'AdminSubCategoryController@updateSubCategory');
+			Route::post('/deleteSubCategory', 'AdminSubCategoryController@deleteSubCategory');
 
 			//add attribute against newly added product
 			Route::get('/addproductattribute/{id}/', 'AdminProductsController@addproductattribute');
