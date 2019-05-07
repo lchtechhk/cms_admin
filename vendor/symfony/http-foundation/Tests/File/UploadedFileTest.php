@@ -46,7 +46,7 @@ class UploadedFileTest extends TestCase
 
         $this->assertEquals('application/octet-stream', $file->getClientMimeType());
 
-        if (\extension_loaded('fileinfo')) {
+        if (extension_loaded('fileinfo')) {
             $this->assertEquals('image/gif', $file->getMimeType());
         }
     }
@@ -88,19 +88,6 @@ class UploadedFileTest extends TestCase
         );
 
         $this->assertEquals('jpeg', $file->guessClientExtension());
-    }
-
-    public function testCaseSensitiveMimeType()
-    {
-        $file = new UploadedFile(
-            __DIR__.'/Fixtures/case-sensitive-mime-type.xlsm',
-            'test.xlsm',
-            'application/vnd.ms-excel.sheet.macroEnabled.12',
-            filesize(__DIR__.'/Fixtures/case-sensitive-mime-type.xlsm'),
-            null
-        );
-
-        $this->assertEquals('xlsm', $file->guessClientExtension());
     }
 
     public function testErrorIsOkByDefault()
@@ -262,13 +249,13 @@ class UploadedFileTest extends TestCase
 
     public function uploadedFileErrorProvider()
     {
-        return [
-            [UPLOAD_ERR_INI_SIZE],
-            [UPLOAD_ERR_FORM_SIZE],
-            [UPLOAD_ERR_PARTIAL],
-            [UPLOAD_ERR_NO_TMP_DIR],
-            [UPLOAD_ERR_EXTENSION],
-        ];
+        return array(
+            array(UPLOAD_ERR_INI_SIZE),
+            array(UPLOAD_ERR_FORM_SIZE),
+            array(UPLOAD_ERR_PARTIAL),
+            array(UPLOAD_ERR_NO_TMP_DIR),
+            array(UPLOAD_ERR_EXTENSION),
+        );
     }
 
     public function testIsInvalidIfNotHttpUpload()
