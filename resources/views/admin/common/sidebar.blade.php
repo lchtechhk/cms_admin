@@ -47,18 +47,18 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="{{ Request::is('admin/categories') ? 'active' : '' }}
-            {{ Request::is('admin/addcategory') ? 'active' : '' }} 
-            {{ Request::is('admin/editcategory/*') ? 'active' : '' }}">
-            <a href="{{ URL::to('admin/categories')}}">
+          <li class="{{ Request::is('admin/listCategory') ? 'active' : '' }}
+            {{ Request::is('admin/view_addCategory') ? 'active' : '' }} 
+            {{ Request::is('admin/view_editCategory/*') ? 'active' : '' }}">
+            <a href="{{ URL::to('admin/listCategory')}}">
               <i class="fa fa-circle-o"></i>
               {{ trans('labels.link_main_categories') }}
             </a>
           </li>
-          <li class="{{ Request::is('admin/subcategories') ? 'active' : '' }}  
-            {{ Request::is('admin/addsubcategory') ? 'active' : '' }}  
-            {{ Request::is('admin/editsubcategory/*') ? 'active' : '' }}">
-            <a href="{{ URL::to('admin/subcategories')}}">
+          <li class="{{ Request::is('admin/listSubCategory') ? 'active' : '' }}  
+            {{ Request::is('admin/view_addSubCategory') ? 'active' : '' }}  
+            {{ Request::is('admin/view_editSubCategory/*') ? 'active' : '' }}">
+            <a href="{{ URL::to('admin/listSubCategory')}}">
               <i class="fa fa-circle-o"></i>
               {{ trans('labels.link_sub_categories') }}
             </a>

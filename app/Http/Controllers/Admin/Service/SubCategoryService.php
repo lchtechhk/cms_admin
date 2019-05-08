@@ -23,15 +23,15 @@ class SubCategoryService extends BaseApiService{
             case 'delete': 
             case 'listing':
                 $result['customers'] = $this->getListing();
-                Log::info('[Customer] -- getListing : ' .json_encode($result['customers'][0]));
-                return view("admin.sub_category.listingSubCategory", $title)->with('result', $result);
+                // Log::info('[Customer] -- getListing : ' .json_encode($result['customers'][0]));
+                return view("admin.subcategory.listingsubcategory", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.sub_category.view_addSubCategory", $title)->with('result', $result);
+                return view("admin.subcategory.view_addsubcategory", $title)->with('result', $result);
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.sub_category.view_editSubCategory", $title)->with('result', $result);		
+                return view("admin.subcategory.view_editsubcategory", $title)->with('result', $result);		
             break;
         }
     }

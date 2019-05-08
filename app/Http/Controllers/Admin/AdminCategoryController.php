@@ -38,7 +38,7 @@ class AdminCategoryController extends Controller{
     }
 
     function listCategory(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.ListCategories"));
+        $title = array('pageTitle' => Lang::get("labels.ListCategory"));
         $result = array();
 		$result['operation'] = 'listing';
 		return $this->CategoryService->redirect_view($result,$title);
