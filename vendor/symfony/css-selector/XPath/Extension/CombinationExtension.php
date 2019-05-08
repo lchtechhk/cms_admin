@@ -28,20 +28,20 @@ class CombinationExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getCombinationTranslators(): array
+    public function getCombinationTranslators()
     {
-        return [
-            ' ' => [$this, 'translateDescendant'],
-            '>' => [$this, 'translateChild'],
-            '+' => [$this, 'translateDirectAdjacent'],
-            '~' => [$this, 'translateIndirectAdjacent'],
-        ];
+        return array(
+            ' ' => array($this, 'translateDescendant'),
+            '>' => array($this, 'translateChild'),
+            '+' => array($this, 'translateDirectAdjacent'),
+            '~' => array($this, 'translateIndirectAdjacent'),
+        );
     }
 
     /**
      * @return XPathExpr
      */
-    public function translateDescendant(XPathExpr $xpath, XPathExpr $combinedXpath): XPathExpr
+    public function translateDescendant(XPathExpr $xpath, XPathExpr $combinedXpath)
     {
         return $xpath->join('/descendant-or-self::*/', $combinedXpath);
     }
