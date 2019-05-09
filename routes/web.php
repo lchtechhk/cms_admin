@@ -86,14 +86,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateCategory', 'AdminCategoryController@updateCategory');
 			Route::post('/deleteCategory', 'AdminCategoryController@deleteCategory');
 
-			//sub categories
-			Route::get('/subcategories', 'AdminCategoriesController@subcategories');
-			Route::get('/addsubcategory', 'AdminCategoriesController@addsubcategory');
-			Route::post('/addnewsubcategory', 'AdminCategoriesController@addnewsubcategory');
-			Route::get('/editsubcategory/{id}', 'AdminCategoriesController@editsubcategory');
-			Route::post('/updatesubcategory', 'AdminCategoriesController@updatesubcategory');
-			Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
-			Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
+			// //sub categories
+			// Route::get('/subcategories', 'AdminCategoriesController@subcategories');
+			// Route::get('/addsubcategory', 'AdminCategoriesController@addsubcategory');
+			// Route::post('/addnewsubcategory', 'AdminCategoriesController@addnewsubcategory');
+			// Route::get('/editsubcategory/{id}', 'AdminCategoriesController@editsubcategory');
+			// Route::post('/updatesubcategory', 'AdminCategoriesController@updatesubcategory');
+			// Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
+			// Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
 			//Jamie Categories
 			Route::get('/listSubCategory', 'AdminSubCategoryController@listSubCategory');

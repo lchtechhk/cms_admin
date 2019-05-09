@@ -9,6 +9,12 @@
     abstract class BaseDao{
         protected $table;
 
+        public function findAllByLanguage($language_id){
+            
+            $result = DB::table($this->getTable())->where('language_id',$language_id)->get();
+            Log::info('['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
+            return $result;
+        }
         public function findAll(){
             $result = DB::table($this->getTable())->get();
             Log::info('['.$this->getTable().'] -- findAll : ' . json_encode($result));

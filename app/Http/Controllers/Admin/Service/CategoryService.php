@@ -15,7 +15,7 @@ class CategoryService extends BaseApiService{
         $this->View_CategoryService = new View_CategoryService();
     }
     function getListing(){
-        return $this->findAll();
+        return $this->findAllByLanguage(session('language_id'));
     }
 
     function redirect_view($result,$title){

@@ -42,7 +42,6 @@ class AdminCategoryController extends Controller{
         $result = array();
 		$result['operation'] = 'listing';
 		return $this->CategoryService->redirect_view($result,$title);
-        Log::info('listCategory : ');
     }
 
     function view_addCategory(Request $request){

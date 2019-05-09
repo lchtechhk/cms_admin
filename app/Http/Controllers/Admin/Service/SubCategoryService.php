@@ -5,12 +5,14 @@ use DB;
 use Lang;
 use Exception;
 
+use App\Http\Controllers\Admin\Service\View_SubCategoryService;
 
 class SubCategoryService extends BaseApiService{
-
+    private $View_SubCategoryService;
 
     function __construct(){
         $this->setTable('sub_category');
+        $this->View_SubCategoryService = new View_SubCategoryService();
 
     }
     function getListing(){
@@ -22,8 +24,8 @@ class SubCategoryService extends BaseApiService{
         switch($result['operation']){
             case 'delete': 
             case 'listing':
-                $result['customers'] = $this->getListing();
-                // Log::info('[Customer] -- getListing : ' .json_encode($result['customers'][0]));
+                $result['subCategory'] = $this->View_SubCategoryService->getListing();
+                Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
                 return view("admin.subcategory.listingSubCategory", $title)->with('result', $result);
             break;
             case 'add':

@@ -4,9 +4,9 @@ use Log;
 use DB;
 
 use App\Http\Controllers\Admin\Service\BaseApiService;
-     class View_CategoryService extends BaseApiService{
+     class View_SubCategoryService extends BaseApiService{
         function __construct(){
-            $this->setTable('view_category');
+            $this->setTable('view_sub_category');
         }
 
         function getListing(){
