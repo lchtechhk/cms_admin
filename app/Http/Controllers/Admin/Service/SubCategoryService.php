@@ -29,7 +29,7 @@ class SubCategoryService extends BaseApiService{
                 return view("admin.subcategory.listingSubCategory", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.subcategory.view_addSubCategory", $title)->with('result', $result);
+                return view("admin.subcategory.addSubCategory", $title)->with('result', $result);
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);

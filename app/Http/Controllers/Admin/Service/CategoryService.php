@@ -6,13 +6,16 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\View_CategoryService;
+use App\Http\Controllers\Admin\Service\LanguageService;
 
 class CategoryService extends BaseApiService{
     private $View_CategoryService;
-
+	private $LanguageService;
     function __construct(){
         $this->setTable('category');
         $this->View_CategoryService = new View_CategoryService();
+        $this->LanguageService = new LanguageService();
+
     }
     function getListing(){
         return $this->findAllByLanguage(session('language_id'));
@@ -28,11 +31,13 @@ class CategoryService extends BaseApiService{
                 return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.category.view_addCategory", $title)->with('result', $result);
+                $language_array = $this->LanguageService->findAll();
+                $result['language'] = $language_array;
+                return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'edit':
                 $result['category'] = $this->findById($result['request']->id);
-                return view("admin.category.view_editCategory", $title)->with('result', $result);		
+                return view("admin.category.viewCategory", $title)->with('result', $result);		
             break;
         }
     }

@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin'], function () {
 			// Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
 			// Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
-			//Jamie Categories
+			//Jamie Sub Category
 			Route::get('/listSubCategory', 'AdminSubCategoryController@listSubCategory');
 			Route::get('/view_addSubCategory', 'AdminSubCategoryController@view_addSubCategory');
 			Route::get('/view_editSubCategory/{id}', 'AdminSubCategoryController@view_editSubCategory');

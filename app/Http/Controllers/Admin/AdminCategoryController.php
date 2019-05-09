@@ -48,9 +48,10 @@ class AdminCategoryController extends Controller{
         $title = array('pageTitle' => Lang::get("labels.view_addCategory"));
         $result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
-		return $this->CategoryService->redirect_view($result,$title);
+        $result['operation'] = 'add';
         Log::info('view_addCategory : ');
+
+		return $this->CategoryService->redirect_view($result,$title);
     }
 
     function view_editCategory(Request $request){
