@@ -70,13 +70,13 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateManufacturer', 'AdminProductsController@updateManufacturer');
 			Route::post('/deleteManufacturer', 'AdminProductsController@deleteManufacturer');
 
-			//main categories
-			Route::get('/categories', 'AdminCategoriesController@categories');
-			Route::get('/addcategory', 'AdminCategoriesController@addcategory');
-			Route::post('/addnewcategory', 'AdminCategoriesController@addnewcategory');
-			Route::get('/editcategory/{id}', 'AdminCategoriesController@editcategory');
-			Route::post('/updatecategory', 'AdminCategoriesController@updatecategory');
-			Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
+			// //main categories
+			// Route::get('/categories', 'AdminCategoriesController@categories');
+			// Route::get('/addcategory', 'AdminCategoriesController@addcategory');
+			// Route::post('/addnewcategory', 'AdminCategoriesController@addnewcategory');
+			// Route::get('/editcategory/{id}', 'AdminCategoriesController@editcategory');
+			// Route::post('/updatecategory', 'AdminCategoriesController@updatecategory');
+			// Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
 
 			//Jamie Categories
 			Route::get('/listCategory', 'AdminCategoryController@listCategory');

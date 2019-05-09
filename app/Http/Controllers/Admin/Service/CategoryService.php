@@ -5,13 +5,14 @@ use DB;
 use Lang;
 use Exception;
 
+use App\Http\Controllers\Admin\Service\View_CategoryService;
 
 class CategoryService extends BaseApiService{
-
+    private $View_CategoryService;
 
     function __construct(){
         $this->setTable('category');
-
+        $this->View_CategoryService = new View_CategoryService();
     }
     function getListing(){
         return $this->findAll();
@@ -22,16 +23,16 @@ class CategoryService extends BaseApiService{
         switch($result['operation']){
             case 'delete': 
             case 'listing':
-                $result['customers'] = $this->getListing();
-                Log::info('[Customer] -- getListing : ' .json_encode($result['customers'][0]));
-                return view("admin.category.listingcategory", $title)->with('result', $result);
+                $result['category'] = $this->View_CategoryService->getListing();
+                Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
+                return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.category.view_addcategory", $title)->with('result', $result);
+                return view("admin.category.view_addCategory", $title)->with('result', $result);
             break;
             case 'edit':
-                $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.category.view_editcategory", $title)->with('result', $result);		
+                $result['category'] = $this->findById($result['request']->id);
+                return view("admin.category.view_editCategory", $title)->with('result', $result);		
             break;
         }
     }
