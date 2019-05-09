@@ -3,11 +3,11 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> {{ trans('labels.SubCategories') }} <small>{{ trans('labels.ListingAllSubCategories') }}...</small> </h1>
+    <h1> {{ trans('labels.MainCategories') }} <small>{{ trans('labels.ListingAllMainCategories') }}...</small> </h1>
     <ol class="breadcrumb">
-      <li><a href="{{ URL::to('admin/dashboard/this_month')}}"><i class="fa fa-dashboard"></i>
+      <li><a href="{{ URL::to('admin/dashboard/this_month') }}"><i class="fa fa-dashboard"></i>
           {{ trans('labels.breadcrumb_dashboard') }}</a></li>
-      <li class="active">{{ trans('labels.SubCategories') }}</li>
+      <li class="active">{{ trans('labels.MainCategories') }}</li>
     </ol>
   </section>
 
@@ -16,14 +16,15 @@
     <!-- Info boxes -->
 
     <!-- /.row -->
+
     <div class="row">
       <div class="col-md-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">{{ trans('labels.ListingAllSubCategories') }} </h3>
+            <h3 class="box-title">{{ trans('labels.ListingAllMainCategories') }} </h3>
             <div class="box-tools pull-right">
-              <a href="{{ URL::to('admin/addsubcategory')}}" type="button"
-                class="btn btn-block btn-primary">{{ trans('labels.AddSubCategory') }}</a>
+              <a href="{{ URL::to('admin/addcategory') }}" type="button"
+                class="btn btn-block btn-primary">{{ trans('labels.AddNewCategory') }}</a>
             </div>
           </div>
 
@@ -40,6 +41,7 @@
                 </div>
                 @endif
                 @endif
+
               </div>
             </div>
             <div class="row">
@@ -51,45 +53,38 @@
                       <th>{{ trans('labels.Name') }}</th>
                       <th>{{ trans('labels.Image') }}</th>
                       <th>{{ trans('labels.Icon') }}</th>
-                      <th>{{ trans('labels.MainCategory') }}</th>
                       <th>{{ trans('labels.AddedLastModifiedDate') }}</th>
                       <th>{{ trans('labels.Action') }}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if(count($listingSubCategories)>0)
-                    @foreach ($listingSubCategories as $key=>$categories)
-                    @if($categories->language_id == '1')
+                    @if(count($categories)>0)
+                    @foreach ($categories as $key=>$category)
                     <tr>
-                      <td>{{ $categories->subId }}</td>
-                      <td>{{ $categories->subCategoryName }}</td>
-                      <td><img src="{{asset('').'/'.$categories->image}}" alt="" width=" 100px"></td>
-                      <td><img src="{{asset('').'/'.$categories->icon}}" alt="" width=" 100px"></td>
-                      <td>{{ $categories->mainCategoryName }}</td>
-                      <td>
-                        <strong>{{ trans('labels.AddedDate') }}: </strong> {{ $categories->date_added }}<br>
-                        <strong>{{ trans('labels.ModifiedDate') }}: </strong>{{ $categories->last_modified }}
-                      </td>
-                      <td>
-                        <a data-toggle="tooltip" data-placement="bottom" title="Edit"
-                          href="editsubcategory/{{ $categories->subId }}" class="badge bg-light-blue"><i
+                      <td>{{ $category->id }}</td>
+                      <td>{{ $category->name }}</td>
+                      <td><img src="{{asset('').'/'.$category->image}}" alt="" width=" 100px"></td>
+                      <td><img src="{{asset('').'/'.$category->icon}}" alt="" width=" 100px"></td>
+                      <td><strong>{{ trans('labels.AddedDate') }}: </strong> {{ $category->date_added }}<br>
+                        <strong>{{ trans('labels.ModifiedDate') }}: </strong>{{ $category->last_modified }} </td>
+                      <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}"
+                          href="editcategory/{{ $category->id }}" class="badge bg-light-blue"><i
                             class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                        <a data-toggle="tooltip" data-placement="bottom" title="Delete"
-                          href="deletesubcategory/{{ $categories->subId }}" class="badge bg-red"><i class="fa fa-trash"
-                            aria-hidden="true"></i></a>
-                      </td>
+                        <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}"
+                          href="deletecategory/{{ $category->id }}" class="badge bg-red"><i class="fa fa-trash"
+                            aria-hidden="true"></i></a></td>
                     </tr>
-                    @endif
+
                     @endforeach
                     @else
                     <tr>
-                      <td colspan="7">{{ trans('labels.NoRecordFound') }}</td>
+                      <td colspan="6">{{ trans('labels.NoRecordFound') }}</td>
                     </tr>
                     @endif
                   </tbody>
                 </table>
                 <div class="col-xs-12 text-right">
-                  {{$listingSubCategories->links('vendor.pagination.default')}}
+                  {{$categories->links('vendor.pagination.default')}}
                 </div>
               </div>
             </div>

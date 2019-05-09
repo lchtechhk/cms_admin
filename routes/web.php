@@ -70,13 +70,13 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateManufacturer', 'AdminProductsController@updateManufacturer');
 			Route::post('/deleteManufacturer', 'AdminProductsController@deleteManufacturer');
 
-			//main categories
-			Route::get('/categories', 'AdminCategoriesController@categories');
-			Route::get('/addcategory', 'AdminCategoriesController@addcategory');
-			Route::post('/addnewcategory', 'AdminCategoriesController@addnewcategory');
-			Route::get('/editcategory/{id}', 'AdminCategoriesController@editcategory');
-			Route::post('/updatecategory', 'AdminCategoriesController@updatecategory');
-			Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
+			// //main categories
+			// Route::get('/categories', 'AdminCategoriesController@categories');
+			// Route::get('/addcategory', 'AdminCategoriesController@addcategory');
+			// Route::post('/addnewcategory', 'AdminCategoriesController@addnewcategory');
+			// Route::get('/editcategory/{id}', 'AdminCategoriesController@editcategory');
+			// Route::post('/updatecategory', 'AdminCategoriesController@updatecategory');
+			// Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
 
 			//Jamie Categories
 			Route::get('/listCategory', 'AdminCategoryController@listCategory');
@@ -86,16 +86,16 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateCategory', 'AdminCategoryController@updateCategory');
 			Route::post('/deleteCategory', 'AdminCategoryController@deleteCategory');
 
-			//sub categories
-			Route::get('/subcategories', 'AdminCategoriesController@subcategories');
-			Route::get('/addsubcategory', 'AdminCategoriesController@addsubcategory');
-			Route::post('/addnewsubcategory', 'AdminCategoriesController@addnewsubcategory');
-			Route::get('/editsubcategory/{id}', 'AdminCategoriesController@editsubcategory');
-			Route::post('/updatesubcategory', 'AdminCategoriesController@updatesubcategory');
-			Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
-			Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
+			// //sub categories
+			// Route::get('/subcategories', 'AdminCategoriesController@subcategories');
+			// Route::get('/addsubcategory', 'AdminCategoriesController@addsubcategory');
+			// Route::post('/addnewsubcategory', 'AdminCategoriesController@addnewsubcategory');
+			// Route::get('/editsubcategory/{id}', 'AdminCategoriesController@editsubcategory');
+			// Route::post('/updatesubcategory', 'AdminCategoriesController@updatesubcategory');
+			// Route::get('/deletesubcategory/{id}', 'AdminCategoriesController@deletesubcategory');
+			// Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
-			//Jamie Categories
+			//Jamie Sub Category
 			Route::get('/listSubCategory', 'AdminSubCategoryController@listSubCategory');
 			Route::get('/view_addSubCategory', 'AdminSubCategoryController@view_addSubCategory');
 			Route::get('/view_editSubCategory/{id}', 'AdminSubCategoryController@view_editSubCategory');

@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Validator;
 use App;
 use Lang;
+use Log;
 
 use App\Admin;
 
@@ -29,9 +30,13 @@ use Session;
 //for requesting a value 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Admin\Service\LanguageService;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller{
+	private $LanguageService;
+	function __construct(){
+		$this->LanguageService = new LanguageService();
+	}
 	public function dashboard(Request $request){
 		$title 			  = 	array('pageTitle' => Lang::get("labels.title_dashboard"));
 		$language_id      = 	'1';
@@ -179,6 +184,8 @@ class AdminController extends Controller
 			if(auth()->guard('admin')->attempt($adminInfo)) {
 				$admin = auth()->guard('admin')->user();
 				$administrators = DB::table('administrators')->where('myid', $admin->myid)->get();	
+				$language_id = $this->LanguageService->getDefault_languageId();
+				session(['language_id' => $language_id]);
 				return redirect()->intended('admin/dashboard/this_month')->with('administrators', $administrators);
 			}else{
 				return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));
