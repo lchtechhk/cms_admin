@@ -37,7 +37,7 @@ class AdminCategoryController extends Controller{
 	
     }
 
-    function listCategory(Request $request){
+    function listingCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.ListCategory"));
         $result = array();
 		$result['operation'] = 'listing';

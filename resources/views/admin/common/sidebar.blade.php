@@ -35,10 +35,10 @@
       </a>
       </li> --}}
       <li class="treeview 
-          {{ Request::is('admin/listCategory') ? 'active' : '' }} 
+          {{ Request::is('admin/listingCategory') ? 'active' : '' }} 
           {{ Request::is('admin/view_addCategory') ? 'active' : '' }}
           {{ Request::is('admin/view_editCategory/*') ? 'active' : '' }} 
-          {{ Request::is('admin/listSubCategory') ? 'active' : '' }} 
+          {{ Request::is('admin/listingSubCategory') ? 'active' : '' }} 
           {{ Request::is('admin/view_addSubCategory') ? 'active' : '' }}
           {{ Request::is('admin/view_editSubCategory/*') ? 'active' : '' }}">
         <a href="#">
@@ -47,18 +47,18 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="{{ Request::is('admin/listCategory') ? 'active' : '' }}
+          <li class="{{ Request::is('admin/listingCategory') ? 'active' : '' }}
             {{ Request::is('admin/view_addCategory') ? 'active' : '' }} 
             {{ Request::is('admin/view_editCategory/*') ? 'active' : '' }}">
-            <a href="{{ URL::to('admin/listCategory')}}">
+            <a href="{{ URL::to('admin/listingCategory')}}">
               <i class="fa fa-circle-o"></i>
               {{ trans('labels.link_main_categories') }}
             </a>
           </li>
-          <li class="{{ Request::is('admin/listSubCategory') ? 'active' : '' }}  
+          <li class="{{ Request::is('admin/listingSubCategory') ? 'active' : '' }}  
             {{ Request::is('admin/view_addSubCategory') ? 'active' : '' }}  
             {{ Request::is('admin/view_editSubCategory/*') ? 'active' : '' }}">
-            <a href="{{ URL::to('admin/listSubCategory')}}">
+            <a href="{{ URL::to('admin/listingSubCategory')}}">
               <i class="fa fa-circle-o"></i>
               {{ trans('labels.link_sub_categories') }}
             </a>

@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
 			// Route::get('/deletecategory/{id}', 'AdminCategoriesController@deletecategory');
 
 			//Jamie Categories
-			Route::get('/listCategory', 'AdminCategoryController@listCategory');
+			Route::get('/listingCategory', 'AdminCategoryController@listingCategory');
 			Route::get('/view_addCategory', 'AdminCategoryController@view_addCategory');
 			Route::get('/view_editCategory/{id}', 'AdminCategoryController@view_editCategory');
 			Route::post('/addCategory', 'AdminCategoryController@addCategory');
@@ -96,7 +96,7 @@ Route::group(['prefix' => 'admin'], function () {
 			// Route::post('/getajaxcategories', 'AdminCategoriesController@getajaxcategories');
 
 			//Jamie Sub Category
-			Route::get('/listSubCategory', 'AdminSubCategoryController@listSubCategory');
+			Route::get('/listingSubCategory', 'AdminSubCategoryController@listingSubCategory');
 			Route::get('/view_addSubCategory', 'AdminSubCategoryController@view_addSubCategory');
 			Route::get('/view_editSubCategory/{id}', 'AdminSubCategoryController@view_editSubCategory');
 			Route::post('/addSubCategory', 'AdminSubCategoryController@addSubCategory');
