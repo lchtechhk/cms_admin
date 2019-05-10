@@ -15,7 +15,7 @@ class ThemeViewFinder extends FileViewFinder
      *
      * @param array $paths
      */
-    public function setPaths($paths)
+    public function setPaths(array $paths)
     {
         $this->paths = $paths;
     }
