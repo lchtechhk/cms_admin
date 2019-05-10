@@ -30,6 +30,17 @@ class CategoryService extends BaseApiService{
                 Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
                 return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
+            case 'view_add':
+                $language_array = $this->LanguageService->findAll();
+                $result['language'] = $language_array;
+                return view("admin.category.viewCategory", $title)->with('result', $result);
+            break;
+            case 'view_edit':
+                $result['language'] = $this->LanguageService->findAll();
+                $category_array = $this->View_CategoryService->findByColumnAndId('category_id',$result['request']->id);
+                $result['category'] = $category_array[0];
+                return view("admin.category.viewCategory", $title)->with('result', $result);
+            break;
             case 'add':
                 $language_array = $this->LanguageService->findAll();
                 $result['language'] = $language_array;

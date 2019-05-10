@@ -1,3 +1,4 @@
+@include('generic/view_function')
 <section class="content-header">
     <h1>
       {{ trans('labels.Add'.$result['label']) }}
