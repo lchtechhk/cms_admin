@@ -67,7 +67,7 @@ class AdminCustomersController extends Controller{
 	//view_editCustomer
 	public function view_editCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
-		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
 		$result = array();
 		$result['request'] = $request;
 		$result['operation'] = 'edit';
@@ -94,7 +94,7 @@ class AdminCustomersController extends Controller{
 			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
 			return $this->CustomersService->redirect_view($result,$title);
 		}
-		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
 		$result = $this->CustomersService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
 		return $this->CustomersService->redirect_view($result,$title);
 	}
@@ -115,7 +115,7 @@ class AdminCustomersController extends Controller{
 			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
 			return $this->CustomersService->redirect_view($result,$title);
 		}
-		$this->UploadService->upload_image($request,'resources/assets/images/user_profile/');
+		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
 		$result = $this->CustomersService->update($request,"labels.CustomerAddedMessage","labels.CustomerAddedMessageFail");
 		return $this->CustomersService->redirect_view($result,$title);
 	}

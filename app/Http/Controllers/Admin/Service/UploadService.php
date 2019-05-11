@@ -10,17 +10,17 @@ class UploadService{
     function __construct(){
 
     }
-    public function upload_image($request,$target_path){
-        $request['customers_picture'] = '';
+    public function upload_image($request,$image_id,$target_path){
+       
         $myVar = new AdminSiteSettingController();	
         $extensions = $myVar->imageType();	
-        if($request->hasFile('newImage') and in_array($request->newImage->extension(), $extensions)){
-            $image = $request->newImage;
+        if($request->hasFile($image_id) and in_array($request->$image_id->extension(), $extensions)){
+            $image = $request->$image_id;
             $fileName = time().'.'.$image->getClientOriginalName();
             $image->move($target_path, $fileName);
-            $request['customers_picture'] = $target_path.$fileName; 
+            return $target_path.$fileName; 
         }
-        return $request['customers_picture'];
+        return null;
     }
 }
 

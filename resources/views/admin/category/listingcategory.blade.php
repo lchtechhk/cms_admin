@@ -31,8 +31,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if(count($result['category'])>0)
-                                                @foreach ($result['category'] as $key=>$category)
+                                                @if(count($result['categories'])>0)
+                                                @foreach ($result['categories'] as $key=>$category)
                                                 <tr>
                                                     <td>{{ $category->category_id }}</td>
                                                     <td>{{ $category->name }}</td>

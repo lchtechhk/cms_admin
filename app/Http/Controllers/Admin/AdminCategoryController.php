@@ -49,8 +49,6 @@ class AdminCategoryController extends Controller{
         $result = array();
 		$result['request'] = $request;
         $result['operation'] = 'view_add';
-        Log::info('view_addCategory : ');
-
 		return $this->CategoryService->redirect_view($result,$title);
     }
 
@@ -64,7 +62,11 @@ class AdminCategoryController extends Controller{
 
     function addCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.addCategory"));
-        Log::info('addCategory : ');
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'add';
+        return $this->CategoryService->redirect_view($result,$title);
     }
 
     function updateCategory(Request $request){

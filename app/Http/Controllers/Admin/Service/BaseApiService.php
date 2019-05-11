@@ -6,26 +6,34 @@ use App\Http\Controllers\Admin\Dao\BaseDao;
 use Log;
 use DB;
 use App\Http\Controllers\Admin\AdminSiteSettingController;
+use League\Flysystem\Exception;
 
-     abstract class BaseApiService extends BaseDao{ 
+abstract class BaseApiService extends BaseDao{ 
         
-        public function add($request,$success_msg,$fail_msg){
-            $request['status'] = 'active';
-            $request['create_date'] = date("Y-m-d H:i:s");
-            $request['edit_date'] = date("Y-m-d H:i:s");
-            Log::info('[add] ' . json_encode($request->all()));	
-			$insert_id = $this->db_prepareInsert($this->getTable(),$request->all());
-			//
-            $result = array();	
-			if(!empty($insert_id) && $insert_id > 0){
-                $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
-			}else {
-                $result['status'] = 'fail';
-				$result['message'] =  Lang::get($fail_msg);
+        public function add($array,$success_msg,$fail_msg){
+            try{
+                $array['status'] = 'active';
+                $array['create_date'] = date("Y-m-d H:i:s");
+                $array['edit_date'] = date("Y-m-d H:i:s");
+                Log::info('[add] ' . json_encode($array));	
+                $insert_id = $this->db_prepareInsert($this->getTable(),$array);
+                //
+                $result = array();	
+                $result['label'] = $array['label'];
+                if(!empty($insert_id) && $insert_id > 0){
+                    $result['status'] = 'success';
+                    $result['message'] =  Lang::get($success_msg);
+                    $result['response_id'] = $insert_id;
+                }else {
+                    $result['status'] = 'fail';
+                    $result['message'] =  Lang::get($fail_msg);
+                }
+                $result['operation'] = 'add';
+                return $result;
+            }catch (Exception $e){
+                $result = $this->throwException('fail',$e->getMessage(),false);
             }
-            $result['operation'] = 'add';
-            return $result;
+            
         }
 
         public function update($request,$success_msg,$fail_msg){
