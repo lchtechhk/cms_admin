@@ -14,16 +14,16 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">
-                    {!! Form::open(array('url' =>'admin/addNewCity', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                    {!! Form::open(array('url' =>'admin/addCity', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                       <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Country') }}
                           <span style="color:red">★</span>
                         </label>
                         <div class="col-sm-10 col-md-4">
                           <select name="countries_id" class='form-control field-validate'>
-                            @foreach( $result['countries'] as $countries_data)
-                            <option value="{{ $countries_data->id }}">
-                              {{ $countries_data->name }}
+                            @foreach( $result['countries'] as $country)
+                            <option value="{{ $country->id }}">
+                              {{ $country->name }}
                             </option>
                             @endforeach
                           </select>

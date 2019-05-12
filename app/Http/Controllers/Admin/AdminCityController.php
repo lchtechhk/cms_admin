@@ -24,24 +24,6 @@ class AdminCityController extends Controller {
 		$this->CityService = new CityService();
 	}
 
-	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddCity")); 
-		$result = $this->CityService->add($request,"labels.CityAddedMessage","labels.CityAddedMessageFail");
-		return $this->CityService->redirect_view($result,$title);
-	}
-
-	public function update(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditCity"));
-		$result = $this->CityService->update($request,"labels.CityAddedMessage","labels.CityAddedMessageFail");
-		return $this->CityService->redirect_view($result,$title);
-
-	}
-	public function deleteCity(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingCities"));	
-		$result = $this->CityService->delete_relative($request,"labels.CityDeletedTax","labels.CityDeletedTaxFail"); 
-		return $this->CityService->redirect_view($result,$title);
-	}
-
 	// listingCities
 	public function listingCity(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingCities"));		
@@ -54,16 +36,44 @@ class AdminCityController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.AddCity"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->CityService->redirect_view($result,$title);
 	}
-    //view_editCity
+	//view_editCity
 	public function view_editCity(Request $request){	
 		$title = array('pageTitle' => Lang::get("labels.EditCity"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'edit';
+		$result['operation'] = 'view_edit';
 		return $this->CityService->redirect_view($result,$title);
-    }
-	
+	}
+
+	public function addCity(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddCity")); 
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+		$request->input();
+		return $this->CityService->redirect_view($result,$title);
+	}
+
+	public function updateCity(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditCity"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'edit';
+		$request->input();
+		return $this->CityService->redirect_view($result,$title);
+
+	}
+	public function deleteCity(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingCities"));	
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
+		return $this->CityService->redirect_view($result,$title);
+	}
 }

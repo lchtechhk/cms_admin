@@ -15,7 +15,7 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">
-                    {!! Form::open(array('url' =>'admin/editArea/'.$result["area"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                    {!! Form::open(array('url' =>'admin/updateArea/'.$result["area"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                     {!! Form::hidden('id', $result['area'][0]->id, array('class'=>'form-control', 'id'=>'area_name'))!!}
 
               <div class="form-group">
