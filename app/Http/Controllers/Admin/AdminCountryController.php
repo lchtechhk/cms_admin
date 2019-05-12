@@ -25,23 +25,6 @@ class AdminCountryController extends Controller {
 		$this->CountryService = new CountryService();
 	}
 
-	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddCountry"));
-		$result = $this->CountryService->add($request,"labels.CountryAddedMessage","labels.CountryAddedMessageFail");
-		return $this->CountryService->redirect_view($result,$title);
-	}
-
-	public function update(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditCountry"));
-		$result = $this->CountryService->update($request,"labels.CountryAddedMessage","labels.CountryAddedMessageFail");
-		return $this->CountryService->redirect_view($result,$title);
-	}
-	public function deleteCountry(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
-		$result = $this->CountryService->delete_relative($request,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
-		return $this->CountryService->redirect_view($result,$title);
-	}
-
 	// listingCountry
 	public function listingCountry(Request $request){
         // Log::info('titrequestle : ' . json_encode($request));
@@ -55,7 +38,7 @@ class AdminCountryController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.AddCountry"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->CountryService->redirect_view($result,$title);
 	}
     //view_editCountry
@@ -63,8 +46,34 @@ class AdminCountryController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.EditCountry"));
 		$result = array();
 		$result['request'] = $request;
+		$result['operation'] = 'view_edit';
+		return $this->CountryService->redirect_view($result,$title);
+	}
+	
+	public function addCountry(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddCountry"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+		
+		return $this->CountryService->redirect_view($result,$title);
+	}
+
+	public function updateCountry(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditCountry"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
 		$result['operation'] = 'edit';
 		return $this->CountryService->redirect_view($result,$title);
-    }
-	
+	}
+	public function deleteCountry(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
+		return $this->CountryService->redirect_view($result,$title);
+	}
 }

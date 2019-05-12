@@ -10,7 +10,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.List'.$result['label']) }}</h3>
             <div class="box-tools pull-right">
-              <a href="add{{$result['label']}}" type="button"
+              <a href="view_add{{$result['label']}}" type="button"
                 class="btn btn-block btn-primary">{{ trans('labels.Add'.$result['label']) }}</a>
             </div>
           </div>
@@ -32,19 +32,18 @@
                       </thead>
                       <tbody>
                         @if(count($result['countries'])>0)
-                        @foreach ($result['countries'] as $key=>$countries)
+                        @foreach ($result['countries'] as $key=>$country)
                         <tr>
-                          <td>{{ $countries->id }}</td>
-                          <td>{{ $countries->name }}</td>
-                          <td>{{ $countries->iso_code_1 }}</td>
-                          {{-- <td>{{ $countries->iso_code_2 }}</td> --}}
-                          <td>{{ $countries->status }}</td>
+                          <td>{{ $country->id }}</td>
+                          <td>{{ $country->name }}</td>
+                          <td>{{ $country->iso_code_1 }}</td>
+                          <td>{{ $country->status }}</td>
 
                           <td><a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}"
-                              href="editCountry/{{ $countries->id }}" class="badge bg-light-blue"><i
+                              href="view_editCountry/{{ $country->id }}" class="badge bg-light-blue"><i
                                 class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             <a data-toggle="tooltip" data-placement="bottom" title=" {{ trans('labels.Delete') }}"
-                              id="deleteCountryId" countries_id="{{ $countries->id }}" class="badge bg-red"><i
+                              id="deleteCountryId" countries_id="{{ $country->id }}" class="badge bg-red"><i
                                 class="fa fa-trash" aria-hidden="true"></i></a>
                           </td>
                         </tr>
@@ -67,31 +66,8 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="deleteCountryModal" tabindex="-1" role="dialog"
-      aria-labelledby="deleteCountryModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="deleteCountryModalLabel">{{ trans('labels.DeleteCountry') }}</h4>
-          </div>
-          {!! Form::open(array('url' =>'admin/deleteCountry', 'name'=>'deleteCountry', 'id'=>'deleteCountry',
-          'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-          {!! Form::hidden('action', 'delete', array('class'=>'form-control')) !!}
-          {!! Form::hidden('id', '', array('class'=>'form-control', 'id'=>'countries_id')) !!}
-          <div class="modal-body">
-            <p>{{ trans('labels.DeleteCountryText') }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Close') }}</button>
-            <button type="submit" class="btn btn-primary"
-              id="deleteCountry">{{ trans('labels.DeleteCountry') }}</button>
-          </div>
-          {!! Form::close() !!}
-        </div>
-      </div>
-    </div>
+    <!-- delete -->
+    @include('admin/location/country/deleteCountry')
   </section>
 </div>
 @endsection

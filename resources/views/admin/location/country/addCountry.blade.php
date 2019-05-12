@@ -14,16 +14,18 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">
-                  {!! Form::open(array('url' =>'admin/addNewCountry', 'method'=>'post', 'class' => 'form-horizontal  form-validate', 'enctype'=>'multipart/form-data')) !!}
+                    {!! Form::open(array('url' =>'admin/addCountry', 'method'=>'post', 'class' => 'form-horizontal
+                    form-validate', 'enctype'=>'multipart/form-data')) !!}
                     <div class="box-body">
                       <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryName') }}
                         </label>
-                          <div class="col-sm-10 col-md-4">
-                            {!! Form::text('name',  '', array('class'=>'form-control  field-validate', 'id'=>'countries_name'))!!}
-                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                        <div class="col-sm-10 col-md-4">
+                          {!! Form::text('name', '', array('class'=>'form-control field-validate',
+                          'id'=>'countries_name'))!!}
+                          <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                             {{ trans('labels.CountryNameText') }}</span>
-                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                          <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
                       </div>
 
@@ -31,34 +33,23 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CountryCode') }}
                         </label>
                         <div class="col-sm-10 col-md-4">
-                          {!! Form::text('iso_code_1',  '', array('class'=>'form-control', 'id'=>'iso_code_1'))!!}
+                          {!! Form::text('iso_code_1', '', array('class'=>'form-control', 'id'=>'iso_code_1'))!!}
                           <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                          {{ trans('labels.CountryCode') }}</span>
+                            {{ trans('labels.CountryCode') }}</span>
                           <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                         </div>
                       </div>
 
-                      {{-- <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ISOCode3') }}
-                        </label>
-                        <div class="col-sm-10 col-md-4">
-                          {!! Form::text('iso_code_2',  '', array('class'=>'form-control field-validate', 'id'=>'countries_iso_code_3'))!!}
-                          <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                          {{ trans('labels.ISOCode3Text') }}</span>
-                          <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                        </div>
-                      </div> --}}
-
                       @include('layouts/submit_back_button')
                     </div>
-                  {!! Form::close() !!}
+                    {!! Form::close() !!}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </section>
-  </div>
-@endsection 
+  </section>
+</div>
+@endsection

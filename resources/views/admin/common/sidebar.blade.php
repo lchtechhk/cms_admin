@@ -113,9 +113,10 @@
 
       <li class="treeview 
                       {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
-                      {{ Request::is('admin/addCountry') ? 'active' : '' }} 
-                      {{ Request::is('admin/addNewCountry') ? 'active' : '' }} 
-                      {{ Request::is('admin/editCountry/*') ? 'active' : '' }}   
+                      {{ Request::is('admin/view_addCountry') ? 'active' : '' }} 
+                      {{ Request::is('admin/view_editCountry/*') ? 'active' : '' }} 
+                      {{ Request::is('admin/addCountry') ? 'active' : '' }}   
+                      {{ Request::is('admin/updateCountry/*') ? 'active' : '' }}   
                       {{ Request::is('admin/deleteCountry') ? 'active' : '' }}                    
                       {{ Request::is('admin/listingCity') ? 'active' : '' }}
                       {{ Request::is('admin/addCity') ? 'active' : '' }}
@@ -143,9 +144,10 @@
         </a>
         <ul class="treeview-menu">
           <li class="{{ Request::is('admin/listingCountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/view_addCountry') ? 'active' : '' }} 
+                        {{ Request::is('admin/view_editCountry/*') ? 'active' : '' }} 
                         {{ Request::is('admin/addCountry') ? 'active' : '' }} 
-                        {{ Request::is('admin/addNewCountry') ? 'active' : '' }} 
-                        {{ Request::is('admin/editCountry/*') ? 'active' : '' }} 
+                        {{ Request::is('admin/updateCountry/*') ? 'active' : '' }}
                         {{ Request::is('admin/deleteCountry') ? 'active' : '' }} ">
             <a href="{{ URL::to('admin/listingCountry')}}">
               <i class="fa fa-circle-o"></i>

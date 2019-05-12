@@ -9,8 +9,9 @@ use App\Http\Controllers\Admin\Service\View_CCADZoneService;
 use App\Http\Controllers\Admin\Service\View_CCADistrictService;
 use App\Http\Controllers\Admin\Service\View_CCAreaService;
 use App\Http\Controllers\Admin\Service\View_CCityService;
+use function GuzzleHttp\json_encode;
 
-     class CountryService extends BaseApiService{
+class CountryService extends BaseApiService{
         private $View_CCADZoneService;
         private $View_CCADistrictService;
         private $View_CCAreaService;
@@ -30,19 +31,20 @@ use App\Http\Controllers\Admin\Service\View_CCityService;
             ->paginate(60);
             return $result;
         }
-        public function delete_relative($request,$success_msg,$fail_msg){
+        public function delete_relative($array,$success_msg,$fail_msg){
             $result = array();	
             $result['operation'] = 'delete';
+            $result['label'] = $array['label'];
             try{
                 DB::connection()->getPdo()->beginTransaction();
-                Log::info('[CityService] : ' . $request->id);
+                Log::info('[CityService] : ' . $array['id']);
                 // $countries_id = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$request->id);
-                $cities_id_array = $this->View_CCityService->findByColumn_IdArray('countries_id','cities_id',$request->id);
-                $area_id_array = $this->View_CCAreaService->findByColumn_IdArray('countries_id','area_id',$request->id);
-                $district_id_array = $this->View_CCADistrictService->findByColumn_IdArray('countries_id','district_id',$request->id);
-                $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$request->id);
+                $cities_id_array = $this->View_CCityService->findByColumn_IdArray('countries_id','cities_id',$array['id']);
+                $area_id_array = $this->View_CCAreaService->findByColumn_IdArray('countries_id','area_id',$array['id']);
+                $district_id_array = $this->View_CCADistrictService->findByColumn_IdArray('countries_id','district_id',$array['id']);
+                $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$array['id']);
                 
-                $delete_count = $this->delete($request,$success_msg,$fail_msg);
+                $delete_count = $this->delete($array['id'],$success_msg,$fail_msg);
                 if($delete_count == 0) throw new Exception("Error To Delete Country", 1);
 
                 if(is_array($cities_id_array) && sizeof($cities_id_array) > 0){
@@ -78,18 +80,29 @@ use App\Http\Controllers\Admin\Service\View_CCityService;
             switch($result['operation']){
                 case 'listing':
                     $result['countries'] = $this->getListing();
-                    return view("admin.location.listingCountry", $title)->with('result', $result);
+                    return view("admin.location.country.listingCountry", $title)->with('result', $result);
+                break;
+                case 'view_add':
+                    return view("admin.location.country.addCountry", $title)->with('result', $result);
+                break;
+                case 'view_edit':
+                    $result['countries'] = $this->findById($result['request']->id);
+                    return view("admin.location.country.editCountry", $title)->with('result', $result);	
                 break;
                 case 'add':
-                    return view("admin.location.addCountry", $title)->with('result', $result);
+                    $add_country_result = $this->add($result,"labels.CountryAddedMessage","labels.CountryAddedMessageFail");
+                    return view("admin.location.country.addCountry", $title)->with('result', $add_country_result);
                 break;
                 case 'edit':
-                    $result['countries'] = $this->findById($result['request']->id);
-                    return view("admin.location.editCountry", $title)->with('result', $result);		
+                    $update_country_result = $this->update($result,"labels.CountryUpdatedMessage","labels.CountryUpdatedMessageFail");
+                    $countries = $this->findById($result['request']->id);
+                    $update_country_result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
+                    return view("admin.location.country.editCountry", $title)->with('result', $update_country_result);	
                 break;
                 case 'delete': 
-                    $result['countries'] = $this->getListing();
-                    return view("admin.location.listingCountry", $title)->with('result', $result);	
+                    $delete_relative_result = $this->delete_relative($result,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
+                    $delete_relative_result['countries'] = $this->getListing();
+                    return view("admin.location.country.listingCountry", $title)->with('result', $delete_relative_result);	
                 break;
             }
         }

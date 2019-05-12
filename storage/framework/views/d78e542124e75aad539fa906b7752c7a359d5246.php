@@ -94,9 +94,10 @@
 
       <li class="treeview 
                       <?php echo e(Request::is('admin/listingCountry') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/addCountry') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/addNewCountry') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?>   
+                      <?php echo e(Request::is('admin/view_addCountry') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/view_editCountry/*') ? 'active' : ''); ?> 
+                      <?php echo e(Request::is('admin/addCountry') ? 'active' : ''); ?>   
+                      <?php echo e(Request::is('admin/updateCountry/*') ? 'active' : ''); ?>   
                       <?php echo e(Request::is('admin/deleteCountry') ? 'active' : ''); ?>                    
                       <?php echo e(Request::is('admin/listingCity') ? 'active' : ''); ?>
 
@@ -132,9 +133,11 @@
         </a>
         <ul class="treeview-menu">
           <li class="<?php echo e(Request::is('admin/listingCountry') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/view_addCountry') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/view_editCountry/*') ? 'active' : ''); ?> 
                         <?php echo e(Request::is('admin/addCountry') ? 'active' : ''); ?> 
-                        <?php echo e(Request::is('admin/addNewCountry') ? 'active' : ''); ?> 
-                        <?php echo e(Request::is('admin/editCountry/*') ? 'active' : ''); ?> 
+                        <?php echo e(Request::is('admin/updateCountry/*') ? 'active' : ''); ?>
+
                         <?php echo e(Request::is('admin/deleteCountry') ? 'active' : ''); ?> ">
             <a href="<?php echo e(URL::to('admin/listingCountry')); ?>">
               <i class="fa fa-circle-o"></i>

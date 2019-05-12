@@ -201,44 +201,44 @@ Route::group(['prefix' => 'admin'], function () {
 			// Route::post('/getZones', 'AdminCustomersController@getZones');
 
 			//Country
-			Route::get('/editCountry/{id}', 'AdminCountryController@view_editCountry');
-			Route::get('/addCountry', 'AdminCountryController@view_addCountry');
 			Route::get('/listingCountry', 'AdminCountryController@listingCountry');
+			Route::get('/view_addCountry', 'AdminCountryController@view_addCountry');
+			Route::get('/view_editCountry/{id}', 'AdminCountryController@view_editCountry');
+			Route::post('/addCountry', 'AdminCountryController@addCountry');
+			Route::post('/updateCountry/{id}', 'AdminCountryController@updateCountry');
 			Route::post('/deleteCountry','AdminCountryController@deleteCountry');
-			Route::post('/editCountry/{id}', 'AdminCountryController@update');
-			Route::post('/addNewCountry', 'AdminCountryController@add');
-			
+
 			//City
-			Route::get('/editCity/{id}', 'AdminCityController@view_editCity');
-			Route::get('/addCity', 'AdminCityController@view_addCity');
 			Route::get('/listingCity', 'AdminCityController@listingCity');
+			Route::get('/view_addCity', 'AdminCityController@view_addCity');
+			Route::get('/view_editCity/{id}', 'AdminCityController@view_editCity');
+			Route::post('/addCity', 'AdminCityController@addCity');
+			Route::post('/updateCity/{id}', 'AdminCityController@updateCity');
 			Route::post('/deleteCity','AdminCityController@deleteCity');
-			Route::post('/editCity/{id}', 'AdminCityController@update');
-			Route::post('/addNewCity', 'AdminCityController@add');
 
 			//Area
-			Route::get('/editArea/{id}', 'AdminAreaController@view_editArea');
-			Route::get('/addArea', 'AdminAreaController@view_addArea');
 			Route::get('/listingArea', 'AdminAreaController@listingArea');
+			Route::get('/view_addArea', 'AdminAreaController@view_addArea');
+			Route::get('/view_editArea/{id}', 'AdminAreaController@view_editArea');
+			Route::post('/addArea', 'AdminAreaController@addArea');
+			Route::post('/updateArea/{id}', 'AdminAreaController@updateArea');
 			Route::post('/deleteArea','AdminAreaController@deleteArea');
-			Route::post('/editArea/{id}', 'AdminAreaController@update');
-			Route::post('/addNewArea', 'AdminAreaController@add');
 
 			//District
-			Route::get('/editDistrict/{id}', 'AdminDistrictController@view_editDistrict');
-			Route::get('/addDistrict', 'AdminDistrictController@view_addDistrict');
 			Route::get('/listingDistrict', 'AdminDistrictController@listingDistrict');
+			Route::get('/view_addDistrict', 'AdminDistrictController@view_addDistrict');
+			Route::get('/view_editDistrict/{id}', 'AdminDistrictController@view_editDistrict');
+			Route::post('/addDistrict', 'AdminDistrictController@addDistrict');
+			Route::post('/updateDistrict/{id}', 'AdminDistrictController@updateDistrict');
 			Route::post('/deleteDistrict','AdminDistrictController@deleteDistrict');
-			Route::post('/editDistrict/{id}', 'AdminDistrictController@update');
-			Route::post('/addNewDistrict', 'AdminDistrictController@add');
 
 			//zones
-			Route::get('/editZone/{id}', 'AdminZoneController@view_editZone');
-			Route::get('/addZone', 'AdminZoneController@view_addZone');
 			Route::get('/listingZone', 'AdminZoneController@listingZone');
+			Route::get('/view_addZone', 'AdminZoneController@view_addZone');
+			Route::get('/view_editZone/{id}', 'AdminZoneController@view_editZone');
+			Route::post('/addZone', 'AdminZoneController@addZone');
+			Route::post('/updateZone/{id}', 'AdminZoneController@updateZone');
 			Route::post('/deleteZone','AdminZoneController@deleteZone');
-			Route::post('/editZone/{id}', 'AdminZoneController@update');
-			Route::post('/addNewZone', 'AdminZoneController@add');
 
 			//orders
 			Route::get('/orders', 'AdminOrdersController@orders');		
