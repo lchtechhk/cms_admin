@@ -101,7 +101,7 @@
       </div>
     </div>
     <!-- delete -->
-    @include('admin/location/zone/deleteDistrict')
+    @include('admin/location/zone/deleteZone')
   </section>
 </div>
 @endsection
