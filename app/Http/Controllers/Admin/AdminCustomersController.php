@@ -60,7 +60,7 @@ class AdminCustomersController extends Controller{
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
@@ -70,63 +70,37 @@ class AdminCustomersController extends Controller{
 		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'edit';
+		$result['operation'] = 'view_edit';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
 	//add addcustomers page
 	public function addCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddCustomer"));
-		$email = $request['email'];
-		$id = $request['id'];
-		$own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
-		$duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
-		Log::info('id : ' . $id);
-		Log::info('own_email_count : ' . $own_email_count);
-		Log::info('duplicate_email_count : ' . $duplicate_email_count);
-
-		if($own_email_count > 1 ){
-			unset($request['email']);
-		}else if($own_email_count == 0 && $duplicate_email_count > 0){
-			$result['request'] = $request;
-			$result['operation'] = 'add';
-			$result['status'] = 'fail';
-			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
-			return $this->CustomersService->redirect_view($result,$title);
-		}
-		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
-		$result = $this->CustomersService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 	
 	//edit updateCustomer
 	public function updateCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditCustomer"));
-		$email = $request['email'];
-		$id = $request['id'];
-		$own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
-		$duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
-		if($own_email_count > 1 ){
-			unset($request['email']);
-		}else if($own_email_count == 0 && $duplicate_email_count > 0){
-			$result['request'] = $request;
-			$result['operation'] = 'edit';
-			$result['status'] = 'fail';
-			$result['message'] =  'Update Error, The Email Is Duplicate In DB';
-			return $this->CustomersService->redirect_view($result,$title);
-		}
-		$request['customers_picture'] = $this->UploadService->upload_image($request,'newImage','resources/assets/images/user_profile/');
-		$result = $this->CustomersService->update($request,"labels.CustomerAddedMessage","labels.CustomerAddedMessageFail");
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'edit';
 		return $this->CustomersService->redirect_view($result,$title);
 	}
 
 	//deleteProduct
 	public function deleteCustomer(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.DeleteCustomer"));
-		$customer_id = $request->id;
-		$param = array();
-		$param['customer_id'] = $customer_id;
-		$result = $this->CustomersService->deleteCustomer($param);
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
 		return $this->CustomersService->redirect_view($result,$title);
 
 	}

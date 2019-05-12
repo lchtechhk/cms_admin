@@ -48,7 +48,7 @@ use App\Http\Controllers\Admin\Service\DistrictService;
                 break;
 
                 case 'edit':
-                    $update_zone_result = $this->update($result,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
+                    $update_zone_result = $this->update('id',$result,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
                     $update_zone_result['zones'] = $this->findById($result['request']->id);
                     $update_zone_result['district'] = $this->DistrictService->findAll();
                     return view("admin.location.zone.editZone", $title)->with('result', $update_zone_result);		

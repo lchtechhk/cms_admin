@@ -85,6 +85,6 @@ class AdminCategoryController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'delete';
-        // return $this->CategoryService->redirect_view($result,$title);
+        return $this->CategoryService->redirect_view($result,$title);
     }
 }

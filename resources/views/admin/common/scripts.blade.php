@@ -1023,6 +1023,14 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 	
 	//deleteCountrytModal
+	$(document).on('click', '#deleteCategoryId', function(){
+		var category_id = $(this).attr('category_id');
+		console.log('deleteCategoryModal : ' + category_id);
+		$('#category_id').val(category_id);
+		$("#deleteCategoryModal").modal('show');
+	});
+
+	//deleteCountrytModal
 	$(document).on('click', '#deleteCountryId', function(){
 		var countries_id = $(this).attr('countries_id');
 		$('#countries_id').val(countries_id);

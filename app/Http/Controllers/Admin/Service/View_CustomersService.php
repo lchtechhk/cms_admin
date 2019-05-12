@@ -46,6 +46,13 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             ->where('email','=',$email)
             ->where('id','=',$id)
             ->count();
+            Log::info('[View_CustomersService] -- getCountByEmailAndId : ] '. $result);
+            return $result;
+        }
+        function getCountByEmail($email){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email)
+            ->count();
             Log::info('[View_CustomersService] -- getCountByEmail : ] '. $result);
             return $result;
         }

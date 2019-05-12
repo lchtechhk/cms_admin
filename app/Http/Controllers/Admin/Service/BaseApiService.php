@@ -36,9 +36,9 @@ abstract class BaseApiService extends BaseDao{
             
         }
 
-        public function update($array,$success_msg,$fail_msg){
+        public function update($key,$array,$success_msg,$fail_msg){
             $array['edit_date'] = date("Y-m-d H:i:s");
-            $update_id = $this->db_prepareUpdate($this->getTable(),$array,$array['request']->id);
+            $update_id = $this->db_prepareUpdate($this->getTable(),$array,$key,$array[$key]);
             $result = array();	
             $result['label'] = $array['label'];
 			if(!empty($update_id) && $update_id > 0){

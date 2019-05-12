@@ -87,7 +87,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                 break;
 
                 case 'edit':
-                    $update_area_result = $this->update($result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+                    $update_area_result = $this->update('id',$result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
 
                     $update_area_result['city'] = $this->CityService->findAll(); 
                     $update_area_result['area'] = $this->findById($result['request']->id);

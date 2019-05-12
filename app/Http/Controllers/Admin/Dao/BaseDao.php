@@ -94,34 +94,33 @@
                     return false;
                 }
         }
-        public function db_prepareUpdate($table, $data,$id){
-                $list_cols =  DB::select('DESCRIBE '.$table);
-                $nb_cols = count($list_cols);
-                $target_array = array();
-                foreach($list_cols as $row){
-                    $column = $row->Field;
-                    $column_type = $row->Type;
+        public function db_prepareUpdate($table, $data,$key,$id){
+            $list_cols =  DB::select('DESCRIBE '.$table);
+            $nb_cols = count($list_cols);
+            $target_array = array();
+            foreach($list_cols as $row){
+                $column = $row->Field;
+                $column_type = $row->Type;
 
-                    if(array_key_exists($column, $data)){
-                        $object = array();
-                        $count = (preg_match('/.*(date|datetime|char|text).*/i', $column_type));
-                        // $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
-                        $value = isset($data[$column]) ? html_entity_decode($data[$column]) :NULL;
-                        $answer = $this->out_put_value($count,$value);
-                        $target_array["$column"] = $answer;
-                    }
+                if(array_key_exists($column, $data)){
+                    $object = array();
+                    $count = (preg_match('/.*(date|datetime|char|text).*/i', $column_type));
+                    // $value = (empty($data[$column]) && $data[$column] != 0 ) ? null : html_entity_decode($data[$column]);
+                    $value = isset($data[$column]) ? html_entity_decode($data[$column]) :NULL;
+                    $answer = $this->out_put_value($count,$value);
+                    $target_array["$column"] = $answer;
                 }
-                DB::enableQueryLog();
-                $update_result = DB::table($table)->where('id', $id)->update($target_array);
-                Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
-                if($update_result > 0 ){
-                    Log::info('Update Effected Rows --' . $update_result);
-                    return $update_result;
-                }else {
-                    Log::notice('[Update Error] : '.$update_result . ' Record' );
-                    return false;
-                }
-   
+            }
+            DB::enableQueryLog();
+            $update_result = DB::table($table)->where($key, $id)->update($target_array);
+            Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
+            if($update_result > 0 ){
+                Log::info('Update Effected Rows --' . $update_result);
+                return $update_result;
+            }else {
+                Log::notice('[Update Error] : '.$update_result . ' Record' );
+                return false;
+            }
         }
         private function out_put_value($count,$value){
             $query_part_2 = '';

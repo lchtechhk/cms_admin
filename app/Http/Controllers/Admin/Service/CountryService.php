@@ -86,7 +86,8 @@ class CountryService extends BaseApiService{
                     return view("admin.location.country.addCountry", $title)->with('result', $result);
                 break;
                 case 'view_edit':
-                    $result['countries'] = $this->findById($result['request']->id);
+                    $countries = $this->findById($result['request']->id);
+                    $result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
                     return view("admin.location.country.editCountry", $title)->with('result', $result);	
                 break;
                 case 'add':
@@ -94,7 +95,7 @@ class CountryService extends BaseApiService{
                     return view("admin.location.country.addCountry", $title)->with('result', $add_country_result);
                 break;
                 case 'edit':
-                    $update_country_result = $this->update($result,"labels.CountryUpdatedMessage","labels.CountryUpdatedMessageFail");
+                    $update_country_result = $this->update('id',$result,"labels.CountryUpdatedMessage","labels.CountryUpdatedMessageFail");
                     $countries = $this->findById($result['request']->id);
                     $update_country_result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
                     return view("admin.location.country.editCountry", $title)->with('result', $update_country_result);	

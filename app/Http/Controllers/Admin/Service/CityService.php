@@ -96,7 +96,7 @@ class CityService extends BaseApiService{
                     return view("admin.location.city.addCity", $title)->with('result', $add_city_result);
                 break;
                 case 'edit':
-                    $update_city_result = $this->update($result,"labels.CityAddedMessage","labels.CityAddedMessageFail");
+                    $update_city_result = $this->update('id',$result,"labels.CityAddedMessage","labels.CityAddedMessageFail");
                     $cities = $this->findById($result['request']->id);
                     $city = !empty($cities) && sizeof($cities) > 0 ? $cities[0] : array();
                     $update_city_result['city'] = $city;

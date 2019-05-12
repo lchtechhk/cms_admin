@@ -27,6 +27,13 @@ class SubCategoryService extends BaseApiService{
                 Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
                 return view("admin.subcategory.listingSubcategory", $title)->with('result', $result);
             break;
+            case 'view_add':
+                return view("admin.subcategory.addSubcategory", $title)->with('result', $result);
+            break;
+            case 'view_edit':
+                $result['customers'] = $this->findById($result['request']->id);
+                return view("admin.subcategory.view_editSubcategory", $title)->with('result', $result);	
+            break;
             case 'add':
                 return view("admin.subcategory.addSubcategory", $title)->with('result', $result);
             break;

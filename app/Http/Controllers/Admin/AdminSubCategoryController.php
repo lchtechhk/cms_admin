@@ -45,7 +45,7 @@ class AdminSubCategoryController extends Controller{
         $title = array('pageTitle' => Lang::get("labels.view_addSubCategory"));
         $result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->SubCategoryService->redirect_view($result,$title);
         Log::info('view_addSubCategory : ');
     }
@@ -54,9 +54,8 @@ class AdminSubCategoryController extends Controller{
         $title = array('pageTitle' => Lang::get("labels.view_editSubCategory"));
         $result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'edit';
+		$result['operation'] = 'view_edit';
 		return $this->SubCategoryService->redirect_view($result,$title);
-        Log::info('view_editSubCategory : ');
     }
 
     function addSubCategory(Request $request){

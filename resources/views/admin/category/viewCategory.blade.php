@@ -27,6 +27,16 @@
                     {!! Form::open(array('url' =>'admin/updateCategory', 'method'=>'post', 'class' => 'form-horizontal
                     form-validate', 'enctype'=>'multipart/form-data')) !!}
                     @endif
+                    <div class="form-group">
+                      <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Category_id') }}
+                        <span style="color:red">★</span>
+                      </label>
+                      <div class="col-sm-10 col-md-4">
+                        {!! Form::text('category_id', empty($result['category']->category_id) ? '' :
+                        print_value($result['operation'],$result['category']->category_id), array('class'=>'form-control
+                        field-validate', 'id'=>'category_id')) !!}
+                      </div>
+                    </div>
                     @foreach($result['language'] as $language)
                     <div class="form-group">
                       <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Language') }}
