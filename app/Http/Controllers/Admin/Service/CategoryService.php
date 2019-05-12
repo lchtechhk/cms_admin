@@ -33,10 +33,9 @@ class CategoryService extends BaseApiService{
     function redirect_view($result,$title){
         $result['label'] = "Category";
         switch($result['operation']){
-            case 'delete': 
             case 'listing':
-            $result['categories'] = $this->View_CategoryService->getListing();
-                Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
+                $result['categories'] = $this->View_CategoryService->getListing();
+                // Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
                 return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
             case 'view_add':
@@ -75,6 +74,11 @@ class CategoryService extends BaseApiService{
             case 'edit':
                 $result['category'] = $this->findById($result['request']->id);
                 return view("admin.category.viewCategory", $title)->with('result', $result);		
+            break;
+            case 'delete': 
+                $delete_category_result = $this->delete($result['id'],"Successful","Fail");
+                $delete_category_result['categories'] = $this->View_CategoryService->getListing();
+                return view("admin.category.listingCategory", $title)->with('result', $delete_category_result);
             break;
         }
     }

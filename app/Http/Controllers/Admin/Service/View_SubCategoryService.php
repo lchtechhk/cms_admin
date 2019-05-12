@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         }
 
         function getListing(){
-            return $this->findAllByLanguage(session('language_id') );
+            $result = DB::table($this->getTable())->where('sub_category_language_id',session('language_id'))->get();
+            Log::info('['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
+            return $result;
         }
         function redirect_view($result,$title){
         }

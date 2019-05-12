@@ -20,20 +20,22 @@ class SubCategoryService extends BaseApiService{
     }
 
     function redirect_view($result,$title){
-        $result['label'] = "SubCategory";
+        $result['label'] = "Subcategory";
         switch($result['operation']){
-            case 'delete': 
             case 'listing':
                 $result['subCategory'] = $this->View_SubCategoryService->getListing();
                 Log::info('['.$result['label'].'] -- getListing : ' .json_encode($result));
-                return view("admin.subcategory.listingSubCategory", $title)->with('result', $result);
+                return view("admin.subcategory.listingSubcategory", $title)->with('result', $result);
             break;
             case 'add':
-                return view("admin.subcategory.addSubCategory", $title)->with('result', $result);
+                return view("admin.subcategory.addSubcategory", $title)->with('result', $result);
             break;
             case 'edit':
                 $result['customers'] = $this->findById($result['request']->id);
-                return view("admin.subcategory.view_editSubCategory", $title)->with('result', $result);		
+                return view("admin.subcategory.view_editSubcategory", $title)->with('result', $result);		
+            break;
+            case 'delete': 
+
             break;
         }
     }

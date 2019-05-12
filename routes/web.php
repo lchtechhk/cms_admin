@@ -191,15 +191,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateAddressBook/{id}/', 'AdminAddressBookController@updateAddressBook');
 			Route::post('/deleteAddressBook', 'AdminAddressBookController@deleteAddressBook');
 
-			//add adddresses against customers
-			// Route::get('/listingCustomerAddress/{id}/', 'AdminCustomersController@listingCustomerAddress');
-			// Route::post('/addNewCustomerAddress/{id}', 'AdminCustomersController@addNewCustomerAddress');
-			// Route::post('/editCustomerAddress', 'AdminCustomersController@editCustomerAddress');
-			// Route::post('/view_editAddress', 'AdminCustomersController@view_editAddress');
-			// Route::post('/updateAddress', 'AdminCustomersController@updateAddress');
-			// Route::post('/deleteAddress', 'AdminCustomersController@deleteAddress');
-			// Route::post('/getZones', 'AdminCustomersController@getZones');
-
 			//Country
 			Route::get('/listingCountry', 'AdminCountryController@listingCountry');
 			Route::get('/view_addCountry', 'AdminCountryController@view_addCountry');

@@ -71,11 +71,20 @@ class AdminCategoryController extends Controller{
 
     function updateCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.updateCategory"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'edit';
+        return $this->CategoryService->redirect_view($result,$title);
         Log::info('updateCategory : ');
     }
 
     function deleteCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.deleteCategory"));
-        Log::info('deleteCategory : ');
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'delete';
+        // return $this->CategoryService->redirect_view($result,$title);
     }
 }

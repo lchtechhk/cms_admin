@@ -57,11 +57,16 @@
                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         </a>
                                                         <a data-toggle="tooltip" data-placement="bottom"
+                                                            title="{{ trans('labels.Delete') }}" id="deleteCategoryId"
+                                                            cities_id="{{$category->category_id}}" class="badge bg-red">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </a>
+                                                        {{-- <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Delete') }}"
                                                             href="deleteCategory/{{ $category->category_id }}"
                                                             class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </a>
+                                                        </a> --}}
                                                     </td>
                                                 </tr>
                                                 @endforeach

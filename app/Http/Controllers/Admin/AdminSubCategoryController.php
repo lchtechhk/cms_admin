@@ -34,12 +34,11 @@ class AdminSubCategoryController extends Controller{
 		$this->SubCategoryService = new SubCategoryService();
     }
     
-    function listSubCategory(Request $request){
+    function listingSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.listSubCategory"));
         $result = array();
 		$result['operation'] = 'listing';
 		return $this->SubCategoryService->redirect_view($result,$title);
-        Log::info('listSubCategory : ');
     }
 
     function view_addSubCategory(Request $request){
