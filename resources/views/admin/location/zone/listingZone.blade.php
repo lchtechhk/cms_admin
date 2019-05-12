@@ -77,7 +77,7 @@
                           <td>{{ $zones->zone_code }}</td>
                           <td>
                             <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}"
-                              href="editZone/{{ $zones->zone_id }}" class="badge bg-light-blue">
+                              href="view_editZone/{{ $zones->zone_id }}" class="badge bg-light-blue">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
                             <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}"

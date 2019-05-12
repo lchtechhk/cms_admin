@@ -54,12 +54,13 @@ use App\Http\Controllers\Admin\Service\DistrictService;
                     return view("admin.location.editZone", $title)->with('result', $update_zone_result);		
                 break;
                 case 'delete': 
-                    $result['country_search'] = $this->CountryService->findAll();
-                    $result['city_search'] = $this->CityService->findAll();
-                    $result['area_search'] = $this->AreaService->findAll();
-                    $result['district_search'] = $this->DistrictService->findAll();
-                    $result['zones'] = $this->View_CCADZoneService->getListing();
-                    return view("admin.location.listingZone", $title)->with('result', $result);	
+                    $delete_zone_result = $this->delete($result,"labels.ZoneDeleted","labels.ZoneDeletedFail");
+                    $delete_zone_result['country_search'] = $this->CountryService->findAll();
+                    $delete_zone_result['city_search'] = $this->CityService->findAll();
+                    $delete_zone_result['area_search'] = $this->AreaService->findAll();
+                    $delete_zone_result['district_search'] = $this->DistrictService->findAll();
+                    $delete_zone_result['zones'] = $this->View_CCADZoneService->getListing();
+                    return view("admin.location.listingZone", $title)->with('result', $delete_zone_result);	
                 break;
             }
         }

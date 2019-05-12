@@ -41,7 +41,7 @@ class AdminDistrictController extends Controller {
 		return $this->DistrictService->redirect_view($result,$title);
 	}
     //view_EditDistrict
-	public function view_eitDistrict(Request $request){	
+	public function view_editDistrict(Request $request){	
 		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
 		$result = array();
 		$result['request'] = $request;
@@ -69,7 +69,10 @@ class AdminDistrictController extends Controller {
 	}
 	public function deleteDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingDistricts"));		
-		$result = $this->DistrictService->delete_relative($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
 		return $this->DistrictService->redirect_view($result,$title);
 	}
 	

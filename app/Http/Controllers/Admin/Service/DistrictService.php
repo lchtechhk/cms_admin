@@ -59,11 +59,12 @@ use App\Http\Controllers\Admin\Service\AreaService;
                     return view("admin.location.district.editDistrict", $title)->with('result', $update_district_result);		
                 break;
                 case 'delete': 
-                    $result['country_search'] = $this->CountryService->findAll();
-                    $result['city_search'] = $this->CityService->findAll();
-                    $result['area_search'] = $this->AreaService->findAll();
-                    $result['district'] = $this->View_CCADistrictService->getListing();
-                    return view("admin.location.district.listingDistrict", $title)->with('result', $result);	
+                    $delete_relative_result = $this->delete_relative($result,"labels.DistrictDeleted","labels.DistrictDeletedFail");
+                    $delete_relative_result['country_search'] = $this->CountryService->findAll();
+                    $delete_relative_result['city_search'] = $this->CityService->findAll();
+                    $delete_relative_result['area_search'] = $this->AreaService->findAll();
+                    $delete_relative_result['district'] = $this->View_CCADistrictService->getListing();
+                    return view("admin.location.district.listingDistrict", $title)->with('result', $delete_relative_result);	
                 break;
             }
         }

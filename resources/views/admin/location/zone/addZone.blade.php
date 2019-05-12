@@ -14,7 +14,7 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">
-                    {!! Form::open(array('url' =>'admin/addZone', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                    {!! Form::open(array('url' =>'admin/add'.$result['label'], 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                     <div class="form-group">
                       <label for="name" class="col-sm-2 col-md-3 control-label">
                         {{ trans('labels.District') }}<span style="color:red">★</span>

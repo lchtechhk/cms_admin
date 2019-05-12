@@ -68,8 +68,11 @@ class AdminZoneController extends Controller {
 
 	}
 	public function deleteZone(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
-		$result = $this->ZoneService->delete($request,"labels.ZoneDeleted","labels.ZoneDeletedFail");
+		$title = array('pageTitle' => Lang::get("labels.ListingZones"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';		
 		return $this->ZoneService->redirect_view($result,$title);
 	}
 }
