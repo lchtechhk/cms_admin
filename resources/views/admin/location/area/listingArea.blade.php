@@ -10,7 +10,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.List'.$result['label']) }}</h3>
             <div class="box-tools pull-right">
-            <a href="add{{$result['label']}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.Add'.$result['label']) }}</a>
+            <a href="view_add{{$result['label']}}" type="button" class="btn btn-block btn-primary">{{ trans('labels.Add'.$result['label']) }}</a>
             </div>
           </div>
           <div class="box-header">
@@ -59,7 +59,7 @@
                                   <td>{{ $area->area_code }}</td>
                                   <td>{{ $area->area_status }}</td>
                                   <td>
-                                      <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="editArea/{{ $area->area_id }}" class="badge bg-light-blue">
+                                      <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}" href="view_editArea/{{ $area->area_id }}" class="badge bg-light-blue">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                       </a> 
                                       <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}" id="deleteAreaId"  area_id ="{{$area->area_id}}" class="badge bg-red">

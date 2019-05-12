@@ -25,23 +25,6 @@ class AdminAreaController extends Controller {
 		$this->AreaService = new AreaService();
 	}
 
-	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddArea"));
-		$result = $this->AreaService->add($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
-		return $this->AreaService->redirect_view($result,$title);
-	}
-
-	public function update(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditArea"));
-		$result = $this->AreaService->update($request,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
-		return $this->AreaService->redirect_view($result,$title);
-	}
-	public function deleteArea(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingArea"));	
-		$result = $this->AreaService->delete_relative($request,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
-		return $this->AreaService->redirect_view($result,$title);
-	}
-
 	// listingArea
 	public function listingArea(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingArea"));		
@@ -54,7 +37,7 @@ class AdminAreaController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.AddArea"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->AreaService->redirect_view($result,$title);
 	}
     //view_editCountry
@@ -62,9 +45,34 @@ class AdminAreaController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.EditArea"));
 		$result = array();
 		$result['request'] = $request;
+		$result['operation'] = 'view_edit';
+		return $this->AreaService->redirect_view($result,$title);
+	}
+	
+	public function addArea(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddArea"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+		return $this->AreaService->redirect_view($result,$title);
+	}
+
+	public function updateArea(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditArea"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
 		$result['operation'] = 'edit';
 		return $this->AreaService->redirect_view($result,$title);
-    }
-	
+	}
+	public function deleteArea(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingArea"));	
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
+		return $this->AreaService->redirect_view($result,$title);
+	}
 }
  

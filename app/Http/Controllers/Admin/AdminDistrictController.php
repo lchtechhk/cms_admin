@@ -25,24 +25,6 @@ class AdminDistrictController extends Controller {
 		$this->DistrictService = new DistrictService();
 	}
 
-	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddDistrict"));
-		$result = $this->DistrictService->add($request,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
-		return $this->DistrictService->redirect_view($result,$title);
-	}
-
-	public function update(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
-		$result = $this->DistrictService->update($request,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
-		return $this->DistrictService->redirect_view($result,$title);
-
-	}
-	public function deleteDistrict(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingDistricts"));		
-		$result = $this->DistrictService->delete_relative($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
-		return $this->DistrictService->redirect_view($result,$title);
-	}
-
 	// listingDistrict
 	public function listingDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingDistrict"));		
@@ -51,20 +33,44 @@ class AdminDistrictController extends Controller {
 		return $this->DistrictService->redirect_view($result,$title);
 	}
 	//view_AddDistrict
-	public function view_AddDistrict(Request $request){
+	public function view_addDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.AddDistrict"));
 		$result = array();
+		$result['request'] = $request;
+		$result['operation'] = 'view_add';
+		return $this->DistrictService->redirect_view($result,$title);
+	}
+    //view_EditDistrict
+	public function view_eitDistrict(Request $request){	
+		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
+		$result = array();
+		$result['request'] = $request;
+		$result['operation'] = 'view_edit';
+		return $this->DistrictService->redirect_view($result,$title);
+    }
+
+	public function addDistrict(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddDistrict"));
+		$result = array();
+		$result = $request->input();
 		$result['request'] = $request;
 		$result['operation'] = 'add';
 		return $this->DistrictService->redirect_view($result,$title);
 	}
-    //view_EditDistrict
-	public function view_EditDistrict(Request $request){	
+
+	public function updateDistrict(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
 		$result = array();
+		$result = $request->input();
 		$result['request'] = $request;
 		$result['operation'] = 'edit';
 		return $this->DistrictService->redirect_view($result,$title);
-    }
+
+	}
+	public function deleteDistrict(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingDistricts"));		
+		$result = $this->DistrictService->delete_relative($request,"labels.DistrictDeleted","labels.DistrictDeletedFail");
+		return $this->DistrictService->redirect_view($result,$title);
+	}
 	
 }

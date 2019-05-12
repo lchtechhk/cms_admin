@@ -25,24 +25,6 @@ class AdminZoneController extends Controller {
 		$this->ZoneService = new ZoneService();
 	}
 
-	public function add(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.AddZone"));
-		$result = $this->ZoneService->add($request,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
-		return $this->ZoneService->redirect_view($result,$title);
-	}
-
-	public function update(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.EditZone"));
-		$result = $this->ZoneService->update($request,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
-		return $this->ZoneService->redirect_view($result,$title);
-
-	}
-	public function deleteZone(Request $request){
-		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
-		$result = $this->ZoneService->delete($request,"labels.ZoneDeleted","labels.ZoneDeletedFail");
-		return $this->ZoneService->redirect_view($result,$title);
-	}
-
 	// listingZones
 	public function listingZone(Request $request){
 		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
@@ -55,16 +37,39 @@ class AdminZoneController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.AddZone"));
 		$result = array();
 		$result['request'] = $request;
-		$result['operation'] = 'add';
+		$result['operation'] = 'view_add';
 		return $this->ZoneService->redirect_view($result,$title);
 	}
-    //view_EditZone
+	//view_EditZone
 	public function view_EditZone(Request $request){	
 		$title = array('pageTitle' => Lang::get("labels.EditZone"));
 		$result = array();
 		$result['request'] = $request;
+		$result['operation'] = 'view_edit';
+		return $this->ZoneService->redirect_view($result,$title);
+	}
+
+	public function addZone(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.AddZone"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+		return $this->ZoneService->redirect_view($result,$title);
+	}
+
+	public function updateZone(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.EditZone"));
+		$result = array();
+		$result = $request->input();
+		$result['request'] = $request;
 		$result['operation'] = 'edit';
 		return $this->ZoneService->redirect_view($result,$title);
-    }
-	
+
+	}
+	public function deleteZone(Request $request){
+		$title = array('pageTitle' => Lang::get("labels.ListingZones"));		
+		$result = $this->ZoneService->delete($request,"labels.ZoneDeleted","labels.ZoneDeletedFail");
+		return $this->ZoneService->redirect_view($result,$title);
+	}
 }

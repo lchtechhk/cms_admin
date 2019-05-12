@@ -67,24 +67,39 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                     $result['country_search'] = $this->CountryService->findAll();
                     $result['city_search'] = $this->CityService->findAll();
                     $result['area'] = $this->View_CCAreaService->getListing();
-                    return view("admin.location.listingArea", $title)->with('result', $result);
+                    return view("admin.location.area.listingArea", $title)->with('result', $result);
+                break;
+                case 'view_add':
+                    $result['city'] = $this->CityService->findAll();
+                    return view("admin.location.area.addArea", $title)->with('result', $result);
+                break;
+                case 'view_edit':
+                    $result['city'] = $this->CityService->findAll(); 
+                    $result['area'] = $this->findById($result['request']->id);
+
+                    return view("admin.location.area.editArea", $title)->with('result', $result);		
                 break;
                 case 'add':
-                    $result['city'] = $this->CityService->findAll();
-                    return view("admin.location.addArea", $title)->with('result', $result);
+                    $add_area_result = $this->add($result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+                    $add_area_result['city'] = $this->CityService->findAll();
+
+                    return view("admin.location.area.addArea", $title)->with('result', $add_area_result);
                 break;
 
                 case 'edit':
-                    $result['city'] = $this->CityService->findAll(); 
-                    $result['area'] = $this->findById($result['request']->id);
+                    $update_area_result = $this->update($result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+
+                    $update_area_result['city'] = $this->CityService->findAll(); 
+                    $update_area_result['area'] = $this->findById($result['request']->id);
                     // Log::error('message : ' .json_encode($result['area']));
-                    return view("admin.location.editArea", $title)->with('result', $result);		
+                    return view("admin.location.area.editArea", $title)->with('result', $update_area_result);		
                 break;
                 case 'delete': 
-                    $result['country_search'] = $this->CountryService->findAll();
-                    $result['city_search'] = $this->CityService->findAll();
-                    $result['area'] = $this->View_CCAreaService->getListing();
-                    return view("admin.location.listingArea", $title)->with('result', $result);	
+                    $delete_relative_result = $this->delete_relative($result,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
+                    $delete_relative_result['country_search'] = $this->CountryService->findAll();
+                    $delete_relative_result['city_search'] = $this->CityService->findAll();
+                    $delete_relative_result['area'] = $this->View_CCAreaService->getListing();
+                    return view("admin.location.area.listingArea", $title)->with('result', $delete_relative_result);	
                 break;
             }
         }

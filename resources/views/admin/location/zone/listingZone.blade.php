@@ -10,7 +10,7 @@
           <div class="box-header">
             <h3 class="box-title">{{ trans('labels.List'.$result['label']) }}</h3>
             <div class="box-tools pull-right">
-              <a href="add{{$result['label']}}" type="button"
+              <a href="view_add{{$result['label']}}" type="button"
                 class="btn btn-block btn-primary">{{ trans('labels.Add'.$result['label']) }}</a>
             </div>
           </div>

@@ -36,24 +36,34 @@ use App\Http\Controllers\Admin\Service\AreaService;
                     $result['city_search'] = $this->CityService->findAll();
                     $result['area_search'] = $this->AreaService->findAll();
                     $result['district'] = $this->View_CCADistrictService->getListing();
-                    return view("admin.location.listingDistrict", $title)->with('result', $result);
+                    return view("admin.location.district.listingDistrict", $title)->with('result', $result);
                 break;
-                case 'add':
+                case 'view_add':
                     $result['area'] = $this->AreaService->findAll();
-                    return view("admin.location.addDistrict", $title)->with('result', $result);
+                    return view("admin.location.district.addDistrict", $title)->with('result', $result);
                 break;
-
-                case 'edit':
+                case 'view_edit':
                     $result['district'] = $this->findById($result['request']->id);
                     $result['area'] = $this->AreaService->findAll();
-                    return view("admin.location.editDistrict", $title)->with('result', $result);		
+                    return view("admin.location.district.editDistrict", $title)->with('result', $result);		
+                break;
+                case 'add':
+                    $add_district_result = $this->add($result,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
+                    $add_district_result['area'] = $this->AreaService->findAll();
+                    return view("admin.location.district.addDistrict", $title)->with('result', $add_district_result);
+                break;
+                case 'edit':
+                    $update_district_result = $this->update($result,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
+                    $update_district_result['district'] = $this->findById($result['request']->id);
+                    $update_district_result['area'] = $this->AreaService->findAll();
+                    return view("admin.location.district.editDistrict", $title)->with('result', $update_district_result);		
                 break;
                 case 'delete': 
                     $result['country_search'] = $this->CountryService->findAll();
                     $result['city_search'] = $this->CityService->findAll();
                     $result['area_search'] = $this->AreaService->findAll();
                     $result['district'] = $this->View_CCADistrictService->getListing();
-                    return view("admin.location.listingDistrict", $title)->with('result', $result);	
+                    return view("admin.location.district.listingDistrict", $title)->with('result', $result);	
                 break;
             }
         }
