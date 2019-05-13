@@ -142,7 +142,6 @@
             foreach ($key_array as $index => $key) {
                $where[$key] =$id_array[$index];
             }
-            // Log::notice('[Update SQLwhere] --'.json_encode($where));
             $update_result = DB::table($table)->where($where)->update($target_array);
             Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
             if($update_result > 0 ){

@@ -39,7 +39,10 @@
                                             <div class="col-sm-10 col-md-4">
                                                 <select name="category_id" class='form-control field-validate'>
                                                     @foreach( $result['categories'] as $category)
-                                                    <option value="{{ $category->category_id }}">
+                                                    <option value="{{ $category->category_id }}" 
+                                                        @if( $category->category_id == $result['sub_category']->category_id)
+                                                            selected
+                                                        @endif>
                                                         {{ $category->name }}
                                                     </option>
                                                     @endforeach

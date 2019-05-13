@@ -10,7 +10,7 @@ use League\Flysystem\Exception;
 
 abstract class BaseApiService extends BaseDao{ 
         
-        public function add($array,$success_msg,$fail_msg){
+        public function add($array){
             try{
                 $array['status'] = 'active';
                 $array['create_date'] = date("Y-m-d H:i:s");
@@ -22,11 +22,9 @@ abstract class BaseApiService extends BaseDao{
                 $result['label'] = $array['label'];
                 if(!empty($insert_id) && $insert_id > 0){
                     $result['status'] = 'success';
-                    $result['message'] =  Lang::get($success_msg);
                     $result['response_id'] = $insert_id;
                 }else {
                     $result['status'] = 'fail';
-                    $result['message'] =  Lang::get($fail_msg);
                 }
                 $result['operation'] = 'add';
                 return $result;
@@ -36,64 +34,55 @@ abstract class BaseApiService extends BaseDao{
             
         }
 
-        public function update($key,$array,$success_msg,$fail_msg){
+        public function update($key,$array){
             $array['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdate($this->getTable(),$array,$key,$array[$key]);
             $result = array();	
             $result['label'] = $array['label'];
 			if(!empty($update_id) && $update_id > 0){
                 $result['status'] = 'success';
-                $result['message'] =  Lang::get($success_msg);
                 $result['response_id'] = $update_id;
 			}else {
                 $result['status'] = 'fail';
-				$result['message'] =  Lang::get($fail_msg);
             }
             $result['operation'] = 'edit';
-		    // $result['request'] = $array['request'];
             return $result;
         }
-        public function updateByMultipleKey($array,$key_array,$id_array,$success_msg,$fail_msg){
+        public function updateByMultipleKey_Value($array,$key_array,$id_array){
             $array['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdateByMultipleKey($this->getTable(),$array,$key_array,$id_array);
             $result = array();	
             $result['label'] = $array['label'];
 			if(!empty($update_id) && $update_id > 0){
                 $result['status'] = 'success';
-                $result['message'] =  Lang::get($success_msg);
                 $result['response_id'] = $update_id;
 			}else {
                 $result['status'] = 'fail';
-				$result['message'] =  Lang::get($fail_msg);
             }
             $result['operation'] = 'edit';
 		    // $result['request'] = $array['request'];
             return $result;
         }
-        public function deleteByKey_Value($key,$id,$success_msg,$fail_msg){
+        public function deleteByKey_Value($key,$id){
             $delete_id = $this->db_prepareDeleteKey_Value($key,$id);
             Log::info('[delete_id] : ' . $delete_id);
             $result = array();
             if($delete_id === null){
                 $result['status'] = 'fail';
-				$result['message'] =  Lang::get($fail_msg);
             }else {
                 $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
             }
             $result['operation'] = 'delete';
             return $result;
         }
-        public function delete($id,$success_msg,$fail_msg){
+        public function delete($id){
             $delete_id = $this->db_prepareDelete($id);
             Log::info('[delete_id] : ' . $delete_id);
             $result = array();
             if(!empty($delete_id) && $delete_id > 0){
                 $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
 			}else {
                 $result['status'] = 'fail';
-				$result['message'] =  Lang::get($fail_msg);
             }
             $result['operation'] = 'delete';
             return $result;
