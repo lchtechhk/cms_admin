@@ -12,7 +12,9 @@ class CategoryDescriptionService extends BaseApiService{
 
 
     }
-
+    function updateByLangAndId($id,$language){
+        
+    }
     function redirect_view($result,$title){
     }
 }

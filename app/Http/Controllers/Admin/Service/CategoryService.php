@@ -65,11 +65,11 @@ class CategoryService extends BaseApiService{
                         $param['category_id'] = $result['category_id'];
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
-                        $add_sub_category_description_result = $this->CategoryDescriptionService->add($param,"Successful","Fail");
-                        if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
+                        $add_category_description_result = $this->CategoryDescriptionService->add($param,"Successful","Fail");
+                        if(empty($add_category_description_result['status']) || $add_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
                     }
                     $result = $this->response($result,"Successful","view_edit");
-                    $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
+                    $category_array = $this->View_CategoryService->findByColumnAndId("category_id",$result['category_id']);
                     $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
                     DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
@@ -89,15 +89,13 @@ class CategoryService extends BaseApiService{
                     if(empty($update_category_result['status']) || $update_category_result['status'] == 'fail')throw new Exception("Error To update Category");
                     foreach ($result['name'] as $language_id => $name) {
                         $param = array();
-                        $param['language_id'] = $language_id;
-                        $param['category_id'] = $result['category_id'];
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
-                        $update_sub_category_description_result = $this->CategoryDescriptionService->update("category_id",$param,"Successful","Fail");
+                        $update_sub_category_description_result = $this->CategoryDescriptionService->updateByMultipleKey($param,array("category_id","language_id"),array($result['category_id'],$language_id),"Successful","Fail");
                         if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
                     }
                     $result = $this->response($result,"Successful","view_edit");
-                    $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
+                    $category_array = $this->View_CategoryService->findByColumnAndId("category_id",$result['category_id']);
                     $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
                     DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
@@ -107,11 +105,18 @@ class CategoryService extends BaseApiService{
                 }		
             break;
             case 'delete': 
-                Log::info('[result] --  : ' . $result['id']);
-                $delete_category_result = $this->deleteByKey_Value("category_id",$result['id'],"Successful","Fail");
-                $delete_category_result['categories'] = $this->View_CategoryService->getListing();
-                $delete_category_result['label'] = $result['label'];
-                return view("admin.category.listingCategory", $title)->with('result', $delete_category_result);
+                try{
+                    $delete_category_result = $this->deleteByKey_Value("category_id",$result['id'],"Successful","Fail");
+                    if(empty($delete_category_result['status']) || $delete_category_result['status'] == 'fail')throw new Exception("Error To Delete Category");
+                    $delete_category_description_result = $this->CategoryDescriptionService->deleteByKey_Value("category_id",$result['id'],"Successful","Fail");
+                    if(empty($delete_category_description_result['status']) || $delete_category_description_result['status'] == 'fail')throw new Exception("Error To Delete Category");
+                    $result['categories'] = $this->View_CategoryService->getListing();
+                    $result = $this->response($result,"Success To Delete SubCategory","listing");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }	
+                
+                return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
         }
     }

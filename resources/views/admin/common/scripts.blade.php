@@ -1029,7 +1029,13 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#category_id').val(category_id);
 		$("#deleteCategoryModal").modal('show');
 	});
-
+	//deleteCountrytModal
+	$(document).on('click', '#deleteSubCategoryId', function(){
+		var sub_category_id = $(this).attr('sub_category_id');
+		console.log('deleteSubCategoryModal : ' + sub_category_id);
+		$('#sub_category_id').val(sub_category_id);
+		$("#deleteSubCategoryModal").modal('show');
+	});
 	//deleteCountrytModal
 	$(document).on('click', '#deleteCountryId', function(){
 		var countries_id = $(this).attr('countries_id');

@@ -44,32 +44,46 @@ class AdminSubCategoryController extends Controller{
     function view_addSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_addSubCategory"));
         $result = array();
+        $result = $request->input();
 		$result['request'] = $request;
 		$result['operation'] = 'view_add';
 		return $this->SubCategoryService->redirect_view($result,$title);
-        Log::info('view_addSubCategory : ');
     }
 
     function view_editSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editSubCategory"));
         $result = array();
-		$result['request'] = $request;
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['sub_category_id'] = $request->sub_category_id;
 		$result['operation'] = 'view_edit';
 		return $this->SubCategoryService->redirect_view($result,$title);
     }
 
     function addSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.addSubCategory"));
-        Log::info('addSubCategory : ');
+        $result = array();
+        $result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'add';
+        return $this->SubCategoryService->redirect_view($result,$title);    
     }
 
     function updateSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.updateCategory"));
-        Log::info('updateSubCategory : ');
+        $result = array();
+        $result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'edit';
+        return $this->SubCategoryService->redirect_view($result,$title);   
     }
 
     function deleteSubCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.deleteSubCategory"));
-        Log::info('deleteSubCategory : ');
+        $result = array();
+        $result = $request->input();
+		$result['request'] = $request;
+		$result['operation'] = 'delete';
+        return $this->SubCategoryService->redirect_view($result,$title);   
     }
 }

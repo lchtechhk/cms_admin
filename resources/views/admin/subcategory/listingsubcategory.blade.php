@@ -58,8 +58,9 @@
                                                             class="badge bg-light-blue">
                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         </a>
-                                                        <a data-toggle="tooltip" data-placement="bottom" title="Delete"
-                                                            href="deleteSubCategory/{{ $subCategory->sub_category_id }}"
+                                                        <a data-toggle="tooltip" data-placement="bottom"
+                                                            title="{{ trans('labels.Delete') }}" id="deleteSubCategoryId"
+                                                            sub_category_id="{{ $subCategory->sub_category_id }}"
                                                             class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>
@@ -81,6 +82,8 @@
                 </div>
             </div>
         </div>
+         <!-- delete -->
+         @include('admin/subcategory/deleteSubcategory')
     </section>
 </div>
 @endsection

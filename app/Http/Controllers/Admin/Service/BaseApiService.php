@@ -53,6 +53,23 @@ abstract class BaseApiService extends BaseDao{
 		    // $result['request'] = $array['request'];
             return $result;
         }
+        public function updateByMultipleKey($array,$key_array,$id_array,$success_msg,$fail_msg){
+            $array['edit_date'] = date("Y-m-d H:i:s");
+            $update_id = $this->db_prepareUpdateByMultipleKey($this->getTable(),$array,$key_array,$id_array);
+            $result = array();	
+            $result['label'] = $array['label'];
+			if(!empty($update_id) && $update_id > 0){
+                $result['status'] = 'success';
+                $result['message'] =  Lang::get($success_msg);
+                $result['response_id'] = $update_id;
+			}else {
+                $result['status'] = 'fail';
+				$result['message'] =  Lang::get($fail_msg);
+            }
+            $result['operation'] = 'edit';
+		    // $result['request'] = $array['request'];
+            return $result;
+        }
         public function deleteByKey_Value($key,$id,$success_msg,$fail_msg){
             $delete_id = $this->db_prepareDeleteKey_Value($key,$id);
             Log::info('[delete_id] : ' . $delete_id);

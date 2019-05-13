@@ -122,6 +122,38 @@
                 return false;
             }
         }
+
+        public function db_prepareUpdateByMultipleKey($table,$data,$key_array,$id_array){
+            $list_cols =  DB::select('DESCRIBE '.$table);
+            $target_array = array();
+            foreach($list_cols as $row){
+                $column = $row->Field;
+                $column_type = $row->Type;
+
+                if(array_key_exists($column, $data)){
+                    $count = (preg_match('/.*(date|datetime|char|text).*/i', $column_type));
+                    $value = isset($data[$column]) ? html_entity_decode($data[$column]) :NULL;
+                    $answer = $this->out_put_value($count,$value);
+                    $target_array["$column"] = $answer;
+                }
+            }
+            DB::enableQueryLog();
+            $where = array();
+            foreach ($key_array as $index => $key) {
+               $where[$key] =$id_array[$index];
+            }
+            // Log::notice('[Update SQLwhere] --'.json_encode($where));
+            $update_result = DB::table($table)->where($where)->update($target_array);
+            Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
+            if($update_result > 0 ){
+                Log::info('Update Effected Rows --' . $update_result);
+                return $update_result;
+            }else {
+                Log::notice('[Update Error] : '.$update_result . ' Record' );
+                return false;
+            }
+        }
+
         private function out_put_value($count,$value){
             $query_part_2 = '';
             if(empty($value)){
