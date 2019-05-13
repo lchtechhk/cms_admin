@@ -91,19 +91,42 @@ class CountryService extends BaseApiService{
                     return view("admin.location.country.editCountry", $title)->with('result', $result);	
                 break;
                 case 'add':
-                    $add_country_result = $this->add($result);
-                    return view("admin.location.country.addCountry", $title)->with('result', $add_country_result);
+                    try{
+                        $add_country_result = $this->add($result);
+                        if(empty($add_country_result['status']) || $add_country_result['status'] == 'fail')throw new Exception("Error To update Category");
+                        $result = $this->response($result,"Success To Add Country","view_edit");
+                        $countries = $this->findById($add_country_result['response_id']);
+                        // Log::info('[countries] --  : ' . json_encode($countries));
+                        $result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
+                        return view("admin.location.country.editCountry", $title)->with('result', $result);
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                        return view("admin.location.country.addCountry", $title)->with('result', $result);
+                    }	
                 break;
                 case 'edit':
-                    $update_country_result = $this->update('id',$result);
-                    $countries = $this->findById($result['request']->id);
-                    $update_country_result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
-                    return view("admin.location.country.editCountry", $title)->with('result', $update_country_result);	
+                    try{
+                        $update_country_result = $this->update('id',$result);
+                        if(empty($update_country_result['status']) || $update_country_result['status'] == 'fail')throw new Exception("Error To update Category");
+                        $countries = $this->findById($result['request']->id);
+                        $result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
+                        $result = $this->response($result,"Success To Update Country","view_edit");
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    return view("admin.location.country.editCountry", $title)->with('result', $result);
                 break;
                 case 'delete': 
-                    $delete_relative_result = $this->delete_relative($result,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
-                    $delete_relative_result['countries'] = $this->getListing();
-                    return view("admin.location.country.listingCountry", $title)->with('result', $delete_relative_result);	
+                    try{
+                        $delete_relative_result = $this->delete_relative($result,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
+                        if(empty($delete_relative_result['status']) || $delete_relative_result['status'] == 'fail')throw new Exception("Error To update Category");
+                        $result = $this->response($result,"Success To Delete Country","view_edit");
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    $result['countries'] = $this->getListing();
+                    return view("admin.location.country.listingCountry", $title)->with('result', $result);	
+
                 break;
             }
         }
