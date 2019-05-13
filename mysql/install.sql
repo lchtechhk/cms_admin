@@ -79,7 +79,7 @@ CREATE TABLE `address_book` (
   `address` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_address_book_customers_id` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `address_book` (
 
 LOCK TABLES `address_book` WRITE;
 /*!40000 ALTER TABLE `address_book` DISABLE KEYS */;
-INSERT INTO `address_book` VALUES (67,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:34:11',NULL,'2019-04-29 01:34:11',NULL,'active','inactive',''),(68,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:34:33',NULL,'2019-04-29 01:34:33',NULL,'active','inactive',''),(69,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:34:43',NULL,'2019-04-29 01:34:43',NULL,'active','inactive',''),(70,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:34:50',NULL,'2019-04-29 01:34:50',NULL,'active','inactive',''),(71,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:03',NULL,'2019-04-29 01:35:03',NULL,'active','inactive',''),(72,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:18',NULL,'2019-04-29 01:35:18',NULL,'active','inactive',''),(73,11,'23','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:28',NULL,'2019-04-29 01:35:28',NULL,'active','inactive',''),(74,11,'23312321','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:31',NULL,'2019-04-29 01:35:31',NULL,'active','inactive',''),(75,11,'23312321','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:50',NULL,'2019-04-29 01:35:50',NULL,'active','inactive',''),(76,11,'23312321','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:35:57',NULL,'2019-04-29 01:35:57',NULL,'active','inactive',''),(77,11,'23312321','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:36:40',NULL,'2019-04-29 01:36:40',NULL,'active','inactive',''),(78,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:36:43',NULL,'2019-04-29 01:36:43',NULL,'active','inactive',''),(79,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:37:56',NULL,'2019-04-29 01:37:56',NULL,'active','inactive',''),(80,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:38:32',NULL,'2019-04-29 01:38:32',NULL,'active','inactive',''),(81,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:41:43',NULL,'2019-04-29 01:41:43',NULL,'active','inactive',''),(82,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:41:45',NULL,'2019-04-29 01:41:45',NULL,'active','inactive',''),(83,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:41:54',NULL,'2019-04-29 01:41:54',NULL,'active','inactive',''),(84,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:41:55',NULL,'2019-04-29 01:41:55',NULL,'active','inactive',''),(85,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:43:03',NULL,'2019-04-29 01:43:03',NULL,'active','inactive',''),(86,11,'fed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:43:22',NULL,'2019-04-29 01:43:22',NULL,'active','inactive',''),(87,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:43:25',NULL,'2019-04-29 01:43:25',NULL,'active','inactive',''),(88,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:46:02',NULL,'2019-04-29 01:46:02',NULL,'active','inactive',''),(89,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:46:23',NULL,'2019-04-29 01:46:23',NULL,'active','inactive',''),(90,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:47:10',NULL,'2019-04-29 01:47:10',NULL,'active','inactive',''),(91,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:47:19',NULL,'2019-04-29 01:47:19',NULL,'active','inactive',''),(92,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:47:40',NULL,'2019-04-29 01:47:40',NULL,'active','inactive',''),(93,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:47:47',NULL,'2019-04-29 01:47:47',NULL,'active','inactive',''),(94,11,'dsfsfed','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:47:56',NULL,'2019-04-29 01:47:56',NULL,'active','inactive',''),(95,11,'dsfsfedvsdvdsvdsv','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:48:22',NULL,'2019-04-29 01:48:22',NULL,'active','inactive',''),(96,11,'dsfsfedvsdvdsvdsv','','',NULL,NULL,NULL,NULL,'','','','','2019-04-29 01:48:53',NULL,'2019-04-29 01:48:53',NULL,'active','inactive',''),(97,12,'1','2','3',NULL,NULL,NULL,NULL,'2','4','5','6','2019-05-02 22:31:57',NULL,'2019-05-02 23:24:36',NULL,'active','active',''),(98,12,'1','2','3',NULL,NULL,NULL,NULL,'','4','5','6','2019-05-02 22:32:01',NULL,'2019-05-02 22:32:01',NULL,'active','inactive',''),(99,12,'1','2','3',NULL,NULL,NULL,NULL,'','4','5','6','2019-05-02 22:32:02',NULL,'2019-05-02 22:32:02',NULL,'active','inactive',''),(100,12,'1','2','3',NULL,NULL,NULL,NULL,'','4','5','6','2019-05-02 22:32:28',NULL,'2019-05-02 22:32:28',NULL,'active','inactive',''),(101,12,'213213','213213','213213',NULL,NULL,NULL,NULL,'2','213213','213213','21321','2019-05-02 23:16:55',NULL,'2019-05-02 23:16:55',NULL,'active','active',''),(102,12,'213213','213213','213213',NULL,NULL,NULL,NULL,'2','213213','213213','21321','2019-05-02 23:19:15',NULL,'2019-05-02 23:19:17',NULL,'active','active',''),(103,12,'213213','213213','213213',NULL,NULL,NULL,NULL,'2','213213','213213','21321','2019-05-02 23:20:40',NULL,'2019-05-02 23:28:04',NULL,'active','active',''),(104,12,'213213','213213','213213',NULL,NULL,NULL,NULL,'2','213213','213213','21321','2019-05-02 23:22:56',NULL,'2019-05-02 23:23:49',NULL,'active','active',''),(105,12,'213213','213213','213213',NULL,NULL,NULL,NULL,'2','213213','213213','asd','2019-05-02 23:24:15',NULL,'2019-05-02 23:37:46',NULL,'active','active',''),(106,12,'','','',NULL,NULL,NULL,NULL,'','','','','2019-05-02 23:37:50',NULL,'2019-05-02 23:37:50',NULL,'active','inactive',''),(107,12,'Company','','',NULL,NULL,NULL,NULL,'','','','','2019-05-02 23:39:37',NULL,'2019-05-02 23:40:02',NULL,'active','inactive','');
+INSERT INTO `address_book` VALUES (110,0,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',NULL,'',NULL,'','',NULL),(114,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:53:27',NULL,'2019-05-13 13:53:27',NULL,'active','active',''),(115,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:54:08',NULL,'2019-05-13 14:05:59',NULL,'active','active',''),(116,16,'a1233','s','d',NULL,NULL,NULL,NULL,'2','','','','2019-05-13 14:06:06',NULL,'2019-05-13 14:13:27',NULL,'active','inactive','');
 /*!40000 ALTER TABLE `address_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `administrators` (
 
 LOCK TABLES `administrators` WRITE;
 /*!40000 ALTER TABLE `administrators` DISABLE KEYS */;
-INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'r3lKdet88MA39WV9gso947vTLO4mPgeJB70tbSwrTgKpFXrYe9nvYO5e5BbB','0000-00-00 00:00:00','2017-12-11 20:58:51',''),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL,''),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49',''),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL,'');
+INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'ZcGnzrXc1TbDiUVGM0CUJNbextsE1fiyLPIP7uzafdnL2unNAuVDISiGwq6p','0000-00-00 00:00:00','2017-12-11 20:58:51',''),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL,''),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49',''),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL,'');
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +238,7 @@ CREATE TABLE `area` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +247,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active'),(2,'AreaCode','AreaC',2,'2019-02-28 23:58:03',NULL,'2019-02-28 23:58:03',NULL,'active');
+INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active'),(2,'AreaCode1','Area1',2,'2019-02-28 23:58:03',NULL,'2019-05-13 02:01:30',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'',NULL,'');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,61 +316,67 @@ LOCK TABLES `banners_history` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `categories`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `categories` (
-  `categories_id` int(11) NOT NULL AUTO_INCREMENT,
-  `categories_image` mediumtext COLLATE utf8_unicode_ci,
-  `categories_icon` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` mediumtext COLLATE utf8_unicode_ci,
+  `icon` mediumtext COLLATE utf8_unicode_ci,
   `sort_order` int(3) DEFAULT NULL,
-  `date_added` datetime DEFAULT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `categories_slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`categories_id`),
-  KEY `idx_categories_parent_id` (`parent_id`)
+  `slug` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'resources/assets/images/category_images/1542638517.512.png','resources/assets/images/category_icons/1502101166.man-standing-up.png',0,NULL,'2017-08-07 10:19:26','2018-11-19 02:41:57','drink-1'),(2,'resources/assets/images/category_images/1542639564.unnamed.jpg','resources/assets/images/category_icons/1542639554.unnamed.jpg',1,NULL,'2017-08-07 11:33:23','2018-11-19 03:00:17','drink'),(3,'resources/assets/images/category_images/1542639521.splash.png','',0,NULL,'2018-11-14 05:37:50','2018-11-19 02:58:41','snack'),(4,'resources/assets/images/category_images/1542644133.IMG_20181115_013910.jpg','resources/assets/images/category_icons/1542644115.IMG_20181115_013910.jpg',3,NULL,'2018-11-14 05:38:11','2018-11-19 04:15:33','sanck');
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-05-14 01:09:43',NULL,'active');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `categories_description`
+-- Table structure for table `category_description`
 --
 
-DROP TABLE IF EXISTS `categories_description`;
+DROP TABLE IF EXISTS `category_description`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `categories_description` (
-  `categories_description_id` int(100) NOT NULL AUTO_INCREMENT,
-  `categories_id` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `category_description` (
+  `category_description_id` int(100) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT '1',
-  `categories_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`categories_description_id`),
-  KEY `idx_categories_name` (`categories_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `category_id` int(11) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`category_description_id`),
+  KEY `idx_categories_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categories_description`
+-- Dumping data for table `category_description`
 --
 
-LOCK TABLES `categories_description` WRITE;
-/*!40000 ALTER TABLE `categories_description` DISABLE KEYS */;
-INSERT INTO `categories_description` VALUES (1,1,1,'Drink'),(2,1,5,'飲料'),(3,2,1,'維他'),(4,2,5,'維他'),(5,3,1,'Snack'),(6,3,5,'小食'),(7,4,1,'卡樂B'),(8,4,5,'卡樂B');
-/*!40000 ALTER TABLE `categories_description` ENABLE KEYS */;
+LOCK TABLES `category_description` WRITE;
+/*!40000 ALTER TABLE `category_description` DISABLE KEYS */;
+INSERT INTO `category_description` VALUES (1,'Category1',1,1,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(2,'abcd',2,1,'2019-05-13 23:55:56',NULL,'2019-05-13 23:55:56',NULL,'active'),(5,'Category2',1,4,'2019-05-14 01:09:43',NULL,'2019-05-14 01:09:43',NULL,'active');
+/*!40000 ALTER TABLE `category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -391,7 +397,7 @@ CREATE TABLE `cities` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,7 +406,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city','japan',2,'2019-02-27 23:45:54',NULL,'2019-02-27 23:45:54',NULL,'active');
+INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-13 02:01:22',NULL,'active');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -424,7 +430,7 @@ CREATE TABLE `countries` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_COUNTRIES_NAME` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -433,7 +439,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-02-27 23:45:36',NULL,'active');
+INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active'),(16,'Country','CountryCod',NULL,NULL,'2019-05-14 01:57:04',0,'2019-05-14 01:57:04',NULL,'active');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,7 +553,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `idx_customers_email_address` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -556,7 +562,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (4,'1','Jamie','User','2018-11-09','jamie951123@gmail.com','',NULL,'53403540','344444','123123',NULL,NULL,NULL,'',1,'','0000-00-00 00:00:00',NULL,'2019-04-01 00:20:39',NULL,'active'),(5,'1','First Name','Last Name','2019-03-24','admin@gmail.com','',NULL,'123123213213','344444','admin',NULL,NULL,NULL,'',0,'','2019-03-30 01:03:44',NULL,'2019-03-31 17:18:11',NULL,'active'),(11,'1','12321','12321','2019-04-30','admin123@gmail.com','',NULL,'123123213213','344444','',NULL,NULL,NULL,'resources/assets/images/user_profile/1554049833.eYrqUor.png',0,'','2019-04-01 00:29:31',NULL,'2019-04-01 00:30:33',NULL,'active'),(12,'1','12321','12321','2019-04-22','admin332@gmail.com','',NULL,'1234','344444','',NULL,NULL,NULL,'',0,'','2019-04-01 00:29:50',NULL,'2019-05-02 21:26:00',NULL,'active');
+INSERT INTO `customers` VALUES (4,'1','Jamie','User','2018-11-09','jamie951123@gmail.com','',NULL,'53403540','344444','123123',NULL,NULL,NULL,'',1,'','0000-00-00 00:00:00',NULL,'2019-04-01 00:20:39',NULL,'active'),(12,'1','12321','12321','2019-04-22','admin332@gmail.com','',NULL,'1234','344444','',NULL,NULL,NULL,'resources/assets/images/user_profile/1557598057.螢幕截圖 2019-05-11 下午2.05.14.png',0,'','2019-04-01 00:29:50',NULL,'2019-05-12 02:07:37',NULL,'active'),(13,'F','12321','12321','1900-12-27','wqewq@gmail.com','',NULL,'2213213213','44444444','',NULL,NULL,NULL,'resources/assets/images/user_profile/1557685439.螢幕截圖 2019-05-11 下午2.05.04.png',0,'','2019-05-12 02:06:01',NULL,'2019-05-13 02:23:59',NULL,'active'),(14,'','test','test','0000-00-00','admin1232131@gmail.com','',NULL,'','','123213',NULL,NULL,NULL,'resources/assets/images/user_profile/1557685921.螢幕截圖 2019-05-11 下午2.05.14.png',0,'','2019-05-13 02:32:01',NULL,'2019-05-13 02:32:01',NULL,'active');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -715,7 +721,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'1','Code1',1,'2019-01-21 23:33:26',NULL,'2019-03-01 00:14:16',NULL,'active'),(8,'2','123',1,'2019-02-25 00:21:32',NULL,'2019-03-01 00:14:20',NULL,'active'),(9,'3','3',2,'2019-03-01 00:07:35',NULL,'2019-03-01 00:14:27',NULL,'active');
+INSERT INTO `district` VALUES (1,'1','Code1',1,'2019-01-21 23:33:26',NULL,'2019-03-01 00:14:16',NULL,'active'),(8,'2','123',1,'2019-02-25 00:21:32',NULL,'2019-03-01 00:14:20',NULL,'active'),(9,'31','31',2,'2019-03-01 00:07:35',NULL,'2019-05-13 02:01:49',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2119,6 +2125,69 @@ INSERT INTO `specials` VALUES (1,25,150.00,1502195102,0,1667174400,0,1),(2,39,27
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sub_category`
+--
+
+DROP TABLE IF EXISTS `sub_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `sub_category` (
+  `sub_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` mediumtext COLLATE utf8_general_mysql500_ci,
+  `icon` mediumtext COLLATE utf8_general_mysql500_ci,
+  `sort_order` int(3) DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `category_id` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`sub_category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_category`
+--
+
+LOCK TABLES `sub_category` WRITE;
+/*!40000 ALTER TABLE `sub_category` DISABLE KEYS */;
+INSERT INTO `sub_category` VALUES (2,'resources/assets/images/sub_category_images/1557765247.螢幕截圖 2019-05-11 下午2.04.30.png',NULL,NULL,NULL,'2019-05-14 00:34:07',NULL,'2019-05-14 00:54:19',NULL,'active','1'),(3,'resources/assets/images/sub_category_images/1557767400.螢幕截圖 2019-05-11 下午2.05.14.png',NULL,NULL,NULL,'2019-05-14 01:10:00',NULL,'2019-05-14 01:20:47',NULL,'active','4');
+/*!40000 ALTER TABLE `sub_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_category_description`
+--
+
+DROP TABLE IF EXISTS `sub_category_description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `sub_category_description` (
+  `sub_category_description_id` int(100) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `sub_category_id` int(11) NOT NULL DEFAULT '0',
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`sub_category_description_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sub_category_description`
+--
+
+LOCK TABLES `sub_category_description` WRITE;
+/*!40000 ALTER TABLE `sub_category_description` DISABLE KEYS */;
+INSERT INTO `sub_category_description` VALUES (2,'sub123',1,2,NULL,'2019-05-14 00:54:19',NULL,'active'),(3,'sub2',1,3,NULL,'2019-05-14 01:20:47',NULL,'active');
+/*!40000 ALTER TABLE `sub_category_description` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tax_class`
 --
 
@@ -2174,27 +2243,6 @@ LOCK TABLES `tax_rates` WRITE;
 INSERT INTO `tax_rates` VALUES (1,43,1,1,7.00,'',NULL,'2017-08-07 07:07:45');
 /*!40000 ALTER TABLE `tax_rates` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Temporary view structure for view `test`
---
-
-DROP TABLE IF EXISTS `test`;
-/*!50001 DROP VIEW IF EXISTS `test`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8mb4;
-/*!50001 CREATE VIEW `test` AS SELECT 
- 1 AS `id`,
- 1 AS `name`,
- 1 AS `iso_code_1`,
- 1 AS `iso_code_2`,
- 1 AS `address_format_id`,
- 1 AS `create_date`,
- 1 AS `create_by_id`,
- 1 AS `edit_date`,
- 1 AS `edit_by_id`,
- 1 AS `status`*/;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `units`
@@ -2266,6 +2314,29 @@ LOCK TABLES `ups_shipping` WRITE;
 INSERT INTO `ups_shipping` VALUES (1,'07','','US_01,US_02,US_03,US_12,US_13,US_14,US_59','0','','','','','','','D Ground','','US','NY','10312','New York City','','','','UPS Shipping');
 /*!40000 ALTER TABLE `ups_shipping` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `view_category`
+--
+
+DROP TABLE IF EXISTS `view_category`;
+/*!50001 DROP VIEW IF EXISTS `view_category`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_category` AS SELECT 
+ 1 AS `category_id`,
+ 1 AS `name`,
+ 1 AS `image`,
+ 1 AS `icon`,
+ 1 AS `slug`,
+ 1 AS `sort_order`,
+ 1 AS `create_date`,
+ 1 AS `create_by_id`,
+ 1 AS `edit_date`,
+ 1 AS `edit_by_id`,
+ 1 AS `status`,
+ 1 AS `language_id`*/;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary view structure for view `view_country_city`
@@ -2419,6 +2490,32 @@ SET character_set_client = utf8mb4;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_sub_category`
+--
+
+DROP TABLE IF EXISTS `view_sub_category`;
+/*!50001 DROP VIEW IF EXISTS `view_sub_category`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_sub_category` AS SELECT 
+ 1 AS `sub_category_id`,
+ 1 AS `category_name`,
+ 1 AS `category_id`,
+ 1 AS `sub_category_name`,
+ 1 AS `image`,
+ 1 AS `icon`,
+ 1 AS `slug`,
+ 1 AS `sort_order`,
+ 1 AS `create_date`,
+ 1 AS `create_by_id`,
+ 1 AS `edit_date`,
+ 1 AS `edit_by_id`,
+ 1 AS `status`,
+ 1 AS `category_language_id`,
+ 1 AS `sub_category_language_id`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `whos_online`
 --
 
@@ -2475,7 +2572,7 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` VALUES (1,'彩虹','CHOIHUNG1',9,'2019-01-19 22:32:12',NULL,'2019-03-01 00:15:30',NULL,'active'),(2,'牛頭角','Code2',1,'2019-01-19 23:30:59',NULL,'2019-02-24 17:18:03',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
+INSERT INTO `zones` VALUES (1,'彩虹1','CHOIHUN1',1,'2019-01-19 22:32:12',NULL,'2019-05-13 02:01:57',NULL,'active'),(2,'牛頭角','Code2',1,'2019-01-19 23:30:59',NULL,'2019-02-24 17:18:03',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2516,10 +2613,10 @@ UNLOCK TABLES;
 --
 
 --
--- Final view structure for view `test`
+-- Final view structure for view `view_category`
 --
 
-/*!50001 DROP VIEW IF EXISTS `test`*/;
+/*!50001 DROP VIEW IF EXISTS `view_category`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -2528,7 +2625,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `test` AS select `countries`.`id` AS `id`,`countries`.`name` AS `name`,`countries`.`iso_code_1` AS `iso_code_1`,`countries`.`iso_code_2` AS `iso_code_2`,`countries`.`address_format_id` AS `address_format_id`,`countries`.`create_date` AS `create_date`,`countries`.`create_by_id` AS `create_by_id`,`countries`.`edit_date` AS `edit_date`,`countries`.`edit_by_id` AS `edit_by_id`,`countries`.`status` AS `status` from `countries` */;
+/*!50001 VIEW `view_category` AS select `category`.`category_id` AS `category_id`,`category_description`.`name` AS `name`,`category`.`image` AS `image`,`category`.`icon` AS `icon`,`category`.`slug` AS `slug`,`category`.`sort_order` AS `sort_order`,`category`.`create_date` AS `create_date`,`category`.`create_by_id` AS `create_by_id`,`category`.`edit_date` AS `edit_date`,`category`.`edit_by_id` AS `edit_by_id`,`category`.`status` AS `status`,`category_description`.`language_id` AS `language_id` from (`category` left join `category_description` on((`category_description`.`category_id` = `category`.`category_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -2622,6 +2719,24 @@ UNLOCK TABLES;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_sub_category`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_sub_category`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_sub_category` AS select `sub_category`.`sub_category_id` AS `sub_category_id`,`category_description`.`name` AS `category_name`,`sub_category`.`category_id` AS `category_id`,`sub_category_description`.`name` AS `sub_category_name`,`sub_category`.`image` AS `image`,`sub_category`.`icon` AS `icon`,`sub_category`.`slug` AS `slug`,`sub_category`.`sort_order` AS `sort_order`,`sub_category`.`create_date` AS `create_date`,`sub_category`.`create_by_id` AS `create_by_id`,`sub_category`.`edit_date` AS `edit_date`,`sub_category`.`edit_by_id` AS `edit_by_id`,`sub_category`.`status` AS `status`,`category_description`.`language_id` AS `category_language_id`,`sub_category_description`.`language_id` AS `sub_category_language_id` from ((`sub_category` left join `category_description` on((`category_description`.`category_id` = `sub_category`.`category_id`))) left join `sub_category_description` on((`sub_category_description`.`sub_category_id` = `sub_category`.`sub_category_id`))) where (`category_description`.`language_id` = `sub_category_description`.`language_id`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2632,4 +2747,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-02 23:41:32
+-- Dump completed on 2019-05-14  1:58:23
