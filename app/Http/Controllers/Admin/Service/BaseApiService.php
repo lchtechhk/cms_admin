@@ -19,7 +19,6 @@ abstract class BaseApiService extends BaseDao{
                 $insert_id = $this->db_prepareInsert($this->getTable(),$array);
                 //
                 $result = array();	
-                $result['label'] = $array['label'];
                 if(!empty($insert_id) && $insert_id > 0){
                     $result['status'] = 'success';
                     $result['response_id'] = $insert_id;
@@ -38,7 +37,6 @@ abstract class BaseApiService extends BaseDao{
             $array['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdate($this->getTable(),$array,$key,$array[$key]);
             $result = array();	
-            $result['label'] = $array['label'];
 			if(!empty($update_id) && $update_id > 0){
                 $result['status'] = 'success';
                 $result['response_id'] = $update_id;
@@ -52,7 +50,6 @@ abstract class BaseApiService extends BaseDao{
             $array['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdateByMultipleKey($this->getTable(),$array,$key_array,$id_array);
             $result = array();	
-            $result['label'] = $array['label'];
 			if(!empty($update_id) && $update_id > 0){
                 $result['status'] = 'success';
                 $result['response_id'] = $update_id;

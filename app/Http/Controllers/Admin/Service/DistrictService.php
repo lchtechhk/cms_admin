@@ -48,12 +48,12 @@ use App\Http\Controllers\Admin\Service\AreaService;
                     return view("admin.location.district.editDistrict", $title)->with('result', $result);		
                 break;
                 case 'add':
-                    $add_district_result = $this->add($result,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
+                    $add_district_result = $this->add($result);
                     $add_district_result['area'] = $this->AreaService->findAll();
                     return view("admin.location.district.addDistrict", $title)->with('result', $add_district_result);
                 break;
                 case 'edit':
-                    $update_district_result = $this->update('id',$result,"labels.DistrictAddedMessage","labels.DistrictAddedMessageFail");
+                    $update_district_result = $this->update('id',$result);
                     $update_district_result['district'] = $this->findById($result['request']->id);
                     $update_district_result['area'] = $this->AreaService->findAll();
                     return view("admin.location.district.editDistrict", $title)->with('result', $update_district_result);		

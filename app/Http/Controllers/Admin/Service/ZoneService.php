@@ -42,19 +42,19 @@ use App\Http\Controllers\Admin\Service\DistrictService;
                     return view("admin.location.zone.editZone", $title)->with('result', $result);			
                 break;
                 case 'add':
-                    $add_zone_result = $this->add($result,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
+                    $add_zone_result = $this->add($result);
                     $add_zone_result['district'] = $this->DistrictService->findAll();
                     return view("admin.location.zone.addZone", $title)->with('result', $add_zone_result);
                 break;
 
                 case 'edit':
-                    $update_zone_result = $this->update('id',$result,"labels.ZoneAddedMessage","labels.ZoneAddedMessageFail");
+                    $update_zone_result = $this->update('id',$result);
                     $update_zone_result['zones'] = $this->findById($result['request']->id);
                     $update_zone_result['district'] = $this->DistrictService->findAll();
                     return view("admin.location.zone.editZone", $title)->with('result', $update_zone_result);		
                 break;
                 case 'delete': 
-                    $delete_zone_result = $this->delete($result['id'],"labels.ZoneDeleted","labels.ZoneDeletedFail");
+                    $delete_zone_result = $this->delete($result['id']);
                     $delete_zone_result['country_search'] = $this->CountryService->findAll();
                     $delete_zone_result['city_search'] = $this->CityService->findAll();
                     $delete_zone_result['area_search'] = $this->AreaService->findAll();

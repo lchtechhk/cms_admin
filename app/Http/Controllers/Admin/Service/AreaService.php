@@ -80,14 +80,14 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                     return view("admin.location.area.editArea", $title)->with('result', $result);		
                 break;
                 case 'add':
-                    $add_area_result = $this->add($result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+                    $add_area_result = $this->add($result);
                     $add_area_result['city'] = $this->CityService->findAll();
 
                     return view("admin.location.area.addArea", $title)->with('result', $add_area_result);
                 break;
 
                 case 'edit':
-                    $update_area_result = $this->update('id',$result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+                    $update_area_result = $this->update('id',$result);
 
                     $update_area_result['city'] = $this->CityService->findAll(); 
                     $update_area_result['area'] = $this->findById($result['request']->id);
@@ -95,7 +95,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                     return view("admin.location.area.editArea", $title)->with('result', $update_area_result);		
                 break;
                 case 'delete': 
-                    $delete_relative_result = $this->delete_relative($result,"labels.AreaDeletedMessage","labels.AreaDeletedFail");
+                    $delete_relative_result = $this->delete_relative($result);
                     $delete_relative_result['country_search'] = $this->CountryService->findAll();
                     $delete_relative_result['city_search'] = $this->CityService->findAll();
                     $delete_relative_result['area'] = $this->View_CCAreaService->getListing();

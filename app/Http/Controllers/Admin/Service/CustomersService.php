@@ -29,9 +29,9 @@ class CustomersService extends BaseApiService{
         $customer_id = $result['customer_id'];
         try{
 			DB::beginTransaction();
-			$delete_customer_result = $this->delete($customer_id,"labels.CustomersDeletedMessage","labels.CustomersDeletedMessageFail");
+			$delete_customer_result = $this->delete($customer_id);
 			if(!empty($delete_customer_result) && $delete_customer_result['status']  != 'success')throw new Exception ($delete_customer_result['message']);
-			$delete_addressbook_result = $this->AddressBookService->deleteByKey_Value('customer_id',$customer_id,"labels.AddressDeletedMessage","labels.AddressDeletedMessageFail");
+			$delete_addressbook_result = $this->AddressBookService->deleteByKey_Value('customer_id',$customer_id);
 			if(!empty($delete_addressbook_result) && $delete_addressbook_result['status']  != 'success')throw new Exception ($delete_addressbook_result['message']);
             
             $result['status'] = 'success';
@@ -62,20 +62,20 @@ class CustomersService extends BaseApiService{
             case 'add':
                 $email = $result['email'];
                 $own_email_count = $this->View_CustomersService->getCountByEmail($email);
-                Log::info('own_email_count : ' . $own_email_count);
+                // Log::info('own_email_count : ' . $own_email_count);
                 if($own_email_count > 0 ){
                     $result['status'] = 'fail';
                     $result['message'] =  'Update Error, The Email Is Duplicate In DB';
                     return view("admin.customer.addCustomer", $title)->with('result', $result);
                 }        
                 $result['customers_picture'] = $this->UploadService->upload_image($result['request'],'newImage','resources/assets/images/user_profile/');
-                $add_customer_result = $this->add($result,"labels.AreaAddedMessage","labels.AreaAddedMessageFail");
+                $add_customer_result = $this->add($result);
                 $customers = $this->findById($add_customer_result['response_id']);
                 $result['customer'] = !empty($customers) && \sizeof($customers)>0? $customers[0] : array();
+                $result = $this->response($result,"Success To Add Customer","view_edit");
                 return view("admin.customer.editCustomer", $title)->with('result', $result);
             break;
             case 'edit':
-                $customers = $this->findById($result['request']->id);
                 $email = $result['email'];
                 $id = $result['id'];
                 $own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
@@ -90,16 +90,25 @@ class CustomersService extends BaseApiService{
                     return view("admin.customer.editCustomer", $title)->with('result', $result);
                 }
                 $result['customers_picture'] = $this->UploadService->upload_image($result['request'],'newImage','resources/assets/images/user_profile/');
-                $update_customer_result = $this->update('id',$result,"labels.CustomerAddedMessage","labels.CustomerAddedMessageFail");
-                Log::info('resultresultresult : ' . json_encode($result));
-                $update_customer_result['customer'] = !empty($customers) && \sizeof($customers)>0? $customers[0] : array();
-                return view("admin.customer.editCustomer", $title)->with('result', $update_customer_result);		
+                $update_customer_result = $this->update('id',$result);
+                if(empty($update_customer_result['status']) || $update_customer_result['status'] == 'fail')throw new Exception("Error To Update Customer");
+                $customers = $this->findById($result['request']->id);
+                $result['customer'] = !empty($customers) && \sizeof($customers)>0? $customers[0] : array();
+                $result = $this->response($result,"Success To Update Customer","view_edit");
+                return view("admin.customer.editCustomer", $title)->with('result', $result);		
             break;
             case 'delete':
-                $delete_customer_result = $this->deleteByKey_Value("id",$result['id'],"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
-                $delete_customer_result['label'] = $result['label'];
-                $delete_customer_result['customers'] = $this->getListing();
-                return view("admin.customer.listingCustomer", $title)->with('result', $delete_customer_result);
+                try{
+                    $delete_customer_result = $this->deleteByKey_Value("id",$result['id']);
+                    if(empty($delete_customer_result['status']) || $delete_customer_result['status'] == 'fail')throw new Exception("Error To Update Customer");
+                    $delete_address_book_result = $this->AddressBookService->deleteByKey_Value("customer_id",$result['id']);
+                    if(empty($delete_address_book_result['status']) || $delete_address_book_result['status'] == 'fail')throw new Exception("Error To Update Customer");
+                    $result['customers'] = $this->getListing();
+                    $result = $this->response($result,"Success To Delete Customer","view_edit");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }
+                return view("admin.customer.listingCustomer", $title)->with('result', $result);
             break;
         }
     }

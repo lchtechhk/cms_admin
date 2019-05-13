@@ -20,8 +20,6 @@ class AddressBookService extends BaseApiService{
     }
     function getListing($result,$title){
         $customer_id = $result['customer_id'];
-        $zones = $this->View_CCADZoneService->findAll();
-        $result['zones'] = $zones;
         $customer_address = $this->findByColumnAndId('customer_id',$customer_id);
         $result['customer_address'] = $customer_address;
         $result['customer_id'] = $customer_id;
@@ -30,15 +28,14 @@ class AddressBookService extends BaseApiService{
     }
     function redirect_view($result,$title){
         $result['label'] = "AddAddress";
+        $zones = $this->View_CCADZoneService->findAll();
+        $result['zones'] = $zones;
         switch($result['operation']){
             case 'listing':
                 $result = $this->getListing($result,$title);
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'view_add':
-                $zones = $this->View_CCADZoneService->findAll();
-                $result['zones'] = $zones;
-                // Log::info('add'.json_encode($result['address']));
                 return view("admin.addressbook.addressDialog")->with('result', $result);
             break;
             case 'view_edit':
@@ -47,27 +44,42 @@ class AddressBookService extends BaseApiService{
                 $result['address'] = array();
                 $result_array = $this->findById($id);
                 $result['address'] = $result_array[0];
-                $result['zones'] = $zones;
                 // Log::info('edit'.json_encode($result));
                 return view("admin.addressbook.addressDialog")->with('result', $result);
             break;
             case 'add':
-                $add_addressbook_result = $this->add($result,"labels.AddressAddedMessage","labels.AddressAddedMessageFail");
-                $address_book_array = $this->getListing($result,$title);
-                $result = array_merge($add_addressbook_result,$address_book_array);
+                try{
+                    $add_addressbook_result = $this->add($result);
+                    if(empty($add_addressbook_result['status']) || $add_addressbook_result['status'] == 'fail')throw new Exception("Error To Delete Category");
+                    $result = $this->getListing($result,$title);
+                    $result = $this->response($result,"Success To Add Address Book","listing");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }	
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'edit':
-                $update_addressbook_result = $this->update("id",$result,"labels.AddressDeletedMessage","labels.AddressDeletedMessageFail");
-                $address_book_array = $this->getListing($result,$title);
-                $result = array_merge($update_addressbook_result,$address_book_array);           
+                try{
+                    $update_addressbook_result = $this->update("id",$result);
+                    if(empty($update_addressbook_result['status']) || $update_addressbook_result['status'] == 'fail')throw new Exception("Error To Delete Category");
+                    $result = $this->getListing($result,$title);
+                    $result = $this->response($result,"Success To Update Address Book","listing");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }	
+                           
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'delete':
-                $id = $result['id'];
-                $delete_address_book_result = $this->delete($id,"labels.AddressDeletedMessage","labels.AddressDeletedMessageFail");
-                $address_book_array = $this->getListing($result,$title);
-                $result = array_merge($delete_address_book_result,$address_book_array);           
+                try{
+                    $id = $result['id'];
+                    $delete_address_book_result = $this->delete($id);
+                    if(empty($delete_address_book_result['status']) || $delete_address_book_result['status'] == 'fail')throw new Exception("Error To Delete Category");
+                    $result = $this->getListing($result,$title);
+                    $result = $this->response($result,"Success To Delete Address Book","listing");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }	      
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
         }
