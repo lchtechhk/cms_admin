@@ -68,10 +68,7 @@ class CategoryService extends BaseApiService{
                         $add_sub_category_description_result = $this->CategoryDescriptionService->add($param,"Successful","Fail");
                         if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
                     }
-                    $result['status'] = 'success';
-                    $result['message'] =  'Success To Add Category';
-                    $result['label'] = "Category";
-                    $result['operation'] = "view_edit";
+                    $result = $this->response($result,"Successful","view_edit");
                     $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
                     $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
                     DB::commit();
@@ -99,10 +96,7 @@ class CategoryService extends BaseApiService{
                         $update_sub_category_description_result = $this->CategoryDescriptionService->update("category_id",$param,"Successful","Fail");
                         if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
                     }
-                    $result['status'] = 'success';
-                    $result['message'] =  'Success To Update Category';
-                    $result['label'] = "Category";
-                    $result['operation'] = "view_edit";
+                    $result = $this->response($result,"Successful","view_edit");
                     $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
                     $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
                     DB::commit();

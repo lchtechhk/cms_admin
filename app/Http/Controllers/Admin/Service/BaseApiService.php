@@ -91,6 +91,12 @@ abstract class BaseApiService extends BaseDao{
             if($is_rollback)DB::rollBack();
             return $result;
         }
+        public function response($result,$message,$operation){
+            $result['status'] = "success";
+            $result['message'] =  $message;
+            $result['operation'] = $operation;
+            return $result;
+        }
         public abstract function redirect_view($result,$title);
     }
 ?>
