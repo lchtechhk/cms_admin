@@ -27,7 +27,6 @@ class AdminCountryController extends Controller {
 
 	// listingCountry
 	public function listingCountry(Request $request){
-        // Log::info('titrequestle : ' . json_encode($request));
 		$title = array('pageTitle' => Lang::get("labels.ListingCountry"));		
 		$result = array();
 		$result['operation'] = 'listing';

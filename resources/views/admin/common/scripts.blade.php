@@ -362,7 +362,7 @@ $(document).on('click', '.addAddressModal', function(){
 		type: "POST",
 		data: '&customer_id='+customer_id,
 		success: function (data) {
-			console.log(data);
+			// console.log(data);
 			$('#addressDialog').html(data); 
 			$('#addressDialog').modal('show');
 		},

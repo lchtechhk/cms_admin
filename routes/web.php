@@ -183,12 +183,12 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/deleteCustomer', 'AdminCustomersController@deleteCustomer');
 
 			//Address Book 
-			Route::get('/listingAddressBook/{id}/', 'AdminAddressBookController@listingAddressBook');
+			Route::get('/listingAddressBook/{customer_id}/', 'AdminAddressBookController@listingAddressBook');
 			Route::post('/view_addAddressBook', 'AdminAddressBookController@view_addAddressBook');
 			Route::post('/view_editAddressBook', 'AdminAddressBookController@view_editAddressBook');
 
 			Route::post('/addAddressBook/{customer_id}', 'AdminAddressBookController@addAddressBook');
-			Route::post('/updateAddressBook/{id}/', 'AdminAddressBookController@updateAddressBook');
+			Route::post('/updateAddressBook/{address_book_id}/', 'AdminAddressBookController@updateAddressBook');
 			Route::post('/deleteAddressBook', 'AdminAddressBookController@deleteAddressBook');
 
 			//Country
