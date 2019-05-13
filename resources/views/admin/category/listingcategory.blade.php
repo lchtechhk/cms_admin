@@ -58,7 +58,8 @@
                                                         </a>
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Delete') }}" id="deleteCategoryId"
-                                                            category_id="{{$category->category_id}}" class="badge bg-red">
+                                                            category_id="{{$category->category_id}}"
+                                                            class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>
                                                     </td>

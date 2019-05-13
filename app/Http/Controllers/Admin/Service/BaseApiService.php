@@ -50,7 +50,7 @@ abstract class BaseApiService extends BaseDao{
 				$result['message'] =  Lang::get($fail_msg);
             }
             $result['operation'] = 'edit';
-		    $result['request'] = $array['request'];
+		    // $result['request'] = $array['request'];
             return $result;
         }
         public function deleteByKey_Value($key,$id,$success_msg,$fail_msg){

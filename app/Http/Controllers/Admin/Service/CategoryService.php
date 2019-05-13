@@ -40,11 +40,11 @@ class CategoryService extends BaseApiService{
             break;
             case 'view_add':
                 $language_array = $this->LanguageService->findAll();
-                $result['language'] = $language_array;
+                $result['languages'] = $language_array;
                 return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $result['language'] = $this->LanguageService->findAll();
+                $result['languages'] = $this->LanguageService->findAll();
                 $category_array = $this->View_CategoryService->findByColumnAndId('category_id',$result['request']->id);
                 $result['category'] = $category_array[0];
                 return view("admin.category.viewCategory", $title)->with('result', $result);
@@ -52,18 +52,28 @@ class CategoryService extends BaseApiService{
             case 'add':
                 try{
                     DB::beginTransaction();
-                    // Log::info('[result] --  : ' .json_encode($result));
-                    $result['language'] = $this->LanguageService->findAll();
-                    $result['image'] = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/');
-                    $result['icon'] = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/');
+                    $result['languages'] = $this->LanguageService->findAll();
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/'))$result['image'] = $image;
+                    if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/'))$result['icon'] = $icon;
                     $add_category_result = $this->add($result,"Successful","Fail");
                     if(empty($add_category_result['status']) || $add_category_result['status'] == 'fail')throw new Exception("Error To Add Category");
                     $result['category_id'] = $add_category_result['response_id'];
-                    $add_sub_category_description_result = $this->CategoryDescriptionService->add($result,"Successful","Fail");
-                    if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add Category");
-
+                    Log::info('[result] --  : ' .json_encode($result));
+                    foreach ($result['name'] as $language_id => $name) {
+                        $param = array();
+                        $param['language_id'] = $language_id;
+                        $param['category_id'] = $result['category_id'];
+                        $param['name'] = $name;
+                        $param['label'] = $result['label'];
+                        $add_sub_category_description_result = $this->CategoryDescriptionService->add($param,"Successful","Fail");
+                        if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
+                    }
                     $result['status'] = 'success';
                     $result['message'] =  'Success To Add Category';
+                    $result['label'] = "Category";
+                    $result['operation'] = "view_edit";
+                    $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
+                    $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
                     DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -74,16 +84,28 @@ class CategoryService extends BaseApiService{
             case 'edit':
                 try{
                     DB::beginTransaction();
-                    $result['language'] = $this->LanguageService->findAll();
-                    $result['image'] = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/');
-                    $result['icon'] = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/');
-                    // $update_category_result = $this->update("category_id",$result,"Successful","Fail");
+                    $result['languages'] = $this->LanguageService->findAll();
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/'))$result['image'] = $image;
+                    if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/'))$result['icon'] = $icon;
                     Log::info('[result] --  : ' . json_encode($result));
-                    // if(empty($update_category_result['status']) || $update_category_result['status'] == 'fail')throw new Exception("Error To update Category");
-                    
-                    // $update_sub_category_description_result = $this->CategoryDescriptionService->update($result['category_id'],$result,"Successful","Fail");
-                    // if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
-                    // $result['category'] = $this->findById($result['request']->id);
+                    $update_category_result = $this->update("category_id",$result,"Successful","Fail");
+                    if(empty($update_category_result['status']) || $update_category_result['status'] == 'fail')throw new Exception("Error To update Category");
+                    foreach ($result['name'] as $language_id => $name) {
+                        $param = array();
+                        $param['language_id'] = $language_id;
+                        $param['category_id'] = $result['category_id'];
+                        $param['name'] = $name;
+                        $param['label'] = $result['label'];
+                        $update_sub_category_description_result = $this->CategoryDescriptionService->update("category_id",$param,"Successful","Fail");
+                        if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
+                    }
+                    $result['status'] = 'success';
+                    $result['message'] =  'Success To Update Category';
+                    $result['label'] = "Category";
+                    $result['operation'] = "view_edit";
+                    $category_array = $this->findByColumnAndId("category_id",$result['category_id']);
+                    $result['category'] = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
+                    DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);

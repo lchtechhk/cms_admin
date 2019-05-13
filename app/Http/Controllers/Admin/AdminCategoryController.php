@@ -26,8 +26,7 @@ use Auth;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Admin\Service\CategoryService;
-
-
+use function GuzzleHttp\json_encode;
 
 class AdminCategoryController extends Controller{
     private $CategoryService;
@@ -66,6 +65,7 @@ class AdminCategoryController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'add';
+        // Log::info('[result] --  : ' . json_encode($result));
         return $this->CategoryService->redirect_view($result,$title);
     }
 
@@ -76,7 +76,6 @@ class AdminCategoryController extends Controller{
         $result['request'] = $request;
         $result['operation'] = 'edit';
         return $this->CategoryService->redirect_view($result,$title);
-        Log::info('updateCategory : ');
     }
 
     function deleteCategory(Request $request){
