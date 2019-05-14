@@ -54,7 +54,6 @@ class AdminCityController extends Controller {
 		$result = $request->input();
 		$result['request'] = $request;
 		$result['operation'] = 'add';
-		$request->input();
 		return $this->CityService->redirect_view($result,$title);
 	}
 
@@ -64,7 +63,6 @@ class AdminCityController extends Controller {
 		$result = $request->input();
 		$result['request'] = $request;
 		$result['operation'] = 'edit';
-		$request->input();
 		return $this->CityService->redirect_view($result,$title);
 
 	}

@@ -28,7 +28,7 @@ class CityService extends BaseApiService{
             $this->View_CCAreaService = new View_CCAreaService();
             
         }
-        public function delete_relative($array,$success_msg,$fail_msg){
+        public function delete_relative($array){
             $result = array();	
             $result['operation'] = 'delete';
             $result['label'] = $array['label'];
@@ -42,7 +42,7 @@ class CityService extends BaseApiService{
                 $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','zone_id',$array['id']);
                 
                 
-                $delete_count = $this->delete($array['id'],$success_msg,$fail_msg);
+                $delete_count = $this->delete($array['id']);
                 if($delete_count == 0) throw new Exception("Error To Delete City", 1);
 
                 if(is_array($area_id_array) && sizeof($area_id_array) > 0){
@@ -61,52 +61,71 @@ class CityService extends BaseApiService{
                 }
                 DB::connection()->getPdo()->commit();
                 $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
+				
             }catch (Exception $e){
                 $result = $this->throwException($result,$e->getMessage(),true);
             }
             return $result;
         }
+        public function getCity($city_id){
+            $cities = $this->findById($city_id);
+            $city = !empty($cities) && sizeof($cities) > 0 ? $cities[0] : array();
+            return $city;
+        }
         function redirect_view($result,$title){
             $result['label'] = "City";
+            $result['countries'] = $this->CountryService->findAll();
+            $result['country_search'] = $result['countries'];
             switch($result['operation']){
                 case 'listing':
-                    $result['country_search'] = $this->CountryService->findAll();
                     $result['cities'] = $this->View_CCityService->getListing();
                     return view("admin.location.city.listingCity", $title)->with('result', $result);
                 break;
                 case 'view_add':
-                    $result['countries'] = $this->CountryService->findAll();
                     return view("admin.location.city.addCity", $title)->with('result', $result);
                 break;
                 case 'view_edit':
-                    $result['countries'] = $this->findById($result['request']->id);
-                    $cities = $this->findById($result['request']->id);
-                    $city = !empty($cities) && sizeof($cities) > 0 ? $cities[0] : array();
-                    $result['city'] = $city;
-                    Log::info('[result] -- getListing : ' .json_encode($result));
-
+                    $result['city'] = $this->getCity($result['request']->id);
                     return view("admin.location.city.editCity", $title)->with('result', $result);	
                 break;
 
                 case 'add':
-                    $add_city_result = $this->add($result);
-
-                    $add_city_result['countries'] = $this->CountryService->findAll();
-                    return view("admin.location.city.addCity", $title)->with('result', $add_city_result);
+                    try{
+                        DB::beginTransaction();
+                        $add_city_result = $this->add($result);
+                        if(empty($add_city_result['status']) || $add_city_result['status'] == 'fail')throw new Exception("Error To Add Category");
+                        $result['city'] = $this->getCity($add_city_result['response_id']);
+                        $result = $this->response($result,"Success To Add City","view_edit");
+                        DB::commit();
+                        return view("admin.location.city.editCity", $title)->with('result', $result);
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                        return view("admin.location.city.addCity", $title)->with('result', $result);
+                    }	
                 break;
                 case 'edit':
-                    $update_city_result = $this->update('id');
-                    $cities = $this->findById($result['request']->id);
-                    $city = !empty($cities) && sizeof($cities) > 0 ? $cities[0] : array();
-                    $update_city_result['city'] = $city;
-                    $update_city_result['countries'] = $this->CountryService->findAll();
-                    return view("admin.location.city.editCity", $title)->with('result', $update_city_result);		
+                    try{
+                        DB::beginTransaction();
+                        $update_city_result = $this->update('id',$result);
+                        if(empty($update_city_result['status']) || $update_city_result['status'] == 'fail')throw new Exception("Error To Update City");
+                        $result = $this->response($result,"Success To Update City","view_edit");
+                        DB::commit();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }		
+                    // Log::info('[city result] --  : ' . json_encode($result));
+                    $result['city'] = $this->getCity($result['id']);
+                    return view("admin.location.city.editCity", $title)->with('result', $result);
+
                 break;
                 case 'delete': 
-                    $result = $this->delete_relative($result,"labels.CityDeletedTax","labels.CityDeletedTaxFail"); 
-
-                    $result['country_search'] = $this->CountryService->findAll();
+                    try{
+                        $delete_relative_result = $this->delete_relative($result); 
+                        if(empty($delete_relative_result['status']) || $delete_relative_result['status'] == 'fail')throw new Exception("Error To Delete City");
+                        $result = $this->response($result,"Success To Delete City","listing");
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }	
                     $result['cities'] = $this->View_CCityService->getListing();
                     return view("admin.location.city.listingCity", $title)->with('result', $result);	
                 break;

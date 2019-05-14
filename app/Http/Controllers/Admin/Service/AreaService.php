@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
             $this->View_CCADistrictService = new View_CCADistrictService();
             $this->View_CCADZoneService = new View_CCADZoneService();
         }
-        public function delete_relative($array,$success_msg,$fail_msg){
+        public function delete_relative($array){
             $result = array();	
             $result['operation'] = 'delete';
             $result['label'] = $array['label'];
@@ -40,7 +40,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                 $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','zone_id',$array['id']);
                 
                 
-                $delete_count = $this->delete($array['id'],$success_msg,$fail_msg);
+                $delete_count = $this->delete($array['id']);
                 if($delete_count == 0) throw new Exception("Error To Delete Area", 1);
                 
                 if(is_array($district_id_array) && sizeof($district_id_array) > 0){
@@ -54,7 +54,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                 }
                 DB::connection()->getPdo()->commit();
                 $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
+				
             }catch (Exception $e){
                 $result = $this->throwException($result,$e->getMessage(),true);
             }

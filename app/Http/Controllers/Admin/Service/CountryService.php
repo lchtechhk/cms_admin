@@ -31,7 +31,7 @@ class CountryService extends BaseApiService{
             ->paginate(60);
             return $result;
         }
-        public function delete_relative($array,$success_msg,$fail_msg){
+        public function delete_relative($array){
             $result = array();	
             $result['operation'] = 'delete';
             $result['label'] = $array['label'];
@@ -44,7 +44,7 @@ class CountryService extends BaseApiService{
                 $district_id_array = $this->View_CCADistrictService->findByColumn_IdArray('countries_id','district_id',$array['id']);
                 $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$array['id']);
                 
-                $delete_count = $this->delete($array['id'],$success_msg,$fail_msg);
+                $delete_count = $this->delete($array['id']);
                 if($delete_count == 0) throw new Exception("Error To Delete Country", 1);
 
                 if(is_array($cities_id_array) && sizeof($cities_id_array) > 0){
@@ -68,7 +68,7 @@ class CountryService extends BaseApiService{
                 }
                 DB::connection()->getPdo()->commit();
                 $result['status'] = 'success';
-				$result['message'] =  Lang::get($success_msg);
+				
             }catch (Exception $e){
                 $result = $this->throwException($result,$e->getMessage(),true);
             }
@@ -92,12 +92,14 @@ class CountryService extends BaseApiService{
                 break;
                 case 'add':
                     try{
+                        DB::beginTransaction();
                         $add_country_result = $this->add($result);
-                        if(empty($add_country_result['status']) || $add_country_result['status'] == 'fail')throw new Exception("Error To update Category");
+                        if(empty($add_country_result['status']) || $add_country_result['status'] == 'fail')throw new Exception("Error To Add Country");
                         $result = $this->response($result,"Success To Add Country","view_edit");
                         $countries = $this->findById($add_country_result['response_id']);
                         // Log::info('[countries] --  : ' . json_encode($countries));
                         $result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
+                        DB::commit();
                         return view("admin.location.country.editCountry", $title)->with('result', $result);
                     }catch(Exception $e){
                         $result = $this->throwException($result,$e->getMessage(),true);
@@ -106,11 +108,13 @@ class CountryService extends BaseApiService{
                 break;
                 case 'edit':
                     try{
+                        DB::beginTransaction();
                         $update_country_result = $this->update('id',$result);
-                        if(empty($update_country_result['status']) || $update_country_result['status'] == 'fail')throw new Exception("Error To update Category");
+                        if(empty($update_country_result['status']) || $update_country_result['status'] == 'fail')throw new Exception("Error To Update Country");
                         $countries = $this->findById($result['request']->id);
                         $result['country'] = empty($countries) && sizeof($countries) > 0 ? array() : $countries[0];
                         $result = $this->response($result,"Success To Update Country","view_edit");
+                        DB::commit();
                     }catch(Exception $e){
                         $result = $this->throwException($result,$e->getMessage(),true);
                     }
@@ -118,7 +122,7 @@ class CountryService extends BaseApiService{
                 break;
                 case 'delete': 
                     try{
-                        $delete_relative_result = $this->delete_relative($result,"labels.CountryDeletedTax","labels.CountryDeletedTaxFail");
+                        $delete_relative_result = $this->delete_relative($result);
                         if(empty($delete_relative_result['status']) || $delete_relative_result['status'] == 'fail')throw new Exception("Error To update Category");
                         $result = $this->response($result,"Success To Delete Country","view_edit");
                     }catch(Exception $e){
