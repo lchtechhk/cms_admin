@@ -60,8 +60,13 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
             }
             return $result;
         }
+        public function getArea($area_id){
+            $area_array = $this->findById($area_id);
+            return !empty($area_array) && sizeof($area_array) > 0 ? $area_array[0] : array();
+        }
         function redirect_view($result,$title){
             $result['label'] = "Area";
+            $result['cities'] = $this->CityService->findAll();
             switch($result['operation']){
                 case 'listing':
                     $result['country_search'] = $this->CountryService->findAll();
@@ -70,36 +75,52 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                     return view("admin.location.area.listingArea", $title)->with('result', $result);
                 break;
                 case 'view_add':
-                    $result['city'] = $this->CityService->findAll();
                     return view("admin.location.area.addArea", $title)->with('result', $result);
                 break;
                 case 'view_edit':
-                    $result['city'] = $this->CityService->findAll(); 
-                    $result['area'] = $this->findById($result['request']->id);
-
+                    $result['area'] = $this->getArea($result['id']);
                     return view("admin.location.area.editArea", $title)->with('result', $result);		
                 break;
                 case 'add':
-                    $add_area_result = $this->add($result);
-                    $add_area_result['city'] = $this->CityService->findAll();
-
-                    return view("admin.location.area.addArea", $title)->with('result', $add_area_result);
+                    try{
+                        DB::beginTransaction();
+                        $add_area_result = $this->add($result);
+                        if(empty($add_area_result['status']) || $add_area_result['status'] == 'fail')throw new Exception("Error To Add Area");
+                        $result['area'] = $this->getArea($add_area_result['response_id']);
+                        $result = $this->response($result,"Success To Add Area","view_edit");
+                        DB::commit();
+                        return view("admin.location.area.editArea", $title)->with('result', $result);
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    return view("admin.location.area.addArea", $title)->with('result', $result);
                 break;
 
                 case 'edit':
-                    $update_area_result = $this->update('id',$result);
-
-                    $update_area_result['city'] = $this->CityService->findAll(); 
-                    $update_area_result['area'] = $this->findById($result['request']->id);
-                    // Log::error('message : ' .json_encode($result['area']));
-                    return view("admin.location.area.editArea", $title)->with('result', $update_area_result);		
+                    try{
+                        DB::beginTransaction();
+                        $update_area_result = $this->update('id',$result);
+                        if(empty($update_area_result['status']) || $update_area_result['status'] == 'fail')throw new Exception("Error To Add Area");
+                        $result['area'] = $this->getArea($result['id']);
+                        $result = $this->response($result,"Success To Add Area","view_edit");
+                        DB::commit();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }	
+                    return view("admin.location.area.editArea", $title)->with('result', $update_area_result);	
                 break;
-                case 'delete': 
-                    $delete_relative_result = $this->delete_relative($result);
-                    $delete_relative_result['country_search'] = $this->CountryService->findAll();
-                    $delete_relative_result['city_search'] = $this->CityService->findAll();
-                    $delete_relative_result['area'] = $this->View_CCAreaService->getListing();
-                    return view("admin.location.area.listingArea", $title)->with('result', $delete_relative_result);	
+                case 'delete':
+                    try{ 
+                        $delete_relative_result = $this->delete_relative($result);
+                        if(empty($delete_relative_result['status']) || $delete_relative_result['status'] == 'fail')throw new Exception("Error To Add Area");
+
+                        $result['country_search'] = $this->CountryService->findAll();
+                        $result['city_search'] = $this->CityService->findAll();
+                        $result['area'] = $this->View_CCAreaService->getListing();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    return view("admin.location.area.listingArea", $title)->with('result', $result);	
                 break;
             }
         }
