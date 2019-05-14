@@ -45,6 +45,7 @@ class AdminAreaController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.EditArea"));
 		$result = array();
 		$result['request'] = $request;
+		$result['id'] = $request->id;
 		$result['operation'] = 'view_edit';
 		return $this->AreaService->redirect_view($result,$title);
 	}

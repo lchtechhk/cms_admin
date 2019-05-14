@@ -107,7 +107,7 @@ use App\Http\Controllers\Admin\Service\View_CCAreaService;
                     }catch(Exception $e){
                         $result = $this->throwException($result,$e->getMessage(),true);
                     }	
-                    return view("admin.location.area.editArea", $title)->with('result', $update_area_result);	
+                    return view("admin.location.area.editArea", $title)->with('result', $result);	
                 break;
                 case 'delete':
                     try{ 

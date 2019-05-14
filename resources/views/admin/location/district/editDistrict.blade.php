@@ -15,7 +15,7 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">      
-                      {!! Form::open(array('url' =>'admin/updateDistrict/'.$result["district"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}        
+                      {!! Form::open(array('url' =>'admin/updateDistrict/'.$result["district"]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}        
                       <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ID') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">

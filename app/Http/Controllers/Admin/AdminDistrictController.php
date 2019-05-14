@@ -45,6 +45,7 @@ class AdminDistrictController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.EditDistrict"));
 		$result = array();
 		$result['request'] = $request;
+		$result['id'] = $request->id;
 		$result['operation'] = 'view_edit';
 		return $this->DistrictService->redirect_view($result,$title);
     }
