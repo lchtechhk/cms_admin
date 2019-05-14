@@ -247,7 +247,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active'),(2,'AreaCode1','Area1',2,'2019-02-28 23:58:03',NULL,'2019-05-13 02:01:30',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'',NULL,'');
+INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,7 +406,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-13 02:01:22',NULL,'active');
+INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-14 22:57:58',NULL,'active');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,7 +439,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active'),(16,'Country','CountryCod',NULL,NULL,'2019-05-14 01:57:04',0,'2019-05-14 01:57:04',NULL,'active');
+INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -721,7 +721,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'1','Code1',1,'2019-01-21 23:33:26',NULL,'2019-03-01 00:14:16',NULL,'active'),(8,'2','123',1,'2019-02-25 00:21:32',NULL,'2019-03-01 00:14:20',NULL,'active'),(9,'31','31',2,'2019-03-01 00:07:35',NULL,'2019-05-13 02:01:49',NULL,'active');
+INSERT INTO `district` VALUES (1,'DistrictName','Distr',1,'2019-01-21 23:33:26',NULL,'2019-05-15 00:01:08',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2563,7 +2563,7 @@ CREATE TABLE `zones` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_zones_country_id` (`district_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2572,7 +2572,7 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` VALUES (1,'彩虹1','CHOIHUN1',1,'2019-01-19 22:32:12',NULL,'2019-05-13 02:01:57',NULL,'active'),(2,'牛頭角','Code2',1,'2019-01-19 23:30:59',NULL,'2019-02-24 17:18:03',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
+INSERT INTO `zones` VALUES (1,'12232','CHOIH3UN1',8,'2019-01-19 22:32:12',NULL,'2019-05-14 23:56:10',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active'),(10,'Zone','Code',1,'2019-05-15 00:01:17',NULL,'2019-05-15 00:01:17',NULL,'active');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2747,4 +2747,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-14  1:58:23
+-- Dump completed on 2019-05-15  0:05:30
