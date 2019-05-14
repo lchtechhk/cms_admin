@@ -14,7 +14,7 @@
   </script>
   <style>
     .display_controller{
-			/* display:none; */
+			display:none;
 		}
   </style>
 <section class="content-header">
