@@ -45,6 +45,7 @@ class AdminZoneController extends Controller {
 		$title = array('pageTitle' => Lang::get("labels.EditZone"));
 		$result = array();
 		$result['request'] = $request;
+		$result['id'] = $request->id;
 		$result['operation'] = 'view_edit';
 		return $this->ZoneService->redirect_view($result,$title);
 	}

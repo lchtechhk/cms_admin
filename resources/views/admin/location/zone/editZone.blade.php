@@ -15,26 +15,26 @@
                 <div class="box box-info"><br>
                   @include('layouts/responseMessage')
                   <div class="box-body">      
-                      {!! Form::open(array('url' =>'admin/updateZone/'.$result["zones"][0]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}        
+                      {!! Form::open(array('url' =>'admin/updateZone/'.$result["zone"]->id, 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}        
                       <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ID') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('id', $result['zones'][0]->id, array('class'=>'form-control', 'id'=>'id','readonly'=>'true'))!!}
+                            {!! Form::text('id', $result['zone']->id, array('class'=>'form-control', 'id'=>'id','readonly'=>'true'))!!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryNameText') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
-                        </div>
+                      </div>
 
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.District') }}</label>
                             <div class="col-sm-10 col-md-4">
                               <select name="district_id" class='form-control field-validate'>
-                                  @foreach( $result['district'] as $district_data)
+                                  @foreach( $result['districts'] as $district)
                                   <option
-                                    @if( $district_data->id == $result['district'][0]->id)
+                                    @if( $district->id == $result['zone']->district_id)
                                         selected
                                       @endif
-                                    value="{{ $district_data->id }}"> {{ $district_data->name }} </option>
+                                    value="{{ $district->id }}"> {{ $district->name }} </option>
                                   @endforeach
                               </select>
                               <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseZoneArea') }}</span>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ZoneName') }}</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('name', $result['zones'][0]->name, array('class'=>'form-control field-validate', 'id'=>'name'))!!}
+                            {!! Form::text('name', $result['zone']->name, array('class'=>'form-control field-validate', 'id'=>'name'))!!}
                               <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ZoneNameText') }}</span>
                               <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -54,7 +54,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ZoneCode') }}</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('code', $result['zones'][0]->code, array('class'=>'form-control', 'id'=>'code'))!!}
+                            {!! Form::text('code', $result['zone']->code, array('class'=>'form-control', 'id'=>'code'))!!}
                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ZoneCodeText') }}</span>
                                 <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('create_date',  $result['zones'][0]->create_date, array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
+                            {!! Form::text('create_date',  $result['zone']->create_date, array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('edit_date',  $result['zones'][0]->edit_date, array('class'=>'form-control', 'id'=>'edit_date','readonly'=>'true')) !!}
+                            {!! Form::text('edit_date',  $result['zone']->edit_date, array('class'=>'form-control', 'id'=>'edit_date','readonly'=>'true')) !!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>

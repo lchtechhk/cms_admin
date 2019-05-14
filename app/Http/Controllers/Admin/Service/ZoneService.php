@@ -21,47 +21,70 @@ use App\Http\Controllers\Admin\Service\DistrictService;
             $this->View_CCADZoneService = new View_CCADZoneService();
         }
 
+        function getZone($zone_id){
+            $zones = $this->findById($zone_id);
+            return !empty($zones) && sizeof($zones) > 0 ? $zones[0] : array();
+
+
+        }
         function redirect_view($result,$title){
             $result['label'] = "Zone";
+            $result['districts'] = $this->DistrictService->findAll();
+
             switch($result['operation']){
                 case 'listing':
                     $result['country_search'] = $this->CountryService->findAll();
                     $result['city_search'] = $this->CityService->findAll();
                     $result['area_search'] = $this->AreaService->findAll();
-                    $result['district_search'] = $this->DistrictService->findAll();
+                    $result['district_search'] = $result['districts'];
                     $result['zones'] = $this->View_CCADZoneService->getListing();
                     return view("admin.location.zone.listingZone", $title)->with('result', $result);
                 break;
                 case 'view_add':
-                    $result['district'] = $this->DistrictService->findAll();
                     return view("admin.location.zone.addZone", $title)->with('result', $result);
                 break;
                 case 'view_edit':
-                    $result['zones'] = $this->findById($result['request']->id);
-                    $result['district'] = $this->DistrictService->findAll();
+                    $result['zone'] = $this->getZone($result['id']);
                     return view("admin.location.zone.editZone", $title)->with('result', $result);			
                 break;
                 case 'add':
-                    $add_zone_result = $this->add($result);
-                    $add_zone_result['district'] = $this->DistrictService->findAll();
-                    return view("admin.location.zone.addZone", $title)->with('result', $add_zone_result);
+                    try{
+                        DB::beginTransaction();
+                        $add_zone_result = $this->add($result);
+                        if(empty($add_zone_result['status']) || $add_zone_result['status'] == 'fail')throw new Exception("Error To Add Zone");
+                        $result['zone'] = $this->getZone($add_zone_result['response_id']);
+                        $result = $this->response($result,"Success To Add Zone","view_edit");
+                        DB::commit();
+                        return view("admin.location.zone.addZone", $title)->with('result', $result);
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                        return view("admin.location.zone.editZone", $title)->with('result', $result);		
+                    }
                 break;
 
                 case 'edit':
-                    $update_zone_result = $this->update('id',$result);
-                    $update_zone_result['zones'] = $this->findById($result['request']->id);
-                    $update_zone_result['district'] = $this->DistrictService->findAll();
-                    return view("admin.location.zone.editZone", $title)->with('result', $update_zone_result);		
+                    try{
+                        DB::beginTransaction();
+                        $update_zone_result = $this->update('id',$result);
+                        if(empty($update_zone_result['status']) || $update_zone_result['status'] == 'fail')throw new Exception("Error To Update Zone");
+                        $result['zone'] = $this->getZone($result['id']);
+                        $result = $this->response($result,"Success To Update Zone","view_edit");
+                        DB::commit();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    return view("admin.location.zone.editZone", $title)->with('result', $result);		
+
                 break;
                 case 'delete': 
                     $delete_zone_result = $this->delete($result['id']);
-                    $delete_zone_result['country_search'] = $this->CountryService->findAll();
-                    $delete_zone_result['city_search'] = $this->CityService->findAll();
-                    $delete_zone_result['area_search'] = $this->AreaService->findAll();
-                    $delete_zone_result['district_search'] = $this->DistrictService->findAll();
-                    $delete_zone_result['zones'] = $this->View_CCADZoneService->getListing();
-                    $delete_zone_result['label'] = $result['label'];
-                    return view("admin.location.zone.listingZone", $title)->with('result', $delete_zone_result);	
+                    if(empty($delete_zone_result['status']) || $delete_zone_result['status'] == 'fail')throw new Exception("Error To Delete Zone");
+                    $result['country_search'] = $this->CountryService->findAll();
+                    $result['city_search'] = $this->CityService->findAll();
+                    $result['area_search'] = $this->AreaService->findAll();
+                    $result['district_search'] = $$result['district'];
+                    $result['zones'] = $this->View_CCADZoneService->getListing();
+                    return view("admin.location.zone.listingZone", $title)->with('result', $result);	
                 break;
             }
         }

@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Country') }}</label>
+                          <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Area') }}</label>
                             <div class="col-sm-10 col-md-4">
                               <select name="area_id" class='form-control field-validate'>
                                   @foreach( $result['area'] as $area_data)

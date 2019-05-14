@@ -62,26 +62,26 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($result['zones'] as $key=>$zones)
+                        @foreach ($result['zones'] as $key=>$zone)
                         <tr>
-                          <td>{{ $zones->zone_id }}</td>
-                          <td class="display_controller">{{ $zones->countries_id }}</td>
-                          <td>{{ $zones->countries_name }}</td>
-                          <td class="display_controller">{{ $zones->cities_id }}</td>
-                          <td>{{ $zones->cities_name }}</td>
-                          <td class="display_controller">{{ $zones->area_id }}</td>
-                          <td>{{ $zones->area_name }}</td>
-                          <td class="display_controller">{{ $zones->district_id }}</td>
-                          <td>{{ $zones->district_name }}</td>
-                          <td>{{ $zones->zone_name }}</td>
-                          <td>{{ $zones->zone_code }}</td>
+                          <td>{{ $zone->zone_id }}</td>
+                          <td class="display_controller">{{ $zone->countries_id }}</td>
+                          <td>{{ $zone->countries_name }}</td>
+                          <td class="display_controller">{{ $zone->cities_id }}</td>
+                          <td>{{ $zone->cities_name }}</td>
+                          <td class="display_controller">{{ $zone->area_id }}</td>
+                          <td>{{ $zone->area_name }}</td>
+                          <td class="display_controller">{{ $zone->district_id }}</td>
+                          <td>{{ $zone->district_name }}</td>
+                          <td>{{ $zone->zone_name }}</td>
+                          <td>{{ $zone->zone_code }}</td>
                           <td>
                             <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Edit') }}"
-                              href="view_editZone/{{ $zones->zone_id }}" class="badge bg-light-blue">
+                              href="view_editZone/{{ $zone->zone_id }}" class="badge bg-light-blue">
                               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </a>
                             <a data-toggle="tooltip" data-placement="bottom" title="{{ trans('labels.Delete') }}"
-                              id="deleteZoneId" zone_id="{{ $zones->zone_id }}" class="badge bg-red">
+                              id="deleteZoneId" zone_id="{{ $zone->zone_id }}" class="badge bg-red">
                               <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                           </td>
