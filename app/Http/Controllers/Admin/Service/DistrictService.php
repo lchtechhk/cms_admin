@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\Service\AreaService;
 
         function redirect_view($result,$title){
             $result['label'] = "District";
+            $result['area'] = $this->AreaService->findAll();
             switch($result['operation']){
                 case 'listing':
                     $result['country_search'] = $this->CountryService->findAll();
@@ -39,34 +40,61 @@ use App\Http\Controllers\Admin\Service\AreaService;
                     return view("admin.location.district.listingDistrict", $title)->with('result', $result);
                 break;
                 case 'view_add':
-                    $result['area'] = $this->AreaService->findAll();
                     return view("admin.location.district.addDistrict", $title)->with('result', $result);
                 break;
                 case 'view_edit':
-                    $result['district'] = $this->findById($result['request']->id);
-                    $result['area'] = $this->AreaService->findAll();
+                    $result['district'] = $this->getDistrict($result['id']);
                     return view("admin.location.district.editDistrict", $title)->with('result', $result);		
                 break;
                 case 'add':
-                    $add_district_result = $this->add($result);
-                    $add_district_result['area'] = $this->AreaService->findAll();
-                    return view("admin.location.district.addDistrict", $title)->with('result', $add_district_result);
+                    try{
+                        Log::info('[result] : ' . \json_encode($result));
+                        DB::beginTransaction();
+                        $add_district_result = $this->add($result);
+                        if(empty($add_district_result['status']) || $add_district_result['status'] == 'fail')throw new Exception("Error To Add District");
+                        
+                        $result['district'] = $this->getDistrict($add_district_result['response_id']);
+                        $result = $this->response($result,"Success To Add District","view_edit");
+                        DB::commit();
+                        return view("admin.location.district.editDistrict", $title)->with('result', $result);
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                        return view("admin.location.district.addDistrict", $title)->with('result', $result);
+                    }
                 break;
                 case 'edit':
-                    $update_district_result = $this->update('id',$result);
-                    $update_district_result['district'] = $this->findById($result['request']->id);
-                    $update_district_result['area'] = $this->AreaService->findAll();
-                    return view("admin.location.district.editDistrict", $title)->with('result', $update_district_result);		
+                    try{
+                        DB::beginTransaction();
+                        $update_district_result = $this->update('id',$result);
+                        if(empty($update_district_result['status']) || $update_district_result['status'] == 'fail')throw new Exception("Error To Update District");
+                        $result['district'] = $this->getDistrict($result['id']);
+                        $result = $this->response($result,"Success To Update District","view_edit");
+                        DB::commit();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
+                    return view("admin.location.district.editDistrict", $title)->with('result', $result);		
+
                 break;
                 case 'delete': 
-                    $delete_relative_result = $this->delete_relative($result);
-                    $delete_relative_result['country_search'] = $this->CountryService->findAll();
-                    $delete_relative_result['city_search'] = $this->CityService->findAll();
-                    $delete_relative_result['area_search'] = $this->AreaService->findAll();
-                    $delete_relative_result['district'] = $this->View_CCADistrictService->getListing();
-                    return view("admin.location.district.listingDistrict", $title)->with('result', $delete_relative_result);	
+                    try{
+                        $delete_relative_result = $this->delete_relative($result);
+                        if(empty($delete_relative_result['status']) || $delete_relative_result['status'] == 'fail')throw new Exception("Error To Delete District");
+                        $result['country_search'] = $this->CountryService->findAll();
+                        $result['city_search'] = $this->CityService->findAll();
+                        $result['area_search'] = $result['area'];
+                        $result['district'] = $this->View_CCADistrictService->getListing();
+                        return view("admin.location.district.listingDistrict", $title)->with('result', $result);	
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }
                 break;
             }
+        }
+
+        public function getDistrict($district_id){
+            $district_array = $this->findById($district_id);
+            return !empty($district_array) && sizeof($district_array) > 0 ? $district_array[0] : array();
         }
 
         public function delete_relative($array){

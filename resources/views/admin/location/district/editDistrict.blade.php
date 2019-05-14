@@ -19,7 +19,7 @@
                       <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ID') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('id', $result['district'][0]->id, array('class'=>'form-control', 'id'=>'id','readonly'=>'true'))!!}
+                            {!! Form::text('id', $result['district']->id, array('class'=>'form-control', 'id'=>'id','readonly'=>'true'))!!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CountryNameText') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -31,7 +31,7 @@
                               <select name="area_id" class='form-control field-validate'>
                                   @foreach( $result['area'] as $area_data)
                                   <option
-                                    @if( $area_data->id == $result['district'][0]->area_id)
+                                    @if( $area_data->id == $result['district']->area_id)
                                         selected
                                       @endif
                                     value="{{ $area_data->id }}"> {{ $area_data->name }} </option>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DistrictName') }}</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('name', $result['district'][0]->name, array('class'=>'form-control field-validate', 'id'=>'name'))!!}
+                            {!! Form::text('name', $result['district']->name, array('class'=>'form-control field-validate', 'id'=>'name'))!!}
                               <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.DistrictNameText') }}</span>
                               <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -54,7 +54,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DistrictCode') }}</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('code', $result['district'][0]->code, array('class'=>'form-control', 'id'=>'code'))!!}
+                            {!! Form::text('code', $result['district']->code, array('class'=>'form-control', 'id'=>'code'))!!}
                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.DistrictCodeText') }}</span>
                                 <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -63,7 +63,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('create_date',  $result['district'][0]->create_date, array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
+                            {!! Form::text('create_date',  $result['district']->create_date, array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                           <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span style="color:red">★</label>
                           <div class="col-sm-10 col-md-4">
-                            {!! Form::text('edit_date',  $result['district'][0]->edit_date, array('class'=>'form-control', 'id'=>'edit_date','readonly'=>'true')) !!}
+                            {!! Form::text('edit_date',  $result['district']->edit_date, array('class'=>'form-control', 'id'=>'edit_date','readonly'=>'true')) !!}
                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
                             <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                           </div>
