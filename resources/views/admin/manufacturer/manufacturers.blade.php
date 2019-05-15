@@ -60,9 +60,7 @@
                             <td>{{ $manufacturer->name }}</td>
                             <td><img src="{{asset('').'/'.$manufacturer->image}}" alt="" width=" 100px"></td>
                             <td>
-                            	<!--<strong>{{ trans('labels.ClickDate') }}: </strong> {{ $manufacturer->clik_date }}<br>-->
                                 <strong>{{ trans('labels.URL') }}: </strong>{{ $manufacturer->url }} <br>
-                                <!--<strong>{{ trans('labels.Clicked') }}: </strong>{{ $manufacturer->url_clicked }}-->  
                             </td>
                             <td>
                             	<a data-toggle="tooltip" data-placement="bottom" title="Edit" href="editmanufacturer/{{ $manufacturer->id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 

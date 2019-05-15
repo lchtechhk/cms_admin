@@ -5,54 +5,53 @@ use DB;
 use Lang;
 use Exception;
 
-use App\Http\Controllers\Admin\Service\View_ManufacturerService;
+use App\Http\Controllers\Admin\Service\View_ProductService;
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
-use App\Http\Controllers\Admin\Service\ManufacturerDescriptionService;
+use App\Http\Controllers\Admin\Service\ProductDescriptionService;
 use function GuzzleHttp\json_encode;
 
-class ManufacturerService extends BaseApiService{
-    private $View_ManufacturerService;
+class ProductService extends BaseApiService{
+    private $View_ProductService;
     private $LanguageService;
     private $UploadService;
-    private $ManufacturerService;
+    private $ProductService;
 
 
     function __construct(){
-        $this->setTable('manufacturer');
-        $this->View_ManufacturerService = new View_ManufacturerService();
+        $this->setTable('Product');
+        $this->View_ProductService = new View_ProductService();
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
-        $this->ManufacturerDescriptionService = new ManufacturerDescriptionService();
+        $this->ProductDescriptionService = new ProductDescriptionService();
 
     }
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
-        $result['label'] = "Manufacturer";
+        $result['label'] = "Product";
         switch($result['operation']){
             case 'listing':
                 Log::info('[listing] --  : ');
-                $result['manufacturers'] = $this->View_ManufacturerService->findAll();
-                return view("admin.manufacturer.listingManufacturer", $title)->with('result', $result);
+                return view("admin.Product.listingProduct", $title)->with('result', $result);
             break;
             case 'view_add':
                 Log::info('[view_add] --  : ');
-                return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;
             case 'view_edit':
                 Log::info('[view_edit] --  : ');
 
-                return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;
             case 'add':
                 try{
                     DB::beginTransaction();
                     Log::info('[add] --  : ');
                     DB::commit();
-                    return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                    return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                    return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }
             break;
             case 'edit':
@@ -60,10 +59,10 @@ class ManufacturerService extends BaseApiService{
                     DB::beginTransaction();
                     Log::info('[edit] --  : ');
                     DB::commit();
-                    return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                    return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
+                    return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }		
             break;
             case 'delete': 
@@ -73,8 +72,7 @@ class ManufacturerService extends BaseApiService{
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
                 
-                $result['manufacturers'] = $this->View_ManufacturerService->findAll;
-                return view("admin.manufacturer.listingManufacturer", $title)->with('result', $result);
+                return view("admin.Product.listingProduct", $title)->with('result', $result);
             break;
         }
     }
