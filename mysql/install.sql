@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.37-MariaDB
+-- Server version	5.5.5-10.1.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -72,7 +72,7 @@ CREATE TABLE `address_book` (
   `room` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `is_default` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `address_book` (
 
 LOCK TABLES `address_book` WRITE;
 /*!40000 ALTER TABLE `address_book` DISABLE KEYS */;
-INSERT INTO `address_book` VALUES (110,0,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',NULL,'',NULL,'','',NULL),(114,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:53:27',NULL,'2019-05-13 13:53:27',NULL,'active','active',''),(115,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:54:08',NULL,'2019-05-13 14:05:59',NULL,'active','active',''),(116,16,'a1233','s','d',NULL,NULL,NULL,NULL,'2','','','','2019-05-13 14:06:06',NULL,'2019-05-13 14:13:27',NULL,'active','inactive','');
+INSERT INTO `address_book` VALUES (110,0,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'','',NULL),(114,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:53:27',NULL,'2019-05-13 13:53:27',NULL,'active','active',''),(115,16,'1','2','',NULL,NULL,NULL,NULL,'1','','','','2019-05-13 13:54:08',NULL,'2019-05-13 14:05:59',NULL,'active','active',''),(116,16,'a1233','s','d',NULL,NULL,NULL,NULL,'2','','','','2019-05-13 14:06:06',NULL,'2019-05-13 14:13:27',NULL,'active','inactive','');
 /*!40000 ALTER TABLE `address_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `area` (
   `city_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -247,7 +247,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active');
+INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active'),(2,'AreaCode1','Area1',2,'2019-02-28 23:58:03',NULL,'2019-05-13 02:01:30',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +343,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-05-14 01:09:43',NULL,'active');
+INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-05-15 13:51:08',NULL,'active');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ CREATE TABLE `category_description` (
   `category_id` int(11) NOT NULL DEFAULT '0',
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`category_description_id`),
@@ -375,7 +375,7 @@ CREATE TABLE `category_description` (
 
 LOCK TABLES `category_description` WRITE;
 /*!40000 ALTER TABLE `category_description` DISABLE KEYS */;
-INSERT INTO `category_description` VALUES (1,'Category1',1,1,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(2,'abcd',2,1,'2019-05-13 23:55:56',NULL,'2019-05-13 23:55:56',NULL,'active'),(5,'Category2',1,4,'2019-05-14 01:09:43',NULL,'2019-05-14 01:09:43',NULL,'active');
+INSERT INTO `category_description` VALUES (1,'Category1',1,1,'2019-05-13 23:55:56',NULL,'2019-05-14 01:09:34',NULL,'active'),(2,'abcd',2,1,'2019-05-13 23:55:56',NULL,'2019-05-13 23:55:56',NULL,'active'),(5,'Category2',1,4,'2019-05-14 01:09:43',NULL,'2019-05-15 13:51:08',NULL,'active');
 /*!40000 ALTER TABLE `category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,7 +406,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-14 22:57:58',NULL,'active');
+INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-13 02:01:22',NULL,'active');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,7 +425,7 @@ CREATE TABLE `countries` (
   `address_format_id` int(11) DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) NOT NULL,
-  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
@@ -439,7 +439,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active');
+INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active'),(16,'Country','CountryCod',NULL,NULL,'2019-05-14 01:57:04',0,'2019-05-14 01:57:04',NULL,'active');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,7 +547,7 @@ CREATE TABLE `customers` (
   `remember_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
@@ -721,7 +721,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'DistrictName','Distr',1,'2019-01-21 23:33:26',NULL,'2019-05-15 00:01:08',NULL,'active');
+INSERT INTO `district` VALUES (1,'1','Code1',1,'2019-01-21 23:33:26',NULL,'2019-03-01 00:14:16',NULL,'active'),(8,'2','123',1,'2019-02-25 00:21:32',NULL,'2019-03-01 00:14:20',NULL,'active'),(9,'31','31',2,'2019-03-01 00:07:35',NULL,'2019-05-13 02:01:49',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -945,31 +945,65 @@ INSERT INTO `liked_products` VALUES (10,79,1,'2017-08-22 07:51:10'),(11,78,1,'20
 UNLOCK TABLES;
 
 --
--- Table structure for table `manufacturers`
+-- Table structure for table `manufacturer`
 --
 
-DROP TABLE IF EXISTS `manufacturers`;
+DROP TABLE IF EXISTS `manufacturer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `manufacturers` (
-  `manufacturers_id` int(11) NOT NULL AUTO_INCREMENT,
-  `manufacturers_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `manufacturers_image` mediumtext COLLATE utf8_unicode_ci,
-  `date_added` datetime DEFAULT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `manufacturers_slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`manufacturers_id`),
-  KEY `IDX_MANUFACTURERS_NAME` (`manufacturers_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `manufacturer` (
+  `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` text COLLATE utf8_general_mysql500_ci,
+  `image` mediumtext COLLATE utf8_general_mysql500_ci,
+  `slug` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`manufacturer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `manufacturers`
+-- Dumping data for table `manufacturer`
 --
 
-LOCK TABLES `manufacturers` WRITE;
-/*!40000 ALTER TABLE `manufacturers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `manufacturers` ENABLE KEYS */;
+LOCK TABLES `manufacturer` WRITE;
+/*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
+INSERT INTO `manufacturer` VALUES (1,'https://ionicframework.com/docs/installation/environment','resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png',NULL,'2019-05-13 23:55:56',NULL,'2019-05-13 23:55:56',NULL,'active');
+/*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `manufacturer_description`
+--
+
+DROP TABLE IF EXISTS `manufacturer_description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `manufacturer_description` (
+  `manufacturer_description_id` int(100) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `manufacturer_id` int(11) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`manufacturer_description_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `manufacturer_description`
+--
+
+LOCK TABLES `manufacturer_description` WRITE;
+/*!40000 ALTER TABLE `manufacturer_description` DISABLE KEYS */;
+INSERT INTO `manufacturer_description` VALUES (1,'manufactuerer',1,1,'2019-05-13 23:55:56',NULL,'2019-05-13 23:55:56',NULL,'');
+/*!40000 ALTER TABLE `manufacturer_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2139,7 +2173,7 @@ CREATE TABLE `sub_category` (
   `slug` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `category_id` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
@@ -2169,8 +2203,9 @@ CREATE TABLE `sub_category_description` (
   `name` varchar(32) COLLATE utf8_general_mysql500_ci NOT NULL,
   `language_id` int(11) NOT NULL DEFAULT '1',
   `sub_category_id` int(11) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`sub_category_description_id`)
@@ -2183,7 +2218,7 @@ CREATE TABLE `sub_category_description` (
 
 LOCK TABLES `sub_category_description` WRITE;
 /*!40000 ALTER TABLE `sub_category_description` DISABLE KEYS */;
-INSERT INTO `sub_category_description` VALUES (2,'sub123',1,2,NULL,'2019-05-14 00:54:19',NULL,'active'),(3,'sub2',1,3,NULL,'2019-05-14 01:20:47',NULL,'active');
+INSERT INTO `sub_category_description` VALUES (2,'sub123',1,2,'0000-00-00 00:00:00',NULL,'2019-05-14 00:54:19',NULL,'active'),(3,'sub2',1,3,'0000-00-00 00:00:00',NULL,'2019-05-14 01:20:47',NULL,'active');
 /*!40000 ALTER TABLE `sub_category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2490,6 +2525,28 @@ SET character_set_client = utf8mb4;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_manufacturer`
+--
+
+DROP TABLE IF EXISTS `view_manufacturer`;
+/*!50001 DROP VIEW IF EXISTS `view_manufacturer`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_manufacturer` AS SELECT 
+ 1 AS `manufacturer_id`,
+ 1 AS `name`,
+ 1 AS `url`,
+ 1 AS `image`,
+ 1 AS `slug`,
+ 1 AS `language_id`,
+ 1 AS `create_date`,
+ 1 AS `create_by_id`,
+ 1 AS `edit_date`,
+ 1 AS `edit_by_id`,
+ 1 AS `status`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `view_sub_category`
 --
 
@@ -2558,12 +2615,12 @@ CREATE TABLE `zones` (
   `district_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_zones_country_id` (`district_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2572,7 +2629,7 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` VALUES (1,'12232','CHOIH3UN1',8,'2019-01-19 22:32:12',NULL,'2019-05-14 23:56:10',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active'),(10,'Zone','Code',1,'2019-05-15 00:01:17',NULL,'2019-05-15 00:01:17',NULL,'active');
+INSERT INTO `zones` VALUES (1,'彩虹1','CHOIHUN1',1,'2019-01-19 22:32:12',NULL,'2019-05-13 02:01:57',NULL,'active'),(2,'牛頭角','Code2',1,'2019-01-19 23:30:59',NULL,'2019-02-24 17:18:03',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2603,14 +2660,6 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 /*!40000 ALTER TABLE `zones_to_geo_zones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `zones_to_geo_zones` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'cms'
---
-
---
--- Dumping routines for database 'cms'
---
 
 --
 -- Final view structure for view `view_category`
@@ -2721,6 +2770,24 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `view_manufacturer`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_manufacturer`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_manufacturer` AS select `manufacturer`.`manufacturer_id` AS `manufacturer_id`,`manufacturer_description`.`name` AS `name`,`manufacturer`.`url` AS `url`,`manufacturer`.`image` AS `image`,`manufacturer`.`slug` AS `slug`,`manufacturer_description`.`language_id` AS `language_id`,`manufacturer`.`create_date` AS `create_date`,`manufacturer`.`create_by_id` AS `create_by_id`,`manufacturer`.`edit_date` AS `edit_date`,`manufacturer`.`edit_by_id` AS `edit_by_id`,`manufacturer`.`status` AS `status` from (`manufacturer` left join `manufacturer_description` on((`manufacturer`.`manufacturer_id` = `manufacturer_description`.`manufacturer_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `view_sub_category`
 --
 
@@ -2747,4 +2814,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-15  0:05:30
+-- Dump completed on 2019-05-15 17:41:48
