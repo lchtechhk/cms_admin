@@ -27,13 +27,28 @@
         </a>
       </li>
 
-      {{-- <li class="treeview {{ Request::is('admin/manufacturers') ? 'active' : '' }}
-      {{ Request::is('admin/addmanufacturer') ? 'active' : '' }}
-      {{ Request::is('admin/editmanufacturer/*') ? 'active' : '' }} ">
-      <a href="{{ URL::to('admin/manufacturers')}}">
-        <i class="fa fa-industry" aria-hidden="true"></i> <span>{{ trans('labels.link_manufacturer') }}</span>
-      </a>
+      {{-- <li class="treeview 
+        {{ Request::is('admin/manufacturers') ? 'active' : '' }}
+        {{ Request::is('admin/addmanufacturer') ? 'active' : '' }}
+        {{ Request::is('admin/editmanufacturer/*') ? 'active' : '' }} ">
+        <a href="{{ URL::to('admin/manufacturers')}}">
+          <i class="fa fa-industry" aria-hidden="true"></i> <span>{{ trans('labels.link_manufacturer') }}</span>
+        </a>
       </li> --}}
+
+      <li class="treeview 
+        {{ Request::is('admin/listingManufacturer') ? 'active' : '' }}
+        {{ Request::is('admin/view_addManufacturer') ? 'active' : '' }}
+        {{ Request::is('admin/view_editManufacturer/*') ? 'active' : '' }}
+        {{ Request::is('admin/addManufacturer/*') ? 'active' : '' }}
+        {{ Request::is('admin/updateManufacturer/*') ? 'active' : '' }}
+        {{ Request::is('admin/deleteManufacturer/*') ? 'active' : '' }} ">
+        <a href="{{ URL::to('admin/listingManufacturer')}}">
+          <i class="fa fa-industry" aria-hidden="true"></i> <span>{{ trans('labels.link_manufacturer') }}</span>
+        </a>
+      </li>
+
+
       <li class="treeview 
           {{ Request::is('admin/listingCategory') ? 'active' : '' }} 
           {{ Request::is('admin/view_addCategory') ? 'active' : '' }}
@@ -47,7 +62,8 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="{{ Request::is('admin/listingCategory') ? 'active' : '' }}
+          <li class="
+            {{ Request::is('admin/listingCategory') ? 'active' : '' }}
             {{ Request::is('admin/view_addCategory') ? 'active' : '' }} 
             {{ Request::is('admin/view_editCategory/*') ? 'active' : '' }}">
             <a href="{{ URL::to('admin/listingCategory')}}">

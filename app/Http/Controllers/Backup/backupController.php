@@ -30,10 +30,12 @@ class AdminManufacturerController extends Controller{
 	}
 	
 	function listingManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.ListManufacturer"));
-        $result = array();
-		$result['operation'] = 'listing';
-		return $this->ManufacturerService->redirect_view($result,$title);
+        // $title = array('pageTitle' => Lang::get("labels.ListManufacturer"));
+        // $result = array();
+		// $result['operation'] = 'listing';
+		Log::info('[listing] --  : ');
+
+		// return $this->ManufacturerService->redirect_view($result,$title);
     }
 
     // function view_addManufacturer(Request $request){

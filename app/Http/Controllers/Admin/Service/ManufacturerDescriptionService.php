@@ -5,12 +5,9 @@ use DB;
 use Lang;
 use Exception;
 
-class CategoryDescriptionService extends BaseApiService{
-
+class ManufacturerDescriptionService extends BaseApiService{
     function __construct(){
-        $this->setTable('category_description');
-
-
+        $this->setTable('manufacturer_description');
     }
     function redirect_view($result,$title){
     }

@@ -26,12 +26,9 @@ class CategoryService extends BaseApiService{
         $this->CategoryDescriptionService = new CategoryDescriptionService();
 
     }
-    function getListing(){
-        return $this->findAllByLanguage(session('language_id'));
-    }
-
     function redirect_view($result,$title){
         $result['label'] = "Category";
+        $result['languages'] = $this->LanguageService->findAll();
         switch($result['operation']){
             case 'listing':
                 $result['categories'] = $this->View_CategoryService->getListing();
@@ -39,12 +36,9 @@ class CategoryService extends BaseApiService{
                 return view("admin.category.listingCategory", $title)->with('result', $result);
             break;
             case 'view_add':
-                $language_array = $this->LanguageService->findAll();
-                $result['languages'] = $language_array;
                 return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $result['languages'] = $this->LanguageService->findAll();
                 $category_array = $this->View_CategoryService->findByColumnAndId('category_id',$result['request']->id);
                 $result['category'] = $category_array[0];
                 return view("admin.category.viewCategory", $title)->with('result', $result);
@@ -52,7 +46,6 @@ class CategoryService extends BaseApiService{
             case 'add':
                 try{
                     DB::beginTransaction();
-                    $result['languages'] = $this->LanguageService->findAll();
                     if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/'))$result['image'] = $image;
                     if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/'))$result['icon'] = $icon;
                     $add_category_result = $this->add($result);
@@ -80,7 +73,6 @@ class CategoryService extends BaseApiService{
             case 'edit':
                 try{
                     DB::beginTransaction();
-                    $result['languages'] = $this->LanguageService->findAll();
                     if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/category_images/'))$result['image'] = $image;
                     if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/category_icons/'))$result['icon'] = $icon;
                     Log::info('[result] --  : ' . json_encode($result));

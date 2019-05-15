@@ -1,11 +1,4 @@
 <?php
-/*
-Project Name: IonicEcommerce
-Project URI: http://ionicecommerce.com
-Author: VectorCoder Team
-Author URI: http://vectorcoder.com/
-Version: 2.8
-*/
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 

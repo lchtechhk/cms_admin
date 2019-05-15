@@ -55,20 +55,20 @@ Route::group(['prefix' => 'admin'], function () {
 		|
 		*/
 			//main listingManufacturer
-			Route::get('/manufacturers', 'AdminManufacturerController@manufacturers');
-			Route::get('/addmanufacturer', 'AdminManufacturerController@addmanufacturer');
-			Route::post('/addnewmanufacturer', 'AdminManufacturerController@addnewmanufacturer');
-			Route::get('/editmanufacturer/{id}', 'AdminManufacturerController@editmanufacturer');
-			Route::post('/updatemanufacturer', 'AdminManufacturerController@updatemanufacturer');
-			Route::post('/deletemanufacturer', 'AdminManufacturerController@deletemanufacturer');
+			// Route::get('/manufacturers', 'AdminManufacturerController@manufacturers');
+			// Route::get('/addmanufacturer', 'AdminManufacturerController@addmanufacturer');
+			// Route::post('/addnewmanufacturer', 'AdminManufacturerController@addnewmanufacturer');
+			// Route::get('/editmanufacturer/{id}', 'AdminManufacturerController@editmanufacturer');
+			// Route::post('/updatemanufacturer', 'AdminManufacturerController@updatemanufacturer');
+			// Route::post('/deletemanufacturer', 'AdminManufacturerController@deletemanufacturer');
 
 			//Jamie Manufacturer
-			Route::get('/listManufacturer', 'AdminProductsController@listManufacturer');
-			Route::get('/view_addManufacturer', 'AdminProductsController@view_addManufacturer');
-			Route::get('/view_editManufacturer/{id}', 'AdminProductsController@view_editManufacturer');
-			Route::post('/addManufacturer', 'AdminProductsController@addManufacturer');
-			Route::post('/updateManufacturer', 'AdminProductsController@updateManufacturer');
-			Route::post('/deleteManufacturer', 'AdminProductsController@deleteManufacturer');
+			Route::get('/listingManufacturer', 'AdminManufacturerController@listingManufacturer');
+			Route::get('/view_addManufacturer', 'AdminManufacturerController@view_addManufacturer');
+			Route::get('/view_editManufacturer/{id}', 'AdminManufacturerController@view_editManufacturer');
+			Route::post('/addManufacturer', 'AdminManufacturerController@addManufacturer');
+			Route::post('/updateManufacturer', 'AdminManufacturerController@updateManufacturer');
+			Route::post('/deleteManufacturer', 'AdminManufacturerController@deleteManufacturer');
 
 
 			//Jamie Categories
