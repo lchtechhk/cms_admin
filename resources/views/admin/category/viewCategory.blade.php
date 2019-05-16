@@ -49,7 +49,7 @@
                         <span style="color:red">★</span>
                       </label>
                       <div class="col-sm-10 col-md-4">
-                        {!! Form::text("name[".$language->languages_id."]", empty($result['category']->name) ? '' :
+                        {!! Form::text("language_array[".$language->languages_id."]", empty($result['category']->name) ? '' :
                         print_value($result['operation'],$result['category']->name), array('class'=>'form-control
                         field-validate', 'id'=>'name')) !!}
                         <span class="help-block"

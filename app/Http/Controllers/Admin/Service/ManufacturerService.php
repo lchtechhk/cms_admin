@@ -29,13 +29,15 @@ class ManufacturerService extends BaseApiService{
     function getManufacturer($manufacturer_id){
         $manufacturers = $this->View_ManufacturerService->findByColumnAndId("manufacturer_id",$manufacturer_id);
         $manufacturer = !empty($manufacturers) && sizeof($manufacturers) > 0 ? $manufacturers[0] : array();
-        foreach ($manufacturers as $index => $manufacturer) {
-             $language_id = $manufacturer['language_id'];
-             $name = $manufacturer['name'];
-             $manufacturer[$language_id] = array();
-             $manufacturer[$language_id]['name'] = $name;
+        $manufacturer['language_array'] = array();
+        foreach ($manufacturers as $index => $obj) {
+             $language_id = $obj['language_id'];
+             $name = $obj['name'];
+             
+             $manufacturer['language_array'][$language_id] = array();
+             $obj['language_array'][$language_id]['name'] = $name;
         }
-        return $manufacturer = array();
+        return $manufacturer;
     }
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
