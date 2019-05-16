@@ -39,10 +39,10 @@
                                                                 @if(!empty($listingCustomers->customers_picture))
                                                                     <img src="../{{ $manufacturer->image }}" style="width: 50px; float: left; margin-right: 10px">
                                                                 @else
-                                                                <img src="../resources/assets/images/default_images/manufacturer.png" style="width: 50px; float: left; margin-right: 10px">
+                                                                    <img src="../resources/assets/images/default_images/manufacturer.png" style="width: 50px; float: left; margin-right: 10px">
                                                                 @endif 
                                                             </td>
-                                                            <td>{{ $manufacturer->url }}</td>
+                                                            <td><a href="{{ $manufacturer->url }}" target="_blank">Website Link</a></td>
                                                             <td>
                                                                 <a data-toggle="tooltip" data-placement="bottom"
                                                                     title="{{ trans('labels.Edit') }}"

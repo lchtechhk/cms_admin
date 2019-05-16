@@ -36,21 +36,22 @@ class AdminManufacturerController extends Controller{
 		return $this->ManufacturerService->redirect_view($result,$title);
     }
 
-    // function view_addManufacturer(Request $request){
-    //     $title = array('pageTitle' => Lang::get("labels.view_addManufacturer"));
-    //     $result = array();
-	// 	$result['request'] = $request;
-    //     $result['operation'] = 'view_add';
-	// 	return $this->ManufacturerService->redirect_view($result,$title);
-    // }
+    function view_addManufacturer(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.view_addManufacturer"));
+        $result = array();
+		$result['request'] = $request;
+        $result['operation'] = 'view_add';
+		return $this->ManufacturerService->redirect_view($result,$title);
+    }
 
-    // function view_editManufacturer(Request $request){
-    //     $title = array('pageTitle' => Lang::get("labels.view_editManufacturer"));
-    //     $result = array();
-	// 	$result['request'] = $request;
-    //     $result['operation'] = 'view_edit';
-	// 	return $this->ManufacturerService->redirect_view($result,$title);
-    // }
+    function view_editManufacturer(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.view_editManufacturer"));
+        $result = array();
+		$result['request'] = $request;
+		$result['manufacturer_id'] = $request->manufacturer_id;
+        $result['operation'] = 'view_edit';
+		return $this->ManufacturerService->redirect_view($result,$title);
+    }
 
     // function addManufacturer(Request $request){
     //     $title = array('pageTitle' => Lang::get("labels.addManufacturer"));

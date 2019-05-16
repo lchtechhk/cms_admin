@@ -26,6 +26,17 @@ class ManufacturerService extends BaseApiService{
         $this->ManufacturerDescriptionService = new ManufacturerDescriptionService();
 
     }
+    function getManufacturer($manufacturer_id){
+        $manufacturers = $this->View_ManufacturerService->findByColumnAndId("manufacturer_id",$manufacturer_id);
+        $manufacturer = !empty($manufacturers) && sizeof($manufacturers) > 0 ? $manufacturers[0] : array();
+        foreach ($manufacturers as $index => $manufacturer) {
+             $language_id = $manufacturer['language_id'];
+             $name = $manufacturer['name'];
+             $manufacturer[$language_id] = array();
+             $manufacturer[$language_id]['name'] = $name;
+        }
+        return $manufacturer = array();
+    }
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Manufacturer";
@@ -36,12 +47,10 @@ class ManufacturerService extends BaseApiService{
                 return view("admin.manufacturer.listingManufacturer", $title)->with('result', $result);
             break;
             case 'view_add':
-                Log::info('[view_add] --  : ');
                 return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
             break;
             case 'view_edit':
-                Log::info('[view_edit] --  : ');
-
+                $result['manufacturer'] = $this->getManufacturer($result['manufacturer_id']);
                 return view("admin.manufacturer.viewManufacturer", $title)->with('result', $result);
             break;
             case 'add':
