@@ -74,7 +74,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//Jamie Categories
 			Route::get('/listingCategory', 'AdminCategoryController@listingCategory');
 			Route::get('/view_addCategory', 'AdminCategoryController@view_addCategory');
-			Route::get('/view_editCategory/{manufacturer_id}', 'AdminCategoryController@view_editCategory');
+			Route::get('/view_editCategory/{category_id}', 'AdminCategoryController@view_editCategory');
 			Route::post('/addCategory', 'AdminCategoryController@addCategory');
 			Route::post('/updateCategory', 'AdminCategoryController@updateCategory');
 			Route::post('/deleteCategory', 'AdminCategoryController@deleteCategory');

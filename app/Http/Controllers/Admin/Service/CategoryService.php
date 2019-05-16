@@ -28,16 +28,13 @@ class CategoryService extends BaseApiService{
     }
     function getCategory($category_id){
         $category_array = $this->View_CategoryService->findByColumnAndId("category_id",$category_id);
-        $category = !empty($category_array) && sizeof($category_array) ? $category_array[0] : array();
-
-        Log::info('[category0] -- getListing : ' .json_encode($category));
-        $category['language_array'] = array();
-
-        foreach ($category_array as $index => $obj) {
-            $language_id = $obj['language_id'];
-            $name = $obj['name'];
-            $category['language_array'][$language_id] = array();
-            $category['language_array'][$language_id]['name'] = $name;
+        $category = !empty($category_array) && sizeof($category_array) > 0 ? $category_array[0] : array();
+        $category->language_array = array();
+        foreach ($category_array as $obj) {
+            $language_id = $obj->language_id;
+            $name = $obj->name;
+            $category->language_array[$language_id] = array();
+            $category->language_array[$language_id]['name'] = $name;
        }
        Log::info('[category] -- getListing : ' .json_encode($category));
         return $category;
@@ -55,7 +52,7 @@ class CategoryService extends BaseApiService{
                 return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $result['category'] = $this->getCategory($result['request']->id);
+                $result['category'] = $this->getCategory($result['category_id']);
                 return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'add':
@@ -66,8 +63,7 @@ class CategoryService extends BaseApiService{
                     $add_category_result = $this->add($result);
                     if(empty($add_category_result['status']) || $add_category_result['status'] == 'fail')throw new Exception("Error To Add Category");
                     $result['category_id'] = $add_category_result['response_id'];
-                    foreach ($result['language_array'] as $language_id => $obj) {
-                        $name = $obj['name'];
+                    foreach ($result['language_array'] as $language_id => $name) {
                         $param = array();
                         $param['language_id'] = $language_id;
                         $param['category_id'] = $result['category_id'];
@@ -77,7 +73,7 @@ class CategoryService extends BaseApiService{
                         if(empty($add_category_description_result['status']) || $add_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
                     }
                     $result = $this->response($result,"Successful","view_edit");
-                    $result['category'] = $this->getCategory($result['request']->id);
+                    $result['category'] = $this->getCategory($result['category_id']);
                     DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -93,7 +89,7 @@ class CategoryService extends BaseApiService{
                     Log::info('[result] --  : ' . json_encode($result));
                     $update_category_result = $this->update("category_id",$result);
                     if(empty($update_category_result['status']) || $update_category_result['status'] == 'fail')throw new Exception("Error To update Category");
-                    foreach ($result['name'] as $language_id => $name) {
+                    foreach ($result['language_array'] as $language_id => $name) {
                         $param = array();
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
@@ -101,7 +97,7 @@ class CategoryService extends BaseApiService{
                         if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
                     }
                     $result = $this->response($result,"Successful","view_edit");
-                    $result['category'] = $this->getCategory($result['request']->id);
+                    $result['category'] = $this->getCategory($result['category_id']);
                     DB::commit();
                     return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){

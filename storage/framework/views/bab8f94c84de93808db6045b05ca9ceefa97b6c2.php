@@ -1023,6 +1023,14 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 	
 	//deleteCountrytModal
+	$(document).on('click', '#deleteManufacturerId', function(){
+		var manufacturer_id = $(this).attr('manufacturer_id');
+		console.log('deleteManufacturerModal : ' + manufacturer_id);
+		$('#manufacturer_id').val(manufacturer_id);
+		$("#deleteManufacturerModal").modal('show');
+	});
+
+	//deleteCountrytModal
 	$(document).on('click', '#deleteCategoryId', function(){
 		var category_id = $(this).attr('category_id');
 		console.log('deleteCategoryModal : ' + category_id);

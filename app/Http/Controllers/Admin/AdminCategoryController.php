@@ -47,7 +47,8 @@ class AdminCategoryController extends Controller{
     function view_editCategory(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editCategory"));
         $result = array();
-		$result['request'] = $request;
+        $result['request'] = $request;
+        $result['category_id'] = $request->category_id;
         $result['operation'] = 'view_edit';
 		return $this->CategoryService->redirect_view($result,$title);
     }

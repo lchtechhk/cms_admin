@@ -28,6 +28,25 @@
       </li>
 
       
+
+      <li class="treeview 
+        <?php echo e(Request::is('admin/listingManufacturer') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/view_addManufacturer') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/view_editManufacturer/*') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/addManufacturer/*') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/updateManufacturer/*') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/deleteManufacturer/*') ? 'active' : ''); ?> ">
+        <a href="<?php echo e(URL::to('admin/listingManufacturer')); ?>">
+          <i class="fa fa-industry" aria-hidden="true"></i> <span><?php echo e(trans('labels.link_manufacturer')); ?></span>
+        </a>
+      </li>
+
+
       <li class="treeview 
           <?php echo e(Request::is('admin/listingCategory') ? 'active' : ''); ?> 
           <?php echo e(Request::is('admin/view_addCategory') ? 'active' : ''); ?>
@@ -43,7 +62,8 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li class="<?php echo e(Request::is('admin/listingCategory') ? 'active' : ''); ?>
+          <li class="
+            <?php echo e(Request::is('admin/listingCategory') ? 'active' : ''); ?>
 
             <?php echo e(Request::is('admin/view_addCategory') ? 'active' : ''); ?> 
             <?php echo e(Request::is('admin/view_editCategory/*') ? 'active' : ''); ?>">
