@@ -105,6 +105,7 @@ class ManufacturerService extends BaseApiService{
                         }
                     }
                     $result = $this->response($result,"Successful","view_edit");
+                    $result['manufacturer'] = $this->getManufacturer($result['manufacturer_id']);
                     DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
