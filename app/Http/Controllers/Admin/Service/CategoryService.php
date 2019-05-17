@@ -109,11 +109,11 @@ class CategoryService extends BaseApiService{
                     $result = $this->response($result,"Successful","view_edit");
                     $result['category'] = $this->getCategory($result['category_id']);
                     DB::commit();
-                    return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.category.viewCategory", $title)->with('result', $result);
                 }		
+                return view("admin.category.viewCategory", $title)->with('result', $result);
+
             break;
             case 'delete': 
                 try{

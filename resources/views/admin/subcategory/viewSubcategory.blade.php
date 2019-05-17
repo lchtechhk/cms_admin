@@ -14,34 +14,40 @@
                                 <div class="box box-info"><br>
                                     @include('layouts/responseMessage')
                                     <div class="box-body">
-                                        @if ($result['operation'] == 'listing' || $result['operation'] == 'add' || $result['operation'] == 'view_add' )
-                                            {!! Form::open(array('url' =>'admin/addSubCategory', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        @if ($result['operation'] == 'listing' || $result['operation'] == 'add' ||
+                                        $result['operation'] == 'view_add' )
+                                        {!! Form::open(array('url' =>'admin/addSubCategory', 'method'=>'post', 'class'
+                                        => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                         @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                            {!! Form::open(array('url' =>'admin/updateSubCategory', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        {!! Form::open(array('url' =>'admin/updateSubCategory', 'method'=>'post',
+                                        'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data'))
+                                        !!}
                                         @endif
                                         @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                            <div class="form-group">
-                                                <label for="name"
-                                                    class="col-sm-2 col-md-3 control-label">{{ trans('labels.SubCategory_id') }}
-                                                    <span style="color:red">★</span>
-                                                </label>
-                                                <div class="col-sm-10 col-md-4">
-                                                    {!! Form::text('sub_category_id', empty($result['sub_category']->sub_category_id) ? '' :
-                                                    print_value($result['operation'],$result['sub_category']->sub_category_id),
-                                                    array('class'=>'form-control', 'id'=>'sub_category_id','readonly')) !!}
-                                                </div>
+                                        <div class="form-group">
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.SubCategory_id') }}
+                                                <span style="color:red">★</span>
+                                            </label>
+                                            <div class="col-sm-10 col-md-4">
+                                                {!! Form::text('sub_category_id',
+                                                empty($result['sub_category']->sub_category_id) ? '' :
+                                                print_value($result['operation'],$result['sub_category']->sub_category_id),
+                                                array('class'=>'form-control', 'id'=>'sub_category_id','readonly')) !!}
                                             </div>
+                                        </div>
                                         @endif
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Category_id') }}
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.Category_id') }}
                                                 <span style="color:red">★</span>
                                             </label>
                                             <div class="col-sm-10 col-md-4">
                                                 <select name="category_id" class='form-control field-validate'>
                                                     @foreach( $result['categories'] as $category)
-                                                    <option value="{{ $category->category_id }}" 
+                                                    <option value="{{ $category->category_id }}"
                                                         @if(!empty($result['sub_category']->category_id))
-                                                            {{print_selected_value($result['operation'],$category->category_id,$result['sub_category']->category_id)}}
+                                                        {{print_selected_value($result['operation'],$category->category_id,$result['sub_category']->category_id)}}
                                                         @endif>
                                                         {{ $category->name }}
                                                     </option>
@@ -50,79 +56,100 @@
                                             </div>
                                         </div>
                                         @foreach($result['languages'] as $language)
-                                            <div class="form-group">
-                                                <label for="name" class="col-sm-2 col-md-3 control-label">
-                                                    {{ trans('labels.Name') }}
-                                                    ({{ $language->name }})
-                                                    <span style="color:red">★</span>
-                                                </label>
-                                                <div class="col-sm-10 col-md-4">
-                                                    {!! Form::text("language_array[".$language->languages_id."]", empty($result['sub_category']->sub_category_name) ? '' :
-                                                    print_value($result['operation'],$result['sub_category']->sub_category_name), array('class'=>'form-control
-                                                    field-validate', 'id'=>'name')) !!}
-                                                    <span class="help-block"
-                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.SubCategoryName') }}({{ $language->name }})</span>
-                                                    <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                                </div>
+                                        {{$language_id = $language->languages_id}}
+                                        {{$language_name = $language->name}}
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">
+                                                {{ trans('labels.Name') }}
+                                                ({{ $language_name }})
+                                                <span style="color:red">★</span>
+                                            </label>
+                                            <div class="col-sm-10 col-md-4">
+                                                {!! Form::text("language_array[".$language_id."]",
+                                                empty($result['sub_category']->language_array[$language_id]['sub_category_name'])
+                                                ? '' :
+                                                print_value($result['operation'],$result['sub_category']->language_array[$language_id]['sub_category_name']),
+                                                array('class'=>'form-control
+                                                field-validate', 'id'=>'name')) !!}
+                                                <span class="help-block"
+                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.SubCategoryName') }}({{ $language_name }})</span>
+                                                <span
+                                                    class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                             </div>
+                                        </div>
                                         @endforeach
 
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Image') }}</label>
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.Image') }}</label>
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::file('image', array('id'=>'image')) !!}
                                                 <span class="help-block"
-                                                style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryImageText') }}</span>
+                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryImageText') }}</span>
                                                 @if(!empty($result['sub_category']->image))
-                                                <img width="150px" src="{{asset('').'/'.$result['sub_category']->image}}" class="img-circle">
+                                                <img width="150px"
+                                                    src="{{asset('').'/'.$result['sub_category']->image}}"
+                                                    class="img-circle">
                                                 @else
-                                                <img width="150px" src="{{asset('').'/resources/assets/images/default_images/default.png' }}"
-                                                class="img-circle">
+                                                <img width="150px"
+                                                    src="{{asset('').'/resources/assets/images/default_images/default.png' }}"
+                                                    class="img-circle">
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Icon') }}</label>
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.Icon') }}</label>
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::file('icon', array('id'=>'icon')) !!}
                                                 <span class="help-block"
-                                                style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryIconText') }}</span>
+                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryIconText') }}</span>
                                                 <br>
                                                 @if(!empty($result['sub_category']->icon))
-                                                <img width="150px" src="{{asset('').'/'.$result['sub_category']->icon}}" class="img-circle">
+                                                <img width="150px" src="{{asset('').'/'.$result['sub_category']->icon}}"
+                                                    class="img-circle">
                                                 @else
-                                                <img width="150px" src="{{asset('').'resources/assets/images/default_images/default.png' }}"
-                                                class="img-circle">
+                                                <img width="150px"
+                                                    src="{{asset('').'resources/assets/images/default_images/default.png' }}"
+                                                    class="img-circle">
                                                 @endif
                                             </div>
                                         </div>
 
                                         @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                            <div class="form-group">
-                                                <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span
+                                        <div class="form-group">
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span
                                                     style="color:red">★</label>
-                                                <div class="col-sm-10 col-md-4">
-                                                {!! Form::text('create_date', empty($result['sub_category']->create_date) ? '' :
+                                            <div class="col-sm-10 col-md-4">
+                                                {!! Form::text('create_date',
+                                                empty($result['sub_category']->create_date) ? '' :
                                                 print_value($result['operation'],$result['sub_category']->create_date),
-                                                array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
+                                                array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true'))
+                                                !!}
                                                 <span class="help-block"
                                                     style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
-                                                <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                                </div>
+                                                <span
+                                                    class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name"
+                                                class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span
                                                     style="color:red">★</label>
-                                                <div class="col-sm-10 col-md-4">
-                                                {!! Form::text('edit_date', empty($result['sub_category']->edit_date) ? '' :
-                                                print_value($result['operation'],$result['sub_category']->edit_date), array('class'=>'form-control',
+                                            <div class="col-sm-10 col-md-4">
+                                                {!! Form::text('edit_date', empty($result['sub_category']->edit_date) ?
+                                                '' :
+                                                print_value($result['operation'],$result['sub_category']->edit_date),
+                                                array('class'=>'form-control',
                                                 'id'=>'edit_date','readonly'=>'true')) !!}
                                                 <span class="help-block"
                                                     style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
-                                                <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                                                </div>
+                                                <span
+                                                    class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                             </div>
-                                        @endif 
+                                        </div>
+                                        @endif
 
                                         @include('layouts/submit_back_button')
                                         {!! Form::close() !!}

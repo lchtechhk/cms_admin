@@ -96,13 +96,20 @@ class SubCategoryService extends BaseApiService{
                         $param = array();
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
-                        $update_sub_category_description_result = $this->SubCategoryDescriptionService->updateByMultipleKey_Value($param,array("sub_category_id","language_id",),array($result['sub_category_id'],$language_id));
-                        if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update SubCategory Description");
+                        $param['category_id'] = $result['sub_category_id'];
+                        $param['language_id'] = $language_id;
+                        $isExisting = $this->SubCategoryDescriptionService->isExistingByMultipleKey_Value($param,array("sub_category_id","language_id",),array($result['sub_category_id'],$language_id));
+                        if($isExisting){
+                            $update_sub_category_description_result = $this->SubCategoryDescriptionService->updateByMultipleKey_Value($param,array("sub_category_id","language_id",),array($result['sub_category_id'],$language_id));
+                            if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update SubCategory Description");
+                        }else {
+                            $add_sub_category_description_result = $this->SubCategoryDescriptionService->add($param);
+                            if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
+                        }
                     }    
                     $result = $this->response($result,"Successful","view_edit");
                     $result['sub_category'] = $this->getSubCategory($result['sub_category_id']);
                     DB::commit();
-                    return view("admin.subcategory.viewSubcategory", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }

@@ -51,8 +51,10 @@
                         <span style="color:red">★</span>
                       </label>
                       <div class="col-sm-10 col-md-4">
-                        {!! Form::text("language_array[".$language_id."]", empty($result['category']->language_array[$language_id]['name']) ? '' :
-                        print_value($result['operation'],$result['category']->language_array[$language_id]['name']), array('class'=>'form-control
+                        {!! Form::text("language_array[".$language_id."]",
+                        empty($result['category']->language_array[$language_id]['name']) ? '' :
+                        print_value($result['operation'],$result['category']->language_array[$language_id]['name']),
+                        array('class'=>'form-control
                         field-validate', 'id'=>'name')) !!}
                         <span class="help-block"
                           style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryName') }}({{ $language_name }})</span>
@@ -91,31 +93,31 @@
                       </div>
                     </div>
                     @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                      <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span
-                            style="color:red">★</label>
-                        <div class="col-sm-10 col-md-4">
-                          {!! Form::text('create_date', empty($result['category']->create_date) ? '' :
-                          print_value($result['operation'],$result['category']->create_date),
-                          array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
-                          <span class="help-block"
-                            style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
-                          <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                        </div>
+                    <div class="form-group">
+                      <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CreateDate') }}<span
+                          style="color:red">★</label>
+                      <div class="col-sm-10 col-md-4">
+                        {!! Form::text('create_date', empty($result['category']->create_date) ? '' :
+                        print_value($result['operation'],$result['category']->create_date),
+                        array('class'=>'form-control', 'id'=>'create_date','readonly'=>'true')) !!}
+                        <span class="help-block"
+                          style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CreateDate') }}</span>
+                        <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                       </div>
-                      <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span
-                            style="color:red">★</label>
-                        <div class="col-sm-10 col-md-4">
-                          {!! Form::text('edit_date', empty($result['category']->edit_date) ? '' :
-                          print_value($result['operation'],$result['category']->edit_date), array('class'=>'form-control',
-                          'id'=>'edit_date','readonly'=>'true')) !!}
-                          <span class="help-block"
-                            style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
-                          <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
-                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.EditDate') }}<span
+                          style="color:red">★</label>
+                      <div class="col-sm-10 col-md-4">
+                        {!! Form::text('edit_date', empty($result['category']->edit_date) ? '' :
+                        print_value($result['operation'],$result['category']->edit_date), array('class'=>'form-control',
+                        'id'=>'edit_date','readonly'=>'true')) !!}
+                        <span class="help-block"
+                          style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.EditDate') }}</span>
+                        <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                       </div>
-                    @endif 
+                    </div>
+                    @endif
                     @include('layouts/submit_back_button')
                     {!! Form::close() !!}
                   </div>
