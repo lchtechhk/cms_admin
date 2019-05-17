@@ -53,18 +53,14 @@ class SaveSessionListener implements EventSubscriberInterface
         $session = $event->getRequest()->getSession();
         if ($session && $session->isStarted()) {
             $session->save();
-            $event->getResponse()
-                ->setPrivate()
-                ->setMaxAge(0)
-                ->headers->addCacheControlDirective('must-revalidate');
         }
     }
 
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             // low priority but higher than StreamedResponseListener
-            KernelEvents::RESPONSE => array(array('onKernelResponse', -1000)),
-        );
+            KernelEvents::RESPONSE => [['onKernelResponse', -1000]],
+        ];
     }
 }
