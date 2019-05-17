@@ -123,6 +123,22 @@
             }
         }
 
+        public function isExistingByMultipleKey_Value($array,$key_array,$id_array){
+            $where = array();
+            foreach ($key_array as $index => $key) {
+                $where[$key] =$id_array[$index];
+             }
+            $check_result = DB::table($this->getTable())->where($where)->get();
+            Log::info('[isExistingByMultipleKey_Value]  : ');
+
+            Log::info('['.$this->getTable().'] -- isExistingByMultipleKey_Value : ' . json_encode($check_result));
+            if(!empty($check_result) && sizeof($check_result) > 0 ){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
         public function db_prepareUpdateByMultipleKey($table,$data,$key_array,$id_array){
             $list_cols =  DB::select('DESCRIBE '.$table);
             $target_array = array();

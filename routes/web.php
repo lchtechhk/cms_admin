@@ -65,7 +65,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//Jamie Manufacturer
 			Route::get('/listingManufacturer', 'AdminManufacturerController@listingManufacturer');
 			Route::get('/view_addManufacturer', 'AdminManufacturerController@view_addManufacturer');
-			Route::get('/view_editManufacturer/{id}', 'AdminManufacturerController@view_editManufacturer');
+			Route::get('/view_editManufacturer/{manufacturer_id}', 'AdminManufacturerController@view_editManufacturer');
 			Route::post('/addManufacturer', 'AdminManufacturerController@addManufacturer');
 			Route::post('/updateManufacturer', 'AdminManufacturerController@updateManufacturer');
 			Route::post('/deleteManufacturer', 'AdminManufacturerController@deleteManufacturer');

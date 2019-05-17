@@ -23,7 +23,9 @@
                                     @endif
 
                                     @foreach($result['languages'] as $language)
-                                   
+                                    {{$language_id = $language->languages_id}}
+                                    {{$language_name = $language->name}}
+                                    
                                     @endforeach
 
                                     

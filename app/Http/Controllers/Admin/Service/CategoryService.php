@@ -68,18 +68,19 @@ class CategoryService extends BaseApiService{
                         $param['language_id'] = $language_id;
                         $param['category_id'] = $result['category_id'];
                         $param['name'] = $name;
-                        $param['label'] = $result['label'];
                         $add_category_description_result = $this->CategoryDescriptionService->add($param);
                         if(empty($add_category_description_result['status']) || $add_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
                     }
                     $result = $this->response($result,"Successful","view_edit");
                     $result['category'] = $this->getCategory($result['category_id']);
+                    
                     DB::commit();
-                    return view("admin.category.viewCategory", $title)->with('result', $result);
                 }catch(Exception $e){
+                    $result = $this->response($result,"Successful","view_add");
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.category.viewCategory", $title)->with('result', $result);
                 }
+                Log::info('[category result] -- add : ' .json_encode($result));
+                return view("admin.category.viewCategory", $title)->with('result', $result);
             break;
             case 'edit':
                 try{
@@ -93,8 +94,17 @@ class CategoryService extends BaseApiService{
                         $param = array();
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
-                        $update_sub_category_description_result = $this->CategoryDescriptionService->updateByMultipleKey_Value($param,array("category_id","language_id"),array($result['category_id'],$language_id));
-                        if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
+                        $param['category_id'] = $result['category_id'];
+                        $param['language_id'] = $language_id;
+                        $isExisting = $this->CategoryDescriptionService->isExistingByMultipleKey_Value($param,array("category_id","language_id"),array($result['category_id'],$language_id));
+                        if($isExisting){
+                            $update_sub_category_description_result = $this->CategoryDescriptionService->updateByMultipleKey_Value($param,array("category_id","language_id"),array($result['category_id'],$language_id));
+                            if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update Category");
+                        }else {
+                            $add_category_description_result = $this->CategoryDescriptionService->add($param);
+                            if(empty($add_category_description_result['status']) || $add_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
+
+                        }
                     }
                     $result = $this->response($result,"Successful","view_edit");
                     $result['category'] = $this->getCategory($result['category_id']);

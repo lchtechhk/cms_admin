@@ -42,6 +42,8 @@
                     @endif
 
                     @foreach($result['languages'] as $language)
+                    {{$language_id = $language->languages_id}}
+                    {{$language_name = $language->name}}
                     <div class="form-group">
                       <label for="name" class="col-sm-2 col-md-3 control-label">
                         {{ trans('labels.Name') }}
@@ -49,11 +51,11 @@
                         <span style="color:red">★</span>
                       </label>
                       <div class="col-sm-10 col-md-4">
-                        {!! Form::text("language_array[".$language->languages_id."]", empty($result['category']->name) ? '' :
-                        print_value($result['operation'],$result['category']->name), array('class'=>'form-control
+                        {!! Form::text("language_array[".$language_id."]", empty($result['category']->language_array[$language_id]['name']) ? '' :
+                        print_value($result['operation'],$result['category']->language_array[$language_id]['name']), array('class'=>'form-control
                         field-validate', 'id'=>'name')) !!}
                         <span class="help-block"
-                          style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryName') }}({{ $language->name }})</span>
+                          style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CategoryName') }}({{ $language_name }})</span>
                         <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                       </div>
                     </div>
