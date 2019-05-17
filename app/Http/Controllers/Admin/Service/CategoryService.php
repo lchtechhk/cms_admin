@@ -76,7 +76,6 @@ class CategoryService extends BaseApiService{
                     
                     DB::commit();
                 }catch(Exception $e){
-                    $result = $this->response($result,"Successful","view_add");
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }
                 Log::info('[category result] -- add : ' .json_encode($result));
@@ -93,7 +92,6 @@ class CategoryService extends BaseApiService{
                     foreach ($result['language_array'] as $language_id => $name) {
                         $param = array();
                         $param['name'] = $name;
-                        $param['label'] = $result['label'];
                         $param['category_id'] = $result['category_id'];
                         $param['language_id'] = $language_id;
                         $isExisting = $this->CategoryDescriptionService->isExistingByMultipleKey_Value($param,array("category_id","language_id"),array($result['category_id'],$language_id));

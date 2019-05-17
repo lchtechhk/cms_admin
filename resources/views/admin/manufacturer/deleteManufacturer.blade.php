@@ -9,7 +9,7 @@
             {!! Form::open(array('url' =>'admin/deleteManufacturer', 'name'=>'deleteManufacturer', 'id'=>'deleteManufacturer', 'method'=>'post',
             'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
             {!! Form::hidden('action', 'delete', array('class'=>'form-control')) !!}
-            {!! Form::hidden('id', '' , array('class'=>'form-control', 'id'=>'manufacturer_id')) !!}
+            {!! Form::hidden('manufacturer_id', '' , array('class'=>'form-control', 'id'=>'manufacturer_id')) !!}
             <div class="modal-body">
                 <p>{{ trans('labels.deleteManufacturerText') }}</p>
             </div>

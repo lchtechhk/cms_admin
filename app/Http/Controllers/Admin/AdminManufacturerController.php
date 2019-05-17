@@ -53,33 +53,33 @@ class AdminManufacturerController extends Controller{
 		return $this->ManufacturerService->redirect_view($result,$title);
     }
 
-    // function addManufacturer(Request $request){
-    //     $title = array('pageTitle' => Lang::get("labels.addManufacturer"));
-    //     $result = array();
-    //     $result = $request->input();
-    //     $result['request'] = $request;
-    //     $result['operation'] = 'add';
-    //     // Log::info('[result] --  : ' . json_encode($result));
-    //     return $this->ManufacturerService->redirect_view($result,$title);
-    // }
+    function addManufacturer(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.addManufacturer"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'add';
+        // Log::info('[result] --  : ' . json_encode($result));
+        return $this->ManufacturerService->redirect_view($result,$title);
+    }
 
-    // function updateManufacturer(Request $request){
-    //     $title = array('pageTitle' => Lang::get("labels.updateManufacturer"));
-    //     $result = array();
-    //     $result = $request->input();
-    //     $result['request'] = $request;
-    //     $result['operation'] = 'edit';
-    //     return $this->ManufacturerService->redirect_view($result,$title);
-    // }
+    function updateManufacturer(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.updateManufacturer"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'edit';
+        return $this->ManufacturerService->redirect_view($result,$title);
+    }
 
-    // function deleteManufacturer(Request $request){
-    //     $title = array('pageTitle' => Lang::get("labels.deleteManufacturer"));
-    //     $result = array();
-    //     $result = $request->input();
-    //     $result['request'] = $request;
-    //     $result['operation'] = 'delete';
-    //     return $this->ManufacturerService->redirect_view($result,$title);
-	// }
+    function deleteManufacturer(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.deleteManufacturer"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'delete';
+        return $this->ManufacturerService->redirect_view($result,$title);
+	}
 	
 	// public function manufacturers(){
 	// 	$title = array('pageTitle' => Lang::get("labels.Manufacturers"));

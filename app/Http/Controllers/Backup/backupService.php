@@ -26,6 +26,21 @@ class ManufacturerService extends BaseApiService{
         $this->ManufacturerDescriptionService = new ManufacturerDescriptionService();
 
     }
+
+    // function getCategory($category_id){
+    //     $category_array = $this->View_CategoryService->findByColumnAndId("category_id",$category_id);
+    //     $category = !empty($category_array) && sizeof($category_array) > 0 ? $category_array[0] : array();
+    //     $category->language_array = array();
+    //     foreach ($category_array as $obj) {
+    //         $language_id = $obj->language_id;
+    //         $name = $obj->name;
+    //         $category->language_array[$language_id] = array();
+    //         $category->language_array[$language_id]['name'] = $name;
+    //     }
+    //     Log::info('[category] -- getListing : ' .json_encode($category));
+    //     return $category;
+    // }
+
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Manufacturer";
