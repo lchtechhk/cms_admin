@@ -36,9 +36,9 @@
                                                     <td>{{ $manufacturer->manufacturer_id }}</td>
                                                     <td>{{ $manufacturer->name }}</td>
                                                     <td>
-                                                        @if(!empty($listingCustomers->customers_picture))
+                                                        @if(!empty($manufacturer->image))
                                                         <img src="../{{ $manufacturer->image }}"
-                                                            style="width: 50px; float: left; margin-right: 10px">
+                                                            style="width: 70px; float: left; margin-right: 10px">
                                                         @else
                                                         <img src="../resources/assets/images/default_images/manufacturer.png"
                                                             style="width: 50px; float: left; margin-right: 10px">

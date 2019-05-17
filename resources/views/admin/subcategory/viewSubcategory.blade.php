@@ -56,23 +56,21 @@
                                             </div>
                                         </div>
                                         @foreach($result['languages'] as $language)
-                                        {{$language_id = $language->languages_id}}
-                                        {{$language_name = $language->name}}
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">
                                                 {{ trans('labels.Name') }}
-                                                ({{ $language_name }})
+                                                ({{ $language->name }})
                                                 <span style="color:red">★</span>
                                             </label>
                                             <div class="col-sm-10 col-md-4">
-                                                {!! Form::text("language_array[".$language_id."]",
-                                                empty($result['sub_category']->language_array[$language_id]['sub_category_name'])
+                                                {!! Form::text("language_array[".$language->languages_id."]",
+                                                empty($result['sub_category']->language_array[$language->languages_id]['sub_category_name'])
                                                 ? '' :
-                                                print_value($result['operation'],$result['sub_category']->language_array[$language_id]['sub_category_name']),
+                                                print_value($result['operation'],$result['sub_category']->language_array[$language->languages_id]['sub_category_name']),
                                                 array('class'=>'form-control
                                                 field-validate', 'id'=>'name')) !!}
                                                 <span class="help-block"
-                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.SubCategoryName') }}({{ $language_name }})</span>
+                                                    style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.SubCategoryName') }}({{ $language->name }})</span>
                                                 <span
                                                     class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                             </div>
