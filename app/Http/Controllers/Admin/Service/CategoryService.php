@@ -35,8 +35,8 @@ class CategoryService extends BaseApiService{
             $name = $obj->name;
             $category->language_array[$language_id] = array();
             $category->language_array[$language_id]['name'] = $name;
-       }
-       Log::info('[category] -- getListing : ' .json_encode($category));
+        }
+        Log::info('[category] -- getListing : ' .json_encode($category));
         return $category;
     }
     function redirect_view($result,$title){

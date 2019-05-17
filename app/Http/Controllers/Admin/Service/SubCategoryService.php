@@ -30,6 +30,19 @@ class SubCategoryService extends BaseApiService{
         return $this->findAll();
     }
 
+    function getSubCategory($sub_category_id){
+        $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$sub_category_id);
+        $sub_category = !empty($sub_category_array) && sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
+        $sub_category->language_array = array();
+        foreach ($sub_category_array as $obj) {
+            $language_id = $obj->sub_category_language_id;
+            $name = $obj->category_name;
+            $sub_category->language_array[$language_id] = array();
+            $sub_category->language_array[$language_id]['name'] = $name;
+        }
+        Log::info('[sub_category] -- getSubCategory : ' .json_encode($sub_category));
+        return $sub_category;
+    }
     function redirect_view($result,$title){
         $result['label'] = "SubCategory";
         $result['languages'] = $this->LanguageService->findAll();
@@ -43,8 +56,7 @@ class SubCategoryService extends BaseApiService{
                 return view("admin.subcategory.viewSubcategory", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$result['sub_category_id']);
-                $result['sub_category'] = !empty($sub_category_array) &&  sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
+                $result['sub_category'] = $this->getSubCategory($result['sub_category_id']);
                 return view("admin.subcategory.viewSubcategory", $title)->with('result', $result);	
             break;
             case 'add':
@@ -54,18 +66,18 @@ class SubCategoryService extends BaseApiService{
                     if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/sub_category_icons/'))$result['icon'] = $icon;
                     $add_sub_category_result = $this->add($result);
                     if(empty($add_sub_category_result['status']) || $add_sub_category_result['status'] == 'fail')throw new Exception("Error To Add Category");
-                    foreach ($result['name'] as $language_id => $name) {
+                    $result['sub_category_id'] = $add_sub_category_result["response_id"];
+                    foreach ($result['language_array'] as $language_id => $name) {
                         $param = array();
                         $param['language_id'] = $language_id;
                         $param['category_id'] = $result['category_id'];
-                        $param['sub_category_id'] = $add_sub_category_result["response_id"];
+                        $param['sub_category_id'] = $result['sub_category_id'];
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
                         $add_sub_category_description_result = $this->SubCategoryDescriptionService->add($param);
                         if(empty($add_sub_category_description_result['status']) || $add_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Add SubCategory Description");
                     }    
-                    $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$add_sub_category_result["response_id"]);
-                    $result['sub_category'] = !empty($sub_category_array) &&  sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
+                    $result['sub_category'] = $this->getSubCategory($result['sub_category_id']);
                     $result = $this->response($result,"Success To Add SubCategory","view_edit");
                     DB::commit();
                 }catch(Exception $e){
@@ -80,7 +92,7 @@ class SubCategoryService extends BaseApiService{
                     if($icon = $this->UploadService->upload_image($result['request'],'icon','resources/assets/images/sub_category_icons/'))$result['icon'] = $icon;
                     $update_sub_category_result = $this->update("sub_category_id",$result);
                     if(empty($update_sub_category_result['status']) || $update_sub_category_result['status'] == 'fail')throw new Exception("Error To Update SubCategory");
-                    foreach ($result['name'] as $language_id => $name) {
+                    foreach ($result['language_array'] as $language_id => $name) {
                         $param = array();
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
@@ -88,8 +100,7 @@ class SubCategoryService extends BaseApiService{
                         if(empty($update_sub_category_description_result['status']) || $update_sub_category_description_result['status'] == 'fail')throw new Exception("Error To Update SubCategory Description");
                     }    
                     $result = $this->response($result,"Successful","view_edit");
-                    $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$result['sub_category_id']);
-                    $result['sub_category'] = !empty($sub_category_array) &&  sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
+                    $result['sub_category'] = $this->getSubCategory($result['sub_category_id']);
                     DB::commit();
                     return view("admin.subcategory.viewSubcategory", $title)->with('result', $result);
                 }catch(Exception $e){

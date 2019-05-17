@@ -40,8 +40,8 @@
                                                 <select name="category_id" class='form-control field-validate'>
                                                     @foreach( $result['categories'] as $category)
                                                     <option value="{{ $category->category_id }}" 
-                                                        @if( $category->category_id == $result['sub_category']->category_id)
-                                                            selected
+                                                        @if(!empty($result['sub_category']->category_id))
+                                                            {{print_selected_value($result['operation'],$category->category_id,$result['sub_category']->category_id)}}
                                                         @endif>
                                                         {{ $category->name }}
                                                     </option>
@@ -57,7 +57,7 @@
                                                     <span style="color:red">★</span>
                                                 </label>
                                                 <div class="col-sm-10 col-md-4">
-                                                    {!! Form::text("name[".$language->languages_id."]", empty($result['sub_category']->sub_category_name) ? '' :
+                                                    {!! Form::text("language_array[".$language->languages_id."]", empty($result['sub_category']->sub_category_name) ? '' :
                                                     print_value($result['operation'],$result['sub_category']->sub_category_name), array('class'=>'form-control
                                                     field-validate', 'id'=>'name')) !!}
                                                     <span class="help-block"
