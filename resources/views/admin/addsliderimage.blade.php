@@ -112,7 +112,7 @@
                                   <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Products') }}</label>
                                   <div class="col-sm-10 col-md-4">
                                       <select class="form-control" name="products_id" id="products_id">
-                                      @foreach($result['products'] as $products_data)
+                                      @foreach($result['product'] as $products_data)
                                 		<option value="{{ $products_data->products_slug }}">{{ $products_data->products_name }}</option>
                                       @endforeach
                                       </select>

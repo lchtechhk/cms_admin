@@ -87,14 +87,14 @@ class MyProductController extends Controller
 					$products = DB::table('categories')
 						->LeftJoin('categories as sub_categories', 'sub_categories.parent_id', '=', 'categories.categories_id')
 						->LeftJoin('products_to_categories', 'products_to_categories.categories_id', '=', 'sub_categories.categories_id')
-						->LeftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+						->LeftJoin('product', 'products.products_id', '=', 'products_to_categories.products_id')
 						->select('categories.categories_id', DB::raw('COUNT(DISTINCT products.products_id) as total_products'))
 						->where('categories.categories_id','=', $categories_id)
 						->get();
 				}else{
 					$products = DB::table('products_to_categories')
 						->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
-						->LeftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+						->LeftJoin('product', 'products.products_id', '=', 'products_to_categories.products_id')
 						->select('products_to_categories.categories_id', DB::raw('COUNT(DISTINCT products.products_id) as total_products'))
 						->where('products_to_categories.categories_id','=', $categories_id)
 						->where('categories.parent_id','!=', '0')

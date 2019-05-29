@@ -285,7 +285,7 @@ class AdminSiteSettingController extends Controller
 		DB::table('categories_description')->where('language_id', $request->id)->delete();
 		DB::table('label_value')->where('language_id', $request->id)->delete();
 		DB::table('manufacturers_info')->where('languages_id', $request->id)->delete();
-		DB::table('products_description')->where('language_id', $request->id)->delete();
+		DB::table('product_description')->where('language_id', $request->id)->delete();
 		DB::table('pages_description')->where('language_id', $request->id)->delete();
 		DB::table('products_options')->where('language_id', $request->id)->delete();
 		DB::table('products_options_values')->where('language_id', $request->id)->delete();

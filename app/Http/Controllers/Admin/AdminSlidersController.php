@@ -70,7 +70,7 @@ class AdminSlidersController extends Controller
 		
 		$result['message'] = $message;
 		$result['categories'] = $categories;
-		$result['products'] = $products;
+		$result['product'] = $products;
 		
 		return view("admin.addsliderimage", $title)->with('result', $result);
 	}
@@ -144,7 +144,7 @@ class AdminSlidersController extends Controller
 		$result['languages'] = $myVar->getLanguages();
 		
 		$result['categories'] = $categories;
-		$result['products'] = $products;		
+		$result['product'] = $products;		
 		
 		return view("admin.editslide",$title)->with('result', $result);
 	}

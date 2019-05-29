@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\ProductDescriptionService;
 use function GuzzleHttp\json_encode;
 
-class ProductService extends BaseApiService{
+class ProductDescriptionService extends BaseApiService{
     private $View_ProductService;
     private $LanguageService;
     private $UploadService;
@@ -19,11 +19,10 @@ class ProductService extends BaseApiService{
 
 
     function __construct(){
-        $this->setTable('product');
+        $this->setTable('product_description');
         $this->View_ProductService = new View_ProductService();
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
-        $this->ProductDescriptionService = new ProductDescriptionService();
 
     }
     function redirect_view($result,$title){
@@ -31,9 +30,7 @@ class ProductService extends BaseApiService{
         $result['label'] = "Product";
         switch($result['operation']){
             case 'listing':
-                $result['products'] = $this->View_ProductService->getListing();
-                Log::info('[listing] --  : ' . \json_encode($result));
-
+                Log::info('[listing] --  : ');
                 return view("admin.Product.listingProduct", $title)->with('result', $result);
             break;
             case 'view_add':

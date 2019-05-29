@@ -20,52 +20,6 @@ use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
 
 use App\Http\Controllers\Admin\Service\ProductService;
-
-class AdminProductController extends Controller{
-    private $<?php
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-
-//validator is builtin class in laravel
-use Validator;
-use App;
-use Lang;
-use DB;
-//for password encryption or hash protected
-use Hash;
-use App\Administrator;
-
-//for authenitcate login data
-use Log;
-use Auth;
-
-//for requesting a value 
-use Illuminate\Http\Request;
-use function GuzzleHttp\json_encode;
-
-use App\Http\Controllers\Admin\Service\<?php
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-
-//validator is builtin class in laravel
-use Validator;
-use App;
-use Lang;
-use DB;
-//for password encryption or hash protected
-use Hash;
-use App\Administrator;
-
-//for authenitcate login data
-use Log;
-use Auth;
-
-//for requesting a value 
-use Illuminate\Http\Request;
-use function GuzzleHttp\json_encode;
-
-use App\Http\Controllers\Admin\Service\ProductService;
-
 class AdminProductController extends Controller{
     private $ProductService;
 
@@ -78,7 +32,7 @@ class AdminProductController extends Controller{
         $title = array('pageTitle' => Lang::get("labels.ListProduct"));
         $result = array();
 		$result['operation'] = 'listing';
-		// Log::info('[listing] --  : ');
+		Log::info('[listing] --  : ');
 		return $this->ProductService->redirect_view($result,$title);
     }
 
@@ -126,5 +80,5 @@ class AdminProductController extends Controller{
         return $this->ProductService->redirect_view($result,$title);
 	}
 }
-;
+
 

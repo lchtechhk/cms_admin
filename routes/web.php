@@ -150,13 +150,13 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/addproduct', 'AdminProductsController@addproduct');
 			Route::post('/addnewproduct', 'AdminProductsController@addnewproduct');
 
-			//Jamie products
-			Route::get('/listProduct', 'AdminProductsController@listProduct');
-			Route::get('/view_addProduct', 'AdminProductsController@view_addProduct');
-			Route::get('/view_editProduct/{id}', 'AdminProductsController@view_editProduct');
-			Route::post('/addProduct', 'AdminProductsController@addProduct');
-			Route::post('/updateProduct', 'AdminProductsController@updateProduct');
-			Route::post('/deleteProduct', 'AdminProductsController@deleteProduct');
+			//Jamie product
+			Route::get('/listingProduct', 'AdminProductController@listingProduct');
+			Route::get('/view_addProduct', 'AdminProductController@view_addProduct');
+			Route::get('/view_editProduct/{product_id}', 'AdminProductController@view_editProduct');
+			Route::post('/addProduct', 'AdminProductController@addProduct');
+			Route::post('/updateProduct', 'AdminProductController@updateProduct');
+			Route::post('/deleteProduct', 'AdminProductController@deleteProduct');
 
 			//Customer
 			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');

@@ -83,16 +83,32 @@
       </li>
 
       <li
-        class="treeview {{ Request::is('admin/products') ? 'active' : '' }} {{ Request::is('admin/addproduct') ? 'active' : '' }} {{ Request::is('admin/editattributes/*') ? 'active' : '' }} {{ Request::is('admin/attributes') ? 'active' : '' }}  {{ Request::is('admin/addattributes') ? 'active' : '' }}  {{ Request::is('admin/editattributes/*') ? 'active' : '' }}">
+        class="treeview 
+        {{ Request::is('admin/listingProduct') ? 'active' : '' }} 
+        {{ Request::is('admin/view_addProduct') ? 'active' : '' }} 
+        {{ Request::is('admin/view_editProduct/*') ? 'active' : '' }} 
+        {{ Request::is('admin/addProduct') ? 'active' : '' }} 
+        {{ Request::is('admin/updateProduct/*') ? 'active' : '' }} 
+        {{ Request::is('admin/deleteProduct/*') ? 'active' : '' }}  
+
+        {{ Request::is('admin/attributes') ? 'active' : '' }}  
+        {{ Request::is('admin/addattributes') ? 'active' : '' }}  
+        {{ Request::is('admin/editattributes/*') ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-database"></i> <span>{{ trans('labels.link_products') }}</span> <i
             class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
           <li
-            class="{{ Request::is('admin/products') ? 'active' : '' }} {{ Request::is('admin/addproduct') ? 'active' : '' }} {{ Request::is('admin/editproduct/*') ? 'active' : '' }}">
-            <a href="{{ URL::to('admin/products')}}"><i class="fa fa-circle-o"></i>
-              {{ trans('labels.link_all_products') }}</a></li>
+            class="
+            {{ Request::is('admin/listingProduct') ? 'active' : '' }} 
+            {{ Request::is('admin/view_addProduct') ? 'active' : '' }} 
+            {{ Request::is('admin/view_editProduct/*') ? 'active' : '' }}">
+            <a href="{{ URL::to('admin/listingProduct')}}">
+              <i class="fa fa-circle-o"></i>
+              {{ trans('labels.link_all_products') }}
+            </a>
+          </li>
         </ul>
       </li>
 

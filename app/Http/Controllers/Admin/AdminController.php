@@ -100,19 +100,19 @@ class AdminController extends Controller{
 		$result['cart'] = count($cart);
 		
 		//Rencently added products
-		$recentProducts = DB::table('products')
-			->leftJoin('products_description','products_description.products_id','=','products.products_id')
-			->where('products_description.language_id','=', $language_id)
-			->orderBy('products.products_id', 'DESC')
+		$recentProducts = DB::table('product')
+			->leftJoin('product_description','product_description.product_id','=','product.product_id')
+			->where('product_description.language_id','=', $language_id)
+			->orderBy('product.product_id', 'DESC')
 			->paginate(8);
 			
 		$result['recentProducts'] = $recentProducts;
 		
 		//products
-		$products = DB::table('products')
-			->leftJoin('products_description','products_description.products_id','=','products.products_id')
-			->where('products_description.language_id','=', $language_id)
-			->orderBy('products.products_id', 'DESC')
+		$products = DB::table('product')
+			->leftJoin('product_description','product_description.product_id','=','product.product_id')
+			->where('product_description.language_id','=', $language_id)
+			->orderBy('product.product_id', 'DESC')
 			->get();
 			
 		//low products & out of stock

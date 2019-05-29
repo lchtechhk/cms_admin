@@ -35,7 +35,7 @@ class AdminProductsController extends Controller
 		$categories = DB::table('products_to_categories')->where('products_id',$products_id)->delete();
 		$categories = DB::table('products')->where('products_id',$products_id)->delete();
 		$categories = DB::table('specials')->where('products_id',$products_id)->delete();
-		$categories = DB::table('products_description')->where('products_id',$products_id)->delete();
+		$categories = DB::table('product_description')->where('products_id',$products_id)->delete();
 		$categories = DB::table('products_attributes')->where('products_id',$products_id)->delete();
 		
 		return redirect()->back()->withErrors([Lang::get("labels.ProducthasbeendeletedMessage")]);
@@ -48,8 +48,8 @@ class AdminProductsController extends Controller
 		$products = DB::table('products_to_categories')
 			->leftJoin('categories', 'categories.categories_id', '=', 'products_to_categories.categories_id')
 			->leftJoin('categories_description', 'categories_description.categories_id', '=', 'products_to_categories.categories_id')
-			->leftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
-			->leftJoin('products_description','products_description.products_id','=','products.products_id')
+			->leftJoin('product', 'product.products_id', '=', 'products_to_categories.products_id')
+			->leftJoin('product_description','product_description.products_id','=','products.products_id')
 			->leftJoin('manufacturers','manufacturers.manufacturers_id','=','products.manufacturers_id')
 			->leftJoin('manufacturers_info','manufacturers.manufacturers_id','=','manufacturers_info.manufacturers_id')
 			->LeftJoin('specials', function ($join) {
@@ -168,7 +168,7 @@ class AdminProductsController extends Controller
 			$uploadImage = '';
 		}	
 		
-		$products_id = DB::table('products')->insertGetId([
+		$products_id = DB::table('product')->insertGetId([
 					'products_image'  		 =>   $uploadImage,
 					'manufacturers_id'		 =>   $request->manufacturers_id,
 					'products_quantity'		 =>   $request->products_quantity,

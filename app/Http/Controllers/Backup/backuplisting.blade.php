@@ -30,38 +30,41 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @if (count($result['manufacturers'])>0)
+                                                @foreach ($result['manufacturers'] as $manufacturer)
                                                 <tr>
-                                                    @if (count($result['manufacturers'])>0)
-                                                        @foreach ($result['manufacturers'] as $manufacturer)
-                                                            <td>{{ $manufacturer->manufacturer_id }}</td>
-                                                            <td>{{ $manufacturer->name }}</td>
-                                                            <td>
-                                                                @if(!empty($listingCustomers->customers_picture))
-                                                                    <img src="../{{ $manufacturer->image }}" style="width: 50px; float: left; margin-right: 10px">
-                                                                @else
-                                                                <img src="../resources/assets/images/default_images/manufacturer.png" style="width: 50px; float: left; margin-right: 10px">
-                                                                @endif 
-                                                            </td>
-                                                            <td>{{ $manufacturer->url }}</td>
-                                                            <td>
-                                                                <a data-toggle="tooltip" data-placement="bottom"
-                                                                    title="{{ trans('labels.Edit') }}"
-                                                                    href="view_editManufacturer/{{ $manufacturer->manufacturer_id }}"
-                                                                    class="badge bg-light-blue">
-                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a data-toggle="tooltip" data-placement="bottom"
-                                                                    title="{{ trans('labels.Delete') }}" id="deleteManufacturerId"
-                                                                    manufacturer_id="{{$manufacturer->manufacturer_id}}"
-                                                                    class="badge bg-red">
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
-                                                            </td>
-                                                        @endforeach
-                                                    @else
-                                                        <td colspan="5">{{ trans('labels.NoRecordFound') }}</td>
-                                                    @endif
+                                                    <td>{{ $manufacturer->manufacturer_id }}</td>
+                                                    <td>{{ $manufacturer->name }}</td>
+                                                    <td>
+                                                        @if(!empty($listingCustomers->customers_picture))
+                                                        <img src="../{{ $manufacturer->image }}"
+                                                            style="width: 50px; float: left; margin-right: 10px">
+                                                        @else
+                                                        <img src="../resources/assets/images/default_images/manufacturer.png"
+                                                            style="width: 50px; float: left; margin-right: 10px">
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $manufacturer->url }}</td>
+                                                    <td>
+                                                        <a data-toggle="tooltip" data-placement="bottom"
+                                                            title="{{ trans('labels.Edit') }}"
+                                                            href="view_editManufacturer/{{ $manufacturer->manufacturer_id }}"
+                                                            class="badge bg-light-blue">
+                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        </a>
+                                                        <a data-toggle="tooltip" data-placement="bottom"
+                                                            title="{{ trans('labels.Delete') }}"
+                                                            id="deleteManufacturerId"
+                                                            manufacturer_id="{{$manufacturer->manufacturer_id}}"
+                                                            class="badge bg-red">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
+                                                @endforeach
+                                                @else
+                                                <td colspan="5">{{ trans('labels.NoRecordFound') }}</td>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

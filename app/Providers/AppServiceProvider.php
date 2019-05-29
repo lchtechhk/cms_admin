@@ -47,11 +47,11 @@ class AppServiceProvider extends ServiceProvider
 				->get();
 				
 		//products low in quantity
-		$lowInQunatity = DB::table('products')
-			->LeftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
-			->whereColumn('products.products_quantity', '<=', 'products.low_limit')
-			->where('products_description.language_id', '=', '1')
-			->where('products.low_limit', '>', 0)
+		$lowInQunatity = DB::table('product')
+			->LeftJoin('product_description', 'product_description.product_id', '=', 'product.product_id')
+			->whereColumn('product.quantity', '<=', 'product.low_limit')
+			->where('product_description.language_id', '=', '1')
+			->where('product.low_limit', '>', 0)
 			//->get();
 			->paginate(10);
 		
