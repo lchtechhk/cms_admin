@@ -389,11 +389,11 @@
               @foreach($result['recentProducts'] as $recentProducts)
                 <li class="item">
                   <div class="product-img">
-                  	<img src="{{asset('').'/'.$recentProducts->products_image}}" alt="" width=" 100px" height="100px">
+                  	<img src="{{asset('').'/'.$recentProducts->image}}" alt="" width=" 100px" height="100px">
                   </div>
                   <div class="product-info">
-                    <a href="{{ URL::to('admin/editproduct') }}/{{ $recentProducts->products_id }}" class="product-title">{{ $recentProducts->products_name }}
-                      <span class="label label-warning label-succes pull-right">{{ $result['currency'][19]->value }}{{ floatval($recentProducts->products_price) }}</span></a>
+                    <a href="{{ URL::to('admin/editproduct') }}/{{ $recentProducts->product_id }}" class="product-title">{{ $recentProducts->name }}
+                      <span class="label label-warning label-succes pull-right">{{ $result['currency'][19]->value }}{{ floatval($recentProducts->price) }}</span></a>
                   </div>
                 </li>
               @endforeach

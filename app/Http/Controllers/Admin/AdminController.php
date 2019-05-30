@@ -119,9 +119,9 @@ class AdminController extends Controller{
 		$lowLimit = 0;
 		$outOfStock = 0;
 		foreach($products as $products_data){
-			if($products_data->low_limit >= 1 && $products_data->products_quantity >= $products_data->low_limit){
+			if($products_data->low_limit >= 1 && $products_data->quantity >= $products_data->low_limit){
 				$lowLimit++;
-			}elseif($products_data->products_quantity == 0){
+			}elseif($products_data->quantity == 0){
 				$outOfStock++;
 			}
 		}

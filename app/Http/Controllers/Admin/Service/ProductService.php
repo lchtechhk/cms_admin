@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Service\View_ProductService;
 use App\Http\Controllers\Admin\Service\View_CategoryService;
 use App\Http\Controllers\Admin\Service\View_SubCategoryService;
 use App\Http\Controllers\Admin\Service\View_ManufacturerService;
+use App\Http\Controllers\Admin\Service\UnitService;
 
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
@@ -32,6 +33,8 @@ class ProductService extends BaseApiService{
         $this->View_CategoryService = new View_CategoryService();
         $this->View_SubCategoryService = new View_SubCategoryService();
         $this->View_ManufacturerService = new View_ManufacturerService();
+        $this->UnitService = new UnitService();
+
 
     }
 
@@ -53,6 +56,7 @@ class ProductService extends BaseApiService{
         $result['languages'] = $this->LanguageService->findAll();
         $result['view_sub_categories'] = $this->View_SubCategoryService->getListing();
         $result['view_manufacturers'] = $this->View_ManufacturerService->getListing();
+        $result['units'] = $this->UnitService->getUnit();
         $result['label'] = "Product";
         switch($result['operation']){
             case 'listing':
