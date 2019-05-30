@@ -15,21 +15,24 @@
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
                                         {!! Form::open(array('url' =>'admin/viewManufacturer', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
+
+                                    {{-- Only Edit --}}
                                     @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
 
-                                    <div class="form-group">
-                                       
-                                    </div>
+                                        <div class="form-group">
+                                        
+                                        </div>
                                     @endif
 
+                                    {{-- Content --}}
+                                    
+                                    {{-- Language Content --}}
                                     @foreach($result['languages'] as $language)
                                     {{$language_id = $language->languages_id}}
                                     {{$language_name = $language->name}}
                                     
                                     @endforeach
 
-                                    
-                                    @endif
                                     @include('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>

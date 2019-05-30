@@ -5,10 +5,12 @@ CREATE
 VIEW `view_product` AS
     SELECT 
         `product`.`product_id` AS `product_id`,
-        `view_category`.`category_id` AS `category_id`,
-        `view_category`.`name` AS `category_name`,
-        `view_category`.`image` AS `category_image`,
-        `view_category`.`icon` AS `category_icon`,
+        `view_sub_category`.`category_id` AS `category_id`,
+        `view_sub_category`.`sub_category_id` AS `sub_category_id`,
+        `view_sub_category`.`category_name` AS `category_name`,
+        `view_sub_category`.`sub_category_name` AS `sub_category_name`,
+        `view_sub_category`.`image` AS `sub_category_image`,
+        `view_sub_category`.`icon` AS `sub_category_icon`,
         `product_description`.`product_description_id` AS `product_description_id`,
         `product_description`.`language_id` AS `language_id`,
         `product_description`.`name` AS `name`,
@@ -36,6 +38,6 @@ VIEW `view_product` AS
     FROM
         ((`product`
         LEFT JOIN `product_description` ON ((`product`.`product_id` = `product_description`.`product_id`)))
-        LEFT JOIN `view_category` ON ((`view_category`.`category_id` = `product`.`category_id`)))
+        LEFT JOIN `view_sub_category` ON ((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`)))
     WHERE
         (`product_description`.`language_id` IS NOT NULL)

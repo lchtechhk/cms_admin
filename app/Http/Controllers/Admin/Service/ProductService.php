@@ -6,9 +6,14 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\View_ProductService;
+use App\Http\Controllers\Admin\Service\View_CategoryService;
+use App\Http\Controllers\Admin\Service\View_SubCategoryService;
+use App\Http\Controllers\Admin\Service\View_ManufacturerService;
+
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\ProductDescriptionService;
+
 use function GuzzleHttp\json_encode;
 
 class ProductService extends BaseApiService{
@@ -24,24 +29,44 @@ class ProductService extends BaseApiService{
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->ProductDescriptionService = new ProductDescriptionService();
+        $this->View_CategoryService = new View_CategoryService();
+        $this->View_SubCategoryService = new View_SubCategoryService();
+        $this->View_ManufacturerService = new View_ManufacturerService();
 
     }
+
+    function getProduct($sub_category_id){
+        $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$sub_category_id);
+        $sub_category = !empty($sub_category_array) && sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
+        $sub_category->language_array = array();
+        foreach ($sub_category_array as $obj) {
+            $language_id = $obj->sub_category_language_id;
+            $name = $obj->category_name;
+            $sub_category->language_array[$language_id] = array();
+            $sub_category->language_array[$language_id]['name'] = $name;
+        }
+        Log::info('[sub_category] -- getSubCategory : ' .json_encode($sub_category));
+        return $sub_category;
+    }
+    
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
+        $result['view_sub_categories'] = $this->View_SubCategoryService->getListing();
+        $result['view_manufacturers'] = $this->View_ManufacturerService->getListing();
         $result['label'] = "Product";
         switch($result['operation']){
             case 'listing':
                 $result['products'] = $this->View_ProductService->getListing();
                 Log::info('[listing] --  : ' . \json_encode($result));
-
                 return view("admin.Product.listingProduct", $title)->with('result', $result);
             break;
             case 'view_add':
-                Log::info('[view_add] --  : ');
+                Log::info('[view_add] --  : ' . \json_encode($result));
                 return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;
             case 'view_edit':
-                Log::info('[view_edit] --  : ');
+                $result['product'] = $this->getSubCategory($result['product_id']);
+                Log::info('[view_edit] --  : '. \json_encode($result));
 
                 return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;

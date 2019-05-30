@@ -1399,15 +1399,15 @@ function getSubCategory() {
 
 //showSpecial
 function showSpecial() {
-	if($('#isSpecial').val() == 'yes'){
+	if($('#special_status').val() == 'active'){
 		$(".special-container").show();
-		$(".special-container input#expiry-date").addClass("field-validate");
-		$(".special-container input#special-price").addClass("number-validate");
+		$(".special-container input#expiry_date").addClass("field-validate");
+		$(".special-container input#special_price").addClass("number-validate");
 		
 	}else{
 		$(".special-container").hide();
-		$(".special-container input#expiry-date").removeClass("field-validate");
-		$(".special-container input#special-price").removeClass("number-validate");
+		$(".special-container input#expiry_date").removeClass("field-validate");
+		$(".special-container input#special_price").removeClass("number-validate");
 	}
 }
 
