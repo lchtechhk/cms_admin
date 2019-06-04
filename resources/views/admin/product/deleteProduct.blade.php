@@ -9,7 +9,7 @@
             {!! Form::open(array('url' =>'admin/deleteProduct', 'name'=>'deleteProduct', 'id'=>'deleteProduct', 'method'=>'post',
             'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
             {!! Form::hidden('action', 'delete', array('class'=>'form-control')) !!}
-            {!! Form::hidden('id', '' , array('class'=>'form-control', 'id'=>'product_id')) !!}
+            {!! Form::hidden('product_id', '' , array('class'=>'form-control', 'id'=>'product_id')) !!}
             <div class="modal-body">
                 <p>{{ trans('labels.deleteProductText') }}</p>
             </div>

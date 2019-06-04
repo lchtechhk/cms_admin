@@ -26,30 +26,33 @@ class ProductService extends BaseApiService{
 
     function __construct(){
         $this->setTable('product');
-        $this->View_ProductService = new View_ProductService();
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->ProductDescriptionService = new ProductDescriptionService();
         $this->View_CategoryService = new View_CategoryService();
         $this->View_SubCategoryService = new View_SubCategoryService();
         $this->View_ManufacturerService = new View_ManufacturerService();
+        $this->View_ProductService = new View_ProductService();
         $this->UnitService = new UnitService();
 
 
     }
 
-    function getProduct($sub_category_id){
-        $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$sub_category_id);
-        $sub_category = !empty($sub_category_array) && sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
-        $sub_category->language_array = array();
-        foreach ($sub_category_array as $obj) {
-            $language_id = $obj->sub_category_language_id;
-            $name = $obj->category_name;
-            $sub_category->language_array[$language_id] = array();
-            $sub_category->language_array[$language_id]['name'] = $name;
+    function getProduct($product_id){
+        $product_array = $this->View_ProductService->findByColumnAndId("product_id",$product_id);
+        $product = !empty($product_array) && sizeof($product_array) > 0 ? $product_array[0] : array();
+        $product->language_array = array();
+        Log::info('[product_array] -- getProduct : ' .json_encode($product_array));
+        foreach ($product_array as $obj) {
+            $language_id = $obj->language_id;
+            $name = $obj->name;
+            $description = $obj->description;
+            $product->language_array[$language_id] = array();
+            $product->language_array[$language_id]['name'] = $name;
+            $product->language_array[$language_id]['description'] = $description;
         }
-        Log::info('[sub_category] -- getSubCategory : ' .json_encode($sub_category));
-        return $sub_category;
+        Log::info('[product] -- getProduct : ' .json_encode($product));
+        return $product;
     }
     
     function redirect_view($result,$title){
@@ -69,15 +72,31 @@ class ProductService extends BaseApiService{
                 return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $result['product'] = $this->getSubCategory($result['product_id']);
-                Log::info('[view_edit] --  : '. \json_encode($result));
-
+                // Log::info('[view_edit] --  : '. \json_encode($result));
+                $result['product'] = $this->getProduct($result['product_id']);
                 return view("admin.Product.viewProduct", $title)->with('result', $result);
             break;
             case 'add':
+                // Log::info('[add] --  : ' . \json_encode($result));
                 try{
                     DB::beginTransaction();
-                    Log::info('[add] --  : ');
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    $add_product_result = $this->add($result);
+                    if(empty($add_product_result['status']) || $add_product_result['status'] == 'fail')throw new Exception("Error To Add Product");
+                    $result['product_id'] = $add_product_result['response_id'];
+                    foreach ($result['language_array'] as $language_id => $obj) {
+                        $name = $obj['name'];
+                        $description = $obj['description'];
+                        $param = array();
+                        $param['language_id'] = $language_id;
+                        $param['product_id'] = $result['product_id'];
+                        $param['name'] = $name;
+                        $param['description'] = $description;
+                        $add_product_description_result = $this->ProductDescriptionService->add($param);
+                        if(empty($add_product_description_result['status']) || $add_product_description_result['status'] == 'fail')throw new Exception("Error To Add Product Description");
+                    }
+                    $result = $this->response($result,"Successful","view_edit");
+                    $result['product'] = $this->getProduct($result['product_id']);
                     DB::commit();
                     return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -86,9 +105,32 @@ class ProductService extends BaseApiService{
                 }
             break;
             case 'edit':
+                Log::info('[edit] --  : ' . \json_encode($result));
                 try{
                     DB::beginTransaction();
-                    Log::info('[edit] --  : ');
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    $update_product_result = $this->update("product_id",$result);
+                    if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To update Product");
+                    foreach ($result['language_array'] as $language_id => $obj) {
+                        $name = $obj['name'];
+                        $description = $obj['description'];
+                        $param = array();
+                        $param['name'] = $name;
+                        $param['description'] = $description;
+                        $param['product_id'] = $result['product_id'];
+                        $param['language_id'] = $language_id;
+                        $isExisting = $this->ProductDescriptionService->isExistingByMultipleKey_Value($param,array("product_id","language_id"),array($result['product_id'],$language_id));
+                        if($isExisting){
+                            $update_product_description_result = $this->ProductDescriptionService->updateByMultipleKey_Value($param,array("product_id","language_id"),array($result['product_id'],$language_id));
+                            if(empty($update_product_description_result['status']) || $update_product_description_result['status'] == 'fail')throw new Exception("Error To Update Product");
+                        }else {
+                            $add_category_description_result = $this->ProductDescriptionService->add($param);
+                            if(empty($add_category_description_result['status']) || $add_category_description_result['status'] == 'fail')throw new Exception("Error To Add Product Description");
+
+                        }
+                    }
+                    $result = $this->response($result,"Successful","view_edit");
+                    $result['product'] = $this->getProduct($result['product_id']);
                     DB::commit();
                     return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -98,7 +140,12 @@ class ProductService extends BaseApiService{
             break;
             case 'delete': 
                 try{
-                    Log::info('[delete] --  : ');
+                    $delete_product_result = $this->deleteByKey_Value("product_id",$result['product_id']);
+                    if(empty($delete_product_result['status']) || $delete_product_result['status'] == 'fail')throw new Exception("Error To Delete Product");
+                    $delete_product_result = $this->ProductDescriptionService->deleteByKey_Value("product_id",$result['product_id']);
+                    if(empty($delete_product_result['status']) || $delete_product_result['status'] == 'fail')throw new Exception("Error To Delete Product");
+                    $result['products'] = $this->View_ProductService->getListing();
+                    $result = $this->response($result,"Success To Delete Product","listing");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	

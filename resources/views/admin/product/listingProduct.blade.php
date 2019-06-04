@@ -23,7 +23,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{ trans('labels.ID') }}</th>
-                                                    <th>{{ trans('labels.ID') }}</th>
                                                     <th>{{ trans('labels.Image') }}</th>
                                                     <th>{{ trans('labels.Category') }}</th>
                                                     <th>{{ trans('labels.Name') }}</th>
@@ -39,7 +38,7 @@
                                                 <tr>
                                                     <td>{{ $product->product_id }}</td>
                                                     <td>
-                                                        @if(!empty($listingCustomers->customers_picture))
+                                                        @if(!empty($product->image))
                                                         <img src="../{{ $product->image }}"
                                                             style="width: 50px; float: left; margin-right: 10px">
                                                         @else

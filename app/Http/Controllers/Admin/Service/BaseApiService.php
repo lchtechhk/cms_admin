@@ -88,7 +88,7 @@ abstract class BaseApiService extends BaseDao{
         // public function update_multiple();
 
         public function throwException($result,$error_msg,$is_rollback){
-            Log::error($error_msg);
+            Log::error("throwException : " . $error_msg);
             $result['status'] = 'fail';
             $result['message'] =  $error_msg;
             if($is_rollback)DB::rollBack();

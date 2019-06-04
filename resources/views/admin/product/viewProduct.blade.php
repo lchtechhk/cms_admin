@@ -11,20 +11,29 @@
                                 @include('layouts/responseMessage')
                                 <div class="box-body">
                                     @if ($result['operation'] == 'listing' || $result['operation'] == 'add' || $result['operation'] == 'view_add' )
-                                        {!! Form::open(array('url' =>'admin/viewProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        {!! Form::open(array('url' =>'admin/addProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                        {!! Form::open(array('url' =>'admin/viewProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        {!! Form::open(array('url' =>'admin/updateProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
 
                                     {{-- Only Edit --}}
                                     @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                        
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product_id') }}
+                                                <span style="color:red">★</span>
+                                            </label>
+                                            <div class="col-sm-10 col-md-4">
+                                                {!! Form::text('product_id', empty($result['product']->product_id) ? '' :
+                                                print_value($result['operation'],$result['product']->product_id),
+                                                array('class'=>'form-control', 'id'=>'product_id','readonly')) !!}
+                                            </div>
+                                        </div>
                                     @endif
                                     {{-- Content --}}
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Category') }}</label>
+                                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Category') }}<span style="color:red">★</span></label>
                                         <div class="col-sm-10 col-md-4">
-                                            <select class="form-control field-validate" id="category_id" name="category_id">
+                                            <select class="form-control field-validate" id="sub_category_id" name="sub_category_id">
                                                 @foreach ($result['view_sub_categories'] as $view_sub_category)
                                                     <option value="{{ $view_sub_category->sub_category_id }}"
                                                         @if(!empty($result['product']->sub_category_id))
@@ -66,7 +75,7 @@
                                             <br>
                                             @if(!empty($result['product']->image))
                                                 {!! Form::hidden('oldImage', empty($result['product']->image) ? '' : print_value($result['operation'],$result['product']->image) , array('id'=>'oldImage',
-                                                'class'=>'field-validate ')) !!}
+                                                'class'=>' ')) !!}
                                                 <img src="{{asset('').$result['product']->image}}" alt="" width=" 100px">
                                             @else
                                                 <img src="../resources/assets/images/default_images/product.png"
@@ -76,9 +85,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductStatus') }} </label>
+                                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductStatus') }} <span style="color:red">★</span></label>
                                         <div class="col-sm-10 col-md-4">
-                                            <select class="form-control" name="status" id="status">
+                                            <select class="form-control field-validate" name="status" id="status">
                                                 <option value="active"
                                                     @if(!empty($result['product']->status))
                                                         {{print_selected_value($result['operation'],'active',$result['product']->status)}}
@@ -103,7 +112,7 @@
                                         </label>
                                         <div class="col-sm-10 col-md-4">
                                             {!! Form::text('price', empty($result['product']->price) ? '' : print_value($result['operation'],$result['product']->price),
-                                            array('class'=>'form-control number-validate', 'id'=>'price')) !!}
+                                            array('class'=>'form-control field-validate', 'id'=>'price')) !!}
                                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                             {{ trans('labels.ProductPriceText') }}
                                             </span>
@@ -144,7 +153,7 @@
                                         </label>
                                         <div class="col-sm-10 col-md-4">
                                             {!! Form::text('quantity', empty($result['product']->quantity) ? '' : print_value($result['operation'],$result['product']->quantity),
-                                            array('class'=>'form-control number-validate', 'id'=>'quantity')) !!}
+                                            array('class'=>'form-control field-validate', 'id'=>'quantity')) !!}
                                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                             {{ trans('labels.ProductsQuantityText') }}
                                             </span>
@@ -155,8 +164,8 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.QuantityLowLimit') }}</label>
                                         <div class="col-sm-10 col-md-4">
-                                            {!! Form::text('quantity', empty($result['product']->low_limit) ? '' : print_value($result['operation'],$result['product']->low_limit),
-                                            array('class'=>'form-control number-validate', 'id'=>'low_limit')) !!}
+                                            {!! Form::text('low_limit', empty($result['product']->low_limit) ? '' : print_value($result['operation'],$result['product']->low_limit),
+                                            array('class'=>'form-control ', 'id'=>'low_limit')) !!}
                                             <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                             {{ trans('labels.QuantityLowLimitText') }}</span>
                                         </div>
@@ -187,11 +196,11 @@
       
                                     <div class="special-container" style="display: none;">
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.SpecialPrice') }}</label>
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.SpecialPrice') }}<span style="color:red">★</span></label>
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::text('special_price',
                                                 empty($result['product']->special_price) ? '' : print_value($result['operation'],$result['product']->special_price), 
-                                                array('class'=>'form-control','id'=>'special_price')) !!}
+                                                array('class'=>'form-control field-validate','id'=>'special_price')) !!}
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                                     {{ trans('labels.SpecialPriceTxt') }}.
                                                 </span>
@@ -199,11 +208,11 @@
                                             <span class="help-block hidden">{{ trans('labels.SpecialPriceNote') }}.</span>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ExpiryDate') }}</label> 
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ExpiryDate') }}<span style="color:red">★</span></label> 
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::text('expires_date', 
                                                 empty($result['product']->special_price) ? '' : print_value($result['operation'],$result['product']->special_price),
-                                                array('class'=>'form-control datepicker','id'=>'expires_date')) !!}
+                                                array('class'=>'form-control datepicker field-validate','id'=>'expires_date')) !!}
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                                     {{ trans('labels.SpecialExpiryDateTxt') }}
                                                 </span>
@@ -214,9 +223,33 @@
                                     <hr>
                                     {{-- Language Content --}}
                                     @foreach($result['languages'] as $language)
-                                    {{$language_id = $language->languages_id}}
-                                    {{$language_name = $language->name}}
-                                    
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductName') }} ({{ $language->name}})
+                                                <span style="color:red">★</span>
+                                            </label>
+                                            <div class="col-sm-10 col-md-4">
+                                                    {!! Form::text("language_array[".$language->languages_id."][name]",
+                                                    empty($result['product']->language_array[$language->languages_id]['name']) ? '' :
+                                                    print_value($result['operation'],$result['product']->language_array[$language->languages_id]['name']),
+                                                    array('class'=>'form-control field-validate
+                                                    ', 'id'=>'name')) !!}
+                                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                                {{ trans('labels.EnterProductNameIn') }} {{ $language->name }} </span>
+                                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Description') }} ({{ $language->name }})</label>
+                                            <div class="col-sm-10 col-md-8">
+                                                    {!! Form::textarea("language_array[".$language->languages_id."][description]",
+                                                    empty($result['product']->language_array[$language->languages_id]['description']) ? '' :
+                                                    print_value($result['operation'],$result['product']->language_array[$language->languages_id]['description']),
+                                                    array('class'=>'form-control field-validate
+                                                    ', 'id'=>'description')) !!}
+                                                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                                {{ trans('labels.EnterProductDetailIn') }} {{ $language->name }}</span>
+                                            </div>
+                                        </div>
                                     @endforeach
 
                                     

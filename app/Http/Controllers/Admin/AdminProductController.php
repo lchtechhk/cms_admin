@@ -47,7 +47,8 @@ class AdminProductController extends Controller{
     function view_editProduct(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editProduct"));
         $result = array();
-		$result['request'] = $request;
+        $result['request'] = $request;
+        $result['product_id'] = $request->product_id;
         $result['operation'] = 'view_edit';
 		return $this->ProductService->redirect_view($result,$title);
     }
