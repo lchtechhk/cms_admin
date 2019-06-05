@@ -49,7 +49,9 @@ class AdminManufacturerController extends Controller{
     function view_editManufacturer(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editManufacturer"));
         $result = array();
-		$result['request'] = $request;
+        $result['request'] = $request;
+        $result['operation'] = 'view_edit';
+        $result['manufacturer_id'] = $request->manufacturer_id;
         $result['operation'] = 'view_edit';
 		return $this->ManufacturerService->redirect_view($result,$title);
     }

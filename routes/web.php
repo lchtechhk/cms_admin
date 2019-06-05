@@ -222,12 +222,12 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/deleteOrder', 'AdminOrdersController@deleteOrder');
 			
 			//Jamie orders
-			Route::get('/listOrder', 'AdminSiteSettingController@listOrder');
-			Route::get('/view_addOrder', 'AdminSiteSettingController@view_addOrder');
-			Route::get('/view_editOrder/{id}', 'AdminSiteSettingController@view_editOrder');
-			Route::post('/addOrder', 'AdminSiteSettingController@addOrder');
-			Route::post('/updateOrder', 'AdminSiteSettingController@updateOrder');
-			Route::post('/deleteOrder', 'AdminSiteSettingController@deleteOrder');
+			Route::get('/listingOrder', 'AdminOrderControler@listingOrder');
+			Route::get('/view_addOrder', 'AdminOrderControler@view_addOrder');
+			Route::get('/view_editOrder/{id}', 'AdminOrderControler@view_editOrder');
+			Route::post('/addOrder', 'AdminOrderControler@addOrder');
+			Route::post('/updateOrder', 'AdminOrderControler@updateOrder');
+			Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');
 
 			//orderstatus
 			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');

@@ -254,8 +254,12 @@
       </li> --}}
 
       <li
-        class="treeview {{ Request::is('admin/orders') ? 'active' : '' }}  {{ Request::is('admin/addOrders') ? 'active' : '' }}  {{ Request::is('admin/vieworder/*') ? 'active' : '' }}">
-        <a href="{{ URL::to('admin/orders')}}"><i class="fa fa-list-ul" aria-hidden="true"></i> <span>
+        class="treeview 
+          {{ Request::is('admin/listingOrder') ? 'active' : '' }} 
+          {{ Request::is('admin/view_addOrder') ? 'active' : '' }} 
+          {{ Request::is('admin/view_editOrder/*') ? 'active' : '' }}">
+        <a href="{{ URL::to('admin/listingOrder')}}">
+          <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
             {{ trans('labels.link_orders') }}</span>
         </a>
       </li>
