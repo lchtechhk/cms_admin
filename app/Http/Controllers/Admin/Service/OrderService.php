@@ -27,8 +27,7 @@ class OrderService extends BaseApiService{
         $result['label'] = "Order";
         switch($result['operation']){
             case 'listing':
-                $result['orders'] = array();
-                // $result['orders'] = $this->View_OrderService->getListing();
+                $result['orders'] = $this->View_OrderService->getListing();
                 Log::info('[listing] --  : ' . \json_encode($result));
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
