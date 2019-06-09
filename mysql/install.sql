@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
 --
--- Host: localhost    Database: cms
+-- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.32-MariaDB
+-- Server version	5.5.5-10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1260,13 +1260,13 @@ CREATE TABLE `order` (
   `billing_postcode` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `billing_state` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `billing_country` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
-  `payment_method` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
-  `date_purchased` datetime DEFAULT NULL,
-  `orders_date_finished` datetime DEFAULT NULL,
-  `order_price` decimal(10,2) NOT NULL,
   `shipping_cost` decimal(10,2) DEFAULT NULL,
   `shipping_method` varchar(100) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `shipping_duration` int(100) DEFAULT NULL,
+  `payment_method` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `order_price` decimal(10,2) NOT NULL,
+  `date_purchased` datetime DEFAULT NULL,
+  `order_date_finished` datetime DEFAULT NULL,
   `order_information` mediumtext COLLATE utf8_general_mysql500_ci,
   `is_seen` tinyint(1) DEFAULT '0',
   `coupon_code` text COLLATE utf8_general_mysql500_ci,
@@ -1278,6 +1278,7 @@ CREATE TABLE `order` (
   `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `order_status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1288,7 +1289,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,1,'customer_name','customer_company','customer_street_addresscustomer_suburb','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','22224444','acornjamie123@gmail.com','delivery_name','delivery_company','delivery_street_address','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country','payment_method','2019-01-01 00:00:00','2019-01-02 00:00:00',50.00,1.00,'car',NULL,'order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-01-01','1','active');
+INSERT INTO `order` VALUES (1,1,'customer_name','customer_company','customer_street_addresscustomer_suburb','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','22224444','acornjamie123@gmail.com','delivery_name','delivery_company','delivery_street_address','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',1.00,'car',NULL,'payment_method',50.00,'2019-01-01 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-06-10 00:14:19','1','active','complete');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1301,16 +1302,17 @@ DROP TABLE IF EXISTS `order_comment`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `order_comment` (
   `order_comment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL,
-  `comments` mediumtext COLLATE utf8_general_mysql500_ci,
+  `order_id` int(11) NOT NULL,
+  `comment` mediumtext COLLATE utf8_general_mysql500_ci,
   `customer_notified` int(1) DEFAULT '0',
+  `permission` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
   `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1319,6 +1321,7 @@ CREATE TABLE `order_comment` (
 
 LOCK TABLES `order_comment` WRITE;
 /*!40000 ALTER TABLE `order_comment` DISABLE KEYS */;
+INSERT INTO `order_comment` VALUES (1,1,'comment',0,'Admin','2019-06-09 00:00:00',NULL,'',NULL,'active');
 /*!40000 ALTER TABLE `order_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1334,6 +1337,7 @@ CREATE TABLE `order_product` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_name` varchar(64) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `currency_id` int(11) NOT NULL,
   `product_price` decimal(15,2) NOT NULL,
   `final_price` decimal(15,2) NOT NULL,
   `product_quantity` int(2) NOT NULL,
@@ -1342,7 +1346,7 @@ CREATE TABLE `order_product` (
   `product_model` varchar(12) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `product_tax` decimal(7,0) DEFAULT NULL,
   PRIMARY KEY (`order_product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1351,6 +1355,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
+INSERT INTO `order_product` VALUES (1,1,1,'A',0,10.00,50.00,5,NULL,NULL,NULL,NULL),(2,1,2,'B',0,20.00,100.00,5,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1802,6 +1807,7 @@ CREATE TABLE `product` (
   `quantity` int(4) NOT NULL,
   `low_limit` int(4) NOT NULL,
   `image` mediumtext COLLATE utf8_unicode_ci,
+  `currency_id` int(11) DEFAULT NULL,
   `price` decimal(15,2) NOT NULL,
   `special_status` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `special_price` decimal(15,2) NOT NULL,
@@ -1824,7 +1830,7 @@ CREATE TABLE `product` (
   `model` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`product_id`),
   KEY `idx_products_model` (`model`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1833,6 +1839,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,2,1,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active','',0,0,0,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1858,7 +1865,7 @@ CREATE TABLE `product_description` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`product_description_id`,`language_id`),
   KEY `products_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1867,6 +1874,7 @@ CREATE TABLE `product_description` (
 
 LOCK TABLES `product_description` WRITE;
 /*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
+INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(2,2,1,'Product A (English) ★','Description (English)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active');
 /*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2757,7 +2765,7 @@ SET character_set_client = utf8mb4;
  1 AS `billing_country`,
  1 AS `payment_method`,
  1 AS `date_purchased`,
- 1 AS `orders_date_finished`,
+ 1 AS `order_date_finished`,
  1 AS `order_price`,
  1 AS `shipping_cost`,
  1 AS `shipping_method`,
@@ -2773,6 +2781,28 @@ SET character_set_client = utf8mb4;
  1 AS `edit_date`,
  1 AS `edit_by_id`,
  1 AS `status`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `view_order_product`
+--
+
+DROP TABLE IF EXISTS `view_order_product`;
+/*!50001 DROP VIEW IF EXISTS `view_order_product`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_order_product` AS SELECT 
+ 1 AS `order_product_id`,
+ 1 AS `order_id`,
+ 1 AS `product_id`,
+ 1 AS `product_name`,
+ 1 AS `currency_id`,
+ 1 AS `product_price`,
+ 1 AS `final_price`,
+ 1 AS `product_quantity`,
+ 1 AS `weight`,
+ 1 AS `weight_unit`,
+ 1 AS `image`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -2803,6 +2833,7 @@ SET character_set_client = utf8mb4;
  1 AS `price`,
  1 AS `special_status`,
  1 AS `special_price`,
+ 1 AS `expiry_date`,
  1 AS `weight`,
  1 AS `weight_unit`,
  1 AS `ordered`,
@@ -2933,6 +2964,14 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 /*!40000 ALTER TABLE `zones_to_geo_zones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `zones_to_geo_zones` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'cms'
+--
+
+--
+-- Dumping routines for database 'cms'
+--
 
 --
 -- Final view structure for view `view_category`
@@ -3073,7 +3112,25 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_suburb` AS `customer_suburb`,`order`.`customer_city` AS `customer_city`,`order`.`customer_postcode` AS `customer_postcode`,`order`.`customer_state` AS `customer_state`,`order`.`customer_country` AS `customer_country`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`orders_date_finished` AS `orders_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from `order` */;
+/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_suburb` AS `customer_suburb`,`order`.`customer_city` AS `customer_city`,`order`.`customer_postcode` AS `customer_postcode`,`order`.`customer_state` AS `customer_state`,`order`.`customer_country` AS `customer_country`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`order_date_finished` AS `order_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from (`order` left join `order_product` on((`order`.`order_id` = `order_product`.`order_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_order_product`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_order_product`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_order_product` AS select `order_product`.`order_product_id` AS `order_product_id`,`order_product`.`order_id` AS `order_id`,`order_product`.`product_id` AS `product_id`,`order_product`.`product_name` AS `product_name`,`order_product`.`currency_id` AS `currency_id`,`order_product`.`product_price` AS `product_price`,`order_product`.`final_price` AS `final_price`,`order_product`.`product_quantity` AS `product_quantity`,`order_product`.`weight` AS `weight`,`order_product`.`weight_unit` AS `weight_unit`,`product`.`image` AS `image` from (`order_product` left join `product` on((`product`.`product_id` = `order_product`.`product_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3091,7 +3148,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`language_id` AS `language_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where (`product_description`.`language_id` is not null) */;
+/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`language_id` AS `language_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`expiry_date` AS `expiry_date`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where (`product_description`.`language_id` is not null) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3123,4 +3180,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-06 17:58:36
+-- Dump completed on 2019-06-10  0:17:29
