@@ -39,7 +39,7 @@ class SystemNodeProvider implements NodeProviderInterface
         $matches = array();
 
         // first try a  linux specific way
-        $node = $this->getSysfs();
+        $node = $this->getsysfs();
 
         // Search the ifconfig output for all MAC addresses and return
         // the first one found
@@ -62,10 +62,6 @@ class SystemNodeProvider implements NodeProviderInterface
      */
     protected function getIfconfig()
     {
-        if (strpos(strtolower(ini_get('disable_functions')), 'passthru') !== false) {
-            return '';
-        }
-
         ob_start();
         switch (strtoupper(substr(php_uname('a'), 0, 3))) {
             case 'WIN':
@@ -73,9 +69,6 @@ class SystemNodeProvider implements NodeProviderInterface
                 break;
             case 'DAR':
                 passthru('ifconfig 2>&1');
-                break;
-            case 'FRE':
-                passthru('netstat -i -f link 2>&1');
                 break;
             case 'LIN':
             default:
@@ -91,20 +84,15 @@ class SystemNodeProvider implements NodeProviderInterface
      *
      * @return string|bool
      */
-    protected function getSysfs()
+    protected function getsysfs()
     {
         $mac = false;
-
-        if (strtoupper(php_uname('s')) === 'LINUX') {
-            $addressPaths = glob('/sys/class/net/*/address', GLOB_NOSORT);
-
-            if (empty($addressPaths)) {
-                return false;
-            }
-
-            array_walk($addressPaths, function ($addressPath) use (&$macs) {
-                $macs[] = file_get_contents($addressPath);
-            });
+        if (strtoupper(php_uname('s')) === "LINUX") {
+            // get all the macadresses of all systems
+            $macs = array_map(
+                'file_get_contents',
+                glob('/sys/class/net/*/address', GLOB_NOSORT)
+            );
 
             $macs = array_map('trim', $macs);
 
@@ -119,7 +107,6 @@ class SystemNodeProvider implements NodeProviderInterface
 
             $mac = reset($macs);
         }
-
         return $mac;
     }
 }
