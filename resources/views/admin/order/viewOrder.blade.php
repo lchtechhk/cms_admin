@@ -11,9 +11,9 @@
                                 @include('layouts/responseMessage')
                                 <div class="box-body">
                                     @if ($result['operation'] == 'listing' || $result['operation'] == 'add' || $result['operation'] == 'view_add' )
-                                        {!! Form::open(array('url' =>'admin/viewManufacturer', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        {!! Form::open(array('url' =>'admin/addOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                        {!! Form::open(array('url' =>'admin/viewManufacturer', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                                        {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
 
                                     {{-- Only Edit --}}
@@ -28,7 +28,10 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                           <h2 class="page-header">
-                                            <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }}# {{ $result['order']->order_id }} 
+                                            <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }}# {{ $result['order']->order_id }}
+                                            {!! Form::hidden('order_id', empty($result['order']->order_id) ? '' :
+                                            print_value($result['operation'],$result['order']->order_id),
+                                            array('class'=>'form-control', 'id'=>'order_id','readonly')) !!}
                                             <small class="pull-right">{{ trans('labels.OrderedDate') }}: {{ date('m/d/Y', strtotime($result['order']->date_purchased)) }}</small>
                                           </h2>
                                         </div>
@@ -119,25 +122,51 @@
                                                             @endif>
                                                             Pending
                                                         </option>
-                                                        <option value="completed" 
+                                                        <option value="complete" 
                                                             @if(!empty($result['order']->order_status))
-                                                                {{print_selected_value($result['operation'],'completed',$result['order']->order_status)}}
+                                                                {{print_selected_value($result['operation'],'complete',$result['order']->order_status)}}
                                                             @endif>
-                                                            Completed
+                                                            Complete
+                                                        </option>
+                                                        <option value="cancel" 
+                                                            @if(!empty($result['order']->order_status))
+                                                                {{print_selected_value($result['operation'],'cancels',$result['order']->order_status)}}
+                                                            @endif>
+                                                            Cancel
                                                         </option>
                                                 </select>
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseStatus') }}</span>
                                             </div>
-                                            {{-- <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>{{ trans('labels.Comments') }}:</label>
-                                                    {!! Form::textarea('comments',  '', array('class'=>'form-control', 'id'=>'comments', 'rows'=>'4'))!!}
-                                                    <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CommentsOrderText') }}</span>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
-
+                                    <div class="col-xs-12">
+                                        <hr>
+                                        <p class="lead">{{ trans('labels.Comment') }}:</p>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ trans('labels.Id') }}</th>
+                                                    <th>{{ trans('labels.OperationBy') }}</th>
+                                                    <th>{{ trans('labels.Comment') }}</th>
+                                                    <th>{{ trans('labels.CreateDate') }}</th>
+                                                </tr>
+                                                @if (!empty($result['order']->order_comments) && sizeof($result['order']->order_comments) > 0)
+                                                    @foreach($result['order']->order_comments as $order_comment)
+                                                        <tr>
+                                                            <td>{{  $order_comment->order_comment_id }}</td>    
+                                                            <td>{{  $order_comment->permission }}</td>    
+                                                            <td>{{  $order_comment->comment }}</td>    
+                                                            <td>{{  $order_comment->create_date }}</td>    
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="4" style="text-align:center;">Nothing Comment</td>    
+                                                    </tr>  
+                                                @endif
+                                            </thead>
+                                        </table>
+                                    </div>
                                     @include('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\OrderProductService;
 use App\Http\Controllers\Admin\Service\View_OrderProductService;
+use App\Http\Controllers\Admin\Service\OrderCommentService;
 use function GuzzleHttp\json_encode;
 
 class OrderService extends BaseApiService{
@@ -17,14 +18,16 @@ class OrderService extends BaseApiService{
     private $View_OrderService;
     private $OrderProductService;
     private $View_OrderProductService;
+    private $OrderCommentService;
 
     function __construct(){
-        $this->setTable('order');
+        $this->setTable('cms.order');
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->View_OrderService = new View_OrderService();
         $this->OrderProductService = new OrderProductService();
         $this->View_OrderProductService = new View_OrderProductService();
+        $this->OrderCommentService = new OrderCommentService();
 
     }
 
@@ -32,7 +35,9 @@ class OrderService extends BaseApiService{
         $order_array = $this->findByColumnAndId("order_id",$order_id);
         $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
         $order_product_array = $this->View_OrderProductService->findByColumnAndId("order_id",$order_id);
+        $order_comment_array = $this->OrderCommentService->findByColumnAndId("order_id",$order_id);
         $order->order_products = $order_product_array;
+        $order->order_comments = $order_comment_array;
         Log::info('[order] -- getListing : ' .json_encode($order));
         return $order;
     }
@@ -69,13 +74,16 @@ class OrderService extends BaseApiService{
             case 'edit':
                 try{
                     DB::beginTransaction();
-                    Log::info('[edit] --  : ');
+                    $update_order_result = $this->update("order_id",$result);
+                    if(empty($update_order_result['status']) || $update_order_result['status'] == 'fail')throw new Exception("Error To Update Order");
+                    $result = $this->response($result,"Successful","view_edit");
+                    $result['order'] = $this->getOrder($result['order_id']);
                     DB::commit();
-                    return view("admin.order.viewOrder", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.order.viewOrder", $title)->with('result', $result);
                 }		
+                // Log::info('[edit] --  : ' . \json_encode($result));
+                return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'delete': 
                 try{
@@ -83,7 +91,6 @@ class OrderService extends BaseApiService{
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
-                
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
         }

@@ -95,7 +95,7 @@
                 }
         }
         public function db_prepareUpdate($table, $data,$key,$id){
-            $list_cols =  DB::select('DESCRIBE '.$table);
+            $list_cols =  DB::select('DESCRIBE '."$table");
             $nb_cols = count($list_cols);
             $target_array = array();
             foreach($list_cols as $row){
