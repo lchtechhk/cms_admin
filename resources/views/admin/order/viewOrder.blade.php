@@ -59,6 +59,7 @@
                                             <table class="table table-striped">
                                             <thead>
                                             <tr>
+                                                <th>{{ trans('labels.Id') }}</th>
                                                 <th>{{ trans('labels.Qty') }}</th>
                                                 <th>{{ trans('labels.Image') }}</th>
                                                 <th>{{ trans('labels.ProductName') }}</th>
@@ -69,6 +70,7 @@
                                             <tbody>
                                                 @foreach($result['order']->order_products as $order_product)
                                                     <tr>
+                                                        <td>{{  $order_product->order_product_id }}</td>
                                                         <td>{{  $order_product->product_quantity }}</td>
                                                         <td >
                                                             @if(!empty($order_product->image))
@@ -96,6 +98,7 @@
                                                     <th>{{ trans('labels.Total') }}:</th>
                                                     <th></th>
                                                     <th></th>
+                                                    <th></th>
                                                     <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }}{{ $result['order']->order_price }}</td>
                                                 </tr>
                                             </tbody>
@@ -107,16 +110,25 @@
                                         <hr>
                                         <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">
-                                            {{-- <div class="form-group">
+                                            <div class="form-group">
                                                 <label>{{ trans('labels.PaymentStatus') }}:</label>
-                                                <select class="form-control select2" name="orders_status" style="width: 100%;">
-                                                    @foreach( $data['orders_status'] as $orders_status)
-                                                        <option value="{{ $orders_status->orders_status_id }}" @if( $data['orders_data'][0]->orders_status_id == $orders_status->orders_status_id) selected="selected" @endif >{{ $orders_status->orders_status_name }}</option>
-                                                    @endforeach
+                                                <select class="form-control select2" name="order_status" style="width: 100%;">
+                                                        <option value="pending" 
+                                                            @if(!empty($result['order']->order_status))
+                                                                {{print_selected_value($result['operation'],'pending',$result['order']->order_status)}}
+                                                            @endif>
+                                                            Pending
+                                                        </option>
+                                                        <option value="completed" 
+                                                            @if(!empty($result['order']->order_status))
+                                                                {{print_selected_value($result['operation'],'completed',$result['order']->order_status)}}
+                                                            @endif>
+                                                            Completed
+                                                        </option>
                                                 </select>
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseStatus') }}</span>
                                             </div>
-                                            <div class="col-md-12">
+                                            {{-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>{{ trans('labels.Comments') }}:</label>
                                                     {!! Form::textarea('comments',  '', array('class'=>'form-control', 'id'=>'comments', 'rows'=>'4'))!!}

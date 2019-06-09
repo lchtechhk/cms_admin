@@ -16,7 +16,5 @@ VIEW `cms`.`view_order_product` AS
         `cms`.`order_product`.`weight_unit` AS `weight_unit`,
         `cms`.`product`.`image` AS `image`
     FROM
-        (((`cms`.`order_product`
+        (`cms`.`order_product`
         LEFT JOIN `cms`.`product` ON ((`cms`.`product`.`product_id` = `cms`.`order_product`.`product_id`)))
-        LEFT JOIN `cms`.`product_description` ON ((`cms`.`product`.`product_id` = `cms`.`product_description`.`product_id`)))
-        LEFT JOIN `cms`.`view_sub_category` ON ((`view_sub_category`.`sub_category_id` = `cms`.`product`.`sub_category_id`)))
