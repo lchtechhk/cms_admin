@@ -995,9 +995,9 @@ $(document).on('click', '#updateAddress', function(e){
 			
 	//deleteproductmodal
 	$(document).on('click', '#deleteProductId', function(){
-		var products_id = $(this).attr('products_id');
-		$('#products_id').val(products_id);
-		$("#deleteproductmodal").modal('show');
+		var product_id = $(this).attr('product_id');
+		$('#product_id').val(product_id);
+		$("#deleteProductModal").modal('show');
 	});
 		
 	//deleteattributeModal
@@ -1142,10 +1142,10 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 	
 	//deleteTaxClassModal
-	$(document).on('click', '#deleteOrdersId', function(){
-		var orders_id = $(this).attr('orders_id');
-		$('#orders_id').val(orders_id);
-		$("#deleteModal").modal('show');
+	$(document).on('click', '#deleteOrderId', function(){
+		var order_id = $(this).attr('order_id');
+		$('#order_id').val(orders_id);
+		$("#deleteOderModal").modal('show');
 	});
 	
 	
@@ -1399,15 +1399,15 @@ function getSubCategory() {
 
 //showSpecial
 function showSpecial() {
-	if($('#isSpecial').val() == 'yes'){
+	if($('#special_status').val() == 'active'){
 		$(".special-container").show();
-		$(".special-container input#expiry-date").addClass("field-validate");
-		$(".special-container input#special-price").addClass("number-validate");
+		$(".special-container input#expiry_date").addClass("field-validate");
+		$(".special-container input#special_price").addClass("number-validate");
 		
 	}else{
 		$(".special-container").hide();
-		$(".special-container input#expiry-date").removeClass("field-validate");
-		$(".special-container input#special-price").removeClass("number-validate");
+		$(".special-container input#expiry_date").removeClass("field-validate");
+		$(".special-container input#special_price").removeClass("number-validate");
 	}
 }
 

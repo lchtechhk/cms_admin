@@ -184,7 +184,7 @@
                                                 </option>
                                                 <option value="cancel"
                                                     @if(!empty($result['product']->special_status))
-                                                        {{print_selected_value($result['operation'],"active",$result['product']->special_status)}}
+                                                        {{print_selected_value($result['operation'],"cancel",$result['product']->special_status)}}
                                                     @endif>
                                                     Inactive
                                                 </option>
@@ -200,7 +200,7 @@
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::text('special_price',
                                                 empty($result['product']->special_price) ? '' : print_value($result['operation'],$result['product']->special_price), 
-                                                array('class'=>'form-control field-validate','id'=>'special_price')) !!}
+                                                array('class'=>'form-control','id'=>'special_price')) !!}
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                                     {{ trans('labels.SpecialPriceTxt') }}.
                                                 </span>
@@ -210,9 +210,9 @@
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ExpiryDate') }}<span style="color:red">★</span></label> 
                                             <div class="col-sm-10 col-md-4">
-                                                {!! Form::text('expires_date', 
-                                                empty($result['product']->special_price) ? '' : print_value($result['operation'],$result['product']->special_price),
-                                                array('class'=>'form-control datepicker field-validate','id'=>'expires_date')) !!}
+                                                {!! Form::text('expiry_date', 
+                                                empty($result['product']->expiry_date) ? '' : print_value($result['operation'],$result['product']->expiry_date),
+                                                array('class'=>'form-control datepicker','id'=>'expiry_date')) !!}
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
                                                     {{ trans('labels.SpecialExpiryDateTxt') }}
                                                 </span>

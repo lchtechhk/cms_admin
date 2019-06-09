@@ -86,16 +86,33 @@
       </li>
 
       <li
-        class="treeview <?php echo e(Request::is('admin/products') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addproduct') ? 'active' : ''); ?> <?php echo e(Request::is('admin/editattributes/*') ? 'active' : ''); ?> <?php echo e(Request::is('admin/attributes') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/addattributes') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/editattributes/*') ? 'active' : ''); ?>">
+        class="treeview 
+        <?php echo e(Request::is('admin/listingProduct') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_addProduct') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_editProduct/*') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/addProduct') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/updateProduct/*') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/deleteProduct/*') ? 'active' : ''); ?>  
+
+        <?php echo e(Request::is('admin/attributes') ? 'active' : ''); ?>  
+        <?php echo e(Request::is('admin/addattributes') ? 'active' : ''); ?>  
+        <?php echo e(Request::is('admin/editattributes/*') ? 'active' : ''); ?>">
         <a href="#">
           <i class="fa fa-database"></i> <span><?php echo e(trans('labels.link_products')); ?></span> <i
             class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
           <li
-            class="<?php echo e(Request::is('admin/products') ? 'active' : ''); ?> <?php echo e(Request::is('admin/addproduct') ? 'active' : ''); ?> <?php echo e(Request::is('admin/editproduct/*') ? 'active' : ''); ?>">
-            <a href="<?php echo e(URL::to('admin/products')); ?>"><i class="fa fa-circle-o"></i>
-              <?php echo e(trans('labels.link_all_products')); ?></a></li>
+            class="
+            <?php echo e(Request::is('admin/listingProduct') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_addProduct') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_editProduct/*') ? 'active' : ''); ?>">
+            <a href="<?php echo e(URL::to('admin/listingProduct')); ?>">
+              <i class="fa fa-circle-o"></i>
+              <?php echo e(trans('labels.link_all_products')); ?>
+
+            </a>
+          </li>
         </ul>
       </li>
 
@@ -222,8 +239,12 @@
       
 
       <li
-        class="treeview <?php echo e(Request::is('admin/orders') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/addOrders') ? 'active' : ''); ?>  <?php echo e(Request::is('admin/vieworder/*') ? 'active' : ''); ?>">
-        <a href="<?php echo e(URL::to('admin/orders')); ?>"><i class="fa fa-list-ul" aria-hidden="true"></i> <span>
+        class="treeview 
+          <?php echo e(Request::is('admin/listingOrder') ? 'active' : ''); ?> 
+          <?php echo e(Request::is('admin/view_addOrder') ? 'active' : ''); ?> 
+          <?php echo e(Request::is('admin/view_editOrder/*') ? 'active' : ''); ?>">
+        <a href="<?php echo e(URL::to('admin/listingOrder')); ?>">
+          <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
             <?php echo e(trans('labels.link_orders')); ?></span>
         </a>
       </li>

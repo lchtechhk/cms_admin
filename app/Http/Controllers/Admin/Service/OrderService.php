@@ -7,19 +7,34 @@ use Exception;
 
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
+use App\Http\Controllers\Admin\Service\OrderProductService;
+use App\Http\Controllers\Admin\Service\View_OrderProductService;
 use function GuzzleHttp\json_encode;
 
 class OrderService extends BaseApiService{
     private $LanguageService;
     private $UploadService;
     private $View_OrderService;
+    private $OrderProductService;
+    private $View_OrderProductService;
 
     function __construct(){
         $this->setTable('order');
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->View_OrderService = new View_OrderService();
+        $this->OrderProductService = new OrderProductService();
+        $this->View_OrderProductService = new View_OrderProductService();
 
+    }
+
+    function getOrder($order_id){
+        $order_array = $this->findByColumnAndId("order_id",$order_id);
+        $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
+        $order_product_array = $this->View_OrderProductService->findByColumnAndId("order_id",$order_id);
+        $order->order_products = $order_product_array;
+        Log::info('[order] -- getListing : ' .json_encode($order));
+        return $order;
     }
 
     function redirect_view($result,$title){
@@ -27,7 +42,7 @@ class OrderService extends BaseApiService{
         $result['label'] = "Order";
         switch($result['operation']){
             case 'listing':
-                $result['orders'] = $this->View_OrderService->getListing();
+                $result['orders'] = $this->findAll();
                 Log::info('[listing] --  : ' . \json_encode($result));
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
@@ -37,6 +52,7 @@ class OrderService extends BaseApiService{
             break;
             case 'view_edit':
                 Log::info('[view_edit] --  : ');
+                $result['order'] = $this->getOrder($result['order_id']);
                 return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'add':

@@ -25,13 +25,106 @@
                                     @endif
 
                                     {{-- Content --}}
-                                    
-                                    {{-- Language Content --}}
-                                    @foreach($result['languages'] as $language)
-                                    {{$language_id = $language->languages_id}}
-                                    {{$language_name = $language->name}}
-                                    
-                                    @endforeach
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                          <h2 class="page-header">
+                                            <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }}# {{ $result['order']->order_id }} 
+                                            <small class="pull-right">{{ trans('labels.OrderedDate') }}: {{ date('m/d/Y', strtotime($result['order']->date_purchased)) }}</small>
+                                          </h2>
+                                        </div>
+                                    </div>
+                                    <div class="row invoice-info">
+                                        <div class="col-sm-4 invoice-col">
+                                          {{ trans('labels.CustomerInfo') }}:
+                                          <address>
+                                            {{ trans('labels.CustomerName') }}:<strong>{{ $result['order']->customer_name }}</strong><br>
+                                            {{ trans('labels.Address') }}: {{ $result['order']->customer_street_address }} <br>
+                                            {{ trans('labels.Phone') }}: {{ $result['order']->customer_telephone }}<br>
+                                            {{ trans('labels.Email') }}: {{ $result['order']->email }}
+                                          </address>
+                                        </div>
+                                        <div class="col-sm-4 invoice-col">
+                                          {{ trans('labels.ShippingInfo') }}
+                                          <address>
+                                          {{ trans('labels.CustomerName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
+                                          {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
+                                           <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
+                                           <strong> {{ trans('labels.ShippingCost') }}:</strong> {{(!empty($result['order']->shipping_cost)) }}<br>
+                                          </address>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12 table-responsive">
+                                            <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>{{ trans('labels.Qty') }}</th>
+                                                <th>{{ trans('labels.Image') }}</th>
+                                                <th>{{ trans('labels.ProductName') }}</th>
+                                                {{-- <th>{{ trans('labels.Options') }}</th> --}}
+                                                <th>{{ trans('labels.Price') }}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($result['order']->order_products as $order_product)
+                                                    <tr>
+                                                        <td>{{  $order_product->product_quantity }}</td>
+                                                        <td >
+                                                            @if(!empty($order_product->image))
+                                                                <img src="{{ asset('').$order_product->image }}" width="60px">
+                                                            @else
+                                                            <img src="../resources/assets/images/default_images/product.png"
+                                                                style="width: 50px; float: left; margin-right: 10px">
+                                                            @endif
+                                                        </td>
+                                                        <td  width="30%">
+                                                            {{  $order_product->product_name }}<br>
+                                                        </td>
+                                                        {{-- <td>
+                                                            @foreach($order_product->attribute as $attributes)
+                                                                <b>{{ trans('labels.Name') }}:</b> {{ $attributes->product_options }}<br>
+                                                                <b>{{ trans('labels.Value') }}:</b> {{ $attributes->product_options_values }}<br>
+                                                                <b>{{ trans('labels.Price') }}:</b> {{ $order_product->currency_id }}{{ $attributes->options_values_price }}<br>
+                                            
+                                                            @endforeach
+                                                        </td> --}}
+                                                        <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                <tr >
+                                                    <th>{{ trans('labels.Total') }}:</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }}{{ $result['order']->order_price }}</td>
+                                                </tr>
+                                            </tbody>
+                                            </table>
+                                        </div>                                            
+                                    </div>
+
+                                    <div class="col-xs-12">
+                                        <hr>
+                                        <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
+                                        <div class="col-md-12">
+                                            {{-- <div class="form-group">
+                                                <label>{{ trans('labels.PaymentStatus') }}:</label>
+                                                <select class="form-control select2" name="orders_status" style="width: 100%;">
+                                                    @foreach( $data['orders_status'] as $orders_status)
+                                                        <option value="{{ $orders_status->orders_status_id }}" @if( $data['orders_data'][0]->orders_status_id == $orders_status->orders_status_id) selected="selected" @endif >{{ $orders_status->orders_status_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseStatus') }}</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>{{ trans('labels.Comments') }}:</label>
+                                                    {!! Form::textarea('comments',  '', array('class'=>'form-control', 'id'=>'comments', 'rows'=>'4'))!!}
+                                                    <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.CommentsOrderText') }}</span>
+                                                </div>
+                                            </div> --}}
+                                        </div>
+                                    </div>
 
                                     @include('layouts/submit_back_button')
                                     {!! Form::close() !!}

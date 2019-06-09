@@ -224,7 +224,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//Jamie orders
 			Route::get('/listingOrder', 'AdminOrderControler@listingOrder');
 			Route::get('/view_addOrder', 'AdminOrderControler@view_addOrder');
-			Route::get('/view_editOrder/{id}', 'AdminOrderControler@view_editOrder');
+			Route::get('/view_editOrder/{order_id}', 'AdminOrderControler@view_editOrder');
 			Route::post('/addOrder', 'AdminOrderControler@addOrder');
 			Route::post('/updateOrder', 'AdminOrderControler@updateOrder');
 			Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');

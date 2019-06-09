@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -391,12 +390,12 @@
               <?php $__currentLoopData = $result['recentProducts']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recentProducts): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="item">
                   <div class="product-img">
-                  	<img src="<?php echo e(asset('').'/'.$recentProducts->products_image); ?>" alt="" width=" 100px" height="100px">
+                  	<img src="<?php echo e(asset('').'/'.$recentProducts->image); ?>" alt="" width=" 100px" height="100px">
                   </div>
                   <div class="product-info">
-                    <a href="<?php echo e(URL::to('admin/editproduct')); ?>/<?php echo e($recentProducts->products_id); ?>" class="product-title"><?php echo e($recentProducts->products_name); ?>
+                    <a href="<?php echo e(URL::to('admin/editproduct')); ?>/<?php echo e($recentProducts->product_id); ?>" class="product-title"><?php echo e($recentProducts->name); ?>
 
-                      <span class="label label-warning label-succes pull-right"><?php echo e($result['currency'][19]->value); ?><?php echo e(floatval($recentProducts->products_price)); ?></span></a>
+                      <span class="label label-warning label-succes pull-right"><?php echo e($result['currency'][19]->value); ?><?php echo e(floatval($recentProducts->price)); ?></span></a>
                   </div>
                 </li>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

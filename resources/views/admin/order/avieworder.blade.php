@@ -158,22 +158,15 @@
                         </tr>
                     @endforeach
 				</table>
-               <!-- {{ $data['orders_data'][0]->coupon_code }}-->
                 
           @endif
-          <!-- <img src="../../dist/img/credit/visa.png" alt="Visa">
-          <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-          <img src="../../dist/img/credit/american-express.png" alt="American Express">
-          <img src="../../dist/img/credit/paypal2.png" alt="Paypal">-->
-          
+    
 		  <p class="lead" style="margin-bottom:10px">{{ trans('labels.Orderinformation') }}:</p>
           <p class="text-muted well well-sm no-shadow" style="text-transform:capitalize; word-break:break-all;">
            		{{ $data['orders_data'][0]->customer_remark }}
           </p>
         </div>
-        <!-- /.col -->
         <div class="col-xs-5">
-          <!--<p class="lead"></p>-->
 
           <div class="table-responsive ">
             <table class="table order-table">
@@ -204,7 +197,7 @@
      {!! Form::hidden('old_orders_status', $data['orders_data'][0]->orders_status_id, array('class'=>'form-control', 'id'=>'old_orders_status'))!!}
      {!! Form::hidden('customers_id', $data['orders_data'][0]->customers_id, array('class'=>'form-control', 'id'=>'device_id')) !!}
         <div class="col-xs-12">
-        <hr>
+          <hr>
           <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
           
             <div class="col-md-12">

@@ -81,6 +81,10 @@ class ProductService extends BaseApiService{
                 try{
                     DB::beginTransaction();
                     if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    if(empty($result['special_status']) || $result['special_status'] == 'cancel'){
+                        $result['special_price'] = 0.00;
+                        $result['expiry_date'] = NULL;
+                    }
                     $add_product_result = $this->add($result);
                     if(empty($add_product_result['status']) || $add_product_result['status'] == 'fail')throw new Exception("Error To Add Product");
                     $result['product_id'] = $add_product_result['response_id'];
@@ -97,6 +101,7 @@ class ProductService extends BaseApiService{
                     }
                     $result = $this->response($result,"Successful","view_edit");
                     $result['product'] = $this->getProduct($result['product_id']);
+                    Log::info('[add] --  : ' . \json_encode($result));
                     DB::commit();
                     return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -109,6 +114,10 @@ class ProductService extends BaseApiService{
                 try{
                     DB::beginTransaction();
                     if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    if(empty($result['special_status']) || $result['special_status'] == 'cancel'){
+                        $result['special_price'] = 0.00;
+                        $result['expiry_date'] = NULL;
+                    }
                     $update_product_result = $this->update("product_id",$result);
                     if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To update Product");
                     foreach ($result['language_array'] as $language_id => $obj) {
@@ -131,6 +140,8 @@ class ProductService extends BaseApiService{
                     }
                     $result = $this->response($result,"Successful","view_edit");
                     $result['product'] = $this->getProduct($result['product_id']);
+                    Log::info('[EDIT] --  : ' . \json_encode($result));
+
                     DB::commit();
                     return view("admin.Product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){

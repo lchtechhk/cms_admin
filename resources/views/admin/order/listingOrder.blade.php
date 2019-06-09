@@ -24,6 +24,8 @@
                                                 <tr>
                                                     <th>{{ trans('labels.ID') }}</th>
                                                     <th>{{ trans('labels.CustomerName') }}</th>
+                                                    <th>{{ trans('labels.Email') }}</th>
+                                                    <th>{{ trans('labels.Phone') }}</th>
                                                     <th>{{ trans('labels.OrderTotal') }}</th>
                                                     <th>{{ trans('labels.DatePurchased') }}</th>
                                                     <th>{{ trans('labels.Status') }} </th>
@@ -36,6 +38,8 @@
                                                     <tr>
                                                         <td>{{ $order->order_id }}</td>
                                                         <td>{{ $order->customer_name }}</td>
+                                                        <td>{{ $order->email }}</td>
+                                                        <td>{{ $order->customer_telephone }}</td>
                                                         <td>{{ $order->order_price }}</td>
                                                         <td>{{ $order->date_purchased }}</td>
                                                         <td>{{ $order->status }}</td>
