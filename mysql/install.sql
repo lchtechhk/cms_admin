@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.37-MariaDB
+-- Server version	5.5.5-10.1.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1844,6 +1844,40 @@ INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/156
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product_attribute`
+--
+
+DROP TABLE IF EXISTS `product_attribute`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_attribute` (
+  `product_attribute_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `option_id` int(11) NOT NULL,
+  `options_value_id` int(11) NOT NULL,
+  `options_value_price` decimal(15,2) NOT NULL,
+  `price_prefix` char(1) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT '0',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`product_attribute_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_attribute`
+--
+
+LOCK TABLES `product_attribute` WRITE;
+/*!40000 ALTER TABLE `product_attribute` DISABLE KEYS */;
+INSERT INTO `product_attribute` VALUES (1,1,1,1,10.00,'A',1,'2019-06-13 00:00:00',NULL,'2019-06-13',NULL,'active');
+/*!40000 ALTER TABLE `product_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `product_description`
 --
 
@@ -1876,6 +1910,99 @@ LOCK TABLES `product_description` WRITE;
 /*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
 INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(2,2,1,'Product A (English) ★','Description (English)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active');
 /*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_image`
+--
+
+DROP TABLE IF EXISTS `product_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_image` (
+  `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `image` mediumtext COLLATE utf8_general_mysql500_ci,
+  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `sort_order` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`product_image_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_image`
+--
+
+LOCK TABLES `product_image` WRITE;
+/*!40000 ALTER TABLE `product_image` DISABLE KEYS */;
+INSERT INTO `product_image` VALUES (1,1,NULL,'description',1,'0000-00-00 00:00:00',NULL,'',NULL,'');
+/*!40000 ALTER TABLE `product_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_option`
+--
+
+DROP TABLE IF EXISTS `product_option`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_option` (
+  `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_option_name` varchar(32) COLLATE utf8_general_mysql500_ci NOT NULL DEFAULT '',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`product_option_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_option`
+--
+
+LOCK TABLES `product_option` WRITE;
+/*!40000 ALTER TABLE `product_option` DISABLE KEYS */;
+INSERT INTO `product_option` VALUES (1,'product_option_name',1,'2019-06-13 00:00:00',NULL,'2019-06-13 00:00:00',NULL,'active');
+/*!40000 ALTER TABLE `product_option` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_option_value`
+--
+
+DROP TABLE IF EXISTS `product_option_value`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_option_value` (
+  `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_option_value_name` varchar(64) COLLATE utf8_general_mysql500_ci NOT NULL DEFAULT '',
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `product_option_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`product_option_value_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_option_value`
+--
+
+LOCK TABLES `product_option_value` WRITE;
+/*!40000 ALTER TABLE `product_option_value` DISABLE KEYS */;
+INSERT INTO `product_option_value` VALUES (1,'product_option_value_name',1,'1','2019-06-13 00:00:00',NULL,'2019-06-13 00:00:00',NULL,'active');
+/*!40000 ALTER TABLE `product_option_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2966,14 +3093,6 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'cms'
---
-
---
--- Dumping routines for database 'cms'
---
-
---
 -- Final view structure for view `view_category`
 --
 
@@ -3180,4 +3299,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-10  0:17:29
+-- Dump completed on 2019-06-13 18:09:57
