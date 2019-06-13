@@ -53,17 +53,20 @@
                                                     <td>{{ $product->price }}</td>
                                                     <td>{{ $product->create_date }}</td>
                                                     <td>
-                                                        <a data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{ trans('labels.Edit') }}"
-                                                            href="view_editProduct/{{ $product->product_id }}"
-                                                            class="badge bg-light-blue">
-                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        </a>
-                                                        <a data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{ trans('labels.Delete') }}" id="deleteProductId"
-                                                            product_id="{{$product->product_id}}" class="badge bg-red">
-                                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </a>
+                                                        <ul class="nav table-nav">
+                                                            <li class="dropdown">
+                                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                                {{ trans('labels.Action') }} <span class="caret"></span>
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="view_editProduct/{{ $product->product_id }}">{{ trans('labels.Edit') }}</a></li>
+                                                                    <li role="presentation" class="divider"></li>
+                                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="listingProductImage/{{ $product->product_id }}">{{ trans('labels.ProductImages') }}</a></li>
+                                                                    <li role="presentation" class="divider"></li>
+                                                                    <li role="presentation"><a role="menuitem" tabindex="-1" id="deleteProductId" products_id="{{ $product->product_id }}">{{ trans('labels.Delete') }}</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
                                                     </td>
                                                 </tr>
                                                 @endforeach

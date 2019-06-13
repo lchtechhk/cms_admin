@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateSubCategory', 'AdminSubCategoryController@updateSubCategory');
 			Route::post('/deleteSubCategory', 'AdminSubCategoryController@deleteSubCategory');
 
+			
 			//add attribute against newly added product
 			Route::get('/addproductattribute/{id}/', 'AdminProductsController@addproductattribute');
 			Route::get('/addproductimages/{id}/', 'AdminProductsController@addproductimages');
@@ -145,11 +146,6 @@ Route::group(['prefix' => 'admin'], function () {
 			//generate application key
 			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
 
-			//products
-			Route::get('/products', 'AdminProductsController@products');
-			Route::get('/addproduct', 'AdminProductsController@addproduct');
-			Route::post('/addnewproduct', 'AdminProductsController@addnewproduct');
-
 			//Jamie product
 			Route::get('/listingProduct', 'AdminProductController@listingProduct');
 			Route::get('/view_addProduct', 'AdminProductController@view_addProduct');
@@ -157,6 +153,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/addProduct', 'AdminProductController@addProduct');
 			Route::post('/updateProduct', 'AdminProductController@updateProduct');
 			Route::post('/deleteProduct', 'AdminProductController@deleteProduct');
+
+			//Product Image
+			Route::get('/listingProductImage/{product_id}/', 'AdminProductImageController@listingProductImage');
+			Route::get('/view_addProductImage', 'AdminProductImageController@view_addSubCategory');
+			Route::get('/view_editProductImage/{product_image_id}', 'AdminProductImageController@view_editProductImage');
+			Route::post('/addProductImage', 'AdminProductImageController@addProductImage');
+			Route::post('/updateProductImage', 'AdminProductImageController@updateProductImage');
+			Route::post('/deleteProductImage', 'AdminProductImageController@deleteProductImage');
 
 			//Customer
 			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
