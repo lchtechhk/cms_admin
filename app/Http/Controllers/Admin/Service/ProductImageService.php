@@ -26,13 +26,13 @@ class ProductImageService extends BaseApiService{
                 return view("admin.productImage.listingProductImage", $title)->with('result', $result);
             break;
             case 'view_add':
-                Log::info('[view_add] --  : ');
-                return view("admin.productImage.viewProductImage", $title)->with('result', $result);
+                Log::info('[view_add] --  : ' . \json_encode($result));
+                return view("admin.productImage.ProductImageDialog", $title)->with('result', $result);
             break;
             case 'view_edit':
                 Log::info('[view_edit] --  : ');
 
-                return view("admin.productImage.viewProductImage", $title)->with('result', $result);
+                return view("admin.productImage.ProductImageDialog", $title)->with('result', $result);
             break;
             case 'add':
                 try{

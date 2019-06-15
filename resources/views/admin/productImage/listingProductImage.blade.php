@@ -10,7 +10,7 @@
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('labels.ListingProductImage') }}</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-block btn-primary ListingProductImageModal"
+                            <button type="button" class="btn btn-block btn-primary addProductImageModal" 
                                 product_id='{{$result['product_id']}}'
                                 data-toggle="modal">{{ trans('labels.ListingProductImage') }}</button>
                         </div>

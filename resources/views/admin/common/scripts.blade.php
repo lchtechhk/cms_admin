@@ -354,6 +354,23 @@ $(document).on('change', '#entry_country_id', function(e){
 });
 
 //AddAddress
+$(document).on('click', '.addProductImageModal', function(){
+	var product_id = $(this).attr('product_id');
+	console.log('productImageDialog -- + : ' + product_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_addProductImage')}}",
+		type: "POST",
+		data: '&product_id='+product_id,
+		success: function (data) {
+			console.log("data : " + data);
+			$('#productImageDialog').html(data); 
+			$('#productImageDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
+//AddAddress
 $(document).on('click', '.addAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');
 	console.log('addAddressModal -- customer_id : ' + customer_id);
