@@ -55,7 +55,7 @@
                                                             </a>
                                                             <a product_id='{{ $product_image->product_id }}'
                                                                 product_image_id="{{ $product_image->product_image_id }}"
-                                                                class="badge bg-red deleteProductImagesModal">
+                                                                class="badge bg-red deleteProductImageModal">
                                                                 <i class="fa fa-trash " aria-hidden="true"></i>
                                                             </a>
                                                         </td>

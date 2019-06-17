@@ -949,49 +949,58 @@ $(document).on('click', '#updateAddress', function(e){
 				
 	});
 
-	//deleteProductImagesModal
-	$(document).on('click', '.deleteProductImagesModal', function(){
-		var id = $(this).attr('id');
-		var products_id = $(this).attr('products_id');
-		$.ajax({
-			url: '{{ URL::to("admin/deleteproductimagemodal")}}',
-			type: "POST",
-			data: '&products_id='+products_id+'&id='+id,
-			success: function (data) {
-				$('.deleteImageEmbed').html(data); 
-				$('#deleteProductImageModal').modal('show');
-			},
-			dataType: 'html'
-		});
+	//deleteProductImageModal
+	$(document).on('click', '.deleteProductImageModal', function(){
+		var product_id = $(this).attr('product_id');
+		var product_image_id = $(this).attr('product_image_id');
+		console.log('product_id : ' + product_id);
+		console.log('product_image_id : ' + product_image_id);
+		$('#delete_product_id').val(product_id);
+		$('#delete_product_image_id').val(product_image_id);
+		$("#deleteProductImageModal").modal('show');
 	});
-		
+	// //deleteProductImage
+	// $(document).on('click', '.deleteProductImageModal', function(){
+	// 	var product_image_id = $(this).attr('product_image_id');
+	// 	var product_id = $(this).attr('product_id');
+	// 	$.ajax({
+	// 		url: '{{ URL::to("admin/deleteproductimagemodal")}}',
+	// 		type: "POST",
+	// 		data: '&product_image_id='+product_image_id+'&product_image_id='+product_image_id,
+	// 		success: function (data) {
+	// 			$('.deleteImageEmbed').html(data); 
+	// 			$('#deleteProductImageModal').modal('show');
+	// 		},
+	// 		dataType: 'html'
+	// 	});
+	// });
 	//deleteproductimage
-	$(document).on('click', '#deleteProductImage', function(){
-		$("#loader").show();
-		var formData = $('#deleteImageForm').serialize();
-		$.ajax({
-			url: "{{ URL::to('admin/deleteproductimage')}}",
-			type: "POST",
-			data: formData,
-			success: function (res) {
-				if(res.length != ''){
-					$('.addError').hide();
-					$('#deleteProductImageModal').modal('hide');
-					var i;
-					var showData = [];
-					for (i = 0; i < res.length; ++i) {
-						var j = i + 1;
-						showData[i] = "<tr><td>"+j+"</td><td><img src={{asset('').'/'}}"+res[i].image+" alt='' width=' 100px'></td><td>"+res[i].htmlcontent+"</td> <td><a products_id = '"+res[i].products_id+"' class='badge bg-light-blue editProductImagesModal' id = '"+res[i].id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteProductImagesModal' id = '"+res[i].id+"' products_id = '"+res[i].products_id+"' ><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
-					}
-					$(".contentImages").html(showData);
-				}else{
-					var showData = '<tr><td colspan="4"><strong>No record found!</strong> Please click on "<strong>Add Product Images</strong>" to add images.</td></tr>';
-					$('#deleteProductImageModal').modal('hide');
-					$(".contentImages").html(showData);
-				}
-			},
-		});
-	});
+	// $(document).on('click', '#deleteProductImage', function(){
+	// 	$("#loader").show();
+	// 	var formData = $('#deleteImageForm').serialize();
+	// 	$.ajax({
+	// 		url: "{{ URL::to('admin/deleteproductimage')}}",
+	// 		type: "POST",
+	// 		data: formData,
+	// 		success: function (res) {
+	// 			if(res.length != ''){
+	// 				$('.addError').hide();
+	// 				$('#deleteProductImageModal').modal('hide');
+	// 				var i;
+	// 				var showData = [];
+	// 				for (i = 0; i < res.length; ++i) {
+	// 					var j = i + 1;
+	// 					showData[i] = "<tr><td>"+j+"</td><td><img src={{asset('').'/'}}"+res[i].image+" alt='' width=' 100px'></td><td>"+res[i].htmlcontent+"</td> <td><a products_id = '"+res[i].products_id+"' class='badge bg-light-blue editProductImagesModal' id = '"+res[i].id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteProductImagesModal' id = '"+res[i].id+"' products_id = '"+res[i].products_id+"' ><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
+	// 				}
+	// 				$(".contentImages").html(showData);
+	// 			}else{
+	// 				var showData = '<tr><td colspan="4"><strong>No record found!</strong> Please click on "<strong>Add Product Images</strong>" to add images.</td></tr>';
+	// 				$('#deleteProductImageModal').modal('hide');
+	// 				$(".contentImages").html(showData);
+	// 			}
+	// 		},
+	// 	});
+	// });
 	
 	
 	//ajax call for notification pop

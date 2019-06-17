@@ -78,12 +78,15 @@ class ProductImageService extends BaseApiService{
                 }		
             break;
             case 'delete': 
+                Log::info('[delete] --  : ');
                 try{
-                    Log::info('[delete] --  : ');
+                    $delete_product_image_result = $this->deleteByKey_Value("product_image_id",$result['product_image_id']);
+                    if(empty($delete_product_image_result['status']) || $delete_product_image_result['status'] == 'fail')throw new Exception("Error To Delete Product Image");
+                    $result["product_images"] = $this->getListing($result['product_id']);
+                    $result = $this->response($result,"Success To Delete Product Image","listing");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
-                
                 return view("admin.productImage.listingProductImage", $title)->with('result', $result);
             break;
         }
