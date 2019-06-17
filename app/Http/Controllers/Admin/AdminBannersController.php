@@ -66,7 +66,7 @@ class AdminBannersController extends Controller
 		//print_r($products);
 		$result['message'] = $message;
 		$result['categories'] = $categories;
-		$result['products'] = $products;
+		$result['product'] = $products;
 		
 		return view("admin.addbanner", $title)->with('result', $result);
 	}
@@ -132,7 +132,7 @@ class AdminBannersController extends Controller
 		$products = $myVar->getProducts(1);
 		
 		$result['categories'] = $categories;
-		$result['products'] = $products;		
+		$result['product'] = $products;		
 		
 		return view("admin.editbanner",$title)->with('result', $result);
 	}

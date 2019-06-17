@@ -105,7 +105,7 @@ class AdminOrdersController extends Controller
 			$orders_id	 = $data->orders_id;
 			
 			$orders_products = DB::table('orders_products')
-				->join('products', 'products.products_id','=', 'orders_products.products_id')
+				->join('product', 'products.products_id','=', 'orders_products.products_id')
 				->select('orders_products.*', 'products.products_image as image')
 				->where('orders_products.orders_id', '=', $orders_id)->get();
 				$i = 0;
@@ -190,9 +190,9 @@ class AdminOrdersController extends Controller
 				$orders_products = DB::table('orders_products')->where('orders_id', '=', $orders_id)->get();
 				
 				foreach($orders_products as $products_data){
-					DB::table('products')->where('products_id', $products_data->products_id)->update([
-						'products_quantity' => DB::raw('products_quantity - "'.$products_data->products_quantity.'"'),
-						'products_ordered'  => DB::raw('products_ordered + 1')
+					DB::table('product')->where('products_id', $products_data->products_id)->update([
+						'product_quantity' => DB::raw('product_quantity - "'.$products_data->products_quantity.'"'),
+						'product_ordered'  => DB::raw('product_ordered + 1')
 						]);
 				}
 			}

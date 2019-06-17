@@ -76,7 +76,7 @@ class AdminProductsController extends Controller
 		$data = DB::table('products_to_categories')
 			->leftJoin('categories as sub_categories', 'sub_categories.categories_id', '=', 'products_to_categories.categories_id')
 			->leftJoin('categories_description as sub_categories_description', 'sub_categories_description.categories_id', '=', 'products_to_categories.categories_id')
-			->leftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+			->leftJoin('product', 'products.products_id', '=', 'products_to_categories.products_id')
 			->leftJoin('products_description','products_description.products_id','=','products.products_id')
 			->LeftJoin('manufacturers', function ($join) {
 				$join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');

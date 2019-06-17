@@ -63,10 +63,10 @@ class AdminCouponsController extends Controller
 		$emails = DB::table('customers')->select('email')->get();
 		$result['emails'] = $emails;
 		
-		$products = DB::table('products')
+		$products = DB::table('product')
 			->LeftJoin('products_description', 'products_description.products_id', '=', 'products.products_id')
 			->select('products_name', 'products.products_id', 'products.products_model')->get();
-		$result['products'] = $products;
+		$result['product'] = $products;
 		
 		$categories = DB::table('categories')
 			->LeftJoin('categories_description', 'categories_description.categories_id', '=', 'categories.categories_id')

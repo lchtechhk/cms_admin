@@ -353,7 +353,7 @@ $(document).on('change', '#entry_country_id', function(e){
 	
 });
 
-//AddAddress
+//AddProductImage
 $(document).on('click', '.addProductImageModal', function(){
 	var product_id = $(this).attr('product_id');
 	console.log('productImageDialog -- + : ' + product_id);
@@ -361,6 +361,25 @@ $(document).on('click', '.addProductImageModal', function(){
 		url: "{{ URL::to('admin/view_addProductImage')}}",
 		type: "POST",
 		data: '&product_id='+product_id,
+		success: function (data) {
+			console.log("data : " + data);
+			$('#productImageDialog').html(data); 
+			$('#productImageDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
+//editProductImage
+$(document).on('click', '.editProductImageModal', function(){
+	var product_id = $(this).attr('product_id');
+	var product_image_id = $(this).attr('product_image_id');
+	console.log('product_id -- + : ' + product_id);
+	console.log('product_image_id -- + : ' + product_image_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_editProductImage')}}",
+		type: "POST",
+		data: '&product_id='+product_id+'&product_image_id='+product_image_id,
 		success: function (data) {
 			console.log("data : " + data);
 			$('#productImageDialog').html(data); 

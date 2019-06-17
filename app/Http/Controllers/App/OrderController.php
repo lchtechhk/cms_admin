@@ -873,7 +873,7 @@ class OrderController extends Controller
 				$orders_id	 = $data->orders_id;
 				
 				$orders_products = DB::table('orders_products')
-					->join('products', 'products.products_id','=', 'orders_products.products_id')
+					->join('product', 'products.products_id','=', 'orders_products.products_id')
 					->select('orders_products.*', 'products.products_image as image')
 					->where('orders_products.orders_id', '=', $orders_id)->get();
 					$i = 0;

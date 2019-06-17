@@ -39,7 +39,7 @@
                                                     <tr>
                                                         <td>{{ $product_image->product_image_id }}</td>
                                                         <td>
-                                                            @if(!empty($product->image))
+                                                            @if(!empty($product_image->image))
                                                                 <img src="{{asset('').'/'.$product_image->image}}" alt="" width=" 100px">
                                                             @else
                                                                 <img src="../../resources/assets/images/default_images/product.png"
@@ -50,7 +50,7 @@
                                                         <td>
                                                             <a product_id='{{ $product_image->product_id }}'
                                                                 product_image_id="{{ $product_image->product_image_id }}"
-                                                                class="badge bg-light-blue editProductImagesModal">
+                                                                class="badge bg-light-blue editProductImageModal">
                                                                 <i class="fa fa-pencil-square-o"aria-hidden="true"></i>
                                                             </a>
                                                             <a product_id='{{ $product_image->product_id }}'
@@ -74,10 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="box-footer text-center">
-                            <a href="{{ URL::to('admin/customers')}}"
-                                class="btn btn-primary">{{ trans('labels.SaveComplete') }}</a>
-                        </div>
+                        @include('layouts/back_button')
                     </div>
                     <!-- ProductImageDialog -->
                     <div class="modal fade" id="productImageDialog" tabindex="-1" role="dialog"

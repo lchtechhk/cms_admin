@@ -160,7 +160,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -207,7 +207,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -254,7 +254,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -318,7 +318,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -378,7 +378,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -452,7 +452,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();
@@ -542,7 +542,7 @@ class AdminReportsController extends Controller
 				}
 				
 				//purchase products
-				$products = DB::table('products')
+				$products = DB::table('product')
 					->select('products_quantity', DB::raw('SUM(products_quantity) as products_quantity'))
 					->whereBetween('products_date_added', [$dateFrom, $dateTo])
 					->get();

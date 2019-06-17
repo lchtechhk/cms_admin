@@ -42,8 +42,8 @@ class AdminProductImageController extends Controller{
     function view_addProductImage(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_addProductImage"));
         $result = array();
-        $result['request'] = $request;
         $result = $request->input();
+        $result['request'] = $request;
         $result['operation'] = 'view_add';
         Log::info('[view_addProductImage] --  : ' . \json_encode($result));
 		return $this->ProductImageService->redirect_view($result,$title);
@@ -52,9 +52,8 @@ class AdminProductImageController extends Controller{
     function view_editProductImage(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editProductImage"));
         $result = array();
+        $result = $request->input();
         $result['request'] = $request;
-        $result['operation'] = 'view_edit';
-        $result['ProductImage_id'] = $request->ProductImage_id;
         $result['operation'] = 'view_edit';
 		return $this->ProductImageService->redirect_view($result,$title);
     }
@@ -65,7 +64,7 @@ class AdminProductImageController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'add';
-        // Log::info('[result] --  : ' . json_encode($result));
+        Log::info('[result] --  : ' . json_encode($result));
         return $this->ProductImageService->redirect_view($result,$title);
     }
 

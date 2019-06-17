@@ -106,7 +106,7 @@ class AdminAlertController extends Controller
 		$product = DB::table('products_to_categories')
 			->leftJoin('categories', 'categories.categories_id', '=', 'products_to_categories.categories_id')
 			->leftJoin('categories_description', 'categories_description.categories_id', '=', 'products_to_categories.categories_id')
-			->leftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+			->leftJoin('product', 'product.products_id', '=', 'product_to_categories.products_id')
 			->leftJoin('products_description','products_description.products_id','=','products.products_id')
 			->LeftJoin('manufacturers', function ($join) {
 				$join->on('manufacturers.manufacturers_id', '=', 'products.manufacturers_id');

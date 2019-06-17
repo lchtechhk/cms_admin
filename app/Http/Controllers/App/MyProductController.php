@@ -178,7 +178,7 @@ class MyProductController extends Controller
 			
 			$data = DB::table('products_to_categories')				
 				->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
-				->join('products', 'products.products_id', '=', 'products_to_categories.products_id')
+				->join('product', 'products.products_id', '=', 'products_to_categories.products_id')
 				->leftJoin('products_description','products_description.products_id','=','products.products_id')
 				->leftJoin('manufacturers','manufacturers.manufacturers_id','=','products.manufacturers_id')
 				->LeftJoin('specials', function ($join) use ($currentDate) {  
@@ -215,7 +215,7 @@ class MyProductController extends Controller
 							$products = DB::table('products_to_categories')
 								->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
 								->leftJoin('categories_description', 'categories_description.categories_id', '=', 'products_to_categories.categories_id')
-								->leftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+								->leftJoin('product', 'products.products_id', '=', 'products_to_categories.products_id')
 								->leftJoin('products_description','products_description.products_id','=','products.products_id')
 								->leftJoin('manufacturers','manufacturers.manufacturers_id','=','products.manufacturers_id')
 								->leftJoin('manufacturers_info','manufacturers.manufacturers_id','=','manufacturers_info.manufacturers_id')
@@ -302,7 +302,7 @@ class MyProductController extends Controller
 		
 			$categories = DB::table('products_to_categories')
 				->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
-				->LeftJoin('products', 'products.products_id', '=', 'products_to_categories.products_id')
+				->LeftJoin('product', 'products.products_id', '=', 'products_to_categories.products_id')
 				->LeftJoin('categories_description','categories_description.categories_id','=','products_to_categories.categories_id')
 				->leftJoin('manufacturers','manufacturers.manufacturers_id','=','products.manufacturers_id')
 				->leftJoin('manufacturers_info','manufacturers.manufacturers_id','=','manufacturers_info.manufacturers_id');
@@ -481,7 +481,7 @@ class MyProductController extends Controller
 			]);
 					
 			$response = DB::table('liked_products')->select('liked_products_id')->where('liked_customers_id', '=', $liked_customers_id)->get();
-			DB::table('products')->where('products_id','=',$liked_products_id)->increment('products_liked');
+			DB::table('product')->where('products_id','=',$liked_products_id)->increment('products_liked');
 			
 			$responseData = array('success'=>'1', 'product_data'=>$response,  'message'=>"Product is liked.");
 		
@@ -512,7 +512,7 @@ class MyProductController extends Controller
 				'liked_customers_id' => $liked_customers_id
 			])->delete();
 			
-			DB::table('products')->where('products_id','=',$liked_products_id)->decrement('products_liked');
+			DB::table('product')->where('products_id','=',$liked_products_id)->decrement('products_liked');
 			
 			$response = DB::table('liked_products')->select('liked_products_id')->where('liked_customers_id', '=', $liked_customers_id)->get();
 			$responseData = array('success'=>'1', 'product_data'=>$response,  'message'=>"Product is unliked.");
@@ -542,7 +542,7 @@ class MyProductController extends Controller
 		
 			$price = DB::table('products_to_categories')
 							->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
-							->join('products', 'products.products_id', '=', 'products_to_categories.products_id');
+							->join('product', 'products.products_id', '=', 'products_to_categories.products_id');
 							if(isset($categories_id) and !empty($categories_id)){
 								$price->where('products_to_categories.categories_id','=', $categories_id);
 							}
@@ -558,7 +558,7 @@ class MyProductController extends Controller
 			
 			$product = DB::table('products_to_categories')
 				->leftJoin('categories','categories.categories_id','=','products_to_categories.categories_id')
-				->join('products', 'products.products_id', '=', 'products_to_categories.products_id')
+				->join('product', 'products.products_id', '=', 'products_to_categories.products_id')
 				->leftJoin('products_description','products_description.products_id','=','products.products_id')
 				->leftJoin('manufacturers','manufacturers.manufacturers_id','=','products.manufacturers_id')
 				->leftJoin('manufacturers_info','manufacturers.manufacturers_id','=','manufacturers_info.manufacturers_id')

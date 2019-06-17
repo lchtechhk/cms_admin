@@ -157,7 +157,7 @@ Route::group(['prefix' => 'admin'], function () {
 			//Product Image
 			Route::get('/listingProductImage/{product_id}/', 'AdminProductImageController@listingProductImage');
 			Route::post('/view_addProductImage', 'AdminProductImageController@view_addProductImage');
-			Route::post('/view_editProductImage/{product_image_id}', 'AdminProductImageController@view_editProductImage');
+			Route::post('/view_editProductImage', 'AdminProductImageController@view_editProductImage');
 			Route::post('/addProductImage', 'AdminProductImageController@addProductImage');
 			Route::post('/updateProductImage', 'AdminProductImageController@updateProductImage');
 			Route::post('/deleteProductImage', 'AdminProductImageController@deleteProductImage');
