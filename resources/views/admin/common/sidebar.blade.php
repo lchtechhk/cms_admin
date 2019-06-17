@@ -109,6 +109,16 @@
               {{ trans('labels.link_all_products') }}
             </a>
           </li>
+          <li
+            class="
+            {{ Request::is('admin/listingProductOption') ? 'active' : '' }} 
+            {{ Request::is('admin/view_addProductOption') ? 'active' : '' }} 
+            {{ Request::is('admin/view_editProductOption/*') ? 'active' : '' }}">
+            <a href="{{ URL::to('admin/listingProductOption')}}">
+              <i class="fa fa-circle-o"></i>
+              Option
+            </a>
+          </li>
         </ul>
       </li>
 

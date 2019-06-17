@@ -6,12 +6,12 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\UploadService;
-class ProductImageService extends BaseApiService{
+class ProductOptionValueService extends BaseApiService{
     private $UploadService;
 
 
     function __construct(){
-        $this->setTable('product_image');
+        $this->setTable('product_option_value');
         $this->UploadService = new UploadService();
 
     }
@@ -36,13 +36,13 @@ class ProductImageService extends BaseApiService{
             break;
             case 'view_add':
                 // Log::info('[view_add] --  : ' . \json_encode($result));
-                return view("admin.productImage.productImageDialog", $title)->with('result', $result);
+                return view("admin.productImage.ProductImageDialog", $title)->with('result', $result);
             break;
             case 'view_edit':
                 // Log::info('[view_edit] --  : ');
                 $result['product_image'] = $this->getProductImage($result['product_image_id']);
                 Log::info('[view_edit] --  : ' . \json_encode($result));
-                return view("admin.productImage.productImageDialog", $title)->with('result', $result);
+                return view("admin.productImage.ProductImageDialog", $title)->with('result', $result);
             break;
             case 'add':
                 //  Log::info('[add] --  : '. \json_encode($result["product_images"]));

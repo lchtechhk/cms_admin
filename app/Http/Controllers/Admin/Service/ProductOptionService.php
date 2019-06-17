@@ -6,12 +6,12 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\UploadService;
-class ProductImageService extends BaseApiService{
+class ProductOptionService extends BaseApiService{
     private $UploadService;
 
 
     function __construct(){
-        $this->setTable('product_image');
+        $this->setTable('product_option');
         $this->UploadService = new UploadService();
 
     }
@@ -32,17 +32,17 @@ class ProductImageService extends BaseApiService{
             case 'listing':
                 $result["product_images"] = $this->getListing($result['product_id']);
                 // Log::info('[listing] --  : ' . \json_encode($result));
-                return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                return view("admin.product_option.listingProductOption", $title)->with('result', $result);
             break;
             case 'view_add':
                 // Log::info('[view_add] --  : ' . \json_encode($result));
-                return view("admin.productImage.productImageDialog", $title)->with('result', $result);
+                return view("admin.product_option.optionProductDialog.blade", $title)->with('result', $result);
             break;
             case 'view_edit':
                 // Log::info('[view_edit] --  : ');
                 $result['product_image'] = $this->getProductImage($result['product_image_id']);
                 Log::info('[view_edit] --  : ' . \json_encode($result));
-                return view("admin.productImage.productImageDialog", $title)->with('result', $result);
+                return view("admin.product_option.optionProductDialog.blade", $title)->with('result', $result);
             break;
             case 'add':
                 //  Log::info('[add] --  : '. \json_encode($result["product_images"]));
@@ -55,10 +55,10 @@ class ProductImageService extends BaseApiService{
                     $result = $this->response($result,"Successful","listing");
                     $result["product_images"] = $this->getListing($result['product_id']);
                     DB::commit();
-                    return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }
             break;
             case 'edit':
@@ -71,10 +71,10 @@ class ProductImageService extends BaseApiService{
                     $result = $this->response($result,"Successful","listing");
                     $result["product_images"] = $this->getListing($result['product_id']);
                     DB::commit();
-                    return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }		
             break;
             case 'delete': 
@@ -87,7 +87,7 @@ class ProductImageService extends BaseApiService{
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
-                return view("admin.productImage.listingProductImage", $title)->with('result', $result);
+                return view("admin.product_option.listingProductOption", $title)->with('result', $result);
             break;
         }
     }
