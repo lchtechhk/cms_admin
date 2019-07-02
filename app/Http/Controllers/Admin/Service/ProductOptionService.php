@@ -6,54 +6,66 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\UploadService;
+use App\Http\Controllers\Admin\Service\LanguageService;
+
 class ProductOptionService extends BaseApiService{
     private $UploadService;
 
 
     function __construct(){
         $this->setTable('product_option');
+        $this->LanguageService = new LanguageService();
+
         $this->UploadService = new UploadService();
 
     }
-    function getListing($product_id){
-        $product_image_array = $this->findByColumnAndId('product_id',$product_id);
-        Log::info('[ProductImage] -- getListing : ' .json_encode($product_image_array));
-        return $product_image_array;
+    function getListing(){
+        $product_option_array = $this->findAllByLanguage(session('language_id') );
+        Log::info('[Product Option] -- getListing : ' .json_encode($product_option_array));
+        return $product_option_array;
     }
-    function getProductImage($product_image_id){
-        $product_image_array = $this->findByColumnAndId('product_image_id',$product_image_id);
-        $product_image = !empty($product_image_array) && sizeof($product_image_array) > 0 ? $product_image_array[0] : array();
-        Log::info('[ProductImage] -- getProductImage : ' .json_encode($product_image));
-        return $product_image;
+    function getProductOption($product_option_id){
+        $product_option_array = $this->findByColumnAndId("product_option_id",$product_option_id);
+        $product_option = !empty($product_option_array) && sizeof($product_option_array) > 0 ? $product_option_array[0] : array();
+        $product_option->language_array = array();
+        foreach ($product_option_array as $obj) {
+            $language_id = $obj->language_id;
+            $name = $obj->product_option_name;
+            $product_option->language_array[$language_id] = array();
+            $product_option->language_array[$language_id]['product_option_name'] = $name;
+        }
+        Log::info('[product_option] -- getListing : ' .json_encode($product_option));
+        return $product_option;
     }
     function redirect_view($result,$title){
-        $result['label'] = "ProductImage";
+        $result['label'] = "ProductOption";
+        $result['languages'] = $this->LanguageService->findAll();
+
         switch($result['operation']){
             case 'listing':
-                $result["product_images"] = $this->getListing($result['product_id']);
-                // Log::info('[listing] --  : ' . \json_encode($result));
+                $result["product_options"] = $this->getListing();
+                Log::info('[listing] --  : ' . \json_encode($result));
                 return view("admin.product_option.listingProductOption", $title)->with('result', $result);
             break;
             case 'view_add':
-                // Log::info('[view_add] --  : ' . \json_encode($result));
-                return view("admin.product_option.optionProductDialog.blade", $title)->with('result', $result);
+                Log::info('[view_add] --  : ' . \json_encode($result));
+                return view("admin.product_option.viewProductOption", $title)->with('result', $result);
             break;
             case 'view_edit':
-                // Log::info('[view_edit] --  : ');
-                $result['product_image'] = $this->getProductImage($result['product_image_id']);
+                $result['product_option'] = $this->getProductOption($result['product_option_id']);
                 Log::info('[view_edit] --  : ' . \json_encode($result));
-                return view("admin.product_option.optionProductDialog.blade", $title)->with('result', $result);
+                return view("admin.product_option.viewProductOption", $title)->with('result', $result);
             break;
             case 'add':
-                //  Log::info('[add] --  : '. \json_encode($result["product_images"]));
+                //  Log::info('[add] --  : '. \json_encode($result["product_options"]));
                 try{
                     DB::beginTransaction();
-                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_options/'))$result['image'] = $image;
                     $add_product_image_result = $this->add($result);
                     if(empty($add_product_image_result['status']) || $add_product_image_result['status'] == 'fail')throw new Exception("Error To Add Product Image");
                     $result['product_image_id'] = $add_product_image_result['response_id'];
                     $result = $this->response($result,"Successful","listing");
-                    $result["product_images"] = $this->getListing($result['product_id']);
+                    $result["product_options"] = $this->getListing($result['product_id']);
                     DB::commit();
                     return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -65,11 +77,11 @@ class ProductOptionService extends BaseApiService{
                 // Log::info('[edit] --  : ' . \json_encode($result));
                 try{
                     DB::beginTransaction();
-                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_images/'))$result['image'] = $image;
+                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_options/'))$result['image'] = $image;
                     $update_product_result = $this->update("product_image_id",$result);
                     if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Product Image");
                     $result = $this->response($result,"Successful","listing");
-                    $result["product_images"] = $this->getListing($result['product_id']);
+                    $result["product_options"] = $this->getListing($result['product_id']);
                     DB::commit();
                     return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }catch(Exception $e){
@@ -82,7 +94,7 @@ class ProductOptionService extends BaseApiService{
                 try{
                     $delete_product_image_result = $this->deleteByKey_Value("product_image_id",$result['product_image_id']);
                     if(empty($delete_product_image_result['status']) || $delete_product_image_result['status'] == 'fail')throw new Exception("Error To Delete Product Image");
-                    $result["product_images"] = $this->getListing($result['product_id']);
+                    $result["product_options"] = $this->getListing($result['product_id']);
                     $result = $this->response($result,"Success To Delete Product Image","listing");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);

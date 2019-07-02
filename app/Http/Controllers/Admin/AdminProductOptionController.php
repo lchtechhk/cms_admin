@@ -30,12 +30,11 @@ class AdminProductOptionController extends Controller{
 	}
 	
 	function listingProductOption(Request $request){
-        // $title = array('pageTitle' => Lang::get("labels.ListProductOption"));
-        // $result = array();
-		// $result['operation'] = 'listing';
+        $title = array('pageTitle' => Lang::get("labels.ListProductOption"));
+        $result = array();
+		$result['operation'] = 'listing';
 		Log::info('[listing] --  : ');
-
-		// return $this->ProductOptionService->redirect_view($result,$title);
+		return $this->ProductOptionService->redirect_view($result,$title);
     }
 
     function view_addProductOption(Request $request){
@@ -51,8 +50,7 @@ class AdminProductOptionController extends Controller{
         $result = array();
         $result['request'] = $request;
         $result['operation'] = 'view_edit';
-        $result['ProductOption_id'] = $request->ProductOption_id;
-        $result['operation'] = 'view_edit';
+        $result['product_option_id'] = $request->product_option_id;
 		return $this->ProductOptionService->redirect_view($result,$title);
     }
 
