@@ -57,21 +57,25 @@ class ProductOptionService extends BaseApiService{
                 return view("admin.product_option.viewProductOption", $title)->with('result', $result);
             break;
             case 'add':
-                //  Log::info('[add] --  : '. \json_encode($result["product_options"]));
+                 Log::info('[add] --  : '. \json_encode($result));
                 try{
                     DB::beginTransaction();
-                    if($image = $this->UploadService->upload_image($result['request'],'image','resources/assets/images/product_options/'))$result['image'] = $image;
-                    $add_product_image_result = $this->add($result);
-                    if(empty($add_product_image_result['status']) || $add_product_image_result['status'] == 'fail')throw new Exception("Error To Add Product Image");
-                    $result['product_image_id'] = $add_product_image_result['response_id'];
+                    foreach ($result['language_array'] as $language_id => $obj) {
+                        $product_option_name = $obj['product_option_name'];
+                        $param = array();
+                        $param['language_id'] = $language_id;
+                        $param['product_option_name'] = $product_option_name;
+                        $add_product_option_result = $this->add($param);
+                        if(empty($add_product_option_result['status']) || $add_product_option_result['status'] == 'fail')throw new Exception("Error To Add Product Option");
+                    }
                     $result = $this->response($result,"Successful","listing");
-                    $result["product_options"] = $this->getListing($result['product_id']);
+                    $result["product_options"] = $this->getListing();
                     DB::commit();
-                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.product_option.listingProductOption", $title)->with('result', $result);
                 }
+                $result["product_options"] = $this->getListing();
+                return view("admin.product_option.listingProductOption", $title)->with('result', $result);
             break;
             case 'edit':
                 // Log::info('[edit] --  : ' . \json_encode($result));

@@ -12,10 +12,10 @@
                                 <div class="box-body">
                                     @if ($result['operation'] == 'listing' || $result['operation'] == 'add' ||
                                     $result['operation'] == 'view_add' )
-                                    {!! Form::open(array('url' =>'admin/view_addProductOption', 'method'=>'post',
+                                    {!! Form::open(array('url' =>'admin/addProductOption', 'method'=>'post',
                                     'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                    {!! Form::open(array('url' =>'admin/view_editProductOption', 'method'=>'post',
+                                    {!! Form::open(array('url' =>'admin/updateProductOption', 'method'=>'post',
                                     'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
 
