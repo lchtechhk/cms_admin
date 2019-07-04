@@ -1076,6 +1076,14 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 
 	//deleteCountrytModal
+	$(document).on('click', '#deleteProductOptionId', function(){
+		var product_option_id = $(this).attr('product_option_id');
+		console.log('product_option_id : ' + product_option_id);
+		$('#product_option_id').val(product_option_id);
+		$("#deleteProductOptionModal").modal('show');
+	});
+	
+	//deleteCountrytModal
 	$(document).on('click', '#deleteCategoryId', function(){
 		var category_id = $(this).attr('category_id');
 		console.log('deleteCategoryModal : ' + category_id);

@@ -32,7 +32,7 @@
                                                 @foreach ($result['product_options'] as $product_option)
                                                 <tr>
                                                     <td>{{ $product_option->product_option_id }}</td>
-                                                    <td>{{ $product_option->product_option_name }}</td>
+                                                    <td>{{ $product_option->name }}</td>
                                                     <td>
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Edit') }}"
@@ -42,7 +42,7 @@
                                                         </a>
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Delete') }}"
-                                                            id="deleteManufacturerId"
+                                                            id="deleteProductOptionId"
                                                             product_option_id="{{$product_option->product_option_id}}"
                                                             class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
@@ -67,7 +67,7 @@
             </div>
         </div>
         <!-- delete -->
-        @include('admin/Manufacturer/deleteManufacturer')
+        @include('admin/product_option/deleteProductOption')
     </section>
 </div>
 @endsection
