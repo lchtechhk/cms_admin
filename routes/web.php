@@ -170,6 +170,14 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateProductOption', 'AdminProductOptionController@updateProductOption');
 			Route::post('/deleteProductOption', 'AdminProductOptionController@deleteProductOption');
 
+			//Product Option Value
+			Route::get('/listingProductOptionValue', 'AdminProductOptionValueController@listingProductOptionValue');
+			Route::get('/view_addProductOptionValue', 'AdminProductOptionValueController@view_addProductOptionValue');
+			Route::get('/view_editProductOptionValue/{product_option_value_id}/', 'AdminProductOptionValueController@view_editProductOptionValue');
+			Route::post('/addProductOptionValue', 'AdminProductOptionValueController@addProductOptionValue');
+			Route::post('/updateProductOptionValue', 'AdminProductOptionValueController@updateProductOptionValue');
+			Route::post('/deleteProductOptionValue', 'AdminProductOptionValueController@deleteProductOptionValue');
+
 			//Customer
 			Route::get('/listingCustomer', 'AdminCustomersController@listingCustomer');
 			Route::get('/view_addCustomer', 'AdminCustomersController@view_addCustomer');

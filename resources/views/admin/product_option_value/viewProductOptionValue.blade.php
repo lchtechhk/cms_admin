@@ -12,10 +12,10 @@
                                 <div class="box-body">
                                     @if ($result['operation'] == 'listing' || $result['operation'] == 'add' ||
                                     $result['operation'] == 'view_add' )
-                                    {!! Form::open(array('url' =>'admin/addProductOption', 'method'=>'post',
+                                    {!! Form::open(array('url' =>'admin/addProductOptionValue', 'method'=>'post',
                                     'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                    {!! Form::open(array('url' =>'admin/updateProductOption', 'method'=>'post',
+                                    {!! Form::open(array('url' =>'admin/updateProductOptionValue', 'method'=>'post',
                                     'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
 
@@ -27,16 +27,33 @@
                                             <span style="color:red">★</span>
                                         </label>
                                         <div class="col-sm-10 col-md-4">
-                                            {!! Form::text('product_option_id', empty($result['product_option']->product_option_id) ? '' :
-                                            print_value($result['operation'],$result['product_option']->product_option_id),
-                                            array('class'=>'form-control', 'id'=>'product_option_id','readonly')) !!}
+                                            {!! Form::text('product_option_value_id', empty($result['product_option_value']->product_option_value_id) ? '' :
+                                            print_value($result['operation'],$result['product_option_value']->product_option_value_id),
+                                            array('class'=>'form-control', 'id'=>'product_option_value_id','readonly')) !!}
                                         </div>
                                     </div>
 
                                     @endif
 
                                     {{-- Content --}}
-
+                                    <div class="form-group">
+                                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.OptionName') }}<span style="color:red">★</span></label>
+                                        <div class="col-sm-10 col-md-4">
+                                            <select class="form-control field-validate" id="product_option_id" name="product_option_id">
+                                                @foreach ($result['view_product_options'] as $product_option)
+                                                    <option value="{{ $product_option->product_option_id }}"
+                                                        @if(!empty($result['view_product_options']->product_option_id))
+                                                            {{print_selected_value($result['operation'],$product_option->product_option_id,$result['view_product_options']->product_option_id)}}
+                                                        @endif>
+                                                        {{ $product_option->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                            {{ trans('labels.ChooseCatgoryText') }}.</span>
+                                            <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                                        </div>
+                                    </div>
                                     {{-- Language Content --}}
                                     @foreach($result['languages'] as $language)
                                         <div class="form-group">
@@ -45,13 +62,13 @@
                                             </label>
                                             <div class="col-sm-10 col-md-8">
                                                 {!! Form::text("language_array[".$language->languages_id."][name]",
-                                                    empty($result['product_option']->language_array[$language->languages_id]['name']) ? '' :
-                                                    print_value($result['operation'],$result['product_option']->language_array[$language->languages_id]['name']),
+                                                    empty($result['product_option_value']->language_array[$language->languages_id]['name']) ? '' :
+                                                    print_value($result['operation'],$result['product_option_value']->language_array[$language->languages_id]['name']),
                                                     array('class'=>'form-control field-validate
                                                     ', 'id'=>'name'))
                                                 !!}
                                                 <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
-                                                    {{ trans('labels.ProductOptionName') }} {{ $language->name }} </span>
+                                                    {{ trans('labels.ProductOptionValueName') }} {{ $language->name }} </span>
                                                 <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                             </div>
                                         </div>

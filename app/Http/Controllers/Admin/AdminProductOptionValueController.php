@@ -29,35 +29,34 @@ class AdminProductOptionValueController extends Controller{
 	
 	}
 	
-	function listingManufacturer(Request $request){
-        // $title = array('pageTitle' => Lang::get("labels.ListManufacturer"));
-        // $result = array();
-		// $result['operation'] = 'listing';
-		Log::info('[listing] --  : ');
-
-		// return $this->ProductOptionValueService->redirect_view($result,$title);
+	function listingProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.ListProductOptionValue"));
+        $result = array();
+		$result['operation'] = 'listing';
+		// Log::info('[listing] --  : ');
+		return $this->ProductOptionValueService->redirect_view($result,$title);
     }
 
-    function view_addManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.view_addManufacturer"));
+    function view_addProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.view_addProductOptionValue"));
         $result = array();
 		$result['request'] = $request;
         $result['operation'] = 'view_add';
 		return $this->ProductOptionValueService->redirect_view($result,$title);
     }
 
-    function view_editManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.view_editManufacturer"));
+    function view_editProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.view_editProductOptionValue"));
         $result = array();
         $result['request'] = $request;
         $result['operation'] = 'view_edit';
-        $result['manufacturer_id'] = $request->manufacturer_id;
+        $result['product_option_value_id'] = $request->product_option_value_id;
         $result['operation'] = 'view_edit';
 		return $this->ProductOptionValueService->redirect_view($result,$title);
     }
 
-    function addManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.addManufacturer"));
+    function addProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.addProductOptionValue"));
         $result = array();
         $result = $request->input();
         $result['request'] = $request;
@@ -66,8 +65,8 @@ class AdminProductOptionValueController extends Controller{
         return $this->ProductOptionValueService->redirect_view($result,$title);
     }
 
-    function updateManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.updateManufacturer"));
+    function updateProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.updateProductOptionValue"));
         $result = array();
         $result = $request->input();
         $result['request'] = $request;
@@ -75,8 +74,8 @@ class AdminProductOptionValueController extends Controller{
         return $this->ProductOptionValueService->redirect_view($result,$title);
     }
 
-    function deleteManufacturer(Request $request){
-        $title = array('pageTitle' => Lang::get("labels.deleteManufacturer"));
+    function deleteProductOptionValue(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.deleteProductOptionValue"));
         $result = array();
         $result = $request->input();
         $result['request'] = $request;

@@ -6,7 +6,7 @@ use Lang;
 use Exception;
 
 use App\Http\Controllers\Admin\Service\UploadService;
-class ProductOptionValueDesService extends BaseApiService{
+class ProductOptionValueDescService extends BaseApiService{
     private $UploadService;
 
 

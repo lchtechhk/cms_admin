@@ -119,29 +119,18 @@
               Option
             </a>
           </li>
+          <li
+            class="
+            {{ Request::is('admin/listingProductOptionValue') ? 'active' : '' }} 
+            {{ Request::is('admin/view_addProductOptionValue') ? 'active' : '' }} 
+            {{ Request::is('admin/view_editProductOptionValue/*') ? 'active' : '' }}">
+            <a href="{{ URL::to('admin/listingProductOptionValue')}}">
+              <i class="fa fa-circle-o"></i>
+              Option Value
+            </a>
+          </li>
         </ul>
       </li>
-
-      {{-- <li class="treeview {{ Request::is('admin/newscategories') ? 'active' : '' }}
-      {{ Request::is('admin/addnewscategory') ? 'active' : '' }}
-      {{ Request::is('admin/editnewscategory/*') ? 'active' : '' }} {{ Request::is('admin/news') ? 'active' : '' }}
-      {{ Request::is('admin/addsubnews') ? 'active' : '' }} {{ Request::is('admin/editsubnews/*') ? 'active' : '' }}">
-      <a href="#">
-        <i class="fa fa-database" aria-hidden="true"></i>
-        <span>{{ trans('labels.link_news') }}</span> <i class="fa fa-angle-left pull-right"></i>
-      </a>
-      <ul class="treeview-menu">
-        <li
-          class="{{ Request::is('admin/newscategories') ? 'active' : '' }} {{ Request::is('admin/addnewscategory') ? 'active' : '' }} {{ Request::is('admin/editnewscategory/*') ? 'active' : '' }}">
-          <a href="{{ URL::to('admin/newscategories')}}"><i
-              class="fa fa-circle-o"></i>{{ trans('labels.link_news_categories') }}</a></li>
-        <li
-          class="{{ Request::is('admin/news') ? 'active' : '' }}  {{ Request::is('admin/addsubnews') ? 'active' : '' }}  {{ Request::is('admin/editsubnews/*') ? 'active' : '' }}">
-          <a href="{{ URL::to('admin/news')}}"><i class="fa fa-circle-o"></i> {{ trans('labels.link_sub_news') }}</a>
-        </li>
-      </ul>
-      </li> --}}
-
       <li class="treeview 
           {{ Request::is('admin/listingCustomer') ? 'active' : '' }}  
           {{ Request::is('admin/addCustomers') ? 'active' : '' }} 
@@ -151,8 +140,6 @@
           <span>{{ trans('labels.link_customers') }}</span>
         </a>
       </li>
-
-
       <li class="treeview 
                       {{ Request::is('admin/listingCountry') ? 'active' : '' }} 
                       {{ Request::is('admin/view_addCountry') ? 'active' : '' }} 

@@ -13,14 +13,13 @@ use App\Http\Controllers\Admin\Service\ProductOptionDescService;
 class ProductOptionService extends BaseApiService{
     private $UploadService;
     private $View_ProductOptionService;
-
+    private $LanguageService;
 
     function __construct(){
         $this->setTable('product_option');
         $this->LanguageService = new LanguageService();
         $this->View_ProductOptionService = new View_ProductOptionService();
         $this->ProductOptionDescService = new ProductOptionDescService();
-
         $this->UploadService = new UploadService();
 
     }

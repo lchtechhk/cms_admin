@@ -8,10 +8,10 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{ trans('labels.ListingAllMainCategories') }} </h3>
+                        <h3 class="box-title">{{ trans('labels.ListingProductOptionValue') }} </h3>
                         <div class="box-tools pull-right">
-                            <a href="{{ URL::to('admin/view_addProductOption') }}" type="button"
-                                class="btn btn-block btn-primary">{{ trans('labels.AddNewProductOption') }}</a>
+                            <a href="{{ URL::to('admin/view_addProductOptionValue') }}" type="button"
+                                class="btn btn-block btn-primary">{{ trans('labels.AddNewProductOptionValue') }}</a>
                         </div>
                     </div>
                     <div class="box-body">
@@ -19,31 +19,33 @@
                             <div class="col-xs-12">
                                 <div class="table-wrap" style="fro">
                                     <div class="table">
-                                        <table id="productOption" class="table table-bordered table-striped">
+                                        <table id="productOptionValue" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>{{ trans('labels.ID') }}</th>
-                                                    <th>{{ trans('labels.Name') }}</th>
+                                                    <th>{{ trans('labels.OptionName') }}</th>
+                                                    <th>{{ trans('labels.ValueName') }}</th>
                                                     <th>{{ trans('labels.Action') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if (count($result['product_options'])>0)
-                                                @foreach ($result['product_options'] as $product_option)
+                                                @if (count($result['product_option_values'])>0)
+                                                @foreach ($result['product_option_values'] as $product_option_value)
                                                 <tr>
-                                                    <td>{{ $product_option->product_option_id }}</td>
-                                                    <td>{{ $product_option->name }}</td>
+                                                    <td>{{ $product_option_value->product_option_value_id }}</td>
+                                                    <td>{{ $product_option_value->option_name }}</td>
+                                                    <td>{{ $product_option_value->value_name }}</td>
                                                     <td>
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Edit') }}"
-                                                            href="view_editProductOption/{{ $product_option->product_option_id }}"
+                                                            href="view_editProductOptionValue/{{ $product_option_value->product_option_value_id }}"
                                                             class="badge bg-light-blue">
                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         </a>
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Delete') }}"
-                                                            id="deleteProductOptionId"
-                                                            product_option_id="{{$product_option->product_option_id}}"
+                                                            id="deleteProductOptionValueId"
+                                                            product_option_value="{{$product_option_value->product_option_value_id}}"
                                                             class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>
@@ -67,7 +69,7 @@
             </div>
         </div>
         <!-- delete -->
-        @include('admin/product_option/deleteProductOption')
+        @include('admin/product_option_value/deleteProductOptionValue')
     </section>
 </div>
 @endsection
