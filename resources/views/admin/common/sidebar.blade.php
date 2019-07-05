@@ -91,6 +91,20 @@
         {{ Request::is('admin/updateProduct/*') ? 'active' : '' }} 
         {{ Request::is('admin/deleteProduct/*') ? 'active' : '' }}  
 
+        {{ Request::is('admin/listingProductOption') ? 'active' : '' }} 
+        {{ Request::is('admin/view_addProductOption') ? 'active' : '' }} 
+        {{ Request::is('admin/view_editProductOption/*') ? 'active' : '' }}
+        {{ Request::is('admin/addProductOption') ? 'active' : '' }} 
+        {{ Request::is('admin/updateProductOption') ? 'active' : '' }} 
+        {{ Request::is('admin/deleteProductOption') ? 'active' : '' }}
+
+        {{ Request::is('admin/listingProductOptionValue') ? 'active' : '' }} 
+        {{ Request::is('admin/view_addProductOptionValue') ? 'active' : '' }} 
+        {{ Request::is('admin/view_editProductOptionValue/*') ? 'active' : '' }}
+        {{ Request::is('admin/addProductOptionValue') ? 'active' : '' }} 
+        {{ Request::is('admin/updateProductOptionValue') ? 'active' : '' }} 
+        {{ Request::is('admin/deleteProductOptionValue') ? 'active' : '' }}  
+
         {{ Request::is('admin/attributes') ? 'active' : '' }}  
         {{ Request::is('admin/addattributes') ? 'active' : '' }}  
         {{ Request::is('admin/editattributes/*') ? 'active' : '' }}">
@@ -113,7 +127,10 @@
             class="
             {{ Request::is('admin/listingProductOption') ? 'active' : '' }} 
             {{ Request::is('admin/view_addProductOption') ? 'active' : '' }} 
-            {{ Request::is('admin/view_editProductOption/*') ? 'active' : '' }}">
+            {{ Request::is('admin/view_editProductOption/*') ? 'active' : '' }}
+            {{ Request::is('admin/addProductOption') ? 'active' : '' }} 
+            {{ Request::is('admin/updateProductOption') ? 'active' : '' }} 
+            {{ Request::is('admin/deleteProductOption') ? 'active' : '' }}  ">
             <a href="{{ URL::to('admin/listingProductOption')}}">
               <i class="fa fa-circle-o"></i>
               Option
@@ -123,7 +140,11 @@
             class="
             {{ Request::is('admin/listingProductOptionValue') ? 'active' : '' }} 
             {{ Request::is('admin/view_addProductOptionValue') ? 'active' : '' }} 
-            {{ Request::is('admin/view_editProductOptionValue/*') ? 'active' : '' }}">
+            {{ Request::is('admin/view_editProductOptionValue/*') ? 'active' : '' }}
+            {{ Request::is('admin/addProductOptionValue') ? 'active' : '' }} 
+            {{ Request::is('admin/updateProductOptionValue') ? 'active' : '' }} 
+            {{ Request::is('admin/deleteProductOptionValue') ? 'active' : '' }}  
+            ">
             <a href="{{ URL::to('admin/listingProductOptionValue')}}">
               <i class="fa fa-circle-o"></i>
               Option Value

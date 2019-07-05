@@ -45,7 +45,7 @@
                                                         <a data-toggle="tooltip" data-placement="bottom"
                                                             title="{{ trans('labels.Delete') }}"
                                                             id="deleteProductOptionValueId"
-                                                            product_option_value="{{$product_option_value->product_option_value_id}}"
+                                                            product_option_value_id="{{$product_option_value->product_option_value_id}}"
                                                             class="badge bg-red">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>

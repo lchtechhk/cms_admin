@@ -1060,14 +1060,14 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deleteCustomerModal").modal('show');
 	});
 	
-	//deletemanufacturerModal
+	//manufacturerModal
 	$(document).on('click', '#manufacturerFrom', function(){
 		var manufacturers_id = $(this).attr('manufacturers_id');
 		$('#manufacturers_id').val(manufacturers_id);
 		$("#manufacturerModal").modal('show');
 	});
 	
-	//deleteCountrytModal
+	//deleteManufacturerModal
 	$(document).on('click', '#deleteManufacturerId', function(){
 		var manufacturer_id = $(this).attr('manufacturer_id');
 		console.log('deleteManufacturerModal : ' + manufacturer_id);
@@ -1075,7 +1075,15 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deleteManufacturerModal").modal('show');
 	});
 
-	//deleteCountrytModal
+	//deleteProductOptionValueModal
+	$(document).on('click', '#deleteProductOptionValueId', function(){
+		var product_option_value_id = $(this).attr('product_option_value_id');
+		console.log('product_option_value_id : ' + product_option_value_id);
+		$('#product_option_value_id').val(product_option_value_id);
+		$("#deleteProductOptionValueModal").modal('show');
+	});
+
+	//deleteProductOptionModal
 	$(document).on('click', '#deleteProductOptionId', function(){
 		var product_option_id = $(this).attr('product_option_id');
 		console.log('product_option_id : ' + product_option_id);
