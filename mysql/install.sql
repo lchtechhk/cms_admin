@@ -1853,11 +1853,13 @@ DROP TABLE IF EXISTS `product_attribute`;
 CREATE TABLE `product_attribute` (
   `product_attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `option_id` int(11) NOT NULL,
-  `options_value_id` int(11) NOT NULL,
-  `options_value_price` decimal(15,2) NOT NULL,
+  `name` int(11) NOT NULL,
+  `image` text COLLATE utf8_general_mysql500_ci,
+  `qty` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `low_limit` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `price` decimal(15,2) NOT NULL,
   `price_prefix` char(1) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT '0',
+  `sorting` int(11) NOT NULL DEFAULT '0',
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
   `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
@@ -1873,7 +1875,7 @@ CREATE TABLE `product_attribute` (
 
 LOCK TABLES `product_attribute` WRITE;
 /*!40000 ALTER TABLE `product_attribute` DISABLE KEYS */;
-INSERT INTO `product_attribute` VALUES (1,1,1,1,10.00,'A',1,'2019-06-13 00:00:00',NULL,'2019-06-13',NULL,'active');
+INSERT INTO `product_attribute` VALUES (1,1,0,'image','10','2',10.00,'+',1,'2019-06-13 00:00:00',NULL,'2019-06-13',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1959,7 +1961,7 @@ CREATE TABLE `product_option` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1968,7 +1970,7 @@ CREATE TABLE `product_option` (
 
 LOCK TABLES `product_option` WRITE;
 /*!40000 ALTER TABLE `product_option` DISABLE KEYS */;
-INSERT INTO `product_option` VALUES (12,'2019-07-04 16:50:38',NULL,'2019-07-04 16:50:38',NULL,'active');
+INSERT INTO `product_option` VALUES (12,'2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(13,'2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(14,'2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active');
 /*!40000 ALTER TABLE `product_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1990,7 +1992,7 @@ CREATE TABLE `product_option_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1999,7 +2001,7 @@ CREATE TABLE `product_option_description` (
 
 LOCK TABLES `product_option_description` WRITE;
 /*!40000 ALTER TABLE `product_option_description` DISABLE KEYS */;
-INSERT INTO `product_option_description` VALUES (9,1,12,'Name (HongKong)','2019-07-04 16:50:38',NULL,'2019-07-04 16:50:38',NULL,'active'),(10,2,12,'Name (English)','2019-07-04 16:50:38',NULL,'2019-07-04 16:50:38',NULL,'active');
+INSERT INTO `product_option_description` VALUES (9,1,12,'Name (HongKong)','2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(10,2,12,'Name (English)','2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(11,1,13,'option2 hk','2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(12,2,13,'option2 eng','2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(13,1,14,'option3','2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active'),(14,2,14,'option3','2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active');
 /*!40000 ALTER TABLE `product_option_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2019,7 +2021,7 @@ CREATE TABLE `product_option_value` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2028,6 +2030,7 @@ CREATE TABLE `product_option_value` (
 
 LOCK TABLES `product_option_value` WRITE;
 /*!40000 ALTER TABLE `product_option_value` DISABLE KEYS */;
+INSERT INTO `product_option_value` VALUES (3,'12','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(4,'12','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(5,'12','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active');
 /*!40000 ALTER TABLE `product_option_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2049,7 +2052,7 @@ CREATE TABLE `product_option_value_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_value_description_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2058,6 +2061,7 @@ CREATE TABLE `product_option_value_description` (
 
 LOCK TABLES `product_option_value_description` WRITE;
 /*!40000 ALTER TABLE `product_option_value_description` DISABLE KEYS */;
+INSERT INTO `product_option_value_description` VALUES (5,1,3,'HongKong3','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(6,2,3,'English3','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(7,1,4,'red','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(8,2,4,'red','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(9,1,5,'red','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active'),(10,2,5,'red','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active');
 /*!40000 ALTER TABLE `product_option_value_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3062,9 +3066,11 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_product_option_value` AS SELECT 
  1 AS `product_option_value_id`,
- 1 AS `name`,
- 1 AS `language_id`,
  1 AS `product_option_id`,
+ 1 AS `loption_anguage_id`,
+ 1 AS `option_name`,
+ 1 AS `value_name`,
+ 1 AS `language_id`,
  1 AS `create_date`,
  1 AS `create_by_id`,
  1 AS `edit_date`,
@@ -3398,7 +3404,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_product_option_value` AS select `product_option_value`.`product_option_value_id` AS `product_option_value_id`,`product_option_value_description`.`name` AS `name`,`product_option_value_description`.`language_id` AS `language_id`,`product_option_value`.`product_option_id` AS `product_option_id`,`product_option_value`.`create_date` AS `create_date`,`product_option_value`.`create_by_id` AS `create_by_id`,`product_option_value`.`edit_date` AS `edit_date`,`product_option_value`.`edit_by_id` AS `edit_by_id`,`product_option_value`.`status` AS `status` from (`product_option_value` left join `product_option_value_description` on((`product_option_value`.`product_option_value_id` = `product_option_value_description`.`product_option_value_id`))) */;
+/*!50001 VIEW `view_product_option_value` AS select `product_option_value`.`product_option_value_id` AS `product_option_value_id`,`product_option_description`.`product_option_id` AS `product_option_id`,`product_option_description`.`language_id` AS `loption_anguage_id`,`product_option_description`.`name` AS `option_name`,`product_option_value_description`.`name` AS `value_name`,`product_option_value_description`.`language_id` AS `language_id`,`product_option_value`.`create_date` AS `create_date`,`product_option_value`.`create_by_id` AS `create_by_id`,`product_option_value`.`edit_date` AS `edit_date`,`product_option_value`.`edit_by_id` AS `edit_by_id`,`product_option_value`.`status` AS `status` from ((`product_option_value` left join `product_option_value_description` on((`product_option_value`.`product_option_value_id` = `product_option_value_description`.`product_option_value_id`))) left join `product_option_description` on((`product_option_description`.`product_option_id` = `product_option_value`.`product_option_id`))) where ((`product_option_description`.`language_id` = `product_option_value_description`.`language_id`) and (`product_option_value_description`.`language_id` is not null)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3430,4 +3436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-04 17:59:50
+-- Dump completed on 2019-07-10 17:58:51
