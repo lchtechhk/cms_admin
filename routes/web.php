@@ -87,49 +87,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateSubCategory', 'AdminSubCategoryController@updateSubCategory');
 			Route::post('/deleteSubCategory', 'AdminSubCategoryController@deleteSubCategory');
 
-			
-			//add attribute against newly added product
-			Route::get('/addproductattribute/{id}/', 'AdminProductsController@addproductattribute');
-			Route::get('/addproductimages/{id}/', 'AdminProductsController@addproductimages');
-			Route::post('/addnewdefaultattribute', 'AdminProductsController@addnewdefaultattribute');
-			Route::post('/addnewproductattribute', 'AdminProductsController@addnewproductattribute');
-			Route::post('/updateproductattribute', 'AdminProductsController@updateproductattribute');
-			Route::post('/updatedefaultattribute', 'AdminProductsController@updatedefaultattribute');
-			Route::post('/deleteproduct', 'AdminProductsController@deleteproduct');
-			Route::post('/deleteproductattribute', 'AdminProductsController@deleteproductattribute');
-			Route::post('/addnewproductimage', 'AdminProductsController@addnewproductimage');
-			Route::post('/deletedefaultattribute', 'AdminProductsController@deletedefaultattribute');
-			Route::post('editproductattribute', 'AdminProductsController@editproductattribute');
-			Route::post('editdefaultattribute', 'AdminProductsController@editdefaultattribute');
-			Route::post('addnewproductimagemodal', 'AdminProductsController@addnewproductimagemodal');
-			Route::post('deleteproductattributemodal', 'AdminProductsController@deleteproductattributemodal');
-			Route::post('deletedefaultattributemodal', 'AdminProductsController@deletedefaultattributemodal');
-
-			//product attribute
-			Route::post('/addnewproductimage', 'AdminProductsController@addnewproductimage');
-			Route::post('editproductimage', 'AdminProductsController@editproductimage');
-			Route::post('/updateproductimage', 'AdminProductsController@updateproductimage');
-			Route::post('/deleteproductimagemodal', 'AdminProductsController@deleteproductimagemodal');
-			Route::post('/deleteproductimage', 'AdminProductsController@deleteproductimage');
-			Route::get('/editproduct/{id}', 'AdminProductsController@editproduct');
-			Route::post('/updateproduct', 'AdminProductsController@updateproduct');	
-			Route::post('/getOptions', 'AdminProductsController@getOptions');	
-			Route::post('/getOptionsValue', 'AdminProductsController@getOptionsValue');	
-
-
-			//Attribute
-			Route::get('/attributes', 'AdminProductsController@attributes');
-			Route::get('/addattributes', 'AdminProductsController@addattributes');
-			Route::post('/addnewattributes', 'AdminProductsController@addnewattributes');
-			Route::get('/editattributes/{id}/{language_id}', 'AdminProductsController@editattributes');
-			Route::post('/updateattributes/', 'AdminProductsController@updateattributes');
-			Route::post('/deleteattribute', 'AdminProductsController@deleteattribute');
-			Route::post('/addattributevalue', 'AdminProductsController@addattributevalue');
-			Route::post('/updateattributevalue', 'AdminProductsController@updateattributevalue');
-			Route::post('/checkattributeassociate', 'AdminProductsController@checkattributeassociate');
-			Route::post('/checkvalueassociate', 'AdminProductsController@checkvalueassociate');
-			Route::post('/deletevalue', 'AdminProductsController@deletevalue');
-
 
 			//manageAppLabel
 			Route::get('/listingAppLabels', 'AdminAppLabelsController@listingAppLabels');
@@ -154,13 +111,13 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateProduct', 'AdminProductController@updateProduct');
 			Route::post('/deleteProduct', 'AdminProductController@deleteProduct');
 
-			//Jamie product
+			//Jamie product Attribute
 			Route::get('/listingProductAttribute/{product_id}/', 'AdminProductAttributeController@listingProductAttribute');
 			Route::post('/view_addProductAttribute', 'AdminProductAttributeController@view_addProductAttribute');
-			Route::post('/view_editProductAttribute/{product_attribute_id}', 'AdminProductAttributeController@view_editProductAttribute');
+			Route::post('/view_editProductAttribute', 'AdminProductAttributeController@view_editProductAttribute');
 			Route::post('/addProductAttribute', 'AdminProductAttributeController@addProductAttribute');
 			Route::post('/updateProductAttribute', 'AdminProductAttributeController@updateProductAttribute');
-			Route::post('/deleteProductAttribute', 'AdminProductAttributeController@deleteProductAttribute');
+			Route::post('/deleteProductAttribute1', 'AdminProductAttributeController@deleteProductAttribute');
 
 			//Product Image
 			Route::get('/listingProductImage/{product_id}/', 'AdminProductImageController@listingProductImage');

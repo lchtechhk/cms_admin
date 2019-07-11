@@ -10,8 +10,6 @@
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('labels.ListingAllProductAttribute') }} </h3>
                         <div class="box-tools pull-right">
-                            {{-- <a href="{{ URL::to('admin/view_addProductAttribute/' . $result['product_id']) }}" type="button"
-                                class="btn btn-block btn-primary">{{ trans('labels.AddNewProductAttribute') }}</a> --}}
                                 <button type="button" class="btn btn-block btn-primary addProductAttributeModal" 
                                 product_id='{{$result['product_id']}}'
                                 data-toggle="modal">{{ trans('labels.ListingProductAttribute') }}</button>
@@ -39,7 +37,7 @@
                                                 @foreach ($result['product_attributes'] as $product_attribute)
                                                 <tr>
                                                     <td>{{ $product_attribute->product_attribute_id }}</td>
-                                                    <td>{{ $product_attribute->name }}</td>
+                                                    <td>{{ $product_attribute->product_attribute_name }}</td>
                                                     <td>
                                                         @if(!empty($product_attribute->image))
                                                         <img src="../../{{ $product_attribute->image }}"
@@ -53,19 +51,17 @@
                                                     <td>{{ $product_attribute->price_prefix }}</td>
                                                     <td>{{ $product_attribute->price }}</td>
                                                     <td>
-                                                        <a data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{ trans('labels.Edit') }}"
-                                                            href="view_editProductAttribute/{{ $product_attribute->product_attribute_id }}"
-                                                            class="badge bg-light-blue">
-                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <a product_id='{{ $product_attribute->product_id }}'
+                                                            product_attribute_id="{{ $product_attribute->product_attribute_id }}"
+                                                            class="badge bg-light-blue editProductAttributeModal">
+                                                            <i class="fa fa-pencil-square-o"aria-hidden="true"></i>
                                                         </a>
-                                                        <a data-toggle="tooltip" data-placement="bottom"
-                                                            title="{{ trans('labels.Delete') }}"
-                                                            id="deleteProductAttributeId"
+                                                        <a product_id='{{ $product_attribute->product_id }}'
                                                             product_attribute_id="{{$product_attribute->product_attribute_id}}"
-                                                            class="badge bg-red">
-                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            class="badge bg-red deleteProductAttributeBtn">
+                                                            <i class="fa fa-trash " aria-hidden="true"></i>
                                                         </a>
+
                                                     </td>
                                                 </tr>
                                                 @endforeach

@@ -45,16 +45,15 @@ class AdminProductAttributeController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'view_add';
-        Log::info('[add] --  : ' . \json_encode($result));
+        // Log::info('[add] --  : ' . \json_encode($result));
 		return $this->ProductAttributeService->redirect_view($result,$title);
     }
 
     function view_editProductAttribute(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_editProductAttribute"));
         $result = array();
+        $result = $request->input();
         $result['request'] = $request;
-        $result['operation'] = 'view_edit';
-        $result['ProductAttribute_id'] = $request->ProductAttribute_id;
         $result['operation'] = 'view_edit';
 		return $this->ProductAttributeService->redirect_view($result,$title);
     }
@@ -84,6 +83,7 @@ class AdminProductAttributeController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'delete';
+        // Log::info('[deleteProductAttribute] --  : ' . json_encode($result));
         return $this->ProductAttributeService->redirect_view($result,$title);
 	}
 }

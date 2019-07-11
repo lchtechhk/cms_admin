@@ -264,39 +264,6 @@ $(document).on('click', '#deleteAttribute', function(e){
 });
 
 //ajax call for submit value
-$(document).on('click', '#addAttribute', function(e){
-	$("#loader").show();
-	var formData = $('#addattributefrom').serialize();
-	$.ajax({
-		url: '{{ URL::to("admin/addnewproductattribute")}}',
-		type: "POST",
-		data: formData,
-		success: function (res) {
-			
-			if(res.length != ''){
-				$('.addError').hide();
-				$('#addAttributeModal').modal('hide');
-				var i;
-				var showData = [];
-				for (i = 0; i < res.length; ++i) {
-					var j = i + 1; 
-					showData[i] = "<tr><td>"+j+"</td><td>"+res[i].products_options_name+"</td><td>"+res[i].products_options_values_name+"</td><td>"+res[i].price_prefix+" "+res[i].options_values_price+"</td><td>    <a class='badge bg-light-blue editproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"'  language_id = '"+res[i].language_id+"' options_id= '"+res[i].options_id+"'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"' ><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
-
-				}
-				$(".contentAttribute").html(showData);
-			}else{
-				$('.addError').show();
-			}
-			
-			
-		},
-	});
-		
-		
-});
-
-
-//ajax call for submit value
 $(document).on('click', '#addDefaultAttribute', function(e){
 	$("#loader").show();
 	var formData = $('#adddefaultattributefrom').serialize();
@@ -356,24 +323,7 @@ $(document).on('change', '#entry_country_id', function(e){
 //AddProductAttribute
 $(document).on('click', '.addProductAttributeModal', function(){
 	var product_id = $(this).attr('product_id');
-	console.log('productAttributeDialog -- : ' + product_id);
-	$.ajax({
-		url: "{{ URL::to('admin/view_addProductAttribute')}}",
-		type: "POST",
-		data: '&product_id='+product_id,
-		success: function (data) {
-			console.log("data : " + data);
-			// $('#productAttributeDialog').html(data); 
-			// $('#productAttributeDialog').modal('show');
-		},
-		dataType: 'html'
-	});
-});
-
-//AddProductAttribute
-$(document).on('click', '.addProductAttributeModal', function(){
-	var product_id = $(this).attr('product_id');
-	console.log('productAttributeDialog -- : ' + product_id);
+	console.log('addProductAttributeModal -- : ' + product_id);
 	$.ajax({
 		url: "{{ URL::to('admin/view_addProductAttribute')}}",
 		type: "POST",
@@ -387,15 +337,56 @@ $(document).on('click', '.addProductAttributeModal', function(){
 	});
 });
 
+//EditProductAttribute
+$(document).on('click', '.editProductAttributeModal', function(){
+	var product_id = $(this).attr('product_id');
+	var product_attribute_id = $(this).attr('product_attribute_id');
+	console.log('product_id -- : ' + product_id);
+	console.log('product_attribute_id -- : ' + product_attribute_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_editProductAttribute')}}",
+		type: "POST",
+		data: '&product_id='+product_id+'&product_attribute_id='+product_attribute_id,
+		success: function (data) {
+			console.log("data : " + data);
+			$('#productAttributeDialog').html(data); 
+			$('#productAttributeDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
+// //DeleteProductAttribute
+// $(document).on('click', '#deleteProductAttributeBtn', function(){
+// 	var product_id = $(this).attr('product_id');
+// 	var product_attribute_id = $(this).attr('product_attribute_id');
+// 	$('#delete_product_attribute_id').val(product_attribute_id);
+// 	$('#delete_product_id').val(product_id);
+// 	console.log("delete_product_id123 : " + product_id);
+// 	console.log("delete_product_attribute_id : " + product_attribute_id);
+// 	$("#deleteProductAttributeModal").modal('show');
+// });
+
+
+//deleteProductImageModal
+$(document).on('click', '.deleteProductAttributeBtn', function(){
+	var product_id = $(this).attr('product_id');
+	var product_attribute_id = $(this).attr('product_attribute_id');
+		console.log('product_id : ' + product_id);
+		console.log('product_attribute_id : ' + product_attribute_id);
+		$('#delete_product_attribute_id').val(product_attribute_id);
+		$('#delete_product_id').val(product_id);
+		$("#deleteProductAttributeModal").modal('show');
+	});
 
 //AddProductImage
-$(document).on('click', '.editProductImageModal', function(){
+$(document).on('click', '.addProductImageModal', function(){
 	var product_id = $(this).attr('product_id');
 	console.log('productImageDialog -- + : ' + product_id);
 	$.ajax({
-		url: "{{ URL::to('admin/view_editProductImage')}}",
+		url: "{{ URL::to('admin/view_addProductImage')}}",
 		type: "POST",
-		data: '&product_id='+product_id+'&product_attribute_id='+product_attribute_id,
+		data: '&product_id='+product_id,
 		success: function (data) {
 			console.log("data : " + data);
 			$('#productImageDialog').html(data); 
@@ -536,38 +527,6 @@ $(document).on('click', '#updateAddress', function(e){
 	});
 	
 	
-		
-	$(document).on('click', '#updateProductAttribute', function(e){
-		$("#loader").show();
-		var formData = $('#editAttributeFrom').serialize();
-		$.ajax({
-			url: '{{ URL::to("admin/updateproductattribute")}}',
-			type: "POST",
-			data: formData,
-			success: function (res) {
-				
-				if(res.length != ''){
-					$('.addError').hide();
-					$('#editproductattributemodal').modal('hide');
-					var i;
-					var showData = [];
-					for (i = 0; i < res.length; ++i) {
-						var j = i + 1;
-						showData[i] = "<tr><td>"+j+"</td><td>"+res[i].products_options_name+"</td><td>"+res[i].products_options_values_name+"</td><td>"+res[i].price_prefix+" "+res[i].options_values_price+"</td><td>    <a class='badge bg-light-blue editproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"'  language_id = '"+res[i].language_id+"'  options_id = '"+res[i].options_id+"'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"' language_id = '"+res[i].language_id+"'  options_id = '"+res[i].options_id+"'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
-
-					}
-					$(".contentAttribute").html(showData);
-				}else{
-					$('.addError').show();
-				}
-
-
-			},
-		});
-		
-	});
-	
-	
 	$(document).on('click', '#updateDefaultAttribute', function(e){
 		$("#loader").show();
 		var formData = $('#editDefaultAttributeFrom').serialize();
@@ -617,49 +576,7 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#deleteAddressModal').modal('show');
 	});
 		
-	//deleteAddress
 
-	
-	//device id
-	/*$(document).on('click', '#deletedeviceId', function(){
-		var devices_id = $(this).attr('devices_id');
-		$('#devices_id').val(devices_id);
-		$('#deletedeviceModal').modal('show');
-	})
-	
-	//DeviceDeletedMessage
-	$(document).on('click', '.deleteproductattributemodal', function(){
-		var products_id = $(this).attr('products_id');
-		var products_attributes_id = $(this).attr('products_attributes_id');
-		$.ajax({
-			url: "{{ URL::to('admin/deleteproductattributemodal')}}",
-			type: "POST",
-			data: '&products_id='+products_id+'&products_attributes_id='+products_attributes_id,
-			success: function (data) {
-				$('.deleteEmbed').html(data); 
-				$('#deleteproductattributemodal').modal('show');
-			},
-			dataType: 'html'
-		});
-	});*/
-	
-	
-	//deleteproductattributemodal
-	$(document).on('click', '.deleteproductattributemodal', function(){
-		var products_id = $(this).attr('products_id');
-		var products_attributes_id = $(this).attr('products_attributes_id');
-		$.ajax({
-			url: "{{ URL::to('admin/deleteproductattributemodal')}}",
-			type: "POST",
-			data: '&products_id='+products_id+'&products_attributes_id='+products_attributes_id,
-			success: function (data) {
-				$('.deleteEmbed').html(data); 
-				$('#deleteproductattributemodal').modal('show');
-			},
-			dataType: 'html'
-		});
-	});
-	
 	//deletedefaultattributemodal
 	$(document).on('click', '.deletedefaultattributemodal', function(){
 		var products_id = $(this).attr('products_id');
@@ -728,42 +645,6 @@ $(document).on('click', '#updateAddress', function(e){
 			},
 		});
 	});
-		
-	//deleteProductAttribute
-	$(document).on('click', '#deleteProductAttribute', function(){
-		$("#loader").show();
-		var formData = $('#deleteattributeform').serialize();
-		console.log(formData);
-		$.ajax({
-			url: "{{ URL::to('admin/deleteproductattribute')}}",
-			type: "POST",
-			data: formData,
-			success: function (res) {
-				//$('.deleteEmbed').html(res); 
-				//alert(res);
-				if(res.length != ''){
-					$('.addError').hide();
-					$('#deleteproductattributemodal').modal('hide');
-					var i;
-					var showData = [];
-					for (i = 0; i < res.length; ++i) {
-						var j = i + 1;
-						showData[i] = "<tr><td>"+j+"</td><td>"+res[i].products_options_name+"</td><td>"+res[i].products_options_values_name+"</td><td>"+res[i].price_prefix+" "+res[i].options_values_price+"</td><td>    <a class='badge bg-light-blue editproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"'  language_id = '"+res[i].language_id+"'  options_id = '"+res[i].options_id+"'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteproductattributemodal' products_attributes_id = '"+res[i].products_attributes_id+"' products_id = '"+res[i].products_id+"' language_id = '"+res[i].language_id+"'  options_id = '"+res[i].options_id+"'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>"; 
-					}
-					
-					$(".contentAttribute").html(showData);
-				}else{
-					
-					$('#deleteproductattributemodal').modal('hide');
-					$('.addError').show();
-					$(".contentAttribute").html(res);
-				}
-			},
-		});
-	});
-	
-	
-	
 	
 	//deletedefaultattributemodal
 	$(document).on('click', '#deleteDefaultAttribute', function(){
@@ -994,49 +875,6 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#delete_product_image_id').val(product_image_id);
 		$("#deleteProductImageModal").modal('show');
 	});
-	// //deleteProductImage
-	// $(document).on('click', '.deleteProductImageModal', function(){
-	// 	var product_image_id = $(this).attr('product_image_id');
-	// 	var product_id = $(this).attr('product_id');
-	// 	$.ajax({
-	// 		url: '{{ URL::to("admin/deleteproductimagemodal")}}',
-	// 		type: "POST",
-	// 		data: '&product_image_id='+product_image_id+'&product_image_id='+product_image_id,
-	// 		success: function (data) {
-	// 			$('.deleteImageEmbed').html(data); 
-	// 			$('#deleteProductImageModal').modal('show');
-	// 		},
-	// 		dataType: 'html'
-	// 	});
-	// });
-	//deleteproductimage
-	// $(document).on('click', '#deleteProductImage', function(){
-	// 	$("#loader").show();
-	// 	var formData = $('#deleteImageForm').serialize();
-	// 	$.ajax({
-	// 		url: "{{ URL::to('admin/deleteproductimage')}}",
-	// 		type: "POST",
-	// 		data: formData,
-	// 		success: function (res) {
-	// 			if(res.length != ''){
-	// 				$('.addError').hide();
-	// 				$('#deleteProductImageModal').modal('hide');
-	// 				var i;
-	// 				var showData = [];
-	// 				for (i = 0; i < res.length; ++i) {
-	// 					var j = i + 1;
-	// 					showData[i] = "<tr><td>"+j+"</td><td><img src={{asset('').'/'}}"+res[i].image+" alt='' width=' 100px'></td><td>"+res[i].htmlcontent+"</td> <td><a products_id = '"+res[i].products_id+"' class='badge bg-light-blue editProductImagesModal' id = '"+res[i].id+"' ><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a> <a class='badge bg-red deleteProductImagesModal' id = '"+res[i].id+"' products_id = '"+res[i].products_id+"' ><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
-	// 				}
-	// 				$(".contentImages").html(showData);
-	// 			}else{
-	// 				var showData = '<tr><td colspan="4"><strong>No record found!</strong> Please click on "<strong>Add Product Images</strong>" to add images.</td></tr>';
-	// 				$('#deleteProductImageModal').modal('hide');
-	// 				$(".contentImages").html(showData);
-	// 			}
-	// 		},
-	// 	});
-	// });
-	
 	
 	//ajax call for notification pop
 	$(document).on('click', '#notification-popup', function(){
@@ -1080,14 +918,6 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deleteProductModal").modal('show');
 	});
 		
-	//deleteattributeModal
-	$(document).on('click', '#deleteattributeFrom', function(){
-		var option_id = $(this).attr('option_id');
-		$('#option_id').val(option_id);
-		$("#deleteattributeModal").modal('show');
-	});
-	
-	
 	//deleteCustomerModal
 	$(document).on('click', '#deleteCustomerFrom', function(){
 		var customer_id = $(this).attr('customer_id');

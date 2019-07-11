@@ -29,7 +29,16 @@
                     array('class'=>'form-control', 'id'=>'product_id','readonly')) !!}
                 </div>
             </div>
-
+            <div class="form-group">
+                <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductName') }}
+                    <span style="color:red">★</span>
+                </label>
+                <div class="col-sm-10 col-md-4">
+                    {!! Form::text('product_name', empty($result['product']->name) ? '' :
+                    print_value('listing',$result['product']->name),
+                    array('class'=>'form-control', 'id'=>'product_name','readonly')) !!}
+                </div>
+            </div>
             {{-- Only Edit --}}
             @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
                 <div class="form-group">
@@ -48,7 +57,7 @@
             {{-- Language Content --}}
             @foreach($result['languages'] as $language)
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Name') }} ({{ $language->name }})
+                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductAttributeName') }} ({{ $language->name }})
                         <span style="color:red">★</span>
                     </label>
                     <div class="col-sm-10 col-md-8">
@@ -94,17 +103,17 @@
             </div>
             <div class="form-group">
                 <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}</label>
-                <div class="col-sm-1 col-md-1">
+                <div class="col-sm-2 col-md-2">
                     <select class="form-control" name="price_prefix" id="price_prefix">
-                        <option value="+"
+                        <option value="add"
                             @if(!empty($result['product_attribute']->price_prefix))
-                                {{print_selected_value($result['operation'],"+",$result['product_attribute']->price_prefix)}}
+                                {{print_selected_value($result['operation'],"add",$result['product_attribute']->price_prefix)}}
                             @endif>
                             +
                         </option>
-                        <option value="-"
-                            @if(!empty($result['product_attribute']->special_status))
-                                {{print_selected_value($result['operation'],"-",$result['product_attribute']->price_prefix)}}
+                        <option value="substract"
+                            @if(!empty($result['product_attribute']->price_prefix))
+                                {{print_selected_value($result['operation'],"substract",$result['product_attribute']->price_prefix)}}
                             @endif>
                             -
                         </option>
@@ -131,7 +140,7 @@
                     <span class="help-block hidden">{{ trans('labels.QuantityLowLimitText') }}</span>
                 </div>
             </div>
-            @include('layouts/submit_back_button')
+            @include('layouts/dialog_submit_back_button')
             {!! Form::close() !!}
         </div>
     </div>
