@@ -42,8 +42,10 @@ class AdminProductAttributeController extends Controller{
     function view_addProductAttribute(Request $request){
         $title = array('pageTitle' => Lang::get("labels.view_addProductAttribute"));
         $result = array();
-		$result['request'] = $request;
+        $result = $request->input();
+        $result['request'] = $request;
         $result['operation'] = 'view_add';
+        Log::info('[add] --  : ' . \json_encode($result));
 		return $this->ProductAttributeService->redirect_view($result,$title);
     }
 

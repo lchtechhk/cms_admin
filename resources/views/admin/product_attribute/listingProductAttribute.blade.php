@@ -10,8 +10,11 @@
                     <div class="box-header">
                         <h3 class="box-title">{{ trans('labels.ListingAllProductAttribute') }} </h3>
                         <div class="box-tools pull-right">
-                            <a href="{{ URL::to('admin/view_addProductAttribute') }}" type="button"
-                                class="btn btn-block btn-primary">{{ trans('labels.AddNewProductAttribute') }}</a>
+                            {{-- <a href="{{ URL::to('admin/view_addProductAttribute/' . $result['product_id']) }}" type="button"
+                                class="btn btn-block btn-primary">{{ trans('labels.AddNewProductAttribute') }}</a> --}}
+                                <button type="button" class="btn btn-block btn-primary addProductAttributeModal" 
+                                product_id='{{$result['product_id']}}'
+                                data-toggle="modal">{{ trans('labels.ListingProductAttribute') }}</button>
                         </div>
                     </div>
                     <div class="box-body">
@@ -39,10 +42,10 @@
                                                     <td>{{ $product_attribute->name }}</td>
                                                     <td>
                                                         @if(!empty($product_attribute->image))
-                                                        <img src="../{{ $product_attribute->image }}"
+                                                        <img src="../../{{ $product_attribute->image }}"
                                                             style="width: 50px; float: left; margin-right: 10px">
                                                         @else
-                                                        <img src="../resources/assets/images/default_images/product.png"
+                                                        <img src="../../resources/assets/images/default_images/product.png"
                                                             style="width: 50px; float: left; margin-right: 10px">
                                                         @endif
                                                     </td>
@@ -81,6 +84,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+         <!-- ProductImageDialog -->
+         <div class="modal fade" id="productAttributeDialog" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
+            @include('admin/product_attribute/productAttributeDialog')
         </div>
         <!-- delete -->
         @include('admin/product_attribute/deleteProductAttribute')

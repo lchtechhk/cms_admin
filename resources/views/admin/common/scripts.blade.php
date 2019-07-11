@@ -353,14 +353,49 @@ $(document).on('change', '#entry_country_id', function(e){
 	
 });
 
+//AddProductAttribute
+$(document).on('click', '.addProductAttributeModal', function(){
+	var product_id = $(this).attr('product_id');
+	console.log('productAttributeDialog -- : ' + product_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_addProductAttribute')}}",
+		type: "POST",
+		data: '&product_id='+product_id,
+		success: function (data) {
+			console.log("data : " + data);
+			// $('#productAttributeDialog').html(data); 
+			// $('#productAttributeDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
+//AddProductAttribute
+$(document).on('click', '.addProductAttributeModal', function(){
+	var product_id = $(this).attr('product_id');
+	console.log('productAttributeDialog -- : ' + product_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_addProductAttribute')}}",
+		type: "POST",
+		data: '&product_id='+product_id,
+		success: function (data) {
+			console.log("data : " + data);
+			$('#productAttributeDialog').html(data); 
+			$('#productAttributeDialog').modal('show');
+		},
+		dataType: 'html'
+	});
+});
+
+
 //AddProductImage
-$(document).on('click', '.addProductImageModal', function(){
+$(document).on('click', '.editProductImageModal', function(){
 	var product_id = $(this).attr('product_id');
 	console.log('productImageDialog -- + : ' + product_id);
 	$.ajax({
-		url: "{{ URL::to('admin/view_addProductImage')}}",
+		url: "{{ URL::to('admin/view_editProductImage')}}",
 		type: "POST",
-		data: '&product_id='+product_id,
+		data: '&product_id='+product_id+'&product_attribute_id='+product_attribute_id,
 		success: function (data) {
 			console.log("data : " + data);
 			$('#productImageDialog').html(data); 

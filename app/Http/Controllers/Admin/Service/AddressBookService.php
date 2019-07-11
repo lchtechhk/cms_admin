@@ -26,7 +26,7 @@ class AddressBookService extends BaseApiService{
         // Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
         return $result;
     }
-    function redirect_view($result){
+    function redirect_view($result,$title){
         $result['label'] = "AddAddress";
         $zones = $this->View_CCADZoneService->findAll();
         $result['zones'] = $zones;
