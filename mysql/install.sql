@@ -1853,12 +1853,11 @@ DROP TABLE IF EXISTS `product_attribute`;
 CREATE TABLE `product_attribute` (
   `product_attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
   `image` text COLLATE utf8_general_mysql500_ci,
   `qty` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `low_limit` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `price` decimal(15,2) NOT NULL,
-  `price_prefix` char(1) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `price_prefix` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `sorting` int(11) NOT NULL DEFAULT '0',
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
@@ -1866,7 +1865,7 @@ CREATE TABLE `product_attribute` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_attribute_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1875,8 +1874,39 @@ CREATE TABLE `product_attribute` (
 
 LOCK TABLES `product_attribute` WRITE;
 /*!40000 ALTER TABLE `product_attribute` DISABLE KEYS */;
-INSERT INTO `product_attribute` VALUES (1,1,0,'image','10','2',10.00,'+',1,'2019-06-13 00:00:00',NULL,'2019-06-13',NULL,'active');
+INSERT INTO `product_attribute` VALUES (23,1,'resources/assets/images/product_attribute/1562843415.5.png','15','5',1.00,'substract',0,'2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_attribute_description`
+--
+
+DROP TABLE IF EXISTS `product_attribute_description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `product_attribute_description` (
+  `product_attribute_description_id` int(11) NOT NULL AUTO_INCREMENT,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `product_attribute_id` int(11) NOT NULL,
+  `name` varchar(64) COLLATE utf8_general_mysql500_ci NOT NULL DEFAULT '',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`product_attribute_description_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_attribute_description`
+--
+
+LOCK TABLES `product_attribute_description` WRITE;
+/*!40000 ALTER TABLE `product_attribute_description` DISABLE KEYS */;
+INSERT INTO `product_attribute_description` VALUES (27,1,19,'1HongKong','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(28,2,19,'2English','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(35,1,23,'HongKong','2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active'),(36,2,23,'English','2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active');
+/*!40000 ALTER TABLE `product_attribute_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1933,7 +1963,7 @@ CREATE TABLE `product_image` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3038,6 +3068,33 @@ SET character_set_client = utf8mb4;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_product_attribute`
+--
+
+DROP TABLE IF EXISTS `view_product_attribute`;
+/*!50001 DROP VIEW IF EXISTS `view_product_attribute`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_product_attribute` AS SELECT 
+ 1 AS `product_attribute_id`,
+ 1 AS `product_id`,
+ 1 AS `product_name`,
+ 1 AS `product_attribute_name`,
+ 1 AS `image`,
+ 1 AS `qty`,
+ 1 AS `low_limit`,
+ 1 AS `price`,
+ 1 AS `price_prefix`,
+ 1 AS `sorting`,
+ 1 AS `language_id`,
+ 1 AS `create_date`,
+ 1 AS `create_by_id`,
+ 1 AS `edit_date`,
+ 1 AS `edit_by_id`,
+ 1 AS `status`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `view_product_option`
 --
 
@@ -3374,6 +3431,24 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `view_product_attribute`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_product_attribute`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_product_attribute` AS select `product_attribute`.`product_attribute_id` AS `product_attribute_id`,`product_attribute`.`product_id` AS `product_id`,`view_product`.`name` AS `product_name`,`product_attribute_description`.`name` AS `product_attribute_name`,`product_attribute`.`image` AS `image`,`product_attribute`.`qty` AS `qty`,`product_attribute`.`low_limit` AS `low_limit`,`product_attribute`.`price` AS `price`,`product_attribute`.`price_prefix` AS `price_prefix`,`product_attribute`.`sorting` AS `sorting`,`product_attribute_description`.`language_id` AS `language_id`,`product_attribute`.`create_date` AS `create_date`,`product_attribute`.`create_by_id` AS `create_by_id`,`product_attribute`.`edit_date` AS `edit_date`,`product_attribute`.`edit_by_id` AS `edit_by_id`,`product_attribute`.`status` AS `status` from ((`product_attribute` left join `product_attribute_description` on((`product_attribute`.`product_attribute_id` = `product_attribute_description`.`product_attribute_id`))) left join `view_product` on((`view_product`.`product_id` = `product_attribute`.`product_id`))) where ((`product_attribute_description`.`language_id` is not null) and (`product_attribute_description`.`language_id` = `view_product`.`language_id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `view_product_option`
 --
 
@@ -3436,4 +3511,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-10 17:58:51
+-- Dump completed on 2019-07-11 19:14:51
