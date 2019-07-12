@@ -10,62 +10,51 @@
                             <div class="box box-info"><br>
                                 @include('layouts/responseMessage')
                                 <div class="box-body">
-                                    @if ($result['operation'] == 'listing' || $result['operation'] == 'add' || $result['operation'] == 'view_add' )
-                                        {!! Form::open(array('url' =>'admin/addOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-                                    @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                        {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-                                    @endif
-
-                                    {{-- Only Edit --}}
-                                    @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-
-                                        <div class="form-group">
-                                        
-                                        </div>
-                                    @endif
-
+                                    {!! Form::open(array('url' =>'admin/addOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     {{-- Content --}}
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <h2 class="page-header">
-                                                <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }}# {{ $result['order']->order_id }}
-                                                {!! Form::hidden('order_id', empty($result['order']->order_id) ? '' :
-                                                print_value($result['operation'],$result['order']->order_id),
-                                                array('class'=>'form-control', 'id'=>'order_id','readonly')) !!}
-                                                <small class="pull-right">{{ trans('labels.OrderedDate') }}: {{ date('Y-m-d', strtotime($result['order']->date_purchased)) }}</small>
-                                            </h2>
+                                            <div class="form-group">
+                                                <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ExpiryDate') }}<span style="color:red">★</span></label> 
+                                                <div class="col-sm-10 col-md-4">
+                                                    {!! Form::text('date_purchased', 
+                                                    empty($result['order']->date_purchased) ? '' : print_value($result['operation'],$result['order']->date_purchased),
+                                                    array('class'=>'form-control datepicker','id'=>'date_purchased')) !!}
+                                                    <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">
+                                                        {{ trans('labels.SpecialExpiryDateTxt') }}
+                                                    </span>
+                                                    <span class="help-block hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col">
-                                            {{ trans('labels.CustomerInfo') }}:
-                                            <address>
-                                                {{ trans('labels.CustomerName') }}:<strong>{{ $result['order']->customer_name }}</strong><br>
-                                                {{ trans('labels.Address') }}: {{ $result['order']->customer_street_address }} <br>
-                                                {{ trans('labels.Phone') }}: {{ $result['order']->customer_telephone }}<br>
-                                                {{ trans('labels.Email') }}: {{ $result['order']->email }}
-                                            </address>
+                                          {{ trans('labels.CustomerInfo') }}:
+                                          <address>
+                                            {{ trans('labels.CustomerName') }}:
+                                            <strong>
+                                                {!! Form::text('customer_name',
+                                                empty($result['order']->customer_name) ? '' : print_value($result['operation'],$result['order']->customer_name), 
+                                                array('class'=>'form-control','id'=>'customer_name')) !!}
+                                            </strong>
+                                            <br>
+                                            {{-- {{ trans('labels.Address') }}: {{ $result['order']->customer_street_address }} <br>
+                                            {{ trans('labels.Phone') }}: {{ $result['order']->customer_telephone }}<br>
+                                            {{ trans('labels.Email') }}: {{ $result['order']->email }} --}}
+                                          </address>
                                         </div>
-                                        <div class="col-sm-4 invoice-col">
-                                            {{ trans('labels.ShippingInfo') }}
-                                            <address>
-                                                {{ trans('labels.CustomerName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
-                                                {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
-                                                <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
-                                                <strong> {{ trans('labels.ShippingCost') }}:</strong> {{(!empty($result['order']->shipping_cost)) }}<br>
-                                            </address>
-                                        </div>
+                                        {{-- <div class="col-sm-4 invoice-col">
+                                          {{ trans('labels.ShippingInfo') }}
+                                          <address>
+                                          {{ trans('labels.CustomerName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
+                                          {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
+                                           <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
+                                           <strong> {{ trans('labels.ShippingCost') }}:</strong> {{(!empty($result['order']->shipping_cost)) }}<br>
+                                          </address>
+                                        </div> --}}
                                     </div>
-                                    <div class="row text-center" >
-                                        <div class="col-xs-12">
-                                            <a  order_id='{{ $result['order']->order_id }}'
-                                                class="btn btn-primary view_order_address_part">
-                                                {{ trans('labels.Edit') }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <hr/>
-
+{{-- 
                                     <div class="row">
                                         <div class="col-xs-12 table-responsive">
                                             <div class="table-wrap" style="fro">
@@ -178,7 +167,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     @include('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>
@@ -187,10 +176,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-         <!-- View Address Part Dialog -->
-         <div class="modal fade" id="order_address_part" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/order/view_order_address_part')
         </div>
     </section>
 </div>

@@ -80,5 +80,13 @@ class AdminOrderControler extends Controller{
         $result['request'] = $request;
         $result['operation'] = 'delete';
         return $this->OrderService->redirect_view($result,$title);
-	}
+    }
+    
+    function view_address(Request $request){
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'view_address';
+        return $this->OrderService->redirect_view($result,"");
+    }
 }

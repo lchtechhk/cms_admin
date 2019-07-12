@@ -1,30 +1,19 @@
 <?php 
-    // function print_selected_value($original,$db_value){
-    //     $value = '';
-    //     if(!empty($original) && !empty($db_value) && $original == $db_value){
-    //         $value .= "selected";
-    //     }
-    //     return $value;
-    // }
-    function testing(){
-        error_log("testing function");
-        return "testing";
-    }
-    function print_value($operation,$data){
+    function order_print_value($operation,$data){
         $value = '';
         if($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable'){
             $value .= $data;
         }
         return $value;
     }
-    function print_selected_value($operation,$data,$selected_value){
+    function order_print_selected_value($operation,$data,$selected_value){
         $value = '';
         if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data) && !empty($selected_value) && $data == $selected_value){
             $value .= "selected";
         }
         return $value;
     }
-    function print_checkbox($operation,$selected_value){
+    function order_print_checkbox($operation,$selected_value){
         $value = '';
         if( ($operation == 'edit' || $operation == 'listing' || $operation == 'changeable') && !empty($selected_value) && $selected_value == 'reject'){
             $value .= "checked";

@@ -200,12 +200,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateZone/{id}', 'AdminZoneController@updateZone');
 			Route::post('/deleteZone','AdminZoneController@deleteZone');
 
-			//orders
-			Route::get('/orders', 'AdminOrdersController@orders');		
-			Route::get('/vieworder/{id}', 'AdminOrdersController@vieworder');
-			Route::post('/updateOrder', 'AdminOrdersController@updateOrder');
-			Route::post('/deleteOrder', 'AdminOrdersController@deleteOrder');
-			
 			//Jamie orders
 			Route::get('/listingOrder', 'AdminOrderControler@listingOrder');
 			Route::get('/view_addOrder', 'AdminOrderControler@view_addOrder');
@@ -213,6 +207,8 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/addOrder', 'AdminOrderControler@addOrder');
 			Route::post('/updateOrder', 'AdminOrderControler@updateOrder');
 			Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');
+
+			Route::post('/view_address', 'AdminOrderControler@view_address');
 
 			//orderstatus
 			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');

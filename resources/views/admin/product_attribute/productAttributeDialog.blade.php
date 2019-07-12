@@ -1,6 +1,4 @@
 @include('generic/view_function')
-{{-- AddProductAuttributeModel--}}
-{{-- <div class="modal fade" id="addressDialog" tabindex="-1" role="dialog" aria-labelledby="addressLabel"> --}}
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -145,4 +143,3 @@
         </div>
     </div>
 </div>
-{{-- </div> --}}

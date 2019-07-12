@@ -83,7 +83,28 @@
         </div>
          <!-- ProductImageDialog -->
          <div class="modal fade" id="productAttributeDialog" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/product_attribute/productAttributeDialog')
+            {{-- @include('admin/product_attribute/productAttributeDialog') --}}
+            <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="productAuttributeLabel">{{ trans('labels.AddressPart') }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.PurchasedDate') }}<span style="color:red">★</span></label> 
+                                    <div class="col-sm-10 col-md-4">
+                                        {!! Form::text('date_purchased', 
+                                        empty($result['order']->date_purchased) ? '' : testing(),
+                                        array('class'=>'form-control datepicker','id'=>'date_purchased')) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         <!-- delete -->
         @include('admin/product_attribute/deleteProductAttribute')

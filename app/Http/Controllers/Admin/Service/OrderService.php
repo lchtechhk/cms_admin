@@ -53,7 +53,8 @@ class OrderService extends BaseApiService{
             break;
             case 'view_add':
                 Log::info('[view_add] --  : ');
-                return view("admin.order.viewOrder", $title)->with('result', $result);
+                $result['order'] =  array();
+                return view("admin.order.addOrder", $title)->with('result', $result);
             break;
             case 'view_edit':
                 Log::info('[view_edit] --  : ');
@@ -92,6 +93,11 @@ class OrderService extends BaseApiService{
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
                 return view("admin.order.listingOrder", $title)->with('result', $result);
+            break;
+            case 'view_address':
+                $result['order'] = $this->getOrder($result['order_id']);
+                error_log(\json_encode($result));
+                return view("admin.order.view_order_address_part")->with('result', $result);
             break;
         }
     }

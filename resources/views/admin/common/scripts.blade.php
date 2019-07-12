@@ -415,6 +415,27 @@ $(document).on('click', '.editProductImageModal', function(){
 	});
 });
 
+// Order
+$(document).on('click', '.view_order_address_part', function(){
+	var order_id = $(this).attr('order_id');
+	console.log('order_id -- + : ' + order_id);
+	$.ajax({
+		url: "{{ URL::to('admin/view_address')}}",
+		type: "POST",
+		data: '&order_id='+order_id,
+		success: function (data) {
+			console.log("data : " + data);
+			// $('#order_address_part').html(data); 
+			$('#order_address_part').modal('show');
+		},
+		error:function (error){
+			console.log("error : " + JSON.stringify(error));
+		},
+		dataType: 'html'
+	});
+});
+
+
 //AddAddress
 $(document).on('click', '.addAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');
