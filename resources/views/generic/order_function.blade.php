@@ -1,7 +1,7 @@
 <?php 
     function order_print_value($operation,$data){
         $value = '';
-        if($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable'){
+        if(check_operation($operation)){
             $value .= $data;
         }
         return $value;
@@ -19,5 +19,9 @@
             $value .= "checked";
         }
         return $value;
+    }
+    function check_operation($operation){
+        return $operation == 'part_customer_address' || $operation == 'edit' || 
+        $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable';
     }
 ?>

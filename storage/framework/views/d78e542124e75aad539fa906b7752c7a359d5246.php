@@ -94,6 +94,23 @@
         <?php echo e(Request::is('admin/updateProduct/*') ? 'active' : ''); ?> 
         <?php echo e(Request::is('admin/deleteProduct/*') ? 'active' : ''); ?>  
 
+        <?php echo e(Request::is('admin/listingProductOption') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_addProductOption') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_editProductOption/*') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/addProductOption') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/updateProductOption') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/deleteProductOption') ? 'active' : ''); ?>
+
+
+        <?php echo e(Request::is('admin/listingProductOptionValue') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_addProductOptionValue') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/view_editProductOptionValue/*') ? 'active' : ''); ?>
+
+        <?php echo e(Request::is('admin/addProductOptionValue') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/updateProductOptionValue') ? 'active' : ''); ?> 
+        <?php echo e(Request::is('admin/deleteProductOptionValue') ? 'active' : ''); ?>  
+
         <?php echo e(Request::is('admin/attributes') ? 'active' : ''); ?>  
         <?php echo e(Request::is('admin/addattributes') ? 'active' : ''); ?>  
         <?php echo e(Request::is('admin/editattributes/*') ? 'active' : ''); ?>">
@@ -113,11 +130,37 @@
 
             </a>
           </li>
+          <li
+            class="
+            <?php echo e(Request::is('admin/listingProductOption') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_addProductOption') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_editProductOption/*') ? 'active' : ''); ?>
+
+            <?php echo e(Request::is('admin/addProductOption') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/updateProductOption') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/deleteProductOption') ? 'active' : ''); ?>  ">
+            <a href="<?php echo e(URL::to('admin/listingProductOption')); ?>">
+              <i class="fa fa-circle-o"></i>
+              Option
+            </a>
+          </li>
+          <li
+            class="
+            <?php echo e(Request::is('admin/listingProductOptionValue') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_addProductOptionValue') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/view_editProductOptionValue/*') ? 'active' : ''); ?>
+
+            <?php echo e(Request::is('admin/addProductOptionValue') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/updateProductOptionValue') ? 'active' : ''); ?> 
+            <?php echo e(Request::is('admin/deleteProductOptionValue') ? 'active' : ''); ?>  
+            ">
+            <a href="<?php echo e(URL::to('admin/listingProductOptionValue')); ?>">
+              <i class="fa fa-circle-o"></i>
+              Option Value
+            </a>
+          </li>
         </ul>
       </li>
-
-      
-
       <li class="treeview 
           <?php echo e(Request::is('admin/listingCustomer') ? 'active' : ''); ?>  
           <?php echo e(Request::is('admin/addCustomers') ? 'active' : ''); ?> 
@@ -127,8 +170,6 @@
           <span><?php echo e(trans('labels.link_customers')); ?></span>
         </a>
       </li>
-
-
       <li class="treeview 
                       <?php echo e(Request::is('admin/listingCountry') ? 'active' : ''); ?> 
                       <?php echo e(Request::is('admin/view_addCountry') ? 'active' : ''); ?> 

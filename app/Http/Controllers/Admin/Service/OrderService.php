@@ -45,6 +45,7 @@ class OrderService extends BaseApiService{
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Order";
+        error_log("abcd : " . $result['operation']);
         switch($result['operation']){
             case 'listing':
                 $result['orders'] = $this->findAll();
@@ -94,11 +95,11 @@ class OrderService extends BaseApiService{
                 }	
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
-            case 'view_address':
-                $result['order'] = $this->getOrder($result['order_id']);
-                error_log(\json_encode($result));
-                return view("admin.order.view_order_address_part")->with('result', $result);
-            break;
+            // case 'part_customer_address':
+            //     $result['order'] = $this->getOrder($result['order_id']);
+            //     Log::info('[part_customer_address] --  : ' . \json_encode($result));
+            //     return view("admin.order.dialog_customer_address")->with('result', $result);
+            // break;
         }
     }
 }

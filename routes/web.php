@@ -208,7 +208,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateOrder', 'AdminOrderControler@updateOrder');
 			Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');
 
-			Route::post('/view_address', 'AdminOrderControler@view_address');
+			Route::post('/part_customer_address', 'AdminOrderControler@part_customer_address');
 
 			//orderstatus
 			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');

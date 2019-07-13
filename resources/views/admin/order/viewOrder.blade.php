@@ -45,25 +45,34 @@
                                                 {{ trans('labels.Phone') }}: {{ $result['order']->customer_telephone }}<br>
                                                 {{ trans('labels.Email') }}: {{ $result['order']->email }}
                                             </address>
+                                            <div class="row text-center" >
+                                                <div class="col-xs-12">
+                                                    <a  order_id='{{ $result['order']->order_id }}'
+                                                        class="btn btn-primary part_customer_address">
+                                                        {{ trans('labels.Edit') }}
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-4 invoice-col">
                                             {{ trans('labels.ShippingInfo') }}
                                             <address>
-                                                {{ trans('labels.CustomerName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
+                                                {{ trans('labels.DeliveryName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
                                                 {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
                                                 <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
                                                 <strong> {{ trans('labels.ShippingCost') }}:</strong> {{(!empty($result['order']->shipping_cost)) }}<br>
                                             </address>
+                                            <div class="row text-center" >
+                                                <div class="col-xs-12">
+                                                    <a  order_id='{{ $result['order']->order_id }}'
+                                                        class="btn btn-primary part_shipping_address">
+                                                        {{ trans('labels.Edit') }}
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row text-center" >
-                                        <div class="col-xs-12">
-                                            <a  order_id='{{ $result['order']->order_id }}'
-                                                class="btn btn-primary view_order_address_part">
-                                                {{ trans('labels.Edit') }}
-                                            </a>
-                                        </div>
-                                    </div>
+                                   
                                     <hr/>
 
                                     <div class="row">
@@ -189,8 +198,11 @@
             </div>
         </div>
          <!-- View Address Part Dialog -->
-         <div class="modal fade" id="order_address_part" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/order/view_order_address_part')
+         <div class="modal fade" id="dialog_customer_address" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
+            @include('admin/order/dialog_customer_address')
+        </div>
+        <div class="modal fade" id="dialog_shipping_address" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
+            @include('admin/order/dialog_shipping_address')
         </div>
     </section>
 </div>
