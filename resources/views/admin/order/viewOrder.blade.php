@@ -32,7 +32,13 @@
                                                 {!! Form::hidden('order_id', empty($result['order']->order_id) ? '' :
                                                 print_value($result['operation'],$result['order']->order_id),
                                                 array('class'=>'form-control', 'id'=>'order_id','readonly')) !!}
-                                                <small class="pull-right">{{ trans('labels.OrderedDate') }}: {{ date('Y-m-d', strtotime($result['order']->date_purchased)) }}</small>
+                                                <small class="pull-right">
+                                                    {{ trans('labels.OrderedDate') }}: {{ date('Y-m-d', strtotime($result['order']->date_purchased)) }}
+                                                    <a  order_id='{{ $result['order']->order_id }}'
+                                                        class="btn btn-primary part_date_purchased">
+                                                        {{ trans('labels.Edit') }}
+                                                    </a>
+                                                </small>
                                             </h2>
                                         </div>
                                     </div>
@@ -60,7 +66,7 @@
                                                 {{ trans('labels.DeliveryName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
                                                 {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
                                                 <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
-                                                <strong> {{ trans('labels.ShippingCost') }}:</strong> {{(!empty($result['order']->shipping_cost)) }}<br>
+                                                <strong> {{ trans('labels.ShippingCost') }}:</strong> {{$result['order']->shipping_cost}}<br>
                                             </address>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
@@ -79,6 +85,12 @@
                                         <div class="col-xs-12 table-responsive">
                                             <div class="table-wrap" style="fro">
                                                 <div class="table">
+                                                    <div class="pull-right">
+                                                        <a  order_id='{{ $result['order']->order_id }}'
+                                                            class="btn btn-warning part_add_product">
+                                                            {{ trans('labels.Add') }}
+                                                        </a>
+                                                    </div>
                                                     <table id="view_order_table" class="table table-striped">
                                                         <thead>
                                                             <tr>
@@ -87,6 +99,7 @@
                                                                 <th>{{ trans('labels.ProductName') }}</th>
                                                                 <th>{{ trans('labels.Qty') }}</th>
                                                                 <th>{{ trans('labels.Price') }}</th>
+                                                                <th>{{ trans('labels.Action') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -106,6 +119,11 @@
                                                                     </td>
                                                                     <td>{{  $order_product->product_quantity }}</td>
                                                                     <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
+                                                                    <td>
+                                                                        <a data-toggle="tooltip" data-placement="bottom" title="View Order" order_id='{{ $result['order']->order_id }}'
+                                                                            class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                        <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id ="{{ $result['order']->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                             <tr >
@@ -198,12 +216,11 @@
             </div>
         </div>
          <!-- View Address Part Dialog -->
-         <div class="modal fade" id="dialog_customer_address" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/order/dialog_customer_address')
-        </div>
-        <div class="modal fade" id="dialog_shipping_address" tabindex="-1" role="dialog" aria-labelledby="addressLabel">
-            @include('admin/order/dialog_shipping_address')
-        </div>
+         @include('admin/order/dialog_date_purchased')
+         @include('admin/order/dialog_customer_address')
+         @include('admin/order/dialog_shipping_address')
+         @include('admin/order/dialog_add_product')
+         @include('admin/order/dialog_edit_product')
     </section>
 </div>
 @endsection

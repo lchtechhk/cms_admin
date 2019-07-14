@@ -86,6 +86,7 @@ class AdminOrderControler extends Controller{
         $result = array();
         $result = $request->input();
         $result['request'] = $request;
+        $result['order_id'] = $request->order_id;
         $result['operation'] = 'part_customer_address';
         return $this->OrderService->redirect_view($result,"");
     }

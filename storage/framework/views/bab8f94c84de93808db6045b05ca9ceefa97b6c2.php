@@ -446,45 +446,21 @@ $(document).on('click', '.part_shipping_address', function(){
 	$('#dialog_shipping_address').modal('show');
 });
 
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
+// Order part_date_purchased
+$(document).on('click', '.part_date_purchased', function(){
+	$('#dialog_date_purchased').modal('show');
+});
 
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
+// Order part_add_product
+$(document).on('click', '.part_add_product', function(){
+	$('#dialog_add_product').modal('show');
+});
 
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
+// Order part_edit_product
+$(document).on('click', '.part_edit_product', function(){
+	$('#dialog_edit_product').modal('show');
+});
 
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
-
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
-
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
-
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
-
-// // Order part_customer_address
-// $(document).on('click', '.part_customer_address', function(){
-// 	$('#dialog_customer_address').modal('show');
-// });
 
 
 //AddAddress
