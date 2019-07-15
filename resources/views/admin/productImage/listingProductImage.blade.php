@@ -42,8 +42,8 @@
                                                             @if(!empty($product_image->image))
                                                                 <img src="{{asset('').'/'.$product_image->image}}" alt="" width=" 100px">
                                                             @else
-                                                                <img src="../../resources/assets/images/default_images/product.png"
-                                                                    style="width: 50px; float: left; margin-right: 10px">
+                                                                <img src={{asset('')."resources/assets/images/default_images/product.png"}}
+                                                                style="width: 50px; float: left; margin-right: 10px">
                                                             @endif
                                                         </td>
                                                         <td>{{ $product_image->description }}</td>

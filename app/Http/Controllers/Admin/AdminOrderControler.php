@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
 
 use App\Http\Controllers\Admin\Service\OrderService;
+use function GuzzleHttp\json_decode;
 
 class AdminOrderControler extends Controller{
     private $OrderService;
@@ -73,6 +74,15 @@ class AdminOrderControler extends Controller{
         return $this->OrderService->redirect_view($result,$title);
     }
 
+    function updateOrderProduct(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.updateOrderProduct"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'edit_product';
+        return $this->OrderService->redirect_view($result,$title);
+    }
+
     function deleteOrder(Request $request){
         $title = array('pageTitle' => Lang::get("labels.deleteOrder"));
         $result = array();
@@ -88,6 +98,16 @@ class AdminOrderControler extends Controller{
         $result['request'] = $request;
         $result['order_id'] = $request->order_id;
         $result['operation'] = 'part_customer_address';
+        return $this->OrderService->redirect_view($result,"");
+    }
+
+    function part_edit_product(Request $request){
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['order_product'] = json_decode($request->order_product);
+        $result['operation'] = 'part_edit_product';
+        Log::info('[result] --  : ' . json_encode($result));
         return $this->OrderService->redirect_view($result,"");
     }
 }

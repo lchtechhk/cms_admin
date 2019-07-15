@@ -458,7 +458,24 @@ $(document).on('click', '.part_add_product', function(){
 
 // Order part_edit_product
 $(document).on('click', '.part_edit_product', function(){
-	$('#dialog_edit_product').modal('show');
+	// $('#dialog_edit_product').modal('show');
+	var order_product = $(this).attr('order_product');
+	console.log('order_product -- + : ' + order_product);
+	$.ajax({
+		url: "{{ URL::to('admin/part_edit_product')}}",
+		type: "POST",
+		data: '&order_product='+order_product,
+		success: function (data) {
+			console.log("data : " + data);
+			$('#dialog_edit_product').html(data); 
+			$('#dialog_edit_product').modal('show');
+		},
+		error:function (error){
+			console.log("error : " + JSON.stringify(error));
+		},
+		dataType: 'html'
+	});
+
 });
 
 

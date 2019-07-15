@@ -4,9 +4,9 @@
         <button type="submit" class="btn btn-primary"
             id="AddProductAttribute">{{ trans('labels.AddProductAttribute') }}
         </button>
-        @elseif ($result['operation'] == 'view_edit')
+        @else
         <button type="submit" class="btn btn-primary"
-            id="EditProductAttribute">{{ trans('labels.EditProductAttribute') }}
+            id="Edit">{{ trans('labels.Edit') }}
         </button>
     @endif
 </div>

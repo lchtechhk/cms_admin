@@ -98,7 +98,7 @@
                                                                 <th>{{ trans('labels.Image') }}</th>
                                                                 <th>{{ trans('labels.ProductName') }}</th>
                                                                 <th>{{ trans('labels.Qty') }}</th>
-                                                                <th>{{ trans('labels.Price') }}</th>
+                                                                <th>{{ trans('labels.FinalPrice') }}</th>
                                                                 <th>{{ trans('labels.Action') }}</th>
                                                             </tr>
                                                         </thead>
@@ -110,7 +110,7 @@
                                                                         @if(!empty($order_product->image))
                                                                             <img src="{{ asset('').$order_product->image }}" width="60px">
                                                                         @else
-                                                                        <img src="../resources/assets/images/default_images/product.png"
+                                                                        <img src={{asset('')."resources/assets/images/default_images/product.png"}}
                                                                             style="width: 50px; float: left; margin-right: 10px">
                                                                         @endif
                                                                     </td>
@@ -120,7 +120,7 @@
                                                                     <td>{{  $order_product->product_quantity }}</td>
                                                                     <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
                                                                     <td>
-                                                                        <a data-toggle="tooltip" data-placement="bottom" title="View Order" order_id='{{ $result['order']->order_id }}'
+                                                                    <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
                                                                             class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                                         <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id ="{{ $result['order']->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                                                     </td>
@@ -131,7 +131,7 @@
                                                                 <th></th>
                                                                 <th></th>
                                                                 <th></th>
-                                                                <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }}{{ $result['order']->order_price }}</td>
+                                                                <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }} {{ $result['order']->order_price }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -220,7 +220,9 @@
          @include('admin/order/dialog_customer_address')
          @include('admin/order/dialog_shipping_address')
          @include('admin/order/dialog_add_product')
-         @include('admin/order/dialog_edit_product')
+         <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product">
+                @include('admin/order/dialog_edit_product')
+        </div>
     </section>
 </div>
 @endsection

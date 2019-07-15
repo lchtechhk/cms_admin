@@ -82,7 +82,7 @@
                     <img width="150px" src="{{asset('').'/'.$result['product_attribute']->image}}"
                         class="img-circle">
                     @else
-                        <img src="../../resources/assets/images/default_images/product.png"
+                        <img src={{asset('')."resources/assets/images/default_images/product.png"}}
                         style="width: 50px; float: left; margin-right: 10px">
                     @endif
                 </div>
