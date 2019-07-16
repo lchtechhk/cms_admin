@@ -18,7 +18,57 @@
                             array('class'=>'form-control','readonly')) !!}
                         </div>
                     </div>
-                   
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductId') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            <select class="form-control select2" name="order_status" id="add_product_id" style="width: 100%;">
+                                @foreach ($result['products'] as $product)
+                                    <option value="{{ $product->product_id }}">
+                                        {{ $product->name }}
+                                    </option>
+                                @endforeach
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Image') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            @if(!empty($result['order_product']->image))
+                                <img id="add_order_product" src="" width="60px">
+                            @else
+                            <img id="add_order_product" src={{asset('')."resources/assets/images/default_images/product.png"}}
+                                style="width: 50px; float: left; margin-right: 10px">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductName') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('product_name', '',
+                            array('class'=>'form-control','readonly','id'=>'add_product_name')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('product_price','',
+                            array('class'=>'form-control','readonly','id'=>'add_product_price')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Qty') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('product_quantity','',
+                            array('class'=>'form-control','id'=>'add_product_quantity')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.FinalPrice') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('final_price','',
+                            array('class'=>'form-control','id'=>'add_final_price')) !!}
+                        </div>
+                    </div>
                 </div>
                 @include('layouts/dialog_submit_back_button')
             {!! Form::close() !!}

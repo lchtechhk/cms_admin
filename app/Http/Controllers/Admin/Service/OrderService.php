@@ -7,6 +7,7 @@ use Exception;
 
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
+use App\Http\Controllers\Admin\Service\View_ProductService;
 use App\Http\Controllers\Admin\Service\OrderProductService;
 use App\Http\Controllers\Admin\Service\View_OrderProductService;
 use App\Http\Controllers\Admin\Service\OrderCommentService;
@@ -18,6 +19,7 @@ class OrderService extends BaseApiService{
     private $View_OrderService;
     private $OrderProductService;
     private $View_OrderProductService;
+    private $View_ProductService;
     private $OrderCommentService;
 
     function __construct(){
@@ -28,7 +30,7 @@ class OrderService extends BaseApiService{
         $this->OrderProductService = new OrderProductService();
         $this->View_OrderProductService = new View_OrderProductService();
         $this->OrderCommentService = new OrderCommentService();
-
+        $this->View_ProductService = new View_ProductService();
     }
 
     function update_order_total_price($order_id){
@@ -70,6 +72,7 @@ class OrderService extends BaseApiService{
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Order";
+        $result['products'] = $this->View_ProductService->getListing();
         // error_log("abcd : " . $result['operation']);
         switch($result['operation']){
             case 'listing':
