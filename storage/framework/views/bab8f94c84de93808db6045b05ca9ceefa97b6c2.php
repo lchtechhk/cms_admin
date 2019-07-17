@@ -477,9 +477,6 @@ $(document).on('click', '.part_edit_product', function(){
 	});
 
 });
-
-
-
 //AddAddress
 $(document).on('click', '.addAddressModal', function(){
 	var customer_id = $(this).attr('customer_id');

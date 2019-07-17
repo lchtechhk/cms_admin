@@ -1,4 +1,21 @@
 {{-- @include('generic/order_function') --}}
+<script>
+function order_change_product(asset,a){
+    if(a != undefined){
+        var json = JSON.parse(a)
+        var product_attribute_name = json["product_attribute_name"];
+        var image = json["image"];
+        var price = json["price"];
+        // console.log(asset)
+        // console.log(image)
+        // console.log(price)
+        document.getElementById("add_product_name").value = product_attribute_name;
+        document.getElementById("add_order_product_image").src = asset+image;
+        document.getElementById("add_product_price").value = price;
+
+    }
+}
+</script>
 <div class="modal fade" id="dialog_add_product" tabindex="-1" role="dialog" aria-labelledby="dialog_add_product">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -21,22 +38,26 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductId') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
-                            <select class="form-control select2" name="order_status" id="add_product_id" style="width: 100%;">
-                                @foreach ($result['products'] as $product)
-                                    <option value="{{ $product->product_id }}">
-                                        {{ $product->name }}
+                            <select class="form-control select2" name="order_status" id="add_product_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
+                                <option value="">-</option>
+                                @foreach ($result['product_attributes'] as $product_attribute)
+                                    <option data="{{json_encode($product_attribute)}}" value="{{ $product_attribute->product_attribute_id }}">
+                                        {{ $product_attribute->product_name }} | {{$product_attribute->product_attribute_name}}
                                     </option>
+                                    {{-- {!! Form::text('add_product_obj', 
+                                        empty($product) ? '' : print_value($result['operation'],json_encode($product)),
+                                        array('class'=>'form-control','readonly')) !!} --}}
                                 @endforeach
-                        </select>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Image') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             @if(!empty($result['order_product']->image))
-                                <img id="add_order_product" src="" width="60px">
+                                <img id="add_order_product_image" src="" width="60px">
                             @else
-                            <img id="add_order_product" src={{asset('')."resources/assets/images/default_images/product.png"}}
+                            <img id="add_order_product_image" src={{asset('')."resources/assets/images/default_images/product.png"}}
                                 style="width: 50px; float: left; margin-right: 10px">
                             @endif
                         </div>
@@ -52,7 +73,7 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price','',
-                            array('class'=>'form-control','readonly','id'=>'add_product_price')) !!}
+                            array('class'=>'form-control','readonly','id'=>'add_product_price','value'=>"")) !!}
                         </div>
                     </div>
                     <div class="form-group">
