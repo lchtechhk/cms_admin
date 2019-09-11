@@ -61,7 +61,7 @@ class OrderService extends BaseApiService{
     function getOrder($order_id){
         $order_array = $this->findByColumnAndId("order_id",$order_id);
         $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
-        $order_product_array = $this->View_OrderProductService->findByColumnAndId("order_id",$order_id);
+        $order_product_array = $this->View_OrderProductService->findByColumnWithLanguage("order_id",$order_id);
         $order_comment_array = $this->OrderCommentService->findByColumnAndId("order_id",$order_id);
         $order->order_products = $order_product_array;
         $order->order_comments = $order_comment_array;

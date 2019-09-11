@@ -36,8 +36,8 @@ function order_change_product(asset,a){
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductId') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-9">
                             <select class="form-control select2" name="order_status" id="add_product_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
                                 <option value="">-</option>
                                 @foreach ($result['product_attributes'] as $product_attribute)
