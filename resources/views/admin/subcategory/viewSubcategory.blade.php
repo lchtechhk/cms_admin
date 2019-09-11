@@ -6,7 +6,11 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{ trans('labels.Add'.$result['label']) }}</h3>
+                        @if ($result['operation'] == 'add' || $result['operation'] == 'view_add' )
+                            <h3 class="box-title">{{ trans('labels.Add'.$result['label']) }}</h3>
+                        @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
+                            <h3 class="box-title">{{ trans('labels.Edit'.$result['label']) }}</h3>
+                        @endif
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -64,9 +68,9 @@
                                             </label>
                                             <div class="col-sm-10 col-md-4">
                                                 {!! Form::text("language_array[".$language->languages_id."]",
-                                                empty($result['sub_category']->language_array[$language->languages_id]['sub_category_name'])
+                                                empty($result['sub_category']->language_array[$language->languages_id]['name'])
                                                 ? '' :
-                                                print_value($result['operation'],$result['sub_category']->language_array[$language->languages_id]['sub_category_name']),
+                                                print_value($result['operation'],$result['sub_category']->language_array[$language->languages_id]['name']),
                                                 array('class'=>'form-control
                                                 field-validate', 'id'=>'name')) !!}
                                                 <span class="help-block"
