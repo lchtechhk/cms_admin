@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.32-MariaDB
+-- Server version	5.5.5-10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -343,7 +343,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-05-17 14:05:26',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png','resources/assets/images/category_icons/1558067666.Screenshot_2019-05-16-17-39-07-522_com.android.settings.png',NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-05-17 14:05:10',NULL,'active'),(9,'resources/assets/images/category_images/1558079165.Screenshot_2019-05-17-15-21-51-154_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 14:05:48',NULL,'2019-06-04 16:22:02',NULL,'active');
+INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png','resources/assets/images/category_icons/1558067666.Screenshot_2019-05-16-17-39-07-522_com.android.settings.png',NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(9,'resources/assets/images/category_images/1558079165.Screenshot_2019-05-17-15-21-51-154_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 14:05:48',NULL,'2019-09-11 22:32:46',NULL,'active');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +375,7 @@ CREATE TABLE `category_description` (
 
 LOCK TABLES `category_description` WRITE;
 /*!40000 ALTER TABLE `category_description` DISABLE KEYS */;
-INSERT INTO `category_description` VALUES (1,'Categhk',1,1,'2019-05-13 23:55:56',NULL,'2019-05-17 14:05:26',NULL,'active'),(2,'abc123',2,1,'2019-05-13 23:55:56',NULL,'2019-05-17 14:05:26',NULL,'active'),(5,'Category2',1,4,'2019-05-14 01:09:43',NULL,'2019-05-17 14:05:10',NULL,'active'),(14,'216',2,4,'2019-05-17 14:05:04',NULL,'2019-05-17 14:05:10',NULL,'active'),(15,'12手11',1,9,'2019-05-17 14:05:48',NULL,'2019-06-04 16:22:02',NULL,'active'),(16,'3232',2,9,'2019-05-17 14:05:48',NULL,'2019-06-04 16:22:02',NULL,'active');
+INSERT INTO `category_description` VALUES (1,'HongKong category 1',1,1,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(2,'English category 1',2,1,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(5,'HongKong category 2',1,4,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(14,'English category 2',2,4,'2019-05-17 14:05:04',NULL,'2019-09-11 22:32:17',NULL,'active'),(15,'HongKong category 3',1,9,'2019-05-17 14:05:48',NULL,'2019-09-11 22:32:46',NULL,'active'),(16,'English category 3',2,9,'2019-05-17 14:05:48',NULL,'2019-09-11 22:32:46',NULL,'active');
 /*!40000 ALTER TABLE `category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1289,7 +1289,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,1,'customer_name','customer_company','customer_street_addresscustomer_suburb','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','22224444','acornjamie123@gmail.com','delivery_name','delivery_company','delivery_street_address','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',1.00,'car',NULL,'payment_method',50.00,'2019-01-01 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-06-10 00:14:19','1','active','complete');
+INSERT INTO `order` VALUES (1,1,'customer_name','customer_company','Address','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','534038482','acornjamie123@gmail.com1','delivery_name1','delivery_company','delivery_street_address1','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',4.00,'car1',NULL,'payment_method',300.00,'2019-07-18 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-09-12 00:49:27','1','active','complete');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1335,8 +1335,7 @@ DROP TABLE IF EXISTS `order_product`;
 CREATE TABLE `order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `product_name` varchar(64) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `product_attribute_id` int(11) NOT NULL,
   `currency_id` int(11) NOT NULL,
   `product_price` decimal(15,2) NOT NULL,
   `final_price` decimal(15,2) NOT NULL,
@@ -1345,6 +1344,11 @@ CREATE TABLE `order_product` (
   `weight_unit` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `product_model` varchar(12) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `product_tax` decimal(7,0) DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1355,8 +1359,41 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (1,1,1,'A',0,10.00,50.00,5,NULL,NULL,NULL,NULL),(2,1,2,'B',0,20.00,100.00,5,NULL,NULL,NULL,NULL);
+INSERT INTO `order_product` VALUES (1,1,23,0,50.00,150.00,3,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',NULL,'2019-09-12 00:49:31',NULL,''),(2,1,24,0,20.00,1001.00,5,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00',NULL,'2019-07-16 00:27:32',NULL,'');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_product_description`
+--
+
+DROP TABLE IF EXISTS `order_product_description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `order_product_description` (
+  `order_product_description_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_product_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `product_id` int(11) NOT NULL,
+  `name` varchar(64) COLLATE utf8_general_mysql500_ci NOT NULL DEFAULT '',
+  `description` text COLLATE utf8_general_mysql500_ci,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`order_product_description_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_product_description`
+--
+
+LOCK TABLES `order_product_description` WRITE;
+/*!40000 ALTER TABLE `order_product_description` DISABLE KEYS */;
+INSERT INTO `order_product_description` VALUES (1,1,1,1,'Product A  (HongKong)','Description (HongKong)','2019-06-09 14:46:18',NULL,'2019-06-09 14:46:18',NULL,'active'),(2,1,2,1,'Product A  (English)','Description (English)','2019-06-09 14:46:18',NULL,'2019-06-09 14:46:18',NULL,'active');
+/*!40000 ALTER TABLE `order_product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1481,6 +1518,7 @@ CREATE TABLE `orders_products` (
   `orders_products_id` int(11) NOT NULL AUTO_INCREMENT,
   `orders_id` int(11) NOT NULL,
   `products_id` int(11) NOT NULL,
+  `product_attribute_id` int(11) DEFAULT NULL,
   `products_model` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
   `products_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `products_price` decimal(15,2) NOT NULL,
@@ -1499,7 +1537,7 @@ CREATE TABLE `orders_products` (
 
 LOCK TABLES `orders_products` WRITE;
 /*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;
-INSERT INTO `orders_products` VALUES (1,1,81,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(2,2,80,NULL,'FLAG COMBED COTTON SWEATER',99.99,99.99,1,1),(3,2,78,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,195.00,1,1),(4,3,81,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(5,4,78,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,390.00,1,2),(6,5,79,NULL,'FAIR ISLE HOODED SWEATER',45.00,90.00,1,2),(7,5,80,NULL,'FLAG COMBED COTTON SWEATER',99.99,199.98,1,2),(8,6,6,NULL,'cake',89.50,89.50,1,1),(9,6,82,NULL,'王老吉',3.00,3.00,1,1),(10,6,4,NULL,'Biscuits',85.00,85.00,1,1),(11,7,4,NULL,'Biscuits',85.00,85.00,1,1),(12,8,82,NULL,'王老吉',3.00,6.00,1,2),(13,9,82,NULL,'王老吉',3.00,3.00,1,1),(14,10,82,NULL,'王老吉',3.00,6.00,1,2),(15,11,6,NULL,'cake',89.50,268.50,1,3),(16,12,4,NULL,'Biscuits',85.00,85.00,1,1),(17,13,82,NULL,'王老吉',3.00,3.00,1,1),(18,14,82,NULL,'王老吉',3.00,3.00,1,1),(19,15,82,NULL,'王老吉',3.00,3.00,1,1),(20,16,2,NULL,'小蛋糕',100.00,100.00,1,1),(21,16,1,NULL,'酸奶',100.00,100.00,1,1),(22,17,5,NULL,'維他',100.00,100.00,1,1),(23,17,6,NULL,'水',5.00,5.00,1,1);
+INSERT INTO `orders_products` VALUES (1,1,81,NULL,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(2,2,80,NULL,NULL,'FLAG COMBED COTTON SWEATER',99.99,99.99,1,1),(3,2,78,NULL,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,195.00,1,1),(4,3,81,NULL,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(5,4,78,NULL,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,390.00,1,2),(6,5,79,NULL,NULL,'FAIR ISLE HOODED SWEATER',45.00,90.00,1,2),(7,5,80,NULL,NULL,'FLAG COMBED COTTON SWEATER',99.99,199.98,1,2),(8,6,6,NULL,NULL,'cake',89.50,89.50,1,1),(9,6,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(10,6,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(11,7,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(12,8,82,NULL,NULL,'王老吉',3.00,6.00,1,2),(13,9,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(14,10,82,NULL,NULL,'王老吉',3.00,6.00,1,2),(15,11,6,NULL,NULL,'cake',89.50,268.50,1,3),(16,12,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(17,13,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(18,14,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(19,15,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(20,16,2,NULL,NULL,'小蛋糕',100.00,100.00,1,1),(21,16,1,NULL,NULL,'酸奶',100.00,100.00,1,1),(22,17,5,NULL,NULL,'維他',100.00,100.00,1,1),(23,17,6,NULL,NULL,'水',5.00,5.00,1,1);
 /*!40000 ALTER TABLE `orders_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1839,7 +1877,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,2,1,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active','',0,0,0,NULL);
+INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1865,7 +1903,7 @@ CREATE TABLE `product_attribute` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_attribute_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1874,7 +1912,7 @@ CREATE TABLE `product_attribute` (
 
 LOCK TABLES `product_attribute` WRITE;
 /*!40000 ALTER TABLE `product_attribute` DISABLE KEYS */;
-INSERT INTO `product_attribute` VALUES (23,1,'resources/assets/images/product_attribute/1562843415.5.png','15','5',1.00,'substract',0,'2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active');
+INSERT INTO `product_attribute` VALUES (23,1,'resources/assets/images/product_attribute/1562843415.5.png','15','5',1.00,'substract',0,'2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(24,1,'resources/assets/images/product_attribute/1563381854.螢幕截圖 2019-05-11 下午2.04.53.png','5','5',300.00,'add',0,'2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(25,2,NULL,'100','5',300.00,'add',0,'2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(26,2,NULL,'5','5',300.00,'add',0,'2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1896,7 +1934,7 @@ CREATE TABLE `product_attribute_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_attribute_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1905,7 +1943,7 @@ CREATE TABLE `product_attribute_description` (
 
 LOCK TABLES `product_attribute_description` WRITE;
 /*!40000 ALTER TABLE `product_attribute_description` DISABLE KEYS */;
-INSERT INTO `product_attribute_description` VALUES (27,1,19,'1HongKong','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(28,2,19,'2English','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(35,1,23,'HongKong','2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active'),(36,2,23,'English','2019-07-11 19:09:06',NULL,'2019-07-11 19:13:10',NULL,'active');
+INSERT INTO `product_attribute_description` VALUES (27,1,19,'1HongKong','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(28,2,19,'2English','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(35,1,23,'HongKong A1','2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(36,2,23,'English A1','2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(37,1,24,'HongKong A2','2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(38,2,24,'English  A2','2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(39,1,25,'HongKong B1','2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(40,2,25,'English B1','2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(41,1,26,'HongKong B2','2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active'),(42,2,26,'English B2','2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1940,7 +1978,7 @@ CREATE TABLE `product_description` (
 
 LOCK TABLES `product_description` WRITE;
 /*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
-INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(2,2,1,'Product A (English) ★','Description (English)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-06-09 23:44:44',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-06-09 14:55:13',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-06-09 14:56:02',NULL,'active');
+INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active'),(2,2,1,'Product A (English) ★','Description (English)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active');
 /*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2573,7 +2611,7 @@ CREATE TABLE `sub_category` (
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `category_id` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`sub_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2582,7 +2620,7 @@ CREATE TABLE `sub_category` (
 
 LOCK TABLES `sub_category` WRITE;
 /*!40000 ALTER TABLE `sub_category` DISABLE KEYS */;
-INSERT INTO `sub_category` VALUES (2,'resources/assets/images/sub_category_images/1557765247.螢幕截圖 2019-05-11 下午2.04.30.png',NULL,NULL,NULL,'2019-05-14 00:34:07',NULL,'2019-05-14 00:54:19',NULL,'active','1'),(3,'resources/assets/images/sub_category_images/1557767400.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/sub_category_icons/1558066018.Screenshot_2019-05-16-20-07-23-623_com.instagram.android.png',NULL,NULL,'2019-05-14 01:10:00',NULL,'2019-05-17 15:46:30',NULL,'active','1'),(5,'resources/assets/images/sub_category_images/1558079217.Screenshot_2019-05-17-15-21-52-975_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 15:46:50',NULL,'2019-05-17 15:46:57',NULL,'active','1');
+INSERT INTO `sub_category` VALUES (1,NULL,NULL,NULL,NULL,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active','1'),(2,NULL,NULL,NULL,NULL,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active','1'),(3,NULL,NULL,NULL,NULL,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active','4'),(4,NULL,NULL,NULL,NULL,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active','4'),(5,NULL,NULL,NULL,NULL,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active','9'),(6,NULL,NULL,NULL,NULL,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active','9');
 /*!40000 ALTER TABLE `sub_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2604,7 +2642,7 @@ CREATE TABLE `sub_category_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`sub_category_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2613,7 +2651,7 @@ CREATE TABLE `sub_category_description` (
 
 LOCK TABLES `sub_category_description` WRITE;
 /*!40000 ALTER TABLE `sub_category_description` DISABLE KEYS */;
-INSERT INTO `sub_category_description` VALUES (2,'sub123',1,2,'0000-00-00 00:00:00',NULL,'2019-05-14 00:54:19',NULL,'active'),(3,'Hk',1,3,'0000-00-00 00:00:00',NULL,'2019-05-17 15:46:30',NULL,'active'),(5,'Hkk',2,0,'2019-05-17 15:46:30',NULL,'2019-05-17 15:46:30',NULL,'active'),(6,'As',1,5,'2019-05-17 15:46:50',NULL,'2019-05-17 15:46:57',NULL,'active'),(7,'En',2,5,'2019-05-17 15:46:50',NULL,'2019-05-17 15:46:57',NULL,'active');
+INSERT INTO `sub_category_description` VALUES (1,'HongKong subcategory 1-1',1,1,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active'),(2,'English subcategory 1-1',2,1,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active'),(3,'HongKong subcategory 1-2',1,2,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active'),(4,'English subcategory 1-2',2,2,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active'),(5,'HongKong subcategory 2-1',1,3,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active'),(6,'English subcategory 2-1',2,3,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active'),(7,'HongKong subcategory 2-2',1,4,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active'),(8,'English subcategory 2-2',2,4,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active'),(9,'HongKong subcategory 3-1',1,5,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active'),(10,'English subcategory 3-1',2,5,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active'),(11,'HongKong subcategory 3-2',1,6,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active'),(12,'English subcategory 3-2',2,6,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active');
 /*!40000 ALTER TABLE `sub_category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3011,8 +3049,12 @@ SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_order_product` AS SELECT 
  1 AS `order_product_id`,
  1 AS `order_id`,
+ 1 AS `language_id`,
+ 1 AS `order_product_description_id`,
  1 AS `product_id`,
  1 AS `product_name`,
+ 1 AS `product_description`,
+ 1 AS `product_attribute_id`,
  1 AS `currency_id`,
  1 AS `product_price`,
  1 AS `final_price`,
@@ -3034,12 +3076,13 @@ SET character_set_client = utf8mb4;
  1 AS `product_id`,
  1 AS `category_id`,
  1 AS `sub_category_id`,
+ 1 AS `language_id`,
+ 1 AS `sub_category_language_id`,
  1 AS `category_name`,
  1 AS `sub_category_name`,
  1 AS `sub_category_image`,
  1 AS `sub_category_icon`,
  1 AS `product_description_id`,
- 1 AS `language_id`,
  1 AS `name`,
  1 AS `description`,
  1 AS `url`,
@@ -3144,6 +3187,8 @@ DROP TABLE IF EXISTS `view_sub_category`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_sub_category` AS SELECT 
+ 1 AS `category_language_id`,
+ 1 AS `sub_category_language_id`,
  1 AS `sub_category_id`,
  1 AS `category_name`,
  1 AS `category_id`,
@@ -3156,9 +3201,7 @@ SET character_set_client = utf8mb4;
  1 AS `create_by_id`,
  1 AS `edit_date`,
  1 AS `edit_by_id`,
- 1 AS `status`,
- 1 AS `category_language_id`,
- 1 AS `sub_category_language_id`*/;
+ 1 AS `status`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -3249,6 +3292,14 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 /*!40000 ALTER TABLE `zones_to_geo_zones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `zones_to_geo_zones` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'cms'
+--
+
+--
+-- Dumping routines for database 'cms'
+--
 
 --
 -- Final view structure for view `view_category`
@@ -3407,7 +3458,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_order_product` AS select `order_product`.`order_product_id` AS `order_product_id`,`order_product`.`order_id` AS `order_id`,`order_product`.`product_id` AS `product_id`,`order_product`.`product_name` AS `product_name`,`order_product`.`currency_id` AS `currency_id`,`order_product`.`product_price` AS `product_price`,`order_product`.`final_price` AS `final_price`,`order_product`.`product_quantity` AS `product_quantity`,`order_product`.`weight` AS `weight`,`order_product`.`weight_unit` AS `weight_unit`,`product`.`image` AS `image` from (`order_product` left join `product` on((`product`.`product_id` = `order_product`.`product_id`))) */;
+/*!50001 VIEW `view_order_product` AS select `order_product`.`order_product_id` AS `order_product_id`,`order_product`.`order_id` AS `order_id`,`order_product_description`.`language_id` AS `language_id`,`order_product_description`.`order_product_description_id` AS `order_product_description_id`,`order_product_description`.`product_id` AS `product_id`,`order_product_description`.`name` AS `product_name`,`order_product_description`.`description` AS `product_description`,`order_product`.`product_attribute_id` AS `product_attribute_id`,`order_product`.`currency_id` AS `currency_id`,`order_product`.`product_price` AS `product_price`,`order_product`.`final_price` AS `final_price`,`order_product`.`product_quantity` AS `product_quantity`,`order_product`.`weight` AS `weight`,`order_product`.`weight_unit` AS `weight_unit`,`product_attribute`.`image` AS `image` from (`order_product_description` left join (`product_attribute` left join `order_product` on((`product_attribute`.`product_attribute_id` = `order_product`.`product_attribute_id`))) on((`order_product_description`.`order_product_id` = `order_product`.`order_product_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3425,7 +3476,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`language_id` AS `language_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`expiry_date` AS `expiry_date`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where (`product_description`.`language_id` is not null) */;
+/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`product_description`.`language_id` AS `language_id`,`view_sub_category`.`sub_category_language_id` AS `sub_category_language_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`expiry_date` AS `expiry_date`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where ((`product_description`.`language_id` is not null) and (`product_description`.`language_id` = `view_sub_category`.`sub_category_language_id`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3497,7 +3548,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_sub_category` AS select `sub_category`.`sub_category_id` AS `sub_category_id`,`category_description`.`name` AS `category_name`,`sub_category`.`category_id` AS `category_id`,`sub_category_description`.`name` AS `sub_category_name`,`sub_category`.`image` AS `image`,`sub_category`.`icon` AS `icon`,`sub_category`.`slug` AS `slug`,`sub_category`.`sort_order` AS `sort_order`,`sub_category`.`create_date` AS `create_date`,`sub_category`.`create_by_id` AS `create_by_id`,`sub_category`.`edit_date` AS `edit_date`,`sub_category`.`edit_by_id` AS `edit_by_id`,`sub_category`.`status` AS `status`,`category_description`.`language_id` AS `category_language_id`,`sub_category_description`.`language_id` AS `sub_category_language_id` from ((`sub_category` left join `category_description` on((`category_description`.`category_id` = `sub_category`.`category_id`))) left join `sub_category_description` on((`sub_category_description`.`sub_category_id` = `sub_category`.`sub_category_id`))) where (`category_description`.`language_id` = `sub_category_description`.`language_id`) */;
+/*!50001 VIEW `view_sub_category` AS select `category_description`.`language_id` AS `category_language_id`,`sub_category_description`.`language_id` AS `sub_category_language_id`,`sub_category`.`sub_category_id` AS `sub_category_id`,`category_description`.`name` AS `category_name`,`sub_category`.`category_id` AS `category_id`,`sub_category_description`.`name` AS `sub_category_name`,`sub_category`.`image` AS `image`,`sub_category`.`icon` AS `icon`,`sub_category`.`slug` AS `slug`,`sub_category`.`sort_order` AS `sort_order`,`sub_category`.`create_date` AS `create_date`,`sub_category`.`create_by_id` AS `create_by_id`,`sub_category`.`edit_date` AS `edit_date`,`sub_category`.`edit_by_id` AS `edit_by_id`,`sub_category`.`status` AS `status` from ((`sub_category` left join `category_description` on((`category_description`.`category_id` = `sub_category`.`category_id`))) left join `sub_category_description` on((`sub_category_description`.`sub_category_id` = `sub_category`.`sub_category_id`))) where (`category_description`.`language_id` = `sub_category_description`.`language_id`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3511,4 +3562,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-12 18:03:59
+-- Dump completed on 2019-09-12  0:50:30
