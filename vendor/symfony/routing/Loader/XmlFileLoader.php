@@ -11,11 +11,11 @@
 
 namespace Symfony\Component\Routing\Loader;
 
-use Symfony\Component\Config\Loader\FileLoader;
-use Symfony\Component\Config\Resource\FileResource;
-use Symfony\Component\Config\Util\XmlUtils;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\Config\Loader\FileLoader;
+use Symfony\Component\Config\Util\XmlUtils;
 
 /**
  * XmlFileLoader loads XML routing files.
@@ -93,7 +93,7 @@ class XmlFileLoader extends FileLoader
      */
     public function supports($resource, $type = null)
     {
-        return \is_string($resource) && 'xml' === pathinfo($resource, PATHINFO_EXTENSION) && (!$type || 'xml' === $type);
+        return is_string($resource) && 'xml' === pathinfo($resource, PATHINFO_EXTENSION) && (!$type || 'xml' === $type);
     }
 
     /**
@@ -144,35 +144,28 @@ class XmlFileLoader extends FileLoader
 
         list($defaults, $requirements, $options, $condition) = $this->parseConfigs($node, $path);
 
-        $this->setCurrentDir(\dirname($path));
+        $this->setCurrentDir(dirname($path));
 
-        $imported = $this->import($resource, ('' !== $type ? $type : null), false, $file);
-
-        if (!\is_array($imported)) {
-            $imported = [$imported];
+        $subCollection = $this->import($resource, ('' !== $type ? $type : null), false, $file);
+        /* @var $subCollection RouteCollection */
+        $subCollection->addPrefix($prefix);
+        if (null !== $host) {
+            $subCollection->setHost($host);
         }
-
-        foreach ($imported as $subCollection) {
-            /* @var $subCollection RouteCollection */
-            $subCollection->addPrefix($prefix);
-            if (null !== $host) {
-                $subCollection->setHost($host);
-            }
-            if (null !== $condition) {
-                $subCollection->setCondition($condition);
-            }
-            if (null !== $schemes) {
-                $subCollection->setSchemes($schemes);
-            }
-            if (null !== $methods) {
-                $subCollection->setMethods($methods);
-            }
-            $subCollection->addDefaults($defaults);
-            $subCollection->addRequirements($requirements);
-            $subCollection->addOptions($options);
-
-            $collection->addCollection($subCollection);
+        if (null !== $condition) {
+            $subCollection->setCondition($condition);
         }
+        if (null !== $schemes) {
+            $subCollection->setSchemes($schemes);
+        }
+        if (null !== $methods) {
+            $subCollection->setMethods($methods);
+        }
+        $subCollection->addDefaults($defaults);
+        $subCollection->addRequirements($requirements);
+        $subCollection->addOptions($options);
+
+        $collection->addCollection($subCollection);
     }
 
     /**
@@ -203,12 +196,11 @@ class XmlFileLoader extends FileLoader
      */
     private function parseConfigs(\DOMElement $node, $path)
     {
-        $defaults = [];
-        $requirements = [];
-        $options = [];
+        $defaults = array();
+        $requirements = array();
+        $options = array();
         $condition = null;
 
-        /** @var \DOMElement $n */
         foreach ($node->getElementsByTagNameNS(self::NAMESPACE_URI, '*') as $n) {
             if ($node !== $n->parentNode) {
                 continue;
@@ -227,7 +219,7 @@ class XmlFileLoader extends FileLoader
                     $requirements[$n->getAttribute('key')] = trim($n->textContent);
                     break;
                 case 'option':
-                    $options[$n->getAttribute('key')] = XmlUtils::phpize(trim($n->textContent));
+                    $options[$n->getAttribute('key')] = trim($n->textContent);
                     break;
                 case 'condition':
                     $condition = trim($n->textContent);
@@ -247,7 +239,7 @@ class XmlFileLoader extends FileLoader
             $defaults['_controller'] = $controller;
         }
 
-        return [$defaults, $requirements, $options, $condition];
+        return array($defaults, $requirements, $options, $condition);
     }
 
     /**
@@ -311,7 +303,7 @@ class XmlFileLoader extends FileLoader
             case 'string':
                 return trim($node->nodeValue);
             case 'list':
-                $list = [];
+                $list = array();
 
                 foreach ($node->childNodes as $element) {
                     if (!$element instanceof \DOMElement) {
@@ -327,7 +319,7 @@ class XmlFileLoader extends FileLoader
 
                 return $list;
             case 'map':
-                $map = [];
+                $map = array();
 
                 foreach ($node->childNodes as $element) {
                     if (!$element instanceof \DOMElement) {
