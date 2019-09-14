@@ -69,6 +69,22 @@ class OrderService extends BaseApiService{
         return $order;
     }
 
+    function addOrderProduct($result){
+        $product = array();
+        $product['order_id'] = $result['order_id'];
+        $product['product_price'] = $result['product_price'];
+        $product['product_quantity'] = $result['product_quantity'];
+        $product['final_price'] = $result['final_price'];
+        $product['product_attribute_id'] = $result['product_attribute_id'];
+        try{
+            $inset_order_product_result = $this->OrderProductService->add($product);
+            if(empty($inset_order_product_result['status']) || $inset_order_product_result['status'] == 'fail')throw new Exception("Error To Inset Order Product");
+            return true;
+        }catch(Exception $e){
+            Log::error('addOrderProduct' . $e->getMessage());
+        }
+        return false;
+    }
     function redirect_view($result,$title){
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Order";
@@ -114,6 +130,24 @@ class OrderService extends BaseApiService{
                 }		
                 // Log::info('[edit] --  : ' . \json_encode($result));
                 return view("admin.order.viewOrder", $title)->with('result', $result);
+            break;
+            case 'add_product':
+                try{
+                    DB::beginTransaction();
+                    $a = $this->addOrderProduct($result);
+                    Log::info('[add_product] --  : ' . $a);
+                    // $update_order_product_result = $this->OrderProductService->update("order_product_id",$result);
+                    // if(empty($update_order_product_result['status']) || $update_order_product_result['status'] == 'fail')throw new Exception("Error To Update Order Product");
+                    // $update_order_result = $this->update_order_total_price($result['order_id']);
+
+                    // $result = $this->response($result,"Successful","view_edit");
+                    // $result['order'] = $this->getOrder($result['order_id']);
+                    DB::commit();
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }		
+                // Log::info('[edit] --  : ' . \json_encode($result));
+            // return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'edit_product':
                 try{

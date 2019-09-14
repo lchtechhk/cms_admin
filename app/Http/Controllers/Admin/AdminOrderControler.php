@@ -65,6 +65,15 @@ class AdminOrderControler extends Controller{
         return $this->OrderService->redirect_view($result,$title);
     }
 
+    function addOrderProduct(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.addOrderProduct"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'add_product';
+        return $this->OrderService->redirect_view($result,$title);
+    }
+
     function updateOrder(Request $request){
         $title = array('pageTitle' => Lang::get("labels.updateOrder"));
         $result = array();

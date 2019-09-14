@@ -25,7 +25,7 @@ function order_change_product(asset,a){
                 <h4 class="modal-title" id="ProductInfo">{{ trans('labels.ProductInfo') }}</h4>
             </div>
     
-            {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+            {!! Form::open(array('url' =>'admin/addOrderProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.OrderId') }}<span style="color:red">★</span></label> 
@@ -38,15 +38,12 @@ function order_change_product(asset,a){
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-9">
-                            <select class="form-control select2" name="order_status" id="add_product_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
+                            <select class="form-control select2" name="product_attribute_id" id="product_attribute_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
                                 <option value="">-</option>
                                 @foreach ($result['product_attributes'] as $product_attribute)
                                     <option data="{{json_encode($product_attribute)}}" value="{{ $product_attribute->product_attribute_id }}">
                                         {{ $product_attribute->product_name }} | {{$product_attribute->product_attribute_name}}
                                     </option>
-                                    {{-- {!! Form::text('add_product_obj', 
-                                        empty($product) ? '' : print_value($result['operation'],json_encode($product)),
-                                        array('class'=>'form-control','readonly')) !!} --}}
                                 @endforeach
                             </select>
                         </div>
@@ -65,7 +62,7 @@ function order_change_product(asset,a){
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
-                            {!! Form::text('product_name', '',
+                            {!! Form::text('', '',
                             array('class'=>'form-control','readonly','id'=>'add_product_name')) !!}
                         </div>
                     </div>
@@ -91,7 +88,7 @@ function order_change_product(asset,a){
                         </div>
                     </div>
                 </div>
-                @include('layouts/dialog_submit_back_button')
+                @include('layouts/dialog_add_back_button')
             {!! Form::close() !!}
         </div>
     </div>

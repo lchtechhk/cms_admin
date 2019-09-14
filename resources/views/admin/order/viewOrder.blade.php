@@ -115,7 +115,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td  width="30%">
-                                                                        {{  $order_product->product_name }}<br>
+                                                                        {{  $order_product->full_product_name }}<br>
                                                                     </td>
                                                                     <td>{{  $order_product->product_quantity }}</td>
                                                                     <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
