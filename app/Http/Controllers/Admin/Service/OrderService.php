@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\View_ProductAttributeService;
 use App\Http\Controllers\Admin\Service\OrderProductService;
+use App\Http\Controllers\Admin\Service\OrderProductDescriptionService;
 use App\Http\Controllers\Admin\Service\View_OrderProductService;
 use App\Http\Controllers\Admin\Service\OrderCommentService;
 use function GuzzleHttp\json_encode;
@@ -18,6 +19,7 @@ class OrderService extends BaseApiService{
     private $UploadService;
     private $View_OrderService;
     private $OrderProductService;
+    private $OrderProductDescriptionService;
     private $View_OrderProductService;
     private $View_ProductAttributeService;
     private $OrderCommentService;
@@ -27,6 +29,7 @@ class OrderService extends BaseApiService{
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->View_OrderService = new View_OrderService();
+        $this->OrderProductDescriptionService = new OrderProductDescriptionService();
         $this->OrderProductService = new OrderProductService();
         $this->View_OrderProductService = new View_OrderProductService();
         $this->OrderCommentService = new OrderCommentService();
@@ -71,6 +74,7 @@ class OrderService extends BaseApiService{
 
     function addOrderProduct($result){
         $product = array();
+        $product_description = array();
         $product['order_id'] = $result['order_id'];
         $product['product_price'] = $result['product_price'];
         $product['product_quantity'] = $result['product_quantity'];
@@ -79,6 +83,15 @@ class OrderService extends BaseApiService{
         try{
             $inset_order_product_result = $this->OrderProductService->add($product);
             if(empty($inset_order_product_result['status']) || $inset_order_product_result['status'] == 'fail')throw new Exception("Error To Inset Order Product");
+            $product_description['order_product_id'] = $inset_order_product_result['response_id'];
+            $product_description['language_id'] = 1;
+            $product_description['product_id'] = 1;
+            $product_description['product_attribute_id'] = $product['product_attribute_id'];
+            $product_description['product_name'] = "product_name";
+            $product_description['product_attribute_name'] = "product_attribute_name";
+            $product_description['description'] = "description";
+            $inset_order_product_desc_result = $this->OrderProductDescriptionService->add($product_description);
+            if(empty($inset_order_product_desc_result['status']) || $inset_order_product_desc_result['status'] == 'fail')throw new Exception("Error To Inset Order Product Description");
             return true;
         }catch(Exception $e){
             Log::error('addOrderProduct' . $e->getMessage());
