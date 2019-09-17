@@ -1,4 +1,5 @@
 @extends('admin.layout') @section('content')
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 <div class="content-wrapper">
     @include('layouts/add_header')
     <section class="content">
@@ -103,36 +104,42 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach($result['order']->order_products as $order_product)
-                                                                <tr>
-                                                                    <td>{{  $order_product->order_product_id }}</td>
-                                                                    <td >
-                                                                        @if(!empty($order_product->image))
-                                                                            <img src="{{ asset('').$order_product->image }}" width="60px">
-                                                                        @else
-                                                                        <img src={{asset('')."resources/assets/images/default_images/product.png"}}
-                                                                            style="width: 50px; float: left; margin-right: 10px">
-                                                                        @endif
-                                                                    </td>
-                                                                    <td  width="30%">
-                                                                        {{  $order_product->full_product_name }}<br>
-                                                                    </td>
-                                                                    <td>{{  $order_product->product_quantity }}</td>
-                                                                    <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
-                                                                    <td>
-                                                                    <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
-                                                                            class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                                        <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id ="{{ $result['order']->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                                                    </td>
+                                                            @if (!empty($result['order']->order_products) && sizeof($result['order']->order_products) > 0)
+                                                                @foreach($result['order']->order_products as $order_product)
+                                                                    <tr>
+                                                                        <td>{{  $order_product->order_product_id }}</td>
+                                                                        <td >
+                                                                            @if(!empty($order_product->image))
+                                                                                <img src="{{ asset('').$order_product->image }}" width="60px">
+                                                                            @else
+                                                                            <img src={{asset('')."resources/assets/images/default_images/product.png"}}
+                                                                                style="width: 50px; float: left; margin-right: 10px">
+                                                                            @endif
+                                                                        </td>
+                                                                        <td  width="30%">
+                                                                            {{  $order_product->full_product_name }}<br>
+                                                                        </td>
+                                                                        <td>{{  $order_product->product_quantity }}</td>
+                                                                        <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
+                                                                        <td>
+                                                                        <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
+                                                                                class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id ="{{ $result['order']->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                <tr >
+                                                                    <th>{{ trans('labels.Total') }}:</th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }} {{ $result['order']->order_price }}</td>
                                                                 </tr>
-                                                            @endforeach
-                                                            <tr >
-                                                                <th>{{ trans('labels.Total') }}:</th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }} {{ $result['order']->order_price }}</td>
-                                                            </tr>
+                                                            @else
+                                                                <tr >
+                                                                    <td colspan="6" style="text-align:center;">No Any Product</td>
+                                                                </tr>
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 </div>                                            
@@ -206,7 +213,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @include('layouts/submit_back_button')
+                                    @require_once('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>
                             </div>

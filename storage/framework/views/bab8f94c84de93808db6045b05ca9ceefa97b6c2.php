@@ -460,13 +460,13 @@ $(document).on('click', '.part_add_product', function(){
 $(document).on('click', '.part_edit_product', function(){
 	// $('#dialog_edit_product').modal('show');
 	var order_product = $(this).attr('order_product');
-	console.log('order_product -- + : ' + order_product);
+	// console.log('order_product -- + : ' + order_product);
 	$.ajax({
 		url: "<?php echo e(URL::to('admin/part_edit_product')); ?>",
 		type: "POST",
 		data: '&order_product='+order_product,
 		success: function (data) {
-			console.log("data : " + data);
+			// console.log("data : " + data);
 			$('#dialog_edit_product').html(data); 
 			$('#dialog_edit_product').modal('show');
 		},

@@ -72,29 +72,37 @@ class OrderService extends BaseApiService{
         return $order;
     }
 
+    
     function addOrderProduct($result){
         $product = array();
-        $product_description = array();
-        $product['order_id'] = $result['order_id'];
-        $product['product_price'] = $result['product_price'];
-        $product['product_quantity'] = $result['product_quantity'];
-        $product['final_price'] = $result['final_price'];
-        $product['product_attribute_id'] = $result['product_attribute_id'];
         try{
+            $ps = $this->View_ProductAttributeService->getProductByAttributeId($result['product_attribute_id']);
+            // Log::error('[ps] : ' . json_encode($ps));
+
+            $product['order_id'] = $result['order_id'];
+            $product['product_price'] = $result['product_price'];
+            $product['product_quantity'] = $result['product_quantity'];
+            $product['final_price'] = $result['final_price'];
+            $product['product_attribute_id'] = $result['product_attribute_id'];
+
             $inset_order_product_result = $this->OrderProductService->add($product);
             if(empty($inset_order_product_result['status']) || $inset_order_product_result['status'] == 'fail')throw new Exception("Error To Inset Order Product");
-            $product_description['order_product_id'] = $inset_order_product_result['response_id'];
-            $product_description['language_id'] = 1;
-            $product_description['product_id'] = 1;
-            $product_description['product_attribute_id'] = $product['product_attribute_id'];
-            $product_description['product_name'] = "product_name";
-            $product_description['product_attribute_name'] = "product_attribute_name";
-            $product_description['description'] = "description";
-            $inset_order_product_desc_result = $this->OrderProductDescriptionService->add($product_description);
-            if(empty($inset_order_product_desc_result['status']) || $inset_order_product_desc_result['status'] == 'fail')throw new Exception("Error To Inset Order Product Description");
+
+            foreach ($ps->language_array as $language_id => $p) {
+                $product_description = array();
+                $product_description['order_product_id'] = $inset_order_product_result['response_id'];
+                $product_description['product_id'] = $ps->product_id;
+                $product_description['product_attribute_id'] = $ps->product_attribute_id;
+                $product_description['language_id'] = $language_id; 
+                $product_description['product_name'] = $p["product_name"];
+                $product_description['product_attribute_name'] = $p["product_attribute_name"];
+                $product_description['product_description'] = $p["product_description"];
+                $inset_order_product_desc_result = $this->OrderProductDescriptionService->add($product_description);
+                if(empty($inset_order_product_desc_result['status']) || $inset_order_product_desc_result['status'] == 'fail')throw new Exception("Error To Inset Order Product Description");
+            }
             return true;
         }catch(Exception $e){
-            Log::error('addOrderProduct' . $e->getMessage());
+            throw new Exception($e->getMessage());
         }
         return false;
     }
@@ -147,20 +155,16 @@ class OrderService extends BaseApiService{
             case 'add_product':
                 try{
                     DB::beginTransaction();
-                    $a = $this->addOrderProduct($result);
-                    Log::info('[add_product] --  : ' . $a);
-                    // $update_order_product_result = $this->OrderProductService->update("order_product_id",$result);
-                    // if(empty($update_order_product_result['status']) || $update_order_product_result['status'] == 'fail')throw new Exception("Error To Update Order Product");
-                    // $update_order_result = $this->update_order_total_price($result['order_id']);
-
-                    // $result = $this->response($result,"Successful","view_edit");
-                    // $result['order'] = $this->getOrder($result['order_id']);
+                    $this->addOrderProduct($result);
+                    $this->update_order_total_price($result['order_id']);
+                    $result = $this->response($result,"Successful","view_edit");
+                    $result['order'] = $this->getOrder($result['order_id']);
                     DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
-                // Log::info('[edit] --  : ' . \json_encode($result));
-            // return view("admin.order.viewOrder", $title)->with('result', $result);
+                // Log::info('[add_product] --  : ' . \json_encode($result));
+                return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'edit_product':
                 try{
@@ -171,7 +175,7 @@ class OrderService extends BaseApiService{
 
                     $result = $this->response($result,"Successful","view_edit");
                     $result['order'] = $this->getOrder($result['order_id']);
-                    DB::commit();
+                    // DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
