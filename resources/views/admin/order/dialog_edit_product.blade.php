@@ -30,7 +30,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_id', 
                             empty($result['order_product']->order_id) ? '' : order_print_value($result['operation'],$result['order_product']->order_id),
-                            array('class'=>'form-control field-validate','readonly')) !!}
+                            array('class'=>'form-control','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_product_id', 
                             empty($result['order_product']->order_product_id) ? '' : order_print_value($result['operation'],$result['order_product']->order_product_id),
-                            array('class'=>'form-control field-validate','readonly')) !!}
+                            array('class'=>'form-control ','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,7 +57,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('', 
                             empty($result['order_product']->product_name) ? '' : order_print_value($result['operation'],$result['order_product']->product_name),
-                            array('class'=>'form-control field-validate','readonly')) !!}
+                            array('class'=>'form-control ','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +73,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity', 
                             empty($result['order_product']->product_quantity) ? '' : order_print_value($result['operation'],$result['order_product']->product_quantity),
-                            array('class'=>'form-control field-validate','id'=>'edit_product_quantity')) !!}
+                            array('class'=>'form-control ','id'=>'edit_product_quantity')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,10 +81,9 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price', 
                             empty($result['order_product']->final_price) ? '' : order_print_value($result['operation'],$result['order_product']->final_price),
-                            array('class'=>'form-control field-validate','id'=>'edit_final_price')) !!}
+                            array('class'=>'form-control ','id'=>'edit_final_price')) !!}
                         </div>
                     </div>
-                   
                 </div>
                 @include('layouts/dialog_submit_back_button')
             {!! Form::close() !!}

@@ -213,7 +213,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @require_once('layouts/submit_back_button')
+                                    @include('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>
                             </div>
