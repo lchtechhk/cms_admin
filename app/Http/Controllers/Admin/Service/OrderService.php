@@ -40,7 +40,7 @@ class OrderService extends BaseApiService{
         $order_array = $this->findByColumnAndId("order_id",$order_id);
         $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
 
-        $order_product_array = $this->View_OrderProductService->findByColumnAndId("order_id",$order_id);
+        $order_product_array = $this->View_OrderProductService->findByColumnWithLanguage("order_id",$order_id);
 
         $original_total_price = $order->order_price;
         $total_price = 0;
@@ -48,15 +48,16 @@ class OrderService extends BaseApiService{
             $final_price = $p->final_price;
             $total_price += $final_price;
         }
+        Log::info('original_total_price : ' .$original_total_price);
+        Log::info('total_price : ' .$total_price);
+
         if($original_total_price != $total_price ){
             $data = array();
             $data['order_id'] = $order_id;
             $data['order_price'] = $total_price;
-            Log::info('[$this->getTable()] --  : ' . $this->getTable());
-
-            Log::info('order_id : ' .$order_id);
-            Log::info('original_total_price : ' .$original_total_price);
-            Log::info('total_price : ' .$total_price);
+            // Log::info('order_id : ' .$order_id);
+            // Log::info('original_total_price : ' .$original_total_price);
+            // Log::info('total_price : ' .$total_price);
             $update_order_result = $this->update("order_id",$data);
             if(empty($update_order_result['status']) || $update_order_result['status'] == 'fail')throw new Exception("Error To Update Order");
         }
@@ -68,7 +69,7 @@ class OrderService extends BaseApiService{
         $order_comment_array = $this->OrderCommentService->findByColumnAndId("order_id",$order_id);
         $order->order_products = $order_product_array;
         $order->order_comments = $order_comment_array;
-        Log::info('[order] -- getListing : ' .json_encode($order));
+        // Log::info('[order] -- getListing : ' .json_encode($order));
         return $order;
     }
 
@@ -169,13 +170,17 @@ class OrderService extends BaseApiService{
             case 'edit_product':
                 try{
                     DB::beginTransaction();
-                    $update_order_product_result = $this->OrderProductService->update("order_product_id",$result);
+                    $item = array();
+                    $item['order_product_id'] = $result['order_product_id'];
+                    $item['final_price'] = $result['final_price'];
+                    $item['product_quantity'] = $result['product_quantity'];
+                    $update_order_product_result = $this->OrderProductService->update("order_product_id",$item);
                     if(empty($update_order_product_result['status']) || $update_order_product_result['status'] == 'fail')throw new Exception("Error To Update Order Product");
                     $update_order_result = $this->update_order_total_price($result['order_id']);
 
                     $result = $this->response($result,"Successful","view_edit");
                     $result['order'] = $this->getOrder($result['order_id']);
-                    // DB::commit();
+                    DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		

@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-9">
-                            <select class="form-control select2 " name="product_attribute_id" id="product_attribute_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
+                            <select class="form-control select2 " required name="product_attribute_id" id="product_attribute_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
                                 <option value="">-</option>
                                 @foreach ($result['product_attributes'] as $product_attribute)
                                     <option data="{{json_encode($product_attribute)}}" value="{{ $product_attribute->product_attribute_id }}">
