@@ -92,6 +92,15 @@ class AdminOrderControler extends Controller{
         return $this->OrderService->redirect_view($result,$title);
     }
 
+    function deleteOrderProduct(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.deleteOrderProduct"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'delete_product';
+        return $this->OrderService->redirect_view($result,$title);
+    }
+
     function deleteOrder(Request $request){
         $title = array('pageTitle' => Lang::get("labels.deleteOrder"));
         $result = array();

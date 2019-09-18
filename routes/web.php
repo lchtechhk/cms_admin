@@ -209,6 +209,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateOrderProduct', 'AdminOrderControler@updateOrderProduct');
 			Route::post('/addOrderProduct', 'AdminOrderControler@addOrderProduct');
 			Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');
+			Route::post('/deleteOrderProduct', 'AdminOrderControler@deleteOrderProduct');
 
 			Route::post('/part_customer_address', 'AdminOrderControler@part_customer_address');
 			Route::post('/part_edit_product', 'AdminOrderControler@part_edit_product');

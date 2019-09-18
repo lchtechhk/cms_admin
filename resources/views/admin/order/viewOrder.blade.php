@@ -122,9 +122,9 @@
                                                                         <td>{{  $order_product->product_quantity }}</td>
                                                                         <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
                                                                         <td>
-                                                                        <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
+                                                                            <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
                                                                                 class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id ="{{ $result['order']->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id='{{$order_product->order_id}}' order_product_id='{{ $order_product->order_product_id }}' class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -227,6 +227,7 @@
          @include('admin/order/dialog_customer_address')
          @include('admin/order/dialog_shipping_address')
          @include('admin/order/dialog_add_product')
+         @include('admin/order/deleteOrderProduct')
          <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product">
                 @include('admin/order/dialog_edit_product')
         </div>

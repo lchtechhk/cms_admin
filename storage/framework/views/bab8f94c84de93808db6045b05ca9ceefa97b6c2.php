@@ -1002,6 +1002,18 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deleteManufacturerModal").modal('show');
 	});
 
+	//deleteOrderProduct
+	$(document).on('click', '#deleteOrderProductbtn', function(){
+		var order_product_id = $(this).attr('order_product_id');
+		var order_id = $(this).attr('order_id');
+		console.log('order_id : ' + order_id);
+		console.log('order_product_id : ' + order_product_id);
+
+		$('#delete_order_id').val(order_id);
+		$('#order_product_id').val(order_product_id);
+		$("#deleteOrderProduct").modal('show');
+	});
+
 	//deleteProductOptionValueModal
 	$(document).on('click', '#deleteProductOptionValueId', function(){
 		var product_option_value_id = $(this).attr('product_option_value_id');

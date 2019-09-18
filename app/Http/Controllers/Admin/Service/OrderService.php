@@ -184,8 +184,25 @@ class OrderService extends BaseApiService{
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
-                // Log::info('[edit] --  : ' . \json_encode($result));
             return view("admin.order.viewOrder", $title)->with('result', $result);
+            break;
+            case 'delete_product':
+                Log::info('[delete_product] --  : '. \json_encode($result));
+                try{
+                    DB::beginTransaction();
+                    $delete_product_result = $this->OrderProductService->deleteByKey_Value("order_product_id",$result['order_product_id']);
+                    if(empty($delete_product_result['status']) || $delete_product_result['status'] == 'fail')throw new Exception("Error To Delete Order Product");
+                    $delete_product_result = $this->OrderProductDescriptionService->deleteByKey_Value("order_product_id",$result['order_product_id']);
+                    if(empty($delete_product_result['status']) || $delete_product_result['status'] == 'fail')throw new Exception("Error To Delete Order Product");
+                    $update_order_result = $this->update_order_total_price($result['order_id']);
+
+                    $result = $this->response($result,"Successful","view_edit");
+                    $result['order'] = $this->getOrder($result['order_id']);
+                    DB::commit();
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }		
+                return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'delete': 
                 try{
