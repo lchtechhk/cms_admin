@@ -286,8 +286,7 @@
                       <select class="form-control" name="products_weight_unit">
                         @if(count($result['units'])>0)
                         @foreach($result['units'] as $unit)
-                        <option value="{{$unit->unit_name}}" @if($result['product'][0]->
-                          products_weight_unit==$unit->unit_name) selected @endif>{{$unit->unit_name}}</option>
+                        <option value="{{$unit->unit_name}}" @if($result['product'][0]->products_weight_unit==$unit->unit_name) selected @endif>{{$unit->unit_name}}</option>
                         @endforeach
                         @endif
                       </select>

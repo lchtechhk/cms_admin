@@ -25,6 +25,7 @@
                                                     <th>{{ trans('labels.ID') }}</th>
                                                     <th>{{ trans('labels.Image') }}</th>
                                                     <th>{{ trans('labels.Category') }}</th>
+                                                    <th>{{ trans('labels.SubCategory') }}</th>
                                                     <th>{{ trans('labels.Name') }}</th>
                                                     <th>{{ trans('labels.Quantity') }}</th>
                                                     <th>{{ trans('labels.Weight') }}</th>
@@ -47,6 +48,7 @@
                                                         @endif
                                                     </td>
                                                     <td>{{ $product->category_name }}</td>
+                                                    <td>{{ $product->sub_category_name }}</td>
                                                     <td>{{ $product->name }}</td>
                                                     <td>{{ $product->quantity }}</td>
                                                     <td>{{ $product->weight }}({{ $product->weight_unit }})</td>

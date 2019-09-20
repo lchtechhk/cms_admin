@@ -15,7 +15,7 @@ abstract class BaseApiService extends BaseDao{
                 $array['status'] = 'active';
                 $array['create_date'] = date("Y-m-d H:i:s");
                 $array['edit_date'] = date("Y-m-d H:i:s");
-                Log::info('[add] ' . json_encode($array));	
+                Log::info('[add] -- :' . json_encode($array));	
                 $insert_id = $this->db_prepareInsert($this->getTable(),$array);
                 //
                 $result = array();	

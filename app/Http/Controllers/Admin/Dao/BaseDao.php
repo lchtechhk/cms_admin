@@ -30,6 +30,15 @@
             Log::info('['.$this->getTable().'] -- findById : ' . json_encode($result));
             return $result;
         }
+        public function findByMultipleKeyValue(){
+            
+        }
+
+        public function findByColumnWithLanguage($field,$id){
+            $result = DB::table($this->getTable())->where('language_id',session('language_id'))->where($field, $id)->get();
+            Log::info('['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
+            return $result;
+        }
         public function findByColumn_IdArray($column,$target_column,$id){
             $result = DB::table($this->getTable())->where($column, $id)->get();
             $id_array = array();

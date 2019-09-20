@@ -1,5 +1,21 @@
 @include('generic/order_function')
-{{-- <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product"> --}}
+
+<script>
+    $( document ).ready(function() {
+        console.log("edit");
+        $("#edit_product_quantity" ).change(function() {
+            var price = $('#edit_product_price').val();
+            var qty = $(this).val();
+            if(price != '' && qty != ''){
+                var total_amount = price*qty;
+                $('#edit_final_price').val(total_amount);
+                $("#edit_final_price").attr("readonly", false); 
+                // console.log("total_amount : " + total_amount);
+            }
+        });
+    });
+</script>
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -22,7 +38,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_product_id', 
                             empty($result['order_product']->order_product_id) ? '' : order_print_value($result['operation'],$result['order_product']->order_product_id),
-                            array('class'=>'form-control','readonly')) !!}
+                            array('class'=>'form-control ','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,7 +57,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('', 
                             empty($result['order_product']->product_name) ? '' : order_print_value($result['operation'],$result['order_product']->product_name),
-                            array('class'=>'form-control','readonly')) !!}
+                            array('class'=>'form-control ','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,7 +65,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price', 
                             empty($result['order_product']->product_price) ? '' : order_print_value($result['operation'],$result['order_product']->product_price),
-                            array('class'=>'form-control')) !!}
+                            array('class'=>'form-control','id'=>'edit_product_price','readonly')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,7 +73,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity', 
                             empty($result['order_product']->product_quantity) ? '' : order_print_value($result['operation'],$result['order_product']->product_quantity),
-                            array('class'=>'form-control')) !!}
+                            array('class'=>'form-control ','id'=>'edit_product_quantity')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,10 +81,9 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price', 
                             empty($result['order_product']->final_price) ? '' : order_print_value($result['operation'],$result['order_product']->final_price),
-                            array('class'=>'form-control')) !!}
+                            array('class'=>'form-control ','id'=>'edit_final_price')) !!}
                         </div>
                     </div>
-                   
                 </div>
                 @include('layouts/dialog_submit_back_button')
             {!! Form::close() !!}

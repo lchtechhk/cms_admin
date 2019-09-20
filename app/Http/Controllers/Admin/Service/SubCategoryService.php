@@ -36,7 +36,7 @@ class SubCategoryService extends BaseApiService{
         $sub_category->language_array = array();
         foreach ($sub_category_array as $obj) {
             $language_id = $obj->sub_category_language_id;
-            $name = $obj->category_name;
+            $name = $obj->sub_category_name;
             $sub_category->language_array[$language_id] = array();
             $sub_category->language_array[$language_id]['name'] = $name;
         }
@@ -96,7 +96,7 @@ class SubCategoryService extends BaseApiService{
                         $param = array();
                         $param['name'] = $name;
                         $param['label'] = $result['label'];
-                        $param['category_id'] = $result['sub_category_id'];
+                        $param['sub_category_id'] = $result['sub_category_id'];
                         $param['language_id'] = $language_id;
                         $isExisting = $this->SubCategoryDescriptionService->isExistingByMultipleKey_Value($param,array("sub_category_id","language_id",),array($result['sub_category_id'],$language_id));
                         if($isExisting){

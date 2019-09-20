@@ -6,7 +6,7 @@
         </button>
         @else
         <button type="submit" class="btn btn-primary"
-            id="Edit">{{ trans('labels.Edit') }}
+            id="Add">{{ trans('labels.Add') }}
         </button>
     @endif
 </div>
