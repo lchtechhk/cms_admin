@@ -8,9 +8,9 @@
             </div>
             {!! Form::open(array('url' =>'admin/deleteOrderProduct', 'name'=>'deleteOrderProduct', 'id'=>'deleteOrderProduct', 'method'=>'post',
             'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
-            {!! Form::text('action', 'delete_order_product', array('class'=>'form-control')) !!}
-            {!! Form::text('order_id', '' , array('class'=>'form-control', 'id'=>'delete_order_id')) !!}
-            {!! Form::text('order_product_id', '' , array('class'=>'form-control', 'id'=>'order_product_id')) !!}
+            {!! Form::hidden('action', 'delete_order_product', array('class'=>'form-control')) !!}
+            {!! Form::hidden('order_id', '' , array('class'=>'form-control', 'id'=>'delete_order_id')) !!}
+            {!! Form::hidden('order_product_id', '' , array('class'=>'form-control', 'id'=>'order_product_id')) !!}
             <div class="modal-body">
                 <p>{{ trans('labels.deleteOrderProductText') }}</p>
             </div>

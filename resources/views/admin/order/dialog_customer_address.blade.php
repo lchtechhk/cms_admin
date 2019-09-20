@@ -19,14 +19,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.PurchasedDate') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
-                            {!! Form::text('date_purchased', 
-                            empty($result['order']->date_purchased) ? '' : print_value($result['operation'],$result['order']->date_purchased),
-                            array('class'=>'form-control datepicker','id'=>'date_purchased')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_name', 
