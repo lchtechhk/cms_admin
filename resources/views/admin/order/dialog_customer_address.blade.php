@@ -20,12 +20,29 @@
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerName') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-9">
+                            <select class="form-control select2 " required name="customer_id" id="customer_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
+                                <option value="">-</option>
+                                @foreach ($result['customers'] as $customer)
+                                    <option value="{{ $customer->id }}"
+                                        @if(!empty($result['order']->customer_id))
+                                            {{print_selected_value($result['operation'],$customer->id,$result['order']->customer_id)}}
+                                        @endif >
+                                        {{ $customer->customers_lastname }} {{$customer->customers_firstname}}
+                                    </option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_name', 
                             empty($result['order']->customer_name) ? '' : print_value($result['operation'],$result['order']->customer_name),
                             array('class'=>'form-control','id'=>'customer_name')) !!}
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CompanyName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">

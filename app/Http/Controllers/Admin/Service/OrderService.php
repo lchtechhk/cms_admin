@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\Service\OrderProductService;
 use App\Http\Controllers\Admin\Service\OrderProductDescriptionService;
 use App\Http\Controllers\Admin\Service\View_OrderProductService;
 use App\Http\Controllers\Admin\Service\OrderCommentService;
+use App\Http\Controllers\Admin\Service\CustomersService;
+
 use function GuzzleHttp\json_encode;
 
 class OrderService extends BaseApiService{
@@ -23,6 +25,7 @@ class OrderService extends BaseApiService{
     private $View_OrderProductService;
     private $View_ProductAttributeService;
     private $OrderCommentService;
+    private $CustomersService;
 
     function __construct(){
         $this->setTable('cms.order');
@@ -34,6 +37,8 @@ class OrderService extends BaseApiService{
         $this->View_OrderProductService = new View_OrderProductService();
         $this->OrderCommentService = new OrderCommentService();
         $this->View_ProductAttributeService = new View_ProductAttributeService();
+        $this->CustomersService = new CustomersService();
+
     }
 
     function update_order_total_price($order_id){
@@ -111,7 +116,8 @@ class OrderService extends BaseApiService{
         $result['languages'] = $this->LanguageService->findAll();
         $result['label'] = "Order";
         $result['product_attributes'] = $this->View_ProductAttributeService->getAllProduct();
-        // error_log("abcd : " . $result['operation']);
+        $result['customers'] = $this->CustomersService->findAll();
+
         switch($result['operation']){
             case 'listing':
                 $result['orders'] = $this->findAll();

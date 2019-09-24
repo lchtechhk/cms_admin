@@ -31,4 +31,23 @@
         }
         return $value;
     }
+
+    function is_readonly($operation,$value){
+        $value = '';
+        if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($value)){
+            $value .= "readonly";
+        }
+        return $value;
+    }
+
+    function is_disabled($operation,$data){
+        $value = '';
+        if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data)){
+            $value .= "disabled";
+        }
+        Log::info('[value] --  : ' . $value);
+
+        return $value;
+    }
+
 ?>
