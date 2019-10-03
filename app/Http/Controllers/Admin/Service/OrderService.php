@@ -125,8 +125,10 @@ class OrderService extends BaseApiService{
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
             case 'view_add':
-                Log::info('[view_add] --  : ');
+                // Log::info('[view_add] --  : ');
                 $result['order'] =  array();
+                // $result['order'] = $this->getOrder(1);
+                Log::info('[view_add] --  : ' . json_encode($result['order']));
                 return view("admin.order.addOrder", $title)->with('result', $result);
             break;
             case 'view_edit':
