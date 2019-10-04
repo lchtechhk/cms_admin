@@ -1,4 +1,5 @@
 @extends('admin.layout') @section('content')
+<script src={{App::make('url')->to('/')."/resources/assets/js/order.js"}}></script>
 <div class="content-wrapper">
     @include('layouts/add_header')
     <section class="content">
@@ -215,6 +216,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- View Address Part Dialog -->
+        @include('admin/order/add/dialog_date_purchased')
+        @include('admin/order/add/dialog_customer_address')
+        @include('admin/order/add/dialog_shipping_address')
+        @include('admin/order/add/dialog_add_product')
+        @include('admin/order/deleteOrderProduct')
+        <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product">
+               @include('admin/order/add/dialog_edit_product')
+       </div>
+       
     </section>
 </div>
 @endsection

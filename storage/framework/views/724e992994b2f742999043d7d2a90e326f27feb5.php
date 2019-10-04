@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+
+<link rel="stylesheet" type="text/css" href=<?php echo e(App::make('url')->to('/')."/public/css/horizontal-scroll.css"); ?>>
+<script src=<?php echo e(App::make('url')->to('/')."/resources/assets/js/table-data.js"); ?>></script>
+<script src=<?php echo e(App::make('url')->to('/')."/resources/assets/js/objectUtils.js"); ?>></script>
+<script src=<?php echo e(App::make('url')->to('/')."/resources/assets/js/filter.js"); ?>></script>
+
 <!-- meta contains meta taga, css and fontawesome icons etc -->
 <?php echo $__env->make('admin.common.meta', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <!-- ./end of meta -->
