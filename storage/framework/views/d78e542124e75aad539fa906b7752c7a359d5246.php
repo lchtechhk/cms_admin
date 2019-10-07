@@ -260,18 +260,7 @@
 
             </a>
           </li>
-          <li class="<?php echo e(Request::is('admin/listingZone') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/addZone') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/addNewZone') ? 'active' : ''); ?> 
-                      <?php echo e(Request::is('admin/editZone/*') ? 'active' : ''); ?>
-
-                      <?php echo e(Request::is('admin/deleteZone') ? 'active' : ''); ?>">
-            <a href="<?php echo e(URL::to('admin/listingZone')); ?>">
-              <i class="fa fa-circle-o"></i>
-              <?php echo e(trans('labels.link_zones')); ?>
-
-            </a>
-          </li>
+          
         </ul>
       </li>
 

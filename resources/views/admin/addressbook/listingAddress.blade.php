@@ -43,7 +43,7 @@
                             <strong>{{ trans('labels.LastName') }}:</strong> {{ $customer_address->lastname }}
                           </td>
                           <td>
-                            <strong>{{ trans('labels.Zone') }}:</strong> {{ $customer_address->zone_id }}<br>
+                            <strong>{{ trans('labels.FullAddress') }}:</strong> {{ $customer_address->address_ch }}<br>
                           </td>
                           <td>
                             <a class="badge bg-light-blue editAddressModal" customer_id='{{$result['customer_id']}}'

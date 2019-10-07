@@ -32,8 +32,19 @@
               <div class="col-sm-10 col-md-8">
                   {!! Form::text('lastname',  empty($result['address']->lastname) ? '' :  print_value($result['operation'],$result['address']->lastname) , array('class'=>'form-control', 'id'=>'lastname')) !!}
               </div>
-          </div>                              
+          </div>   
           <div class="form-group">
+            <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.District') }}</label>
+            <div class="col-sm-10 col-md-8">
+                <select id="district_id" class="form-control" name="district_id">    
+                <option value="">{{ trans('labels.SelectDistrict') }}</option>
+                @foreach($result['districts'] as $district)
+                    <option value="{{ $district->district_id }}" {{empty($result['address']->district_id) ? '' :  print_selected_value($result['operation'],$district->district_id,$result['address']->district_id)}} >{{ $district->district_name }}</option>
+                @endforeach                                         
+                </select>
+            </div>
+        </div>                           
+          {{-- <div class="form-group">
               <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Zone') }}</label>
               <div class="col-sm-10 col-md-8">
                   <select id="zone_id" class="form-control" name="zone_id">    
@@ -43,7 +54,7 @@
                   @endforeach                                         
                   </select>
               </div>
-          </div>
+          </div> --}}
           <div class="form-group">
               <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Estate') }}</label>
               <div class="col-sm-10 col-md-8">
@@ -62,12 +73,12 @@
                   {!! Form::text('room',  empty($result['address']->room) ? '' :  print_value($result['operation'],$result['address']->room), array('class'=>'form-control', 'id'=>'room')) !!}
               </div>
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
               <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Address') }}</label>
               <div class="col-sm-10 col-md-8">
-                  {!! Form::text('address',  empty($result['address']->address) ? '' :  print_value($result['operation'],$result['address']->address), array('class'=>'form-control', 'id'=>'address','readonly')) !!}
+                  {!! Form::text('address',  empty($result['address']->address_ch) ? '' :  print_value($result['operation'],$result['address']->address_ch), array('class'=>'form-control', 'id'=>'address','readonly')) !!}
               </div>
-          </div>
+          </div> --}}
           <div class="form-group">
               <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DefaultShippingAddress') }}</label>
               <div class="col-sm-10 col-md-8">

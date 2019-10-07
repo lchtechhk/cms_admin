@@ -5,18 +5,19 @@ use DB;
 use Lang;
 use Exception;
 
+use App\Http\Controllers\Admin\Service\BaseApiService;
 use App\Http\Controllers\Admin\Service\CountryService;
-use App\Http\Controllers\Admin\Service\View_CCADZoneService;
+use App\Http\Controllers\Admin\Service\View_CCADistrictService;
 use function GuzzleHttp\json_encode;
 
 class AddressBookService extends BaseApiService{
     private $CountryService;
-    private $View_CCADZoneService;
+    private $View_CCADistrictService;
 
     function __construct(){
         $this->setTable('address_book');
         $this->CountryService = new CountryService();
-        $this->View_CCADZoneService = new View_CCADZoneService();
+        $this->View_CCADistrictService = new View_CCADistrictService();
     }
     function getListing($result){
         $customer_id = $result['customer_id'];
@@ -26,10 +27,17 @@ class AddressBookService extends BaseApiService{
         // Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
         return $result;
     }
+    function combine_full_address($district_id){
+        $full_address_obj = $this->View_CCADistrictService->getCCADistrictNameById($district_id);
+        Log::info('full_address_obj : '.json_encode($full_address_obj));
+        return $full_address_obj;
+
+    }
+    
     function redirect_view($result,$title){
         $result['label'] = "AddAddress";
-        $zones = $this->View_CCADZoneService->findAll();
-        $result['zones'] = $zones;
+        $district = $this->View_CCADistrictService->findAll();
+        $result['districts'] = $district;
         switch($result['operation']){
             case 'listing':
                 $result = $this->getListing($result);
@@ -40,7 +48,6 @@ class AddressBookService extends BaseApiService{
             break;
             case 'view_edit':
                 $id = $result['id'];
-                $zones = $this->View_CCADZoneService->findAll();
                 $result['address'] = array();
                 $result_array = $this->findById($id);
                 $result['address'] = $result_array[0];
@@ -59,11 +66,16 @@ class AddressBookService extends BaseApiService{
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'edit':
+                    $full_address_obj = $this->combine_full_address($result['district_id']);
+                    $result['address_ch'] = $full_address_obj['ch'] . $result['estate'] . $result['building'] . $result['room'];
+                    $result['address_en'] = $full_address_obj['en'] . $result['estate'] . $result['building'] . $result['room'];
                 try{
+                    DB::beginTransaction();
                     $update_addressbook_result = $this->update("id",$result);
                     if(empty($update_addressbook_result['status']) || $update_addressbook_result['status'] == 'fail')throw new Exception("Error To Delete Category");
                     $result = $this->getListing($result);
                     $result = $this->response($result,"Success To Update Address Book","listing");
+                    DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
@@ -71,7 +83,7 @@ class AddressBookService extends BaseApiService{
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'delete':
-                Log::info('delete'.json_encode($result));
+                // Log::info('delete'.json_encode($result));
                 try{
                     $id = $result['id'];
                     $delete_address_book_result = $this->delete($id);
@@ -80,6 +92,7 @@ class AddressBookService extends BaseApiService{
                     $result = $this->response($result,"Success To Delete Address Book","listing");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
+                    return view("admin.addressbook.listingAddress",$title)->with('result', $result);
                 }	      
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;

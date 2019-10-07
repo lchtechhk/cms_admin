@@ -18,22 +18,22 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             return $result;
         }
         function redirect_view($result,$title){
-            // switch($result['operation']){
-            //     case 'listing':
-            //         return view("admin.listingCities", $title)->with('result', $result);
-            //     break;
-            //     case 'add':
-            //         return view("admin.addCity", $title)->with('result', $result);
-            //     break;
+        }
+        function getCCADistrictNameById($district_id){
+            $CCADistrict_obj = array();
+            $result = DB::table($this->getTable())
+            ->where('district_id','=',$district_id)
+            ->first();
+            $countries_name = $result->countries_name;
+            $cities_name = $result->cities_name;
+            $area_name = $result->area_name;
+            $district_name = $result->district_name;
 
-            //     case 'edit':
-            //         return view("admin.editCity", $title)->with('result', $result);		
-            //     break;
-            //     case 'delete': 
-            //         return view("admin.listingCities", $title)->with('result', $result);	
-            //     break;
-            // }
-
+            $ch = $countries_name . " " . $cities_name . " " . $area_name . " " . $district_name ;
+            $en = $district_name . " " . $area_name . " " . $cities_name . $countries_name;
+            $CCADistrict_obj['ch'] = $ch;
+            $CCADistrict_obj['en'] = $en;
+            return $CCADistrict_obj;
         }
     }
 ?>

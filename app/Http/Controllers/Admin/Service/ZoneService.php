@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Service;
 use Log;
 use DB;
+use Exception;
 use App\Http\Controllers\Admin\Service\BaseApiService;
 use App\Http\Controllers\Admin\Service\View_CCADZoneService;
 use App\Http\Controllers\Admin\Service\CountryService;
@@ -77,14 +78,22 @@ use App\Http\Controllers\Admin\Service\DistrictService;
 
                 break;
                 case 'delete': 
-                    $delete_zone_result = $this->delete($result['id']);
-                    if(empty($delete_zone_result['status']) || $delete_zone_result['status'] == 'fail')throw new Exception("Error To Delete Zone");
-                    $result['country_search'] = $this->CountryService->findAll();
-                    $result['city_search'] = $this->CityService->findAll();
-                    $result['area_search'] = $this->AreaService->findAll();
-                    $result['district_search'] = $$result['district'];
-                    $result['zones'] = $this->View_CCADZoneService->getListing();
-                    return view("admin.location.zone.listingZone", $title)->with('result', $result);	
+                    try{
+                        DB::beginTransaction();
+                        $delete_zone_result = $this->delete($result['id']);
+                        Log::info('delete_zone_result : '.json_encode($delete_zone_result));
+                        if(empty($delete_zone_result['status']) || $delete_zone_result['status'] == 'fail')throw new Exception("Error To Delete Zone");
+                        DB::commit();
+                    }catch(Exception $e){
+                        $result = $this->throwException($result,$e->getMessage(),true);
+                    }	
+                    
+                        $result['country_search'] = $this->CountryService->findAll();
+                        $result['city_search'] = $this->CityService->findAll();
+                        $result['area_search'] = $this->AreaService->findAll();
+                        $result['district_search'] = $result['districts'];
+                        $result['zones'] = $this->View_CCADZoneService->getListing();
+                    return view("admin.location.zone.listingZone", $title)->with('result', $result);
                 break;
             }
         }

@@ -20,5 +20,23 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         function redirect_view($result,$title){
            
         }
+
+        function getCCADZoneNameById($zone_id){
+            $CCADZoneName_obj = array();
+            $result = DB::table($this->getTable())
+            ->where('zone_id','=',$zone_id)
+            ->first();
+            $countries_name = $result->countries_name;
+            $cities_name = $result->cities_name;
+            $area_name = $result->area_name;
+            $district_name = $result->district_name;
+            $zone_name = $result->zone_name;
+
+            $ch = $countries_name . " " . $cities_name . " " . $area_name . " " . $district_name . " ". $zone_name;
+            $en = $zone_name . " " . $district_name . " " . $area_name . " " . $cities_name . " ". $countries_name;
+            $CCADZoneName_obj['ch'] = $ch;
+            $CCADZoneName_obj['en'] = $en;
+            return $CCADZoneName_obj;
+        }
     }
 ?>

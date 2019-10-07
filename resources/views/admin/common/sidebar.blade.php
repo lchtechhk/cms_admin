@@ -233,7 +233,7 @@
               {{ trans('labels.link_district') }}
             </a>
           </li>
-          <li class="{{ Request::is('admin/listingZone') ? 'active' : '' }} 
+          {{-- <li class="{{ Request::is('admin/listingZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addZone') ? 'active' : '' }} 
                       {{ Request::is('admin/addNewZone') ? 'active' : '' }} 
                       {{ Request::is('admin/editZone/*') ? 'active' : '' }}
@@ -242,7 +242,7 @@
               <i class="fa fa-circle-o"></i>
               {{ trans('labels.link_zones') }}
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li>
 

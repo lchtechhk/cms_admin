@@ -36,6 +36,23 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerAddress') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-9">
+                            <select class="form-control select2 " required name="customer_address_id" id="customer_address_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
+                                <option value="">-</option>
+                                @foreach ($result['customers'] as $customer)
+                                    <option value="{{ $customer->id }}"
+                                        @if(!empty($result['order']->customer_id))
+                                            {{print_selected_value($result['operation'],$customer->id,$result['order']->customer_id)}}
+                                        @endif >
+                                        {{ $customer->customers_lastname }} {{$customer->customers_firstname}}
+                                    </option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DeliveryName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('delivery_name', 

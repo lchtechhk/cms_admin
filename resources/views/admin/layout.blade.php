@@ -11,6 +11,7 @@
 <script src={{App::make('url')->to('/')."/resources/assets/js/table-data.js"}}></script>
 <script src={{App::make('url')->to('/')."/resources/assets/js/objectUtils.js"}}></script>
 <script src={{App::make('url')->to('/')."/resources/assets/js/filter.js"}}></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 <!-- meta contains meta taga, css and fontawesome icons etc -->
 @include('admin.common.meta')
