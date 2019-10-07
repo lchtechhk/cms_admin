@@ -70,13 +70,14 @@ CREATE TABLE `address_book` (
   `estate` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `building` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `room` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_ch` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address_en` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
   `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `is_default` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_address_book_customers_id` (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -88,7 +89,7 @@ CREATE TABLE `address_book` (
 
 LOCK TABLES `address_book` WRITE;
 /*!40000 ALTER TABLE `address_book` DISABLE KEYS */;
-INSERT INTO `address_book` VALUES (1,4,'Company','First Name','A',NULL,NULL,NULL,NULL,'1','Estate','Building','Room','2019-09-25 00:49:54',NULL,'2019-09-25 00:49:54',NULL,'active','active',''),(2,4,'CompanyB','First Name','B',NULL,NULL,NULL,NULL,'2','Estate','labels.Building','y','2019-09-25 00:50:13',NULL,'2019-09-25 00:50:13',NULL,'active','inactive',''),(3,15,'Company B','B-','Address1',NULL,NULL,NULL,NULL,'','','','','2019-09-25 00:58:18',NULL,'2019-09-25 00:58:18',NULL,'active','inactive',''),(4,15,'CompanyB','B-','Address2',NULL,NULL,NULL,NULL,'','','','','2019-09-25 00:58:32',NULL,'2019-09-25 00:58:32',NULL,'active','active','');
+INSERT INTO `address_book` VALUES (1,4,'Company','First Name','A',NULL,NULL,NULL,NULL,'1','Estate','Building','Room','',NULL,'2019-09-25 00:49:54',NULL,'2019-09-25 00:49:54',NULL,'active','active'),(2,4,'CompanyB','First Name','B',NULL,NULL,NULL,NULL,'2','Estate','labels.Building','y','',NULL,'2019-09-25 00:50:13',NULL,'2019-09-25 00:50:13',NULL,'active','inactive'),(3,15,'Company B','B-','Address1',NULL,NULL,NULL,'9','','Estate','Building','Room','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom','黃大仙 港島區 japan city1Japan1','2019-09-25 00:58:18',NULL,'2019-10-08 01:07:49',NULL,'active','inactive'),(4,15,'CompanyB','B-','Address2',NULL,NULL,NULL,'1','2','Estate','Building','Room','China HongKong 九龍區 樂富EstateBuildingRoom','樂富 九龍區 HongKongChina','2019-09-25 00:58:32',NULL,'2019-10-08 01:07:46',NULL,'active','active');
 /*!40000 ALTER TABLE `address_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +248,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'新界','NT1',1,'2019-01-19 23:58:20',NULL,'2019-02-24 17:17:28',NULL,'active'),(2,'AreaCode1','Area1',2,'2019-02-28 23:58:03',NULL,'2019-05-13 02:01:30',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'');
+INSERT INTO `area` VALUES (1,'九龍區','九龍區',1,'2019-01-19 23:58:20',NULL,'2019-10-08 00:35:52',NULL,'active'),(2,'港島區','港島區',2,'2019-02-28 23:58:03',NULL,'2019-10-08 00:41:11',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -721,7 +722,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'1','Code1',1,'2019-01-21 23:33:26',NULL,'2019-03-01 00:14:16',NULL,'active'),(8,'2','123',1,'2019-02-25 00:21:32',NULL,'2019-03-01 00:14:20',NULL,'active'),(9,'31','31',2,'2019-03-01 00:07:35',NULL,'2019-05-13 02:01:49',NULL,'active');
+INSERT INTO `district` VALUES (1,'樂富','樂富',1,'2019-01-21 23:33:26',NULL,'2019-10-08 00:52:36',NULL,'active'),(9,'黃大仙','黃大仙',2,'2019-03-01 00:07:35',NULL,'2019-10-08 00:35:16',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1236,6 +1237,7 @@ CREATE TABLE `order` (
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `customer_company` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `customer_address_id` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `customer_street_address` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `customer_suburb` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `customer_city` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -1289,7 +1291,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,4,'customer_name','customer_company','Address','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','534038482','acornjamie123@gmail.com1','delivery_name1','delivery_company','delivery_street_address1','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',5.00,'car1',NULL,'payment_method',21.00,'2019-07-18 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-09-19 00:11:20','1','active','complete');
+INSERT INTO `order` VALUES (1,4,'customer_name','customer_company',NULL,'Address','customer_suburb','customer_city','customer_postcode','customer_state','customer_country','534038482','acornjamie123@gmail.com1','delivery_name','delivery_company','delivery_street_address1','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',5.00,'car1',NULL,'payment_method',21.00,'2019-07-18 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-10-03 23:45:03','1','active','complete');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2945,6 +2947,8 @@ SET character_set_client = utf8mb4;
  1 AS `area_id`,
  1 AS `district_id`,
  1 AS `zones_id`,
+ 1 AS `address_ch`,
+ 1 AS `address_en`,
  1 AS `zones_name`,
  1 AS `zones_code`,
  1 AS `zones_district_id`,
@@ -2957,8 +2961,7 @@ SET character_set_client = utf8mb4;
  1 AS `entry_create_by_id`,
  1 AS `entry_edit_date`,
  1 AS `entry_edit_by_id`,
- 1 AS `entry_status`,
- 1 AS `entry_address`*/;
+ 1 AS `entry_status`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -3006,6 +3009,7 @@ SET character_set_client = utf8mb4;
  1 AS `email`,
  1 AS `delivery_name`,
  1 AS `delivery_company`,
+ 1 AS `customer_address_id`,
  1 AS `delivery_street_address`,
  1 AS `delivery_suburb`,
  1 AS `delivery_city`,
@@ -3266,7 +3270,7 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` VALUES (1,'彩虹1','CHOIHUN1',1,'2019-01-19 22:32:12',NULL,'2019-05-13 02:01:57',NULL,'active'),(2,'牛頭角','Code2',1,'2019-01-19 23:30:59',NULL,'2019-02-24 17:18:03',NULL,'active'),(9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
+INSERT INTO `zones` VALUES (9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3409,7 +3413,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_customer` AS select `customers`.`id` AS `id`,`customers`.`customers_gender` AS `customers_gender`,`customers`.`customers_firstname` AS `customers_firstname`,`customers`.`customers_lastname` AS `customers_lastname`,`customers`.`customers_dob` AS `customers_dob`,`customers`.`email` AS `email`,`customers`.`user_name` AS `user_name`,`customers`.`customers_default_address_id` AS `customers_default_address_id`,`customers`.`customers_telephone` AS `customers_telephone`,`customers`.`customers_fax` AS `customers_fax`,`customers`.`password` AS `password`,`customers`.`customers_newsletter` AS `customers_newsletter`,`customers`.`fb_id` AS `fb_id`,`customers`.`google_id` AS `google_id`,`customers`.`customers_picture` AS `customers_picture`,`customers`.`is_seen` AS `is_seen`,`customers`.`remember_token` AS `remember_token`,`customers`.`create_date` AS `create_date`,`customers`.`create_by_id` AS `create_by_id`,`customers`.`edit_date` AS `edit_date`,`customers`.`edit_by_id` AS `edit_by_id`,`customers`.`status` AS `status`,`countries`.`name` AS `countries_name`,`countries`.`iso_code_1` AS `countries_so_code_1`,`countries`.`iso_code_2` AS `countries_iso_code_2`,`countries`.`address_format_id` AS `countries_address_format_id`,`countries`.`create_date` AS `countries_create_date`,`countries`.`create_by_id` AS `countries_create_by_id`,`countries`.`edit_date` AS `countries_edit_date`,`countries`.`edit_by_id` AS `countries_edit_by_id`,`countries`.`status` AS `countries_status`,`address_book`.`company` AS `entry_company`,`address_book`.`firstname` AS `entry_firstname`,`address_book`.`lastname` AS `entry_lastname`,`address_book`.`countries_id` AS `countries_id`,`address_book`.`cities_id` AS `cities_id`,`address_book`.`area_id` AS `area_id`,`address_book`.`district_id` AS `district_id`,`address_book`.`zone_id` AS `zones_id`,`zones`.`name` AS `zones_name`,`zones`.`code` AS `zones_code`,`zones`.`district_id` AS `zones_district_id`,`zones`.`create_date` AS `zones_create_date`,`zones`.`create_by_id` AS `zones_create_by_id`,`zones`.`edit_date` AS `zones_edit_date`,`zones`.`edit_by_id` AS `zones_edit_by_id`,`zones`.`status` AS `zones_status`,`address_book`.`create_date` AS `entry_create_date`,`address_book`.`create_by_id` AS `entry_create_by_id`,`address_book`.`edit_date` AS `entry_edit_date`,`address_book`.`edit_by_id` AS `entry_edit_by_id`,`address_book`.`status` AS `entry_status`,`address_book`.`address` AS `entry_address` from ((((`customers` left join `address_book` on((`address_book`.`id` = `customers`.`customers_default_address_id`))) left join `countries` on((`countries`.`id` = `address_book`.`customer_id`))) left join `zones` on((`zones`.`id` = `address_book`.`zone_id`))) left join `customers_info` on((`customers_info`.`customers_info_id` = `customers`.`id`))) */;
+/*!50001 VIEW `view_customer` AS select `customers`.`id` AS `id`,`customers`.`customers_gender` AS `customers_gender`,`customers`.`customers_firstname` AS `customers_firstname`,`customers`.`customers_lastname` AS `customers_lastname`,`customers`.`customers_dob` AS `customers_dob`,`customers`.`email` AS `email`,`customers`.`user_name` AS `user_name`,`customers`.`customers_default_address_id` AS `customers_default_address_id`,`customers`.`customers_telephone` AS `customers_telephone`,`customers`.`customers_fax` AS `customers_fax`,`customers`.`password` AS `password`,`customers`.`customers_newsletter` AS `customers_newsletter`,`customers`.`fb_id` AS `fb_id`,`customers`.`google_id` AS `google_id`,`customers`.`customers_picture` AS `customers_picture`,`customers`.`is_seen` AS `is_seen`,`customers`.`remember_token` AS `remember_token`,`customers`.`create_date` AS `create_date`,`customers`.`create_by_id` AS `create_by_id`,`customers`.`edit_date` AS `edit_date`,`customers`.`edit_by_id` AS `edit_by_id`,`customers`.`status` AS `status`,`countries`.`name` AS `countries_name`,`countries`.`iso_code_1` AS `countries_so_code_1`,`countries`.`iso_code_2` AS `countries_iso_code_2`,`countries`.`address_format_id` AS `countries_address_format_id`,`countries`.`create_date` AS `countries_create_date`,`countries`.`create_by_id` AS `countries_create_by_id`,`countries`.`edit_date` AS `countries_edit_date`,`countries`.`edit_by_id` AS `countries_edit_by_id`,`countries`.`status` AS `countries_status`,`address_book`.`company` AS `entry_company`,`address_book`.`firstname` AS `entry_firstname`,`address_book`.`lastname` AS `entry_lastname`,`address_book`.`countries_id` AS `countries_id`,`address_book`.`cities_id` AS `cities_id`,`address_book`.`area_id` AS `area_id`,`address_book`.`district_id` AS `district_id`,`address_book`.`zone_id` AS `zones_id`,`address_book`.`address_ch` AS `address_ch`,`address_book`.`address_en` AS `address_en`,`zones`.`name` AS `zones_name`,`zones`.`code` AS `zones_code`,`zones`.`district_id` AS `zones_district_id`,`zones`.`create_date` AS `zones_create_date`,`zones`.`create_by_id` AS `zones_create_by_id`,`zones`.`edit_date` AS `zones_edit_date`,`zones`.`edit_by_id` AS `zones_edit_by_id`,`zones`.`status` AS `zones_status`,`address_book`.`create_date` AS `entry_create_date`,`address_book`.`create_by_id` AS `entry_create_by_id`,`address_book`.`edit_date` AS `entry_edit_date`,`address_book`.`edit_by_id` AS `entry_edit_by_id`,`address_book`.`status` AS `entry_status` from ((((`customers` left join `address_book` on((`address_book`.`id` = `customers`.`customers_default_address_id`))) left join `countries` on((`countries`.`id` = `address_book`.`customer_id`))) left join `zones` on((`zones`.`id` = `address_book`.`zone_id`))) left join `customers_info` on((`customers_info`.`customers_info_id` = `customers`.`id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3445,7 +3449,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_suburb` AS `customer_suburb`,`order`.`customer_city` AS `customer_city`,`order`.`customer_postcode` AS `customer_postcode`,`order`.`customer_state` AS `customer_state`,`order`.`customer_country` AS `customer_country`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`order_date_finished` AS `order_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from (`order` left join `order_product` on((`order`.`order_id` = `order_product`.`order_id`))) */;
+/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_suburb` AS `customer_suburb`,`order`.`customer_city` AS `customer_city`,`order`.`customer_postcode` AS `customer_postcode`,`order`.`customer_state` AS `customer_state`,`order`.`customer_country` AS `customer_country`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`customer_address_id` AS `customer_address_id`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`order_date_finished` AS `order_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from (`order` left join `order_product` on((`order`.`order_id` = `order_product`.`order_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3567,4 +3571,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-09-25  1:20:08
+-- Dump completed on 2019-10-08  1:20:47
