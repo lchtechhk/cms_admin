@@ -130,6 +130,11 @@ class AdminOrderControler extends Controller{
     }
 
     function findAddressByCustomerId(Request $request){
-        Log::info('[findAddressByCustomerId] --  : ' );
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        Log::info('[findAddressByCustomerId] --  : ' .  $request->get('customer_id'));
+
+        // Log::info('[findAddressByCustomerId] --  : ' . json_encode($result));
     }
 }

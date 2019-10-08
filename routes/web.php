@@ -34,16 +34,15 @@
 |
 */
 Route::get('/', function() { return Redirect::to("admin/login"); });
-
 Route::group(['prefix' => 'admin'], function () {
-	
 	Route::group(['namespace' => 'Admin'], function () {
-
 		Route::group(['middleware' => 'admin'], function () {
 			Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
 			Route::get('/post', 'AdminController@myPost');
 			//show admin personal info record
 			Route::get('/adminInfo', 'AdminController@adminInfo');
+
+			
 
 		/*
 		|--------------------------------------------------------------------------
@@ -100,9 +99,6 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::get('/alertsetting', 'AdminSiteSettingController@alertSetting');
 			Route::post('/updateAlertSetting', 'AdminSiteSettingController@updateAlertSetting');
 			
-			//generate application key
-			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
-
 			//Jamie product
 			Route::get('/listingProduct', 'AdminProductController@listingProduct');
 			Route::get('/view_addProduct', 'AdminProductController@view_addProduct');
@@ -200,7 +196,7 @@ Route::group(['prefix' => 'admin'], function () {
 			Route::post('/updateZone/{id}', 'AdminZoneController@updateZone');
 			Route::post('/deleteZone','AdminZoneController@deleteZone');
 
-			//Jamie orders
+			//orders
 			Route::get('/listingOrder', 'AdminOrderControler@listingOrder');
 			Route::get('/view_addOrder', 'AdminOrderControler@view_addOrder');
 			Route::get('/view_editOrder/{order_id}', 'AdminOrderControler@view_editOrder');
@@ -213,6 +209,12 @@ Route::group(['prefix' => 'admin'], function () {
 
 			Route::post('/part_customer_address', 'AdminOrderControler@part_customer_address');
 			Route::post('/part_edit_product', 'AdminOrderControler@part_edit_product');
+
+			//orders API
+			Route::get('/findAddressByCustomerId/{customer_id}', 'AdminOrderControler@findAddressByCustomerId');
+
+			//generate application key
+			Route::get('/generateKey', 'AdminSiteSettingController@generateKey');
 
 			//orderstatus
 			Route::get('/orderstatus', 'AdminSiteSettingController@orderstatus');

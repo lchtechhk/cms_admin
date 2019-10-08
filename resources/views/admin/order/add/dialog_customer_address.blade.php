@@ -11,14 +11,6 @@
             {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.OrderId') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
-                            {!! Form::text('order_id', 
-                            empty($result['order']->order_id) ? '' : print_value($result['operation'],$result['order']->order_id),
-                            array('class'=>'form-control','readonly')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-9">
                             <select class="form-control select2 " required name="customer_id" id="customer_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
@@ -40,15 +32,6 @@
                         <div class="col-sm-10 col-md-9">
                             <select class="form-control select2 " required name="customer_address_id" id="customer_address_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
                                 <option value="">-</option>
-                                @foreach ($result['customers'] as $customer)
-                                    <option value="{{ $customer->id }}"
-                                        @if(!empty($result['order']->customer_id))
-                                            {{print_selected_value($result['operation'],$customer->id,$result['order']->customer_id)}}
-                                        @endif >
-                                        {{ $customer->customers_lastname }} {{$customer->customers_firstname}}
-                                    </option>
-
-                                @endforeach
                             </select>
                         </div>
                     </div>
