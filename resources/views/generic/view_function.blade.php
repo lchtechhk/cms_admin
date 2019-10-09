@@ -45,8 +45,6 @@
         if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data)){
             $value .= "disabled";
         }
-        Log::info('[value] --  : ' . $value);
-
         return $value;
     }
 

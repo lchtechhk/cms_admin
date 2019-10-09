@@ -20,14 +20,17 @@ use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
 
 use App\Http\Controllers\Admin\Service\OrderService;
+use App\Http\Controllers\Admin\Service\AddressBookService;
+
 use function GuzzleHttp\json_decode;
 
 class AdminOrderControler extends Controller{
     private $OrderService;
+    private $AddressBookService;
 
 	public function __construct(){
 		$this->OrderService = new OrderService();
-	
+	    $this->AddressBookService = new AddressBookService();
 	}
 	
 	function listingOrder(Request $request){
@@ -129,12 +132,28 @@ class AdminOrderControler extends Controller{
         return $this->OrderService->redirect_view($result,"");
     }
 
-    function findAddressByCustomerId(Request $request){
-        $result = array();
-        $result = $request->input();
-        $result['request'] = $request;
-        Log::info('[findAddressByCustomerId] --  : ' .  $request->get('customer_id'));
+     // function getAPI($customer_id){
+    //     $result = array();
+    //     Log::info('[customer_id] --  : ' . $customer_id);
+    // }
 
-        // Log::info('[findAddressByCustomerId] --  : ' . json_encode($result));
+    function findAddressByCustomerId(Request $request){
+        $customer_id = $request->input("customer_id");
+        $result = $this->AddressBookService->findByColumnAndId("customer_id",$customer_id);
+        Log::info('[findAddressByCustomerId] --  : ' . json_encode($result));
+        return $result;
+    }
+
+    function findAddressByAddressId(Request $request){
+        $address_id = $request->input("address_id");
+        
+        $result_array = $this->AddressBookService->findByColumnAndId("id",$address_id);
+        $result = array();
+        if(!empty($result_array) && \sizeof($result_array) > 0){
+            $result = $result_array[0];
+            Log::info('[findAddressByAddressId] --  : ' . json_encode($result));
+            return json_encode($result);
+        }
+        return null;
     }
 }
