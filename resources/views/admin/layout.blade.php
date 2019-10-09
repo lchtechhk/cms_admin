@@ -6,6 +6,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
+{{-- validation  --}}
+{{-- <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js"></script> --}}
+
+
 {{-- table-data --}}
 <link rel="stylesheet" type="text/css" href={{App::make('url')->to('/')."/public/css/horizontal-scroll.css"}}>
 <script src={{App::make('url')->to('/')."/resources/assets/js/table-data.js"}}></script>

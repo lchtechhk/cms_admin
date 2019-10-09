@@ -1,5 +1,6 @@
 @extends('admin.layout') @section('content')
 <script src={{App::make('url')->to('/')."/resources/assets/js/order.js"}}></script>
+
 <div class="content-wrapper">
     @include('layouts/add_header')
     <section class="content">
@@ -59,8 +60,6 @@
                                         <div class="col-sm-4 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.ShippingInfo') }}</div><br>
                                             <address>
-                                                {{ trans('labels.DeliveryName') }}: <div id="add_delivery_name" ></div><br>
-                                                {{ trans('labels.Address') }}: <div id="add_delivery_street_address" ></div><br>
                                                 <strong> {{ trans('labels.ShippingMethod') }}:</strong> <div id="add_shipping_method" ></div><br>
                                                 <strong> {{ trans('labels.ShippingCost') }}:</strong> <div id="add_shipping_cost" ></div>
                                             </address>

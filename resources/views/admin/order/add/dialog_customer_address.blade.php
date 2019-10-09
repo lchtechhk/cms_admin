@@ -8,7 +8,7 @@
                 <h4 class="modal-title" id="CustomerInfo">{{ trans('labels.CustomerInfo') }}</h4>
             </div>
 
-            {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+            {!! Form::open(array('id' => 'add_customer_form', 'class' => 'form-horizontal form-validate')) !!}
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerName') }}<span style="color:red">★</span></label> 
@@ -30,8 +30,8 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.CustomerAddress') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-9">
-                            <select class="form-control  " disabled required name="customer_address_id" id="customer_address_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
-                                {{-- <option value="">-</option> --}}
+                            <select class="form-control select1 " disabled required name="customer_address_id" id="customer_address_id" style="width: 100%;" {{is_disabled($result['operation'],empty($result['order']->customer_id) ? '' : $result['order']->customer_id)}}>
+                                <option value="">-</option>
                             </select>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_telephone', 
                             empty($result['order']->customer_telephone) ? '' : print_value($result['operation'],$result['order']->customer_telephone),
-                            array('class'=>'form-control','id'=>'customer_telephone','disabled')) !!}
+                            array('class'=>'form-control','id'=>'customer_telephone','disabled','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -68,7 +68,9 @@
                         </div>
                     </div>
                 </div>
-                @include('layouts/dialog_submit_back_button')
+                <div class="modal-footer">
+                    <div class="btn btn-primary" id="addCustomer">{{ trans('labels.Add') }}</div>
+                </div>
             {!! Form::close() !!}
         </div>
     </div>
