@@ -45,9 +45,65 @@
                         </div>
                     </div>
 
-                    <div class="form-group" id="group_customer_street_address">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Address') }}<span style="color:red">★</span></label> 
+                    <div class="form-group" id="group_customer_country">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Country') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_country','',
+                            array('class'=>'form-control field-validate','id'=>'customer_country','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_city">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.City') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_city','',
+                            array('class'=>'form-control field-validate','id'=>'customer_city','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_area">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Area') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_area','',
+                            array('class'=>'form-control field-validate','id'=>'customer_area','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_district">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.District') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_district','',
+                            array('class'=>'form-control field-validate','id'=>'customer_district','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_estate">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Estate') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_estate','',
+                            array('class'=>'form-control field-validate','id'=>'customer_estate','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_building">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Building') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_building','',
+                            array('class'=>'form-control field-validate','id'=>'customer_building','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_room">
+                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Room') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-4">
+                            {!! Form::text('customer_room','',
+                            array('class'=>'form-control field-validate','id'=>'customer_room','disabled','')) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="group_customer_street_address">
+                        <label for="name" class="col-sm-2 col-md-3  control-label">{{ trans('labels.Address') }}<span style="color:red">★</span></label> 
+                        <div class="col-sm-10 col-md-9">
                             {!! Form::text('customer_street_address', 
                             empty($result['order']->customer_company) ? '' : print_value($result['operation'],$result['order']->customer_street_address),
                             array('class'=>'form-control field-validate','id'=>'customer_street_address','disabled','')) !!}

@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="row invoice-info">
-                                        <div class="col-sm-4 invoice-col">
+                                        <div class="col-sm-6 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.CustomerInfo') }}</div><br>
                                                 <table>
                                                     <tr>
@@ -64,7 +64,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4 invoice-col">
+                                        <div class="col-sm-6 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.ShippingInfo') }}</div><br>
                                             <table>
                                                 <tr>
@@ -219,7 +219,10 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                    @include('layouts/submit_back_button')
+                                    <div class="box-footer text-center">
+                                        <div id="add_{{$result['label']}}" type="submit" class="btn btn-primary">{{ trans('labels.'.$result['operation'].$result['label']) }}</div>
+                                        <a href="{{ URL::to('admin/listing'.$result['label'])}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
+                                    </div>
                                     {!! Form::close() !!}
                                 </div>
                             </div>
