@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.32-MariaDB
+-- Server version	5.5.5-10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -76,7 +76,7 @@ CREATE TABLE `address_book` (
   `is_default` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_address_book_customers_id` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ CREATE TABLE `address_book` (
 
 LOCK TABLES `address_book` WRITE;
 /*!40000 ALTER TABLE `address_book` DISABLE KEYS */;
-INSERT INTO `address_book` VALUES (1,4,'Company','First Name','A','9','Estate','Building','Room','address_ch 1','黃大仙 港島區 japan city1Japan1EstateBuildingRoom','2019-09-25 00:49:54',NULL,'2019-10-09 12:42:12',NULL,'active','active'),(2,4,'CompanyB','First Name','B','1','Estate','labels.Building','y','address_ch 2','樂富 九龍區 HongKongChinaEstatelabels.Buildingy','2019-09-25 00:50:13',NULL,'2019-10-09 12:42:08',NULL,'active','inactive'),(3,15,'Company B','B-','Address1','9','Estate','Building','Room','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom','黃大仙 港島區 japan city1Japan1','2019-09-25 00:58:18',NULL,'2019-10-08 01:07:49',NULL,'active','inactive'),(4,15,'CompanyB','B-','Address2','1','Estate','Building','Room','China HongKong 九龍區 樂富EstateBuildingRoom','樂富 九龍區 HongKongChina','2019-09-25 00:58:32',NULL,'2019-10-08 01:07:46',NULL,'active','active');
+INSERT INTO `address_book` VALUES (1,4,'Company','First Name','A','9','Estate','Building','Room','address_ch 1','黃大仙 港島區 japan city1Japan1EstateBuildingRoom','2019-09-25 00:49:54',NULL,'2019-10-09 12:42:12',NULL,'active','active'),(2,4,'CompanyB','First Name','B','1','Estate','labels.Building','y','address_ch 2','樂富 九龍區 HongKongChinaEstatelabels.Buildingy','2019-09-25 00:50:13',NULL,'2019-10-09 12:42:08',NULL,'active','inactive'),(3,15,'Company B','B-','Address1','9','Estate','Building','Room','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom室','黃大仙 港島區 japan city1Japan1EstateBuildingRoom室','2019-09-25 00:58:18',NULL,'2019-10-11 00:21:58',NULL,'active','inactive'),(4,15,'CompanyB','B-','Address2','1','Estate','Building','Room','China HongKong 九龍區 樂富EstateBuildingRoom室','樂富 九龍區 HongKongChinaEstateBuildingRoom室','2019-09-25 00:58:32',NULL,'2019-10-11 00:20:16',NULL,'active','active'),(7,15,'CompanyC','First NameC','Last NameC','9','牛池灣','彩華樓','801',NULL,NULL,'2019-10-11 00:36:33',NULL,'2019-10-11 00:36:33',NULL,'active','inactive');
 /*!40000 ALTER TABLE `address_book` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -719,7 +719,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'樂富','樂富',1,'2019-01-21 23:33:26',NULL,'2019-10-08 00:52:36',NULL,'active'),(9,'黃大仙','黃大仙',2,'2019-03-01 00:07:35',NULL,'2019-10-08 00:35:16',NULL,'active');
+INSERT INTO `district` VALUES (1,'樂富','樂富',1,'2019-01-21 23:33:26',NULL,'2019-10-08 00:52:36',NULL,'active'),(9,'黃大仙','黃大仙',1,'2019-03-01 00:07:35',NULL,'2019-10-11 00:35:42',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1290,7 +1290,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,4,'customer_name','customer_company',NULL,'Address',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'534038482','acornjamie123@gmail.com1','delivery_name','delivery_company','delivery_street_address1','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',5.00,'car1',NULL,'payment_method',21.00,'2019-07-18 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-10-03 23:45:03','1','active','complete'),(2,4,'A User','Company','1','address_ch 1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-10 17:46:41',NULL,'2019-10-10 17:46:41',NULL,'active',''),(3,15,'B User','Company B','3','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'23456789','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-10 17:47:21',NULL,'2019-10-10 17:47:21',NULL,'active',''),(4,15,'B User','CompanyB','4','China HongKong 九龍區 樂富EstateBuildingRoom','China','HongKong','九龍區','樂富','Estate','Building','Room','12321','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-10 18:45:51',NULL,'2019-10-10 18:45:51',NULL,'active','');
+INSERT INTO `order` VALUES (1,4,'customer_name','customer_company',NULL,'Address',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'534038482','acornjamie123@gmail.com1','delivery_name','delivery_company','delivery_street_address1','delivery_suburb','delivery_city','delivery_postcode','delivery_state','delivery_country','billing_name','billing_company','billing_street_address','billing_suburb','billing_city','billing_postcode','billing_state','billing_country',5.00,'car1',NULL,'payment_method',21.00,'2019-07-18 00:00:00','2019-01-02 00:00:00','order_information',0,'coupon_code',200,0,'customer_remark','2019-01-01 00:00:00',1,'2019-10-03 23:45:03','1','active','complete'),(2,4,'A User','Company','1','address_ch 1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-10 17:46:41',NULL,'2019-10-10 17:46:41',NULL,'active',''),(3,15,'B User','Company B','3','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'23456789','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-10 17:47:21',NULL,'2019-10-11 00:44:55',NULL,'active','pending');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3315,6 +3315,14 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'cms'
+--
+
+--
+-- Dumping routines for database 'cms'
+--
+
+--
 -- Final view structure for view `view_address_book`
 --
 
@@ -3327,7 +3335,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_address_book` AS select `address_book`.`id` AS `id`,`address_book`.`customer_id` AS `customer_id`,`address_book`.`company` AS `company`,`address_book`.`firstname` AS `firstname`,`address_book`.`lastname` AS `lastname`,`address_book`.`district_id` AS `district_id`,`view_country_city_area_district`.`countries_name` AS `country_name`,`view_country_city_area_district`.`cities_name` AS `city_name`,`view_country_city_area_district`.`area_name` AS `area_name`,`view_country_city_area_district`.`district_name` AS `district_name`,`address_book`.`estate` AS `estate`,`address_book`.`building` AS `building`,`address_book`.`room` AS `room`,`address_book`.`address_ch` AS `address_ch`,`address_book`.`address_en` AS `address_en`,`address_book`.`create_date` AS `create_date`,`address_book`.`create_by_id` AS `create_by_id`,`address_book`.`edit_date` AS `edit_date`,`address_book`.`edit_by_id` AS `edit_by_id`,`address_book`.`status` AS `status`,`address_book`.`is_default` AS `is_default` from (`address_book` left join `view_country_city_area_district` on((`address_book`.`district_id` = `view_country_city_area_district`.`district_id`))) */;
+/*!50001 VIEW `view_address_book` AS select `address_book`.`id` AS `id`,`address_book`.`customer_id` AS `customer_id`,`address_book`.`company` AS `company`,`address_book`.`firstname` AS `firstname`,`address_book`.`lastname` AS `lastname`,`address_book`.`district_id` AS `district_id`,`view_country_city_area_district`.`countries_name` AS `country_name`,`view_country_city_area_district`.`cities_name` AS `city_name`,`view_country_city_area_district`.`area_name` AS `area_name`,`view_country_city_area_district`.`district_name` AS `district_name`,`address_book`.`estate` AS `estate`,`address_book`.`building` AS `building`,`address_book`.`room` AS `room`,concat(`view_country_city_area_district`.`countries_name`,' ',`view_country_city_area_district`.`cities_name`,'  ',`view_country_city_area_district`.`area_name`,' ',`view_country_city_area_district`.`district_name`,'  ',`address_book`.`estate`,`address_book`.`building`,`address_book`.`room`,'室') AS `address_ch`,concat('Room',`address_book`.`room`,', ',`address_book`.`building`,', ',`address_book`.`estate`,', ',`view_country_city_area_district`.`district_name`,', ',`view_country_city_area_district`.`area_name`,', ',`view_country_city_area_district`.`cities_name`,', ',`view_country_city_area_district`.`countries_name`) AS `address_en`,`address_book`.`create_date` AS `create_date`,`address_book`.`create_by_id` AS `create_by_id`,`address_book`.`edit_date` AS `edit_date`,`address_book`.`edit_by_id` AS `edit_by_id`,`address_book`.`status` AS `status`,`address_book`.`is_default` AS `is_default` from (`address_book` left join `view_country_city_area_district` on((`address_book`.`district_id` = `view_country_city_area_district`.`district_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3593,4 +3601,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-10 18:56:01
+-- Dump completed on 2019-10-11  0:46:47
