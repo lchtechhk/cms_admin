@@ -20,17 +20,17 @@ use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
 
 use App\Http\Controllers\Admin\Service\OrderService;
-use App\Http\Controllers\Admin\Service\AddressBookService;
+use App\Http\Controllers\Admin\Service\View_AddressBookService;
 
 use function GuzzleHttp\json_decode;
 
 class AdminOrderControler extends Controller{
     private $OrderService;
-    private $AddressBookService;
+    private $View_AddressBookService;
 
 	public function __construct(){
 		$this->OrderService = new OrderService();
-	    $this->AddressBookService = new AddressBookService();
+	    $this->View_AddressBookService = new View_AddressBookService();
 	}
 	
 	function listingOrder(Request $request){
@@ -139,7 +139,7 @@ class AdminOrderControler extends Controller{
 
     function findAddressByCustomerId(Request $request){
         $customer_id = $request->input("customer_id");
-        $result = $this->AddressBookService->findByColumnAndId("customer_id",$customer_id);
+        $result = $this->View_AddressBookService->findByColumnAndId("customer_id",$customer_id);
         Log::info('[findAddressByCustomerId] --  : ' . json_encode($result));
         return $result;
     }
@@ -147,7 +147,7 @@ class AdminOrderControler extends Controller{
     function findAddressByAddressId(Request $request){
         $address_id = $request->input("address_id");
         
-        $result_array = $this->AddressBookService->findByColumnAndId("id",$address_id);
+        $result_array = $this->View_AddressBookService->findByColumnAndId("id",$address_id);
         $result = array();
         if(!empty($result_array) && \sizeof($result_array) > 0){
             $result = $result_array[0];
@@ -155,5 +155,17 @@ class AdminOrderControler extends Controller{
             return json_encode($result);
         }
         return null;
+    }
+
+    function createOrder(Request $request){
+        $customer_address_obj = $request->input("customer_address_obj");
+        $shipping_address_obj = $request->input("shipping_address_obj");
+
+        $order_obj = \array_merge($customer_address_obj,$shipping_address_obj);
+        Log::info('[customer_address_obj] --  : ' . json_encode($customer_address_obj));
+        Log::info('[shipping_address_obj] --  : ' . json_encode($shipping_address_obj));
+        Log::info('[order_obj] --  : ' . json_encode($order_obj));
+        $add_order_result = $this->OrderService->add($order_obj);
+        Log::info('[add_order_result] --  : ' . json_encode($add_order_result));
     }
 }

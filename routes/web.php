@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::get('/getAPI/{customer_id}', 'AdminOrderControler@findAddressByCustomerId');
 		Route::post('/findAddressByCustomerId', 'AdminOrderControler@findAddressByCustomerId');
 		Route::post('/findAddressByAddressId', 'AdminOrderControler@findAddressByAddressId');
+		Route::post('/createOrder', 'AdminOrderControler@createOrder');
 
 		Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
 		Route::get('/post', 'AdminController@myPost');

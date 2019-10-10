@@ -21,7 +21,7 @@
                       </label>
                       <div class="col-sm-10 col-md-4">
                         <select name="city_id" class='form-control field-validate'>
-                          @foreach( $result['city'] as $city)
+                          @foreach( $result['cities'] as $city)
                           <option value="{{ $city->id }}">
                             {{ $city->name }}
                           </option>

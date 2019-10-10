@@ -17,15 +17,6 @@
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
                                         {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
-
-                                    {{-- Only Edit --}}
-                                    @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-
-                                        <div class="form-group">
-                                        
-                                        </div>
-                                    @endif
-
                                     {{-- Content --}}
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -41,14 +32,30 @@
                                         </div>
                                     </div>
                                     <div class="row invoice-info">
-                                        <div class="col-sm-4 invoice-col">
+                                        <div class="col-sm-6 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.CustomerInfo') }}</div><br>
-                                            <address>
-                                                {{ trans('labels.CustomerName') }}: <div id="add_customer_name" ></div><br>
-                                                {{ trans('labels.Address') }}: <div id="add_customer_street_address" ></div><br>
-                                                {{ trans('labels.Phone') }}: <div id="add_customer_telephone" ></div><br>
-                                                {{ trans('labels.Email') }}: <div id="add_email" ></div>
-                                            </address>
+                                                <table>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CustomerName') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_name" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CompanyName') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_company_name" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Address') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_street_address" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Phone') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_telephone" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Email') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_email" ></div></td>
+                                                    </tr>
+                                                </table>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
                                                     <a class="btn btn-primary part_customer_address">
@@ -57,12 +64,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4 invoice-col">
+                                        <div class="col-sm-6 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.ShippingInfo') }}</div><br>
-                                            <address>
-                                                <strong> {{ trans('labels.ShippingMethod') }}:</strong> <div id="add_shipping_method" ></div><br>
-                                                <strong> {{ trans('labels.ShippingCost') }}:</strong> <div id="add_shipping_cost" ></div>
-                                            </address>
+                                            <table>
+                                                <tr>
+                                                    <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingMethod') }} : </div></td>
+                                                    <td style="padding:10px;"><div id="add_shipping_method" ></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingCost') }} : </div></td>
+                                                    <td style="padding:10px;"><div id="add_shipping_cost" ></div></td>
+                                                </tr>
+                                            </table>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
                                                     <a class="btn btn-primary part_shipping_address">
@@ -206,7 +219,10 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                    @include('layouts/submit_back_button')
+                                    <div class="box-footer text-center">
+                                        <div id="add_{{$result['label']}}" type="submit" class="btn btn-primary">{{ trans('labels.'.$result['operation'].$result['label']) }}</div>
+                                        <a href="{{ URL::to('admin/listing'.$result['label'])}}" type="button" class="btn btn-default">{{ trans('labels.back') }}</a>
+                                    </div>
                                     {!! Form::close() !!}
                                 </div>
                             </div>
