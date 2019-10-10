@@ -34,7 +34,6 @@
                                     <div class="row invoice-info">
                                         <div class="col-sm-4 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.CustomerInfo') }}</div><br>
-                                            <address>
                                                 <table>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CustomerName') }} : </div></td>
@@ -57,8 +56,6 @@
                                                         <td style="padding:10px;"><div id="add_email" ></div></td>
                                                     </tr>
                                                 </table>
-                                    
-                                            </address>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
                                                     <a class="btn btn-primary part_customer_address">
@@ -69,10 +66,16 @@
                                         </div>
                                         <div class="col-sm-4 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.ShippingInfo') }}</div><br>
-                                            <address>
-                                                <strong> {{ trans('labels.ShippingMethod') }}:</strong> <div id="add_shipping_method" ></div><br>
-                                                <strong> {{ trans('labels.ShippingCost') }}:</strong> <div id="add_shipping_cost" ></div>
-                                            </address>
+                                            <table>
+                                                <tr>
+                                                    <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingMethod') }} : </div></td>
+                                                    <td style="padding:10px;"><div id="add_shipping_method" ></div></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingCost') }} : </div></td>
+                                                    <td style="padding:10px;"><div id="add_shipping_cost" ></div></td>
+                                                </tr>
+                                            </table>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
                                                     <a class="btn btn-primary part_shipping_address">

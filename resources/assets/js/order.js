@@ -1,5 +1,19 @@
-function testing(){
-    console.log("testing");
+function validate(evt) {
+    var theEvent = evt || window.event;
+
+    // Handle paste
+    if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+    } else {
+        // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
 }
 
 // Order part_customer_address
@@ -127,6 +141,30 @@ $(function() {
         });
         if(is_pass){
             fill_customer_address();
+            $( ".close" ).click();
+        }
+        
+    });
+
+    $("#addShipping").click(function(){
+        var is_pass = true;
+        $('#form_shipping_address *').filter(':input').each(function(){
+            var id = $(this).attr('id');
+            if(id){
+                console.log("id : " + id);
+                console.log("value : " + $(this).val());
+                $( "#group_"+id ).removeClass( "has-error" );
+                if($(this).hasClass('field-validate')){
+                    if(!$(this).val()){
+                        $( "#group_"+id ).addClass( "has-error" );
+                        is_pass = false;
+                    }
+                }
+            }            
+        });
+        if(is_pass){
+            fill_shipping_address();
+            $( ".close" ).click();
         }
         
     });
@@ -135,19 +173,26 @@ $(function() {
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();
         var customer_company = $("#customer_company").val();
-
         var customer_address_id = $("#customer_address_id").val();
-        var customer_address_id_text = $("#customer_address_id option:selected").text();
         var customer_street_address = $("#customer_street_address").val();
         var customer_telephone = $("#customer_telephone").val();
         var email = $("#email").val();
-        console.log("customer_address_id : " + customer_address_id);
-        console.log("customer_address_id_text : " + customer_address_id_text);
         $("#add_customer_name").html(customer_id_text);
         $("#add_company_name").html(customer_company);
         $("#add_customer_street_address").html(customer_street_address);
         $("#add_customer_telephone").html(customer_telephone);
         $("#add_email").html(email);
+
+    }
+
+    function fill_shipping_address(){
+        var shipping_method = $("#shipping_method").val();
+        var shipping_cost = $("#shipping_cost").val();
+       
+        console.log("shipping_method : " + shipping_method);
+        console.log("shipping_cost : " + shipping_cost);
+        $("#add_shipping_method").html(shipping_method);
+        $("#add_shipping_cost").html(shipping_cost);
 
     }
 });

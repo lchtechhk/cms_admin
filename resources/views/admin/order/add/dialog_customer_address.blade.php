@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                <button id="close_dialog_customer_address" type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="CustomerInfo">{{ trans('labels.CustomerInfo') }}</h4>
             </div>
@@ -59,7 +59,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_telephone', 
                             empty($result['order']->customer_telephone) ? '' : print_value($result['operation'],$result['order']->customer_telephone),
-                            array('class'=>'form-control field-validate','id'=>'customer_telephone','disabled','')) !!}
+                            array('class'=>'form-control field-validate','id'=>'customer_telephone','disabled',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
 
