@@ -17,15 +17,6 @@
                                     @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
                                         {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     @endif
-
-                                    {{-- Only Edit --}}
-                                    @if ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-
-                                        <div class="form-group">
-                                        
-                                        </div>
-                                    @endif
-
                                     {{-- Content --}}
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -44,10 +35,29 @@
                                         <div class="col-sm-4 invoice-col">
                                             <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.CustomerInfo') }}</div><br>
                                             <address>
-                                                {{ trans('labels.CustomerName') }}: <div id="add_customer_name" ></div><br>
-                                                {{ trans('labels.Address') }}: <div id="add_customer_street_address" ></div><br>
-                                                {{ trans('labels.Phone') }}: <div id="add_customer_telephone" ></div><br>
-                                                {{ trans('labels.Email') }}: <div id="add_email" ></div>
+                                                <table>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CustomerName') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_name" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CompanyName') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_company_name" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Address') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_street_address" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Phone') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_customer_telephone" ></div></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Email') }} : </div></td>
+                                                        <td style="padding:10px;"><div id="add_email" ></div></td>
+                                                    </tr>
+                                                </table>
+                                    
                                             </address>
                                             <div class="row text-center" >
                                                 <div class="col-xs-12">
