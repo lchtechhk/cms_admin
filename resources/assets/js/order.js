@@ -44,7 +44,7 @@ $(function() {
     //     var customer_id = this.value;
     //     $.ajax({
     //         type: "GET",
-    //         url: "/admin/admin/findAddressByCustomerId/"+customer_id,
+    //         url: "/cms/admin/findAddressByCustomerId/"+customer_id,
     //         // data: {customer_id:customer_id},
     //         success: function( bolUpdated ) { 
     //             if( bolUpdated ) { 
@@ -56,6 +56,17 @@ $(function() {
     //         }   
     //     });
     // });
+    $("#customer_country,#customer_city,#customer_area,#customer_district,#customer_estate,#customer_building,#customer_room").change(function() {
+        var customer_address = json_customer_address();
+        var full_address = 
+        customer_address.customer_country+" "+
+        customer_address.customer_city+" "+
+        customer_address.customer_area+" "+
+        customer_address.customer_district+" "+
+        customer_address.customer_estate+customer_address.customer_building+customer_address.customer_room+"室";
+        $('#customer_street_address').val(full_address);
+        // console.log("full_address : " + full_address);
+    });
 
     $("#customer_id").change(function() {
         var customer_id = this.value;
@@ -64,7 +75,7 @@ $(function() {
         customer_change(phone,email);
         $.ajax({
             type: "POST",
-            url: "/admin/admin/findAddressByCustomerId",
+            url: "/cms/admin/findAddressByCustomerId",
             data: {customer_id:customer_id},
             success: function(msg) { 
                 console.log("msg : " + JSON.stringify(msg));
@@ -229,10 +240,10 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url: "/admin/admin/createOrder",
+            url: "/cms/admin/createOrder",
             data: json,
             success: function(msg) { 
-                console.log("msg : " + JSON.stringify(msg));
+                // console.log("msg : " + JSON.stringify(msg));
                 if(msg) { 
   
                 }   

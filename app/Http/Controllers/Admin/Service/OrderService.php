@@ -125,9 +125,7 @@ class OrderService extends BaseApiService{
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
             case 'view_add':
-                // Log::info('[view_add] --  : ');
                 $result['order'] =  array();
-                // $result['order'] = $this->getOrder(1);
                 Log::info('[view_add] --  : ' . json_encode($result['order']));
                 return view("admin.order.addOrder", $title)->with('result', $result);
             break;
@@ -153,12 +151,12 @@ class OrderService extends BaseApiService{
                     $update_order_result = $this->update("order_id",$result);
                     if(empty($update_order_result['status']) || $update_order_result['status'] == 'fail')throw new Exception("Error To Update Order");
                     $result = $this->response($result,"Successful","view_edit");
-                    $result['order'] = $this->getOrder($result['order_id']);
                     DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
                 // Log::info('[edit] --  : ' . \json_encode($result));
+                $result['order'] = $this->getOrder($result['order_id']);
                 return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'add_product':
@@ -187,12 +185,12 @@ class OrderService extends BaseApiService{
                     $update_order_result = $this->update_order_total_price($result['order_id']);
 
                     $result = $this->response($result,"Successful","view_edit");
-                    $result['order'] = $this->getOrder($result['order_id']);
                     DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
-            return view("admin.order.viewOrder", $title)->with('result', $result);
+                $result['order'] = $this->getOrder($result['order_id']);
+                return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'delete_product':
                 Log::info('[delete_product] --  : '. \json_encode($result));
@@ -205,19 +203,23 @@ class OrderService extends BaseApiService{
                     $update_order_result = $this->update_order_total_price($result['order_id']);
 
                     $result = $this->response($result,"Successful","view_edit");
-                    $result['order'] = $this->getOrder($result['order_id']);
                     DB::commit();
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }		
+                $result['order'] = $this->getOrder($result['order_id']);
                 return view("admin.order.viewOrder", $title)->with('result', $result);
             break;
             case 'delete': 
                 try{
                     Log::info('[delete] --  : ');
+                    $delete_order_result = $this->deleteByKey_Value("order_id",$result['order_id']);
+                    if(empty($delete_order_result['status']) || $delete_order_result['status'] == 'fail')throw new Exception("Error To Delete Order");
+                    $result = $this->response($result,"Success To Delete Order","listing");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
+                $result['orders'] = $this->findAll();
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;
             // case 'part_customer_address':

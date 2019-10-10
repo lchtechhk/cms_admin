@@ -1121,10 +1121,10 @@ $(document).on('click', '#updateAddress', function(e){
 		$("#deletePageModal").modal('show');
 	});
 	
-	//deleteTaxClassModal
+	//deleteOrderModal
 	$(document).on('click', '#deleteOrderId', function(){
 		var order_id = $(this).attr('order_id');
-		$('#order_id').val(orders_id);
+		$('#order_id').val(order_id);
 		$("#deleteOderModal").modal('show');
 	});
 	

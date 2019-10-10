@@ -7,21 +7,25 @@ use Exception;
 
 use App\Http\Controllers\Admin\Service\BaseApiService;
 use App\Http\Controllers\Admin\Service\CountryService;
+use App\Http\Controllers\Admin\Service\View_AddressBookService;
 use App\Http\Controllers\Admin\Service\View_CCADistrictService;
 use function GuzzleHttp\json_encode;
 
 class AddressBookService extends BaseApiService{
     private $CountryService;
     private $View_CCADistrictService;
+    private $View_AddressBookService;
 
     function __construct(){
         $this->setTable('address_book');
         $this->CountryService = new CountryService();
         $this->View_CCADistrictService = new View_CCADistrictService();
+        $this->View_AddressBookService = new View_AddressBookService();
+
     }
     function getListing($result){
         $customer_id = $result['customer_id'];
-        $customer_address = $this->findByColumnAndId('customer_id',$customer_id);
+        $customer_address = $this->View_AddressBookService->findByColumnAndId('customer_id',$customer_id);
         $result['customer_address'] = $customer_address;
         $result['customer_id'] = $customer_id;
         // Log::info('[Addressbooking] -- getListing : ' .json_encode($result));
@@ -66,9 +70,9 @@ class AddressBookService extends BaseApiService{
                 return view("admin.addressbook.listingAddress",$title)->with('result', $result);
             break;
             case 'edit':
-                    $full_address_obj = $this->combine_full_address($result['district_id']);
-                    $result['address_ch'] = $full_address_obj['ch'] . $result['estate'] . $result['building'] . $result['room'];
-                    $result['address_en'] = $full_address_obj['en'] . $result['estate'] . $result['building'] . $result['room'];
+                    // $full_address_obj = $this->combine_full_address($result['district_id']);
+                    // $result['address_ch'] = $full_address_obj['ch'] . $result['estate'] . $result['building'] . $result['room']."室";
+                    // $result['address_en'] = $full_address_obj['en'] . $result['estate'] . $result['building'] . $result['room']."室";
                 try{
                     DB::beginTransaction();
                     $update_addressbook_result = $this->update("id",$result);

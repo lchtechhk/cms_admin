@@ -13,7 +13,7 @@
       @elseif ($result['operation'] == 'view_edit')
       {!! Form::open(array('url' => array('admin/updateAddressBook/'.$result['id']), 'name'=>'editAddressFrom', 'id'=>'editAddressFrom', 'method'=>'post', 'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
       @endif
-      {!! Form::text('customer_id',  empty($result['customer_id']) ? '' :  print_value($result['operation'],$result['customer_id']) , array('class'=>'form-control', 'id'=>'customer_id')) !!}
+      {!! Form::hidden('customer_id',  empty($result['customer_id']) ? '' :  print_value($result['operation'],$result['customer_id']) , array('class'=>'form-control', 'id'=>'customer_id')) !!}
       <div class="modal-body">    
           <div class="form-group">
               <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Company') }}</label>
