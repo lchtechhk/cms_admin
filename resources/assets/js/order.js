@@ -1,20 +1,4 @@
-function validate(evt) {
-    var theEvent = evt || window.event;
 
-    // Handle paste
-    if (theEvent.type === 'paste') {
-        key = event.clipboardData.getData('text/plain');
-    } else {
-        // Handle key press
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-    }
-    var regex = /[0-9]|\./;
-    if (!regex.test(key)) {
-        theEvent.returnValue = false;
-        if (theEvent.preventDefault) theEvent.preventDefault();
-    }
-}
 
 // Order part_customer_address
 $(document).on('click', '.part_customer_address', function(){
@@ -56,6 +40,8 @@ $(function() {
     //         }   
     //     });
     // });
+
+    // Dialog Customer
     $("#customer_country,#customer_city,#customer_area,#customer_district,#customer_estate,#customer_building,#customer_room").change(function() {
         var customer_address = json_customer_address();
         var full_address = 
@@ -206,6 +192,7 @@ $(function() {
         
     });
 
+    // Dialog Shipping
     $("#addShipping").click(function(){
         var is_pass = true;
         $('#form_shipping_address *').filter(':input').each(function(){
@@ -257,6 +244,31 @@ $(function() {
 
     });
 
+    // Dialog Product
+
+    $("#addOrderProduct").click(function(){
+        var is_pass = true;
+        $('#form_order_product *').filter(':input').each(function(){
+            var id = $(this).attr('id');
+            if(id){
+                console.log("id : " + id);
+                console.log("value : " + $(this).val());
+                $( "#group_"+id ).removeClass( "has-error" );
+                if($(this).hasClass('field-validate')){
+                    if(!$(this).val()){
+                        $( "#group_"+id ).addClass( "has-error" );
+                        is_pass = false;
+                    }
+                }
+            }            
+        });
+        if(is_pass){
+            fill_order_product();
+            $( ".close" ).click();
+        }
+        
+    });
+
     function fill_customer_address(){
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();
@@ -282,6 +294,33 @@ $(function() {
         console.log("shipping_cost : " + shipping_cost);
         $("#add_shipping_method").html(shipping_method);
         $("#add_shipping_cost").html(shipping_cost);
+
+    }
+
+    function fill_order_product(){
+        var product_attribute_id = $("#product_attribute_id").val();
+        var product_attribute_text = $("#product_attribute_id option:selected").text();
+        var add_order_product_image = $('#add_order_product_image').attr('src');
+        var add_product_name = $("#add_product_name").val();
+        var add_product_price = $("#add_product_price").val();
+        var add_product_quantity = $("#add_product_quantity").val();
+        var add_final_price = $("#add_final_price").val();
+        
+        $("#no_any_product").remove();
+        var rowCount = $('#view_order_table tr').length;
+        var td = "<td>"+rowCount+++"<br/><input type='text' name='order_product['']' value='"+product_attribute_id+"'/></td>";
+        td += "<td>"+"<img src='"+add_order_product_image+"' width='60px'>"+"</td>";
+        td += "<td>"+product_attribute_text+"</td>";
+        td += "<td>"+add_product_price+"</td>";
+        td += "<td>"+"<input onkeypress='validate(event)' required type='text' value='"+add_product_quantity+"'/>"+"</td>";
+        td += "<td>"+"<input onkeypress='validate(event)' required type='text' value='"+add_final_price+"'/>"+"</td>";
+        td += '<td>'+
+        '<a title="View Order Product" class="badge bg-light-blue part_edit_product">'+
+        '<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'+
+        '<a style="margin-left:5px;"title="Delete Order Product" id="deleteOrderProductbtn" class="badge bg-red">'+
+        '<i class="fa fa-trash" aria-hidden="true"></i></a>'+
+        '</td>';
+        $('#view_order_table tr:last').after("<tr>"+td+"</tr>");
 
     }
 

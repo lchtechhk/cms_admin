@@ -98,6 +98,7 @@
                                                                 <th>{{ trans('labels.Id') }}</th>
                                                                 <th>{{ trans('labels.Image') }}</th>
                                                                 <th>{{ trans('labels.ProductName') }}</th>
+                                                                <th>{{ trans('labels.UnitPrice') }}</th>
                                                                 <th>{{ trans('labels.Qty') }}</th>
                                                                 <th>{{ trans('labels.FinalPrice') }}</th>
                                                                 <th>{{ trans('labels.Action') }}</th>
@@ -119,6 +120,7 @@
                                                                         <td  width="30%">
                                                                             {{  $order_product->full_product_name }}<br>
                                                                         </td>
+                                                                        <td>{{  $order_product->product_price }}</td>
                                                                         <td>{{  $order_product->product_quantity }}</td>
                                                                         <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
                                                                         <td>
@@ -130,6 +132,7 @@
                                                                 @endforeach
                                                                 <tr >
                                                                     <th>{{ trans('labels.Total') }}:</th>
+                                                                    <th></th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>

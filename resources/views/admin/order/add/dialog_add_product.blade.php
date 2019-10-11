@@ -44,20 +44,12 @@
                 <h4 class="modal-title" id="ProductInfo">{{ trans('labels.ProductInfo') }}</h4>
             </div>
     
-            {!! Form::open(array('url' =>'admin/addOrderProduct', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+            {!! Form::open(array('id'=> 'form_order_product','class' => 'form-horizontal form-validate')) !!}
                 <div class="box-body">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.OrderId') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
-                            {!! Form::text('order_id', 
-                            empty($result['order']->order_id) ? '' : print_value($result['operation'],$result['order']->order_id),
-                            array('class'=>'form-control','readonly')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
+                    <div class="form-group" id="group_product_attribute_id">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Product') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-9">
-                            <select class="form-control select2 " required name="product_attribute_id" id="product_attribute_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
+                            <select class="form-control select1 field-validate" required name="product_attribute_id" id="product_attribute_id" style="width: 100%;" onchange="order_change_product('{{asset('')}}',this.options[this.selectedIndex].getAttribute('data'))">
                                 <option value="">-</option>
                                 @foreach ($result['product_attributes'] as $product_attribute)
                                     <option data="{{json_encode($product_attribute)}}" value="{{ $product_attribute->product_attribute_id }}">
@@ -89,25 +81,27 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price','',
-                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"")) !!}
+                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"","onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="group_add_product_quantity">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Qty') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity','',
-                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly')) !!}
+                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.FinalPrice') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price','',
-                            array('class'=>'form-control ','id'=>'add_final_price','readonly')) !!}
+                            array('class'=>'form-control ','id'=>'add_final_price','readonly',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                 </div>
-                @include('layouts/dialog_add_back_button')
+                <div class="modal-footer">
+                    <div class="btn btn-primary" id="addOrderProduct">{{ trans('labels.Add') }}</div>
+                </div>
             {!! Form::close() !!}
         </div>
     </div>

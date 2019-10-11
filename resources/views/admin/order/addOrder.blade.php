@@ -12,11 +12,7 @@
                             <div class="box box-info"><br>
                                 @include('layouts/responseMessage')
                                 <div class="box-body">
-                                    @if ($result['operation'] == 'listing' || $result['operation'] == 'add' || $result['operation'] == 'view_add' )
-                                        {!! Form::open(array('url' =>'admin/addOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-                                    @elseif ($result['operation'] == 'edit' || $result['operation'] == 'view_edit')
-                                        {!! Form::open(array('url' =>'admin/updateOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-                                    @endif
+                                    {!! Form::open(array('url' =>'admin/addOrder', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                                     {{-- Content --}}
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -88,13 +84,14 @@
                                    
                                     <hr/>
 
-                                    {{-- <div class="row">
+                                    <div class="row">
                                         <div class="col-xs-12 table-responsive">
                                             <div class="table-wrap" style="fro">
+                                                <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.Product') }}</div><br>
+
                                                 <div class="table">
                                                     <div class="pull-right">
-                                                        <a  order_id='{{ $result['order']->order_id }}'
-                                                            class="btn btn-warning part_add_product">
+                                                        <a class="btn btn-warning part_add_product">
                                                             {{ trans('labels.Add') }}
                                                         </a>
                                                     </div>
@@ -104,48 +101,16 @@
                                                                 <th>{{ trans('labels.Id') }}</th>
                                                                 <th>{{ trans('labels.Image') }}</th>
                                                                 <th>{{ trans('labels.ProductName') }}</th>
+                                                                <th>{{ trans('labels.UnitPrice') }}</th>
                                                                 <th>{{ trans('labels.Qty') }}</th>
                                                                 <th>{{ trans('labels.FinalPrice') }}</th>
                                                                 <th>{{ trans('labels.Action') }}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @if (!empty($result['order']->order_products) && sizeof($result['order']->order_products) > 0)
-                                                                @foreach($result['order']->order_products as $order_product)
-                                                                    <tr>
-                                                                        <td>{{  $order_product->order_product_id }}</td>
-                                                                        <td >
-                                                                            @if(!empty($order_product->image))
-                                                                                <img src="{{ asset('').$order_product->image }}" width="60px">
-                                                                            @else
-                                                                            <img src={{asset('')."resources/assets/images/default_images/product.png"}}
-                                                                                style="width: 50px; float: left; margin-right: 10px">
-                                                                            @endif
-                                                                        </td>
-                                                                        <td  width="30%">
-                                                                            {{  $order_product->full_product_name }}<br>
-                                                                        </td>
-                                                                        <td>{{  $order_product->product_quantity }}</td>
-                                                                        <td>{{ $order_product->currency_id}} {{ $order_product->final_price }}</td>
-                                                                        <td>
-                                                                            <a data-toggle="tooltip" data-placement="bottom" title="View Order Product" order_product='{{json_encode($order_product)}}' order_product_id='{{ $order_product->order_product_id }}'
-                                                                                class="badge bg-light-blue part_edit_product"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete Order Product" id="deleteOrderProductbtn" order_id='{{$order_product->order_id}}' order_product_id='{{ $order_product->order_product_id }}' class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                                <tr >
-                                                                    <th>{{ trans('labels.Total') }}:</th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <td style="background-color:gray;" width="30%">{{ $order_product->currency_id }} {{ $result['order']->order_price }}</td>
-                                                                </tr>
-                                                            @else
-                                                                <tr >
-                                                                    <td colspan="6" style="text-align:center;">No Any Product</td>
-                                                                </tr>
-                                                            @endif
+                                                            <tr id="no_any_product">
+                                                                <td colspan="7" style="text-align:center;">No Any Product</td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>                                            
@@ -153,7 +118,7 @@
                                         </div>                                            
                                     </div>
 
-                                    <div class="col-xs-12">
+                                    {{-- <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">

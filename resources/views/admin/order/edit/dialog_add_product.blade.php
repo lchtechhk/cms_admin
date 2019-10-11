@@ -89,21 +89,21 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price','',
-                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"")) !!}
+                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"","onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Qty') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity','',
-                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly')) !!}
+                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.FinalPrice') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price','',
-                            array('class'=>'form-control ','id'=>'add_final_price','readonly')) !!}
+                            array('class'=>'form-control ','id'=>'add_final_price','readonly',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                 </div>

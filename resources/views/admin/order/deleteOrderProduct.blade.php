@@ -4,7 +4,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="deleteOrderProductLabel">{{ trans('labels.deleteOder') }}</h4>
+                <h4 class="modal-title" id="deleteOrderProductLabel">{{ trans('labels.deleteOrder') }}</h4>
             </div>
             {!! Form::open(array('url' =>'admin/deleteOrderProduct', 'name'=>'deleteOrderProduct', 'id'=>'deleteOrderProduct', 'method'=>'post',
             'class' => 'form-horizontal', 'enctype'=>'multipart/form-data')) !!}
@@ -16,7 +16,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('labels.Cancel') }}</button>
-                <button type="submit" class="btn btn-primary" id="deleteOder">{{ trans('labels.Delete') }}</button>
+                <button type="submit" class="btn btn-primary" id="deleteOrder">{{ trans('labels.Delete') }}</button>
             </div>
             {!! Form::close() !!}
         </div>

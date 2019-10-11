@@ -65,7 +65,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price', 
                             empty($result['order_product']->product_price) ? '' : order_print_value($result['operation'],$result['order_product']->product_price),
-                            array('class'=>'form-control','id'=>'edit_product_price','readonly')) !!}
+                            array('class'=>'form-control','id'=>'edit_product_price','readonly',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,7 +73,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity', 
                             empty($result['order_product']->product_quantity) ? '' : order_print_value($result['operation'],$result['order_product']->product_quantity),
-                            array('class'=>'form-control ','id'=>'edit_product_quantity')) !!}
+                            array('class'=>'form-control ','id'=>'edit_product_quantity',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,7 +81,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price', 
                             empty($result['order_product']->final_price) ? '' : order_print_value($result['operation'],$result['order_product']->final_price),
-                            array('class'=>'form-control ','id'=>'edit_final_price')) !!}
+                            array('class'=>'form-control ','id'=>'edit_final_price',"onkeypress"=>'validate(event)')) !!}
                         </div>
                     </div>
                 </div>
