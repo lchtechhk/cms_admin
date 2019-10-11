@@ -23,6 +23,24 @@ function address_change(company_name,address){
 
 }
 
+function delete_item(count){
+    var id = "#"+"item_"+count
+    var display_count = count + 1;
+    if(confirm('Are You Sure To Remove Item : '+display_count + '?')){
+        $(id).remove();
+    }
+    console.log("id : " + id);
+}
+function calculate_final_price(count){
+    var product_price = $("input[name='order_product["+count+"][product_price]']").val();
+    var product_quantity = $("input[name='order_product["+count+"][product_quantity]']").val();
+    var final_price = product_price*product_quantity; 
+    $("input[name='order_product["+count+"][final_price]']").val(final_price);
+    console.log("product_price : " + product_price);
+    console.log("product_quantity : " + product_quantity);
+
+}
+
 $(function() {
     // $("#customer_id").change(function() {
     //     var customer_id = this.value;
@@ -61,7 +79,7 @@ $(function() {
         customer_change(phone,email);
         $.ajax({
             type: "POST",
-            url: "/cms/admin/findAddressByCustomerId",
+            url: "/admin/admin/findAddressByCustomerId",
             data: {customer_id:customer_id},
             success: function(msg) { 
                 console.log("msg : " + JSON.stringify(msg));
@@ -219,18 +237,19 @@ $(function() {
     $("#add_Order").click(function(){
         var customer_address_obj = json_customer_address();
         var shipping_address_obj = json_shipping_address();
-
+        var order_product_array = json_order_product();
         var json = {
             customer_address_obj : customer_address_obj,
-            shipping_address_obj : shipping_address_obj
+            shipping_address_obj : shipping_address_obj,
+            order_product_array :order_product_array ,
         }
 
         $.ajax({
             type: "POST",
-            url: "/cms/admin/createOrder",
+            url: "/admin/admin/createOrder",
             data: json,
             success: function(msg) { 
-                // console.log("msg : " + JSON.stringify(msg));
+                console.log("msg : " + JSON.stringify(msg));
                 if(msg) { 
   
                 }   
@@ -239,12 +258,22 @@ $(function() {
                 alert('NO');
             }   
         });
-
         console.log("json : " + JSON.stringify(json));
-
     });
 
     // Dialog Product
+
+    $("#display_product_quantity" ).change(function(){
+        console.log("display_product_quantity : ");
+
+        // var price = $('#display_product_price').val();
+        // var qty = $(this).val();
+        // if(price != '' && qty != ''){
+        //     var total_amount = price*qty;
+        //     $('#display_final_price').val(total_amount);
+        //     console.log("total_amount : " + total_amount);
+        // }
+    });
 
     $("#addOrderProduct").click(function(){
         var is_pass = true;
@@ -269,6 +298,9 @@ $(function() {
         
     });
 
+    $("#delete_addOrderProduct").click(function(){
+        console.log("delete_addOrderProduct");
+    })
     function fill_customer_address(){
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();
@@ -302,28 +334,55 @@ $(function() {
         var product_attribute_text = $("#product_attribute_id option:selected").text();
         var add_order_product_image = $('#add_order_product_image').attr('src');
         var add_product_name = $("#add_product_name").val();
-        var add_product_price = $("#add_product_price").val();
-        var add_product_quantity = $("#add_product_quantity").val();
-        var add_final_price = $("#add_final_price").val();
+        var product_price = $("#add_product_price").val();
+        var product_quantity = $("#add_product_quantity").val();
+        var final_price = $("#add_final_price").val();
         
         $("#no_any_product").remove();
-        var rowCount = $('#view_order_table tr').length;
-        var td = "<td>"+rowCount+++"<br/><input type='text' name='order_product['']' value='"+product_attribute_id+"'/></td>";
+        var rowCount = $('#row_order_table tr').length;
+        var dispay_rowCount = rowCount+1;
+
+        var td = "<td>"+dispay_rowCount+"<br/>"+
+        "<input type='hidden' name='order_product["+rowCount+"][product_attribute_id]' value='"+product_attribute_id+"'/>"+
+        "<input type='hidden' name='order_product["+rowCount+"][product_price]' value='"+product_price+"'/>"+
+        "</td>";
         td += "<td>"+"<img src='"+add_order_product_image+"' width='60px'>"+"</td>";
         td += "<td>"+product_attribute_text+"</td>";
-        td += "<td>"+add_product_price+"</td>";
-        td += "<td>"+"<input onkeypress='validate(event)' required type='text' value='"+add_product_quantity+"'/>"+"</td>";
-        td += "<td>"+"<input onkeypress='validate(event)' required type='text' value='"+add_final_price+"'/>"+"</td>";
+        td += "<td>"+product_price+"</td>";
+        td += "<td>"+"<input onchange='calculate_final_price("+rowCount+")' name='order_product["+rowCount+"][product_quantity]' onkeypress='validate(event)' type='text' value='"+product_quantity+"'/>"+"</td>";
+        td += "<td>"+"<input name='order_product["+rowCount+"][final_price]' onkeypress='validate(event)' type='text' value='"+final_price+"'/>"+"</td>";
         td += '<td>'+
         '<a title="View Order Product" class="badge bg-light-blue part_edit_product">'+
         '<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'+
-        '<a style="margin-left:5px;"title="Delete Order Product" id="deleteOrderProductbtn" class="badge bg-red">'+
+        '<a style="margin-left:5px;"title="Delete Order Product"  onclick="delete_item('+rowCount+')" class="badge bg-red">'+
         '<i class="fa fa-trash" aria-hidden="true"></i></a>'+
         '</td>';
-        $('#view_order_table tr:last').after("<tr>"+td+"</tr>");
+
+        $('#view_order_table').find('tbody').append("<tr id='item_"+rowCount+"'>"+td+"</tr>");
 
     }
 
+    function json_order_product(){
+        var rowCount = $('#row_order_table tr').length;
+        var json_array = [];
+        for(var i=0; i<rowCount; i++){
+            var product_attribute_id = $("input[name='order_product["+i+"][product_attribute_id]']").val();
+            var product_price = $("input[name='order_product["+i+"][product_price]']").val();
+            var product_quantity = $("input[name='order_product["+i+"][product_quantity]']").val();
+            var final_price = $("input[name='order_product["+i+"][final_price]']").val();
+
+            var obj = {
+                product_attribute_id:product_attribute_id,
+                product_price:product_price,
+                product_quantity:product_quantity,
+                final_price:final_price
+            };
+            json_array.push(obj);
+        }
+        // console.log("json_array : " + JSON.stringify(json_array));
+        return json_array;
+    }
+    
     function json_customer_address(){
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();

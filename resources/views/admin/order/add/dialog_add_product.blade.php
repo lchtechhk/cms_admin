@@ -7,7 +7,7 @@
     }
     $( document ).ready(function() {
         initial();
-        $("#add_product_quantity" ).change(function() {
+        $("#add_product_quantity" ).on('input',function(e){
         var price = $('#add_product_price').val();
         var qty = $(this).val();
         if(price != '' && qty != ''){

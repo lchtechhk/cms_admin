@@ -107,7 +107,7 @@
                                                                 <th>{{ trans('labels.Action') }}</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <tbody id="row_order_table">
                                                             <tr id="no_any_product">
                                                                 <td colspan="7" style="text-align:center;">No Any Product</td>
                                                             </tr>
