@@ -265,10 +265,12 @@ $(function() {
         var customer_address_obj = json_customer_address();
         var shipping_address_obj = json_shipping_address();
         var order_product_array = json_order_product();
+        var order_obj = json_order_form();
         var json = {
             customer_address_obj : customer_address_obj,
             shipping_address_obj : shipping_address_obj,
             order_product_array :order_product_array ,
+            order_obj : order_obj,
         }
 
         $.ajax({
@@ -422,6 +424,15 @@ $(function() {
         }
         return shipping_address;
 
+    }
+
+    function json_order_form(){
+        var order_status = $("#order_status").val();
+       
+        var order_obj = {
+            order_status : order_status,
+        }
+        return order_obj;
     }
 });
 

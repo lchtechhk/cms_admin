@@ -118,13 +118,13 @@
                                         </div>                                            
                                     </div>
 
-                                    {{-- <div class="col-xs-12">
+                                    <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>{{ trans('labels.PaymentStatus') }}:</label>
-                                                <select class="form-control select2" name="order_status" style="width: 100%;">
+                                                <select class="form-control select2" id="order_status" name="order_status" style="width: 100%;">
                                                         <option value="pending" 
                                                             @if(!empty($result['order']->order_status))
                                                                 {{print_selected_value($result['operation'],'pending',$result['order']->order_status)}}
@@ -148,7 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12">
+                                    {{-- <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.Comment') }}:</p>
                                         <div class="row">

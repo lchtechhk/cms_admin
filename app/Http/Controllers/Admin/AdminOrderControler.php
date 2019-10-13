@@ -174,9 +174,12 @@ class AdminOrderControler extends Controller{
     function createOrder(Request $request){
         $customer_address_obj = $request->input("customer_address_obj");
         $shipping_address_obj = $request->input("shipping_address_obj");
-        $order_product_array = $request->input("order_product_array");
+        $order_obj = $request->input("order_obj");
 
-        $order_obj = \array_merge($customer_address_obj,$shipping_address_obj);
+        $order_product_array = !empty($request->input("order_product_array")) && sizeof($request->input("order_product_array")) > 0 ? $request->input("order_product_array") : array();
+        $product_item_size = sizeof($order_product_array);
+
+        $order_obj = array_merge($customer_address_obj,$shipping_address_obj,$order_obj);
         // Log::info('[customer_address_obj] --  : ' . json_encode($customer_address_obj));
         // Log::info('[shipping_address_obj] --  : ' . json_encode($shipping_address_obj));
         // Log::info('[order_product_array] --  : ' . json_encode($order_product_array));
@@ -186,6 +189,7 @@ class AdminOrderControler extends Controller{
             $add_order_result = $this->OrderService->add($order_obj);
             if(empty($add_order_result['status']) || $add_order_result['status'] == 'fail')throw new Exception("Error To Add Order");
             $order_id = $add_order_result['response_id'];
+
 
             $order_price = 0;
             foreach ($order_product_array as $index => $product_param) {
@@ -203,10 +207,11 @@ class AdminOrderControler extends Controller{
                 $order_price += $final_price;
             }
                 //Update Order
-                $update_order_param = array('order_id'=>$order_id,'order_price'=>$order_price);
-                $update_product_result = $this->OrderService->update("order_id",$update_order_param);
-                if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Order");
-
+                if($product_item_size > 0){                
+                    $update_order_param = array('order_id'=>$order_id,'order_price'=>$order_price);
+                    $update_product_result = $this->OrderService->update("order_id",$update_order_param);
+                    if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Order");
+                }
             DB::commit();
         }catch(Exception $e){
            $this->View_ProductAttributeService->throwException(array(),$e->getMessage(),true);
