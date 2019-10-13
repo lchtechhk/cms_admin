@@ -19,7 +19,7 @@
                                             <h2 class="page-header">
                                                 <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }} 
                                                 <small class="pull-right">
-                                                    {{ trans('labels.OrderedDate') }}: {{ date('Y-m-d')}}
+                                                    <span style="font-weight:bold;">{{ trans('labels.OrderedDate') }} : </span><span id="display_date_purchasede" >{{ date('Y-m-d')}}</span>
                                                     <a class="btn btn-primary part_date_purchased">
                                                         {{ trans('labels.Edit') }}
                                                     </a>
