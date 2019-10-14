@@ -176,10 +176,18 @@
                                                             Cancel
                                                         </option>
                                                 </select>
-                                                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseStatus') }}</span>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-xs-12">
+                                            <hr>
+                                        <p class="lead">{{ trans('labels.remark') }}:</p>
+                                        <div class="form-group">
+                                            <textarea id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
                                     <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.Comment') }}:</p>
@@ -236,4 +244,13 @@
         </div>
     </section>
 </div>
+<script type="text/javascript">
+    window.onload = function()
+    {
+        CKEDITOR.replace( 'order_remark', {
+            filebrowserBrowseUrl: '{{url('uploads/images/')}}',
+            filebrowserUploadUrl: '{{url('admin/article/image')}}?_token={{csrf_token()}}'
+        });
+    };
+</script>
 @endsection
