@@ -152,10 +152,9 @@
 
                                     <div class="col-xs-12">
                                         <hr>
-                                        <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>{{ trans('labels.PaymentStatus') }}:</label>
+                                                <label>{{ trans('labels.OrderStatus') }}:</label>
                                                 <select class="form-control select2" name="order_status" style="width: 100%;">
                                                         <option value="pending" 
                                                             @if(!empty($result['order']->order_status))
@@ -180,50 +179,44 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12">
-                                            <hr>
-                                        <p class="lead">{{ trans('labels.remark') }}:</p>
-                                        <div class="form-group">
-                                            <textarea id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
                                         <hr>
-                                        <p class="lead">{{ trans('labels.Comment') }}:</p>
-                                        <div class="row">
-                                            <div class="col-xs-12 table-responsive">
-                                                <div class="table-wrap" style="fro">
-                                                    <div class="table">
-                                                        <table id="view_order_comment" class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>{{ trans('labels.Id') }}</th>
-                                                                    <th>{{ trans('labels.OperationBy') }}</th>
-                                                                    <th>{{ trans('labels.Comment') }}</th>
-                                                                    <th>{{ trans('labels.CreateDate') }}</th>
-                                                                </tr>
-                                                                @if (!empty($result['order']->order_comments) && sizeof($result['order']->order_comments) > 0)
-                                                                    @foreach($result['order']->order_comments as $order_comment)
-                                                                        <tr>
-                                                                            <td>{{  $order_comment->order_comment_id }}</td>    
-                                                                            <td>{{  $order_comment->permission }}</td>    
-                                                                            <td>{{  $order_comment->comment }}</td>    
-                                                                            <td>{{  $order_comment->create_date }}</td>    
-                                                                        </tr>
-                                                                    @endforeach
-                                                                @else
-                                                                    <tr>
-                                                                        <td colspan="4" style="text-align:center;">Nothing Comment</td>    
-                                                                    </tr>  
-                                                                @endif
-                                                            </thead>
-                                                        </table>
-                                                    </div>
+                                            <div class="col-xs-6">
+                                                <p class="lead">{{ trans('labels.CustomerComment') }}:</p>
+                                                <table id="view_order_comment" class="table table-striped">
+                                                    <tr>
+                                                        <th>{{ trans('labels.id') }}</th>
+                                                        <th>{{ trans('labels.CreateDate') }}</th>
+                                                        <th>{{ trans('labels.Comment') }}</th>
+                                                    </tr>
+                                                    @if (!empty($result['order']->order_comments) && sizeof($result['order']->order_comments) > 0) 
+                                                        @foreach ($result['order']->order_comments as $item)
+                                                            <tr>
+                                                                <td>{{$item->order_comment_id}}</td>
+                                                                <td>{{$item->comment_date}}</td>
+                                                                <td>{{$item->comment}}</td>
+                                                            </tr>
+                                                        @endforeach    
+                                                     @else
+                                                        <tr>
+                                                            <td colspan="3" style="text-align:center;">Nothing Comment</td> 
+                                                        </tr>
+                                                    @endif
+                                                    
+                                                </table>
+                                            </div>
+
+                                            <div class="col-xs-6">
+                                                <p class="lead">{{ trans('labels.remark') }}:</p>
+                                                <div class="form-group">
+                                                    <textarea id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                      
                                     @include('layouts/submit_back_button')
                                     {!! Form::close() !!}
                                 </div>

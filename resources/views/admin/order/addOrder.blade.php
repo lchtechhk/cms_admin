@@ -120,10 +120,9 @@
 
                                     <div class="col-xs-12">
                                         <hr>
-                                        <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>{{ trans('labels.PaymentStatus') }}:</label>
+                                                <label>{{ trans('labels.OrderStatus') }}:</label>
                                                 <select class="form-control select2" id="order_status" name="order_status" style="width: 100%;">
                                                         <option value="pending" 
                                                             @if(!empty($result['order']->order_status))
@@ -154,6 +153,9 @@
                                             <textarea  id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
                                         </div>
                                     </div>
+
+                                    
+
                                     {{-- <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.Comment') }}:</p>

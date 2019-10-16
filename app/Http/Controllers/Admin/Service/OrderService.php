@@ -74,7 +74,7 @@ class OrderService extends BaseApiService{
         $order_comment_array = $this->OrderCommentService->findByColumnAndId("order_id",$order_id);
         $order->order_products = $order_product_array;
         $order->order_comments = $order_comment_array;
-        // Log::info('[order] -- getListing : ' .json_encode($order));
+        Log::info('[order] -- getListing : ' .json_encode($order));
         return $order;
     }
 
@@ -228,7 +228,7 @@ class OrderService extends BaseApiService{
             //     return view("admin.order.dialog_customer_address")->with('result', $result);
             // break;
             case 'part_edit_product':
-                return view("admin.order.dialog_edit_product")->with('result', $result);
+                return view("admin.order.edit.dialog_edit_product")->with('result', $result);
             break;
             
         }
