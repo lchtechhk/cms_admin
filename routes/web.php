@@ -37,10 +37,10 @@ Route::get('/', function() { return Redirect::to("admin/login"); });
 Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 	Route::group(['middleware' => 'admin'], function () {
 		//orders API
-		Route::get('/getAPI/{customer_id}', 'AdminOrderControler@findAddressByCustomerId');
-		Route::post('/findAddressByCustomerId', 'AdminOrderControler@findAddressByCustomerId');
-		Route::post('/findAddressByAddressId', 'AdminOrderControler@findAddressByAddressId');
-		Route::post('/createOrder', 'AdminOrderControler@createOrder');
+		Route::get('/getAPI/{customer_id}', 'AdminOrderController@findAddressByCustomerId');
+		Route::post('/findAddressByCustomerId', 'AdminOrderController@findAddressByCustomerId');
+		Route::post('/findAddressByAddressId', 'AdminOrderController@findAddressByAddressId');
+		Route::post('/createOrder', 'AdminOrderController@createOrder');
 
 		Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
 		Route::get('/post', 'AdminController@myPost');
@@ -183,21 +183,21 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::post('/deleteZone','AdminZoneController@deleteZone');
 
 		//orders
-		Route::get('/listingOrder', 'AdminOrderControler@listingOrder');
-		Route::get('/view_addOrder', 'AdminOrderControler@view_addOrder');
-		Route::get('/view_editOrder/{order_id}', 'AdminOrderControler@view_editOrder');
-		Route::post('/addOrder', 'AdminOrderControler@addOrder');
-		Route::post('/updateOrder', 'AdminOrderControler@updateOrder');
-		Route::post('/updateOrderProduct', 'AdminOrderControler@updateOrderProduct');
-		Route::post('/addOrderProduct', 'AdminOrderControler@addOrderProduct');
-		Route::post('/deleteOrder', 'AdminOrderControler@deleteOrder');
-		Route::post('/deleteOrderProduct', 'AdminOrderControler@deleteOrderProduct');
+		Route::get('/listingOrder', 'AdminOrderController@listingOrder');
+		Route::get('/view_addOrder', 'AdminOrderController@view_addOrder');
+		Route::get('/view_editOrder/{order_id}', 'AdminOrderController@view_editOrder');
+		Route::post('/addOrder', 'AdminOrderController@addOrder');
+		Route::post('/updateOrder', 'AdminOrderController@updateOrder');
+		Route::post('/updateOrderProduct', 'AdminOrderController@updateOrderProduct');
+		Route::post('/addOrderProduct', 'AdminOrderController@addOrderProduct');
+		Route::post('/deleteOrder', 'AdminOrderController@deleteOrder');
+		Route::post('/deleteOrderProduct', 'AdminOrderController@deleteOrderProduct');
 
-		Route::post('/part_customer_address', 'AdminOrderControler@part_customer_address');
-		Route::post('/part_edit_product', 'AdminOrderControler@part_edit_product');
+		Route::post('/part_customer_address', 'AdminOrderController@part_customer_address');
+		Route::post('/part_edit_product', 'AdminOrderController@part_edit_product');
 
 		//orders API
-		Route::get('/findAddressByCustomerId/{customer_id}', 'AdminOrderControler@findAddressByCustomerId');
+		Route::get('/findAddressByCustomerId/{customer_id}', 'AdminOrderController@findAddressByCustomerId');
 
 		//generate application key
 		Route::get('/generateKey', 'AdminSiteSettingController@generateKey');

@@ -30,7 +30,7 @@ use App\Http\Controllers\Admin\Service\View_AddressBookService;
 
 use function GuzzleHttp\json_decode;
 
-class AdminOrderControler extends Controller{
+class AdminOrderController extends Controller{
     private $OrderService;
     private $OrderProductService;
     private $OrderProductDescriptionService;

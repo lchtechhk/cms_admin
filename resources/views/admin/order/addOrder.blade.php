@@ -211,10 +211,6 @@
         @include('admin/order/add/dialog_shipping_address')
         @include('admin/order/add/dialog_add_product')
         @include('admin/order/deleteOrderProduct')
-        <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product">
-               @include('admin/order/add/dialog_edit_product')
-       </div>
-       
     </section>
 </div>
 
