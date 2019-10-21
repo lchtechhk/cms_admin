@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.37-MariaDB
+-- Server version	5.5.5-10.1.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1273,6 +1273,7 @@ CREATE TABLE `order` (
   `coupon_code` text COLLATE utf8_general_mysql500_ci,
   `coupon_amount` int(100) DEFAULT NULL,
   `free_shipping` tinyint(1) DEFAULT '0',
+  `order_remark` tinytext COLLATE utf8_general_mysql500_ci,
   `customer_remark` tinytext COLLATE utf8_general_mysql500_ci,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
@@ -1281,7 +1282,7 @@ CREATE TABLE `order` (
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `order_status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1290,7 +1291,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1500.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:28:45',NULL,'2019-10-17 00:18:06',NULL,'active',''),(3,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1500.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active',''),(7,0,'-','','','','','','','','','','','','','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,0.00,'',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-14 00:24:07',NULL,'2019-10-14 00:24:07',NULL,'active','complete'),(8,15,'B User','CompanyB','4','China HongKong  九龍區 樂富  EstateBuildingRoom室','China','HongKong','九龍區','樂富','Estate','Building','Room','','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,0.00,'',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-15 00:50:11',NULL,'2019-10-15 00:50:11',NULL,'active','pending');
+INSERT INTO `order` VALUES (25,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,902.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>req</p>',NULL,'2019-10-21 18:58:09',NULL,'2019-10-21 18:58:10',NULL,'active','pending'),(26,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,2.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>req</p>',NULL,'2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active','pending'),(27,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,2.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>req</p>',NULL,'2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active','pending');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1348,7 +1349,7 @@ CREATE TABLE `order_product` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1357,7 +1358,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (1,1,24,0,300.00,2,600.00,'2019-10-11 17:28:45',NULL,'2019-10-17 00:18:06',NULL,'active'),(2,1,25,0,300.00,3,900.00,'2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(5,3,24,0,300.00,2,600.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(6,3,25,0,300.00,3,900.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active');
+INSERT INTO `order_product` VALUES (11,23,23,0,1.00,2,2.00,'2019-10-21 18:54:00',NULL,'2019-10-21 18:54:00',NULL,'active'),(12,24,23,0,1.00,2,2.00,'2019-10-21 18:54:07',NULL,'2019-10-21 18:54:07',NULL,'active'),(13,25,23,0,1.00,2,2.00,'2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(14,25,25,0,300.00,3,900.00,'2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(15,26,23,0,1.00,2,2.00,'2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(16,26,25,0,300.00,0,0.00,'2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(17,27,23,0,1.00,2,2.00,'2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(18,27,25,0,300.00,0,0.00,'2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1384,7 +1385,7 @@ CREATE TABLE `order_product_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_product_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1393,7 +1394,7 @@ CREATE TABLE `order_product_description` (
 
 LOCK TABLES `order_product_description` WRITE;
 /*!40000 ALTER TABLE `order_product_description` DISABLE KEYS */;
-INSERT INTO `order_product_description` VALUES (1,1,1,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(2,1,1,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(3,1,2,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(4,1,2,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(9,3,5,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(10,3,5,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(11,3,6,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(12,3,6,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active');
+INSERT INTO `order_product_description` VALUES (1,1,1,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(2,1,1,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(3,1,2,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(4,1,2,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(9,3,5,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(10,3,5,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(11,3,6,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(12,3,6,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(17,21,9,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:50:49',NULL,'2019-10-21 18:50:49',NULL,'active'),(18,21,9,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:50:49',NULL,'2019-10-21 18:50:49',NULL,'active'),(19,22,10,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:52:36',NULL,'2019-10-21 18:52:36',NULL,'active'),(20,22,10,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:52:36',NULL,'2019-10-21 18:52:36',NULL,'active'),(21,23,11,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:54:00',NULL,'2019-10-21 18:54:00',NULL,'active'),(22,23,11,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:54:00',NULL,'2019-10-21 18:54:00',NULL,'active'),(23,24,12,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:54:07',NULL,'2019-10-21 18:54:07',NULL,'active'),(24,24,12,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:54:07',NULL,'2019-10-21 18:54:07',NULL,'active'),(25,25,13,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(26,25,13,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(27,25,14,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(28,25,14,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(29,26,15,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(30,26,15,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(31,26,16,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(32,26,16,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(33,27,17,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(34,27,17,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(35,27,18,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(36,27,18,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active');
 /*!40000 ALTER TABLE `order_product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3317,14 +3318,6 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'cms'
---
-
---
--- Dumping routines for database 'cms'
---
-
---
 -- Final view structure for view `view_address_book`
 --
 
@@ -3603,4 +3596,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-17  0:20:13
+-- Dump completed on 2019-10-21 19:01:19
