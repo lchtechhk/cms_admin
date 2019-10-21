@@ -68,6 +68,7 @@ class AdminOrderController extends Controller{
         $result = array();
         $result['request'] = $request;
         $result['order_id'] = $request->order_id;
+        $result['status'] = $request->order_status;
         $result['operation'] = 'view_edit';
 		return $this->OrderService->redirect_view($result,$title);
     }
@@ -183,7 +184,7 @@ class AdminOrderController extends Controller{
         // Log::info('[shipping_address_obj] --  : ' . json_encode($shipping_address_obj));
         // Log::info('[order_product_array] --  : ' . json_encode($order_product_array));
         // Log::info('[order_obj] --  : ' . json_encode($order_obj));
-
+        $result = array();
         if(!empty($customer_address_obj) && !empty($shipping_address_obj) && !empty($order_obj) && \sizeof($order_product_array) > 0){
             $order_obj = array_merge($customer_address_obj,$shipping_address_obj,$order_obj);
 
@@ -215,13 +216,15 @@ class AdminOrderController extends Controller{
                         $update_product_result = $this->OrderService->update("order_id",$update_order_param);
                         if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Order");
                     }
+                    $result = $this->View_ProductAttributeService->response($result,"Successful","view_edit");
+                    $result['response_id'] = $order_id;
                 DB::commit();
             }catch(Exception $e){
-            $this->View_ProductAttributeService->throwException(array(),$e->getMessage(),true);
+                $result = $this->View_ProductAttributeService->throwException(array(),$e->getMessage(),true);
             }	
         }else {
-            return null;
+            $result = $this->View_ProductAttributeService->throwException($result,"params are not vaildate",false);
         }
-    
+        return $result;
     }
 }

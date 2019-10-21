@@ -19,7 +19,9 @@
                                             <h2 class="page-header">
                                                 <i class="fa fa-globe"></i> {{ trans('labels.OrderID') }} 
                                                 <small class="pull-right">
-                                                    <span style="font-weight:bold;">{{ trans('labels.OrderedDate') }} : </span><span id="display_date_purchasede" >{{ date('Y-m-d')}}</span>
+                                                    <span style="font-weight:bold;">{{ trans('labels.OrderedDate') }} : </span>
+                                                    <span id="display_date_purchased" ></span>
+                                                    <span id="error_display_date_purchased" class="alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                                     <a class="btn btn-primary part_date_purchased">
                                                         {{ trans('labels.Edit') }}
                                                     </a>
@@ -130,6 +132,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>{{ trans('labels.OrderStatus') }}:</label>
+                                                <span id="error_display_date_purchased" class="alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span>
                                                 <select class="form-control select2" id="order_status" name="order_status" style="width: 100%;">
                                                         <option value="pending" 
                                                             @if(!empty($result['order']->order_status))

@@ -14,7 +14,7 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.PurchasedDate') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('date_purchased', 
-                            date('Y-m-d'),
+                            '',
                             array('class'=>'form-control datepicker field-validate','id'=>'date_purchased')) !!}
                         </div>
                     </div>

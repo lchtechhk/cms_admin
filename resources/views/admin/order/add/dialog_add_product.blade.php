@@ -88,7 +88,7 @@
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Qty') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity','',
-                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)')) !!}
+                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)','min'=>'1')) !!}
                         </div>
                     </div>
                     <div class="form-group">

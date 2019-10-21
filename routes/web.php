@@ -186,6 +186,7 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::get('/listingOrder', 'AdminOrderController@listingOrder');
 		Route::get('/view_addOrder', 'AdminOrderController@view_addOrder');
 		Route::get('/view_editOrder/{order_id}', 'AdminOrderController@view_editOrder');
+		Route::get('/view_editOrder/{order_id}/{order_status}', 'AdminOrderController@view_editOrder');
 		Route::post('/addOrder', 'AdminOrderController@addOrder');
 		Route::post('/updateOrder', 'AdminOrderController@updateOrder');
 		Route::post('/updateOrderProduct', 'AdminOrderController@updateOrderProduct');
