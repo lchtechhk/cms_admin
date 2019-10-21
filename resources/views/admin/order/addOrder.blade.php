@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 table-responsive">
                                             <div class="table-wrap" style="fro">
-                                                <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.Product') }}</div><br>
+                                                <div style="border:1px black solid;background:#3c8dbc;color:#FFF;text-align:center;">{{ trans('labels.Product') }}</div><span id="error_display_item" style="text-align:center;" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span><br>
 
                                                 <div class="table">
                                                     <div class="pull-right">

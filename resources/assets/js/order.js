@@ -74,6 +74,12 @@ $(function() {
     //     });
     // });
     // Dialog Purchase
+    var pre_order_form = localStorage.removeItem('pre_order_form');
+    localStorage.setItem('pre_order_form',JSON.stringify({"order_status" : "pending","date_purchased" : $("#date_purchased").val()}));
+    // var pre_order_form = localStorage.getItem('pre_order_form');
+    // if(!pre_order_form){
+    //     localStorage.setItem('pre_order_form',JSON.stringify({"order_status" : "pending"}));
+    // }
     $("#addPurchaseDate").click(function(){
         var is_pass = true;
         $('#form_purchase_date *').filter(':input').each(function(){
@@ -244,8 +250,8 @@ $(function() {
         $('#form_order_product *').filter(':input').each(function(){
             var id = $(this).attr('id');
             if(id){
-                console.log("id : " + id);
-                console.log("value : " + $(this).val());
+                // console.log("id : " + id);
+                // console.log("value : " + $(this).val());
                 $( "#group_"+id ).removeClass( "has-error" );
                 if($(this).hasClass('field-validate')){
                     if(!$(this).val()){
@@ -262,6 +268,11 @@ $(function() {
         
     });
 
+    $("#order_status").change(function(){
+        var order_status = $(this).val();
+        localStorage.setItem("order_status",order_status);
+    });
+
     // Add Order Form
 
     $("#add_Order").click(function(){
@@ -276,38 +287,93 @@ $(function() {
             order_obj : order_obj,
         }
 
-        $.ajax({
-            type: "POST",
-            url: "/admin/admin/createOrder",
-            data: json,
-            success: function(msg) { 
-                console.log("msg : " + JSON.stringify(msg));
-                if(msg) { 
-  
-                }   
-            },  
-            fail: function(msg) {
-                alert('NO');
-            }   
-        });
+        
+        var is_pass = validate_order_form();
+
+        console.log("is_pass : " + is_pass);
         console.log("json : " + JSON.stringify(json));
+
+        if(is_pass){
+            $.ajax({
+                type: "POST",
+                url: "/admin/admin/createOrder",
+                data: json,
+                success: function(msg) { 
+                    console.log("msg : " + JSON.stringify(msg));
+                    if(msg) { 
+    
+                    }   
+                },  
+                fail: function(msg) {
+                    alert('NO');
+                }   
+            });
+        }
+    
     });
 
-    function validate_order_form(){
-        var customer_name = localStorage.getItem('customer_name');
-        var customer_company = localStorage.getItem('customer_company');
-        var customer_street_address = localStorage.getItem('customer_street_address');
-        var display_customer_telephone = localStorage.getItem('display_customer_telephone');
-        var customer_telephone = localStorage.getItem('customer_telephone');
-        var customer_name = localStorage.getItem('customer_name');
-        var customer_name = localStorage.getItem('customer_name');
-        var customer_name = localStorage.getItem('customer_name');
+    function validate_order_form(){      
+        var pre_order_form = localStorage.getItem("pre_order_form");
+        // console.log("pre_order_form : " + pre_order_form );
+        var is_pass = true;
+        if(pre_order_form){
+            var order_item = JSON.parse(pre_order_form)['order_item'];
+            var customer_address = JSON.parse(pre_order_form)['customer_address'];
+            var shipping_address = JSON.parse(pre_order_form)['shipping_address'];
+            var shipping_address = JSON.parse(pre_order_form)['shipping_address'];
 
-        $("#display_customer_name").html(localStorage.getItem('customer_name'));
-        $("#display_customer_company").html(localStorage.getItem('customer_company'));
-        $("#display_customer_street_address").html(localStorage.getItem('customer_street_address'));
-        $("#display_customer_telephone").html(localStorage.getItem('customer_telephone'));
-        $("#display_email").html(localStorage.getItem('email'));
+            $( "#error_display_customer_id" ).removeClass( "hidden" );
+            $( "#error_display_customer_company" ).removeClass( "hidden" );
+            $( "#error_display_customer_street_address" ).removeClass( "hidden" );
+            $( "#error_display_customer_telephone" ).removeClass( "hidden" );
+            $( "#error_display_email" ).removeClass( "hidden" );
+            $( "#error_display_shipping_method" ).removeClass( "hidden" );
+            $( "#error_display_shipping_cost" ).removeClass( "hidden" );
+            $( "#error_display_item" ).removeClass( "hidden" );
+
+            if(order_item && order_item.length > 0 ){
+                console.log("order_item : " + JSON.stringify(order_item));
+                console.log("length : " + order_item.length );
+                $( "#error_display_item" ).addClass( "hidden" );
+                order_item.forEach((element,index) => {
+                    var qty = element.product_quantity;
+                    var final_price = element.final_price;
+                    $( "#error_display_"+index+"_"+"product_quantity" ).addClass( "hidden" );
+                    $( "#error_display_"+index+"_"+"final_price" ).addClass( "hidden" );
+                    if(!qty || qty == 0){
+                        is_pass = false;
+                        $( "#error_display_"+index+"_"+"product_quantity" ).removeClass( "hidden" );
+                    }
+                    if(!final_price || final_price == 0){
+                        is_pass = false;
+                        $( "#error_display_"+index+"_"+"final_price" ).removeClass( "hidden" );
+                    }
+                });
+            }else {
+                is_pass = false;
+            }
+            
+            // customer_address
+            if(customer_address){
+                $.each(customer_address,(key,val)=>{
+                    if(val)$( "#error_display_"+key ).addClass( "hidden" );
+                })              
+            }else {
+                is_pass = false;
+            }
+
+            // shipping_address
+            if(shipping_address){
+                $.each(shipping_address,(key,val)=>{
+                    if(val)$( "#error_display_"+key ).addClass( "hidden" );
+                    
+                })              
+            }else {
+                is_pass = false;
+            }
+
+        }
+        return is_pass;
     }
     function fill_customer_address(){
         var customer_id = $("#customer_id").val();
@@ -327,40 +393,54 @@ $(function() {
         var customer_telephone = $("#customer_telephone").val();
         var email = $("#email").val();
 
+        var customer_address = {
+            customer_id : customer_id,
+            customer_name : customer_id_text,
+            customer_company:customer_company,
+            customer_address_id:customer_address_id,
+            customer_street_address:customer_street_address,
+            
+            customer_street_address:customer_street_address,
+            customer_country:customer_country,
+            customer_city:customer_city,
+            customer_area:customer_area,
+            customer_district:customer_district,
+            customer_estate:customer_estate,
+            customer_building:customer_building,
+            customer_room:customer_room,
+
+            customer_telephone:customer_telephone,
+            email:email
+        };
+
+
+        var pre_order_form = set_pre_order_form("customer_address",customer_address);
+
         // localStorage.getItem('remove_slls');
-        localStorage.setItem('customer_id', customer_id);
-        localStorage.setItem('customer_name', customer_id_text);
-        localStorage.setItem('customer_company', customer_company);
-        localStorage.setItem('customer_address_id', customer_address_id);
-        localStorage.setItem('customer_country', customer_country);
-        localStorage.setItem('customer_city', customer_city);
-        localStorage.setItem('customer_area', customer_area);
-        localStorage.setItem('customer_district', customer_district);
-        localStorage.setItem('customer_estate', customer_estate);
-        localStorage.setItem('customer_building', customer_building);
-        localStorage.setItem('customer_room', customer_room);
-        localStorage.setItem('customer_street_address', customer_street_address);
-        localStorage.setItem('customer_telephone', customer_telephone);
-        localStorage.setItem('email', email);
-
-        $("#display_customer_name").html(localStorage.getItem('customer_name'));
-        $("#display_customer_company").html(localStorage.getItem('customer_company'));
-        $("#display_customer_street_address").html(localStorage.getItem('customer_street_address'));
-        $("#display_customer_telephone").html(localStorage.getItem('customer_telephone'));
-        $("#display_email").html(localStorage.getItem('email'));
-
-        // console.log("customer_id :" + localStorage.getItem('customer_id'));
+        $("#display_customer_name").html(pre_order_form['customer_address']['customer_name']);
+        $("#display_customer_company").html(pre_order_form['customer_address']['customer_company']);
+        $("#display_customer_street_address").html(pre_order_form['customer_address']['customer_street_address']);
+        $("#display_customer_telephone").html(pre_order_form['customer_address']['customer_telephone']);
+        $("#display_email").html(pre_order_form['customer_address']['customer_name']);
     }
 
+    function set_pre_order_form(key,json){
+        var pre_order_form = JSON.parse(localStorage.getItem("pre_order_form"));
+        pre_order_form[key] = json;
+        localStorage.setItem("pre_order_form",JSON.stringify(pre_order_form));
+        return JSON.parse(localStorage.getItem("pre_order_form"));
+    }
     function fill_shipping_address(){
         var shipping_method = $("#shipping_method").val();
         var shipping_cost = $("#shipping_cost").val();
        
-        localStorage.setItem('shipping_method', shipping_method);
-        localStorage.setItem('shipping_cost', shipping_cost);
-
-        $("#display_shipping_method").html(localStorage.getItem('shipping_method'));
-        $("#display_shipping_cost").html(localStorage.getItem('shipping_cost'));
+        var shipping_address = {
+            shipping_method : shipping_method,
+            shipping_cost : shipping_cost,
+        }
+        var pre_order_form = set_pre_order_form("shipping_address",shipping_address);
+        $("#display_shipping_method").html(pre_order_form['shipping_address']['shipping_method']);
+        $("#display_shipping_cost").html(pre_order_form['shipping_address']['shipping_cost']);
 
     }
 
@@ -384,19 +464,20 @@ $(function() {
         td += "<td>"+"<img src='"+add_order_product_image+"' width='60px'>"+"</td>";
         td += "<td>"+product_attribute_text+"</td>";
         td += "<td>"+product_price+"</td>";
-        td += "<td>"+"<input oninput='calculate_final_price("+rowCount+")' name='order_product["+rowCount+"][product_quantity]' onkeypress='validate(event)' type='text' value='"+product_quantity+"'/>"+"</td>";
-        td += "<td>"+"<input name='order_product["+rowCount+"][final_price]' onkeypress='validate(event)' type='text' value='"+final_price+"'/>"+"</td>";
+        td += "<td>"+"<input oninput='calculate_final_price("+rowCount+")' name='order_product["+rowCount+"][product_quantity]' onkeypress='validate(event)' type='text' value='"+product_quantity+"'/>"+'<span id="error_display_'+rowCount+'_product_quantity"'+' class="help-block alert alert-danger hidden">This Field Is Required.</span>'+"</td>";
+        td += "<td>"+"<input name='order_product["+rowCount+"][final_price]' onkeypress='validate(event)' type='text' value='"+final_price+"'/>"+'<span id="error_display_'+rowCount+'_final_price"'+' class="help-block alert alert-danger hidden">This Field Is Required.</span>'+"</td>";
         td += '<td>'+
         '<a style="margin-left:5px;"title="Delete Order Product"  onclick="delete_item('+rowCount+')" class="badge bg-red">'+
         '<i class="fa fa-trash" aria-hidden="true"></i></a>'+
         '</td>';
 
         $('#view_order_table').find('tbody').append("<tr id='item_"+rowCount+"'>"+td+"</tr>");
-
+        json_order_product();
     }
 
     function fill_purchase_date(){
         var date_purchased = $("#date_purchased").val();
+        localStorage.setItem("date_purchased",{date_purchased : date_purchased});
         $("#display_date_purchasede").html(date_purchased);
     }
     function json_order_product(){
@@ -414,69 +495,67 @@ $(function() {
                 product_quantity:product_quantity,
                 final_price:final_price
             };
-            json_array.push(obj);
+            if(product_attribute_id)json_array.push(obj);
         }
-        // console.log("json_array : " + JSON.stringify(json_array));
+        if(json_array.length > 0){
+            $( "#error_display_item" ).addClass( "hidden" );
+            set_pre_order_form("order_item",json_array);
+            
+        }
         return json_array;
     }
     
     function json_customer_address(){
-        var customer_id = localStorage.getItem('customer_id');
-        var customer_id_text = localStorage.getItem('customer_name');
-        var customer_company = localStorage.getItem('customer_company');
-        var customer_address_id = localStorage.getItem('customer_address_id');
-        var customer_street_address = localStorage.getItem('customer_street_address');
+        var pre_order_form = JSON.parse(localStorage.getItem("pre_order_form"));
+        var customer_address = pre_order_form['customer_address'];
+        
+        if(!customer_address)return null;
 
-        var customer_country = localStorage.getItem('customer_country');
-        var customer_city = localStorage.getItem('customer_city');
-        var customer_area = localStorage.getItem('customer_area');
-        var customer_district = localStorage.getItem('customer_district');
-        var customer_estate = localStorage.getItem('customer_estate');
-        var customer_building = localStorage.getItem('customer_building');
-        var customer_room = localStorage.getItem('customer_room');
+        var c_a = 
+        {
+            customer_id : customer_address['customer_id'],
+            customer_name : customer_address['customer_name'],
+            customer_company:customer_address['customer_company'],
+            customer_address_id:customer_address['customer_address_id'],
 
-        var customer_telephone = localStorage.getItem('customer_telephone');
-        var email = localStorage.getItem('email');
+            customer_street_address:customer_address['customer_street_address'],
+            customer_country:customer_address['customer_country'],
+            customer_city:customer_address['customer_city'],
+            customer_area:customer_address['customer_area'],
+            customer_district:customer_address['customer_district'],
+            customer_estate:customer_address['customer_estate'],
+            customer_building:customer_address['customer_building'],
+            customer_room:customer_address['customer_room'],
 
-        var customer_address = {
-                customer_id : customer_id,
-                customer_name : customer_id_text,
-                customer_company:customer_company,
-                customer_address_id:customer_address_id,
-                customer_street_address:customer_street_address,
-                
-                customer_street_address:customer_street_address,
-                customer_country:customer_country,
-                customer_city:customer_city,
-                customer_area:customer_area,
-                customer_district:customer_district,
-                customer_estate:customer_estate,
-                customer_building:customer_building,
-                customer_room:customer_room,
-
-                customer_telephone:customer_telephone,
-                email:email};
-        return customer_address;
+            customer_telephone:customer_address['customer_telephone'],
+            email:customer_address['email']
+        };
+        return c_a;
         
     }
 
     function json_shipping_address(){
-        var shipping_method = localStorage.getItem('shipping_method');
-        var shipping_cost = localStorage.getItem('shipping_cost');
-       
-        var shipping_address = {
-            shipping_method : shipping_method,
-            shipping_cost : shipping_cost,
+        var pre_order_form = JSON.parse(localStorage.getItem("pre_order_form"));
+        var shipping_address = pre_order_form['shipping_address'];
+        if(!shipping_address)return null;
+        var s_a = {
+            shipping_method : shipping_address['shipping_method'],
+            shipping_cost : shipping_address['shipping_cost'],
         }
-        return shipping_address;
+        return s_a;
 
     }
 
     function json_order_form(){
-        var order_status = $("#order_status").val();
-       
+        var pre_order_form = JSON.parse(localStorage.getItem("pre_order_form"));
+
+        var order_status = pre_order_form["order_status"];
+        var date_purchased =  pre_order_form["date_purchased"];
+        var order_remark = CKEDITOR.instances['order_remark'].getData();
         var order_obj = {
             order_status : order_status,
+            date_purchased : date_purchased,
+            order_remark : order_remark,
         }
         return order_obj;
     }

@@ -179,42 +179,49 @@ class AdminOrderController extends Controller{
         $order_product_array = !empty($request->input("order_product_array")) && sizeof($request->input("order_product_array")) > 0 ? $request->input("order_product_array") : array();
         $product_item_size = sizeof($order_product_array);
 
-        $order_obj = array_merge($customer_address_obj,$shipping_address_obj,$order_obj);
         // Log::info('[customer_address_obj] --  : ' . json_encode($customer_address_obj));
         // Log::info('[shipping_address_obj] --  : ' . json_encode($shipping_address_obj));
         // Log::info('[order_product_array] --  : ' . json_encode($order_product_array));
         // Log::info('[order_obj] --  : ' . json_encode($order_obj));
-        try{ 
-            DB::beginTransaction();
-            $add_order_result = $this->OrderService->add($order_obj);
-            if(empty($add_order_result['status']) || $add_order_result['status'] == 'fail')throw new Exception("Error To Add Order");
-            $order_id = $add_order_result['response_id'];
+
+        if(!empty($customer_address_obj) && !empty($shipping_address_obj) && !empty($order_obj) && \sizeof($order_product_array) > 0){
+            $order_obj = array_merge($customer_address_obj,$shipping_address_obj,$order_obj);
+
+            try{ 
+                DB::beginTransaction();
+                $add_order_result = $this->OrderService->add($order_obj);
+                if(empty($add_order_result['status']) || $add_order_result['status'] == 'fail')throw new Exception("Error To Add Order");
+                $order_id = $add_order_result['response_id'];
 
 
-            $order_price = 0;
-            foreach ($order_product_array as $index => $product_param) {
-                $final_price = $product_param['final_price'];
-                $product_attribute_id = $product_param['product_attribute_id'];
-                // Add Product
-                $product_param['order_id'] = $add_order_result['response_id'];
-                $add_order_product_result = $this->OrderProductService->add($product_param);
-                if(empty($add_order_product_result['status']) || $add_order_product_result['status'] == 'fail')throw new Exception("Error To Add Order");
-                $order_product_id = $add_order_product_result['response_id'];
-                // Add Product Description 
-                $add_orderDescription = $this->View_ProductAttributeService->send_to_orderDescription($order_id,$order_product_id,$product_attribute_id);
-                if(empty($add_orderDescription['status']) || $add_orderDescription['status'] == 'fail')throw new Exception("Error To Add Order Item Description");
-                // Calculator order_price
-                $order_price += $final_price;
-            }
-                //Update Order
-                if($product_item_size > 0){                
-                    $update_order_param = array('order_id'=>$order_id,'order_price'=>$order_price);
-                    $update_product_result = $this->OrderService->update("order_id",$update_order_param);
-                    if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Order");
+                $order_price = 0;
+                foreach ($order_product_array as $index => $product_param) {
+                    $final_price = $product_param['final_price'];
+                    $product_attribute_id = $product_param['product_attribute_id'];
+                    // Add Product
+                    $product_param['order_id'] = $add_order_result['response_id'];
+                    $add_order_product_result = $this->OrderProductService->add($product_param);
+                    if(empty($add_order_product_result['status']) || $add_order_product_result['status'] == 'fail')throw new Exception("Error To Add Order");
+                    $order_product_id = $add_order_product_result['response_id'];
+                    // Add Product Description 
+                    $add_orderDescription = $this->View_ProductAttributeService->send_to_orderDescription($order_id,$order_product_id,$product_attribute_id);
+                    if(empty($add_orderDescription['status']) || $add_orderDescription['status'] == 'fail')throw new Exception("Error To Add Order Item Description");
+                    // Calculator order_price
+                    $order_price += $final_price;
                 }
-            DB::commit();
-        }catch(Exception $e){
-           $this->View_ProductAttributeService->throwException(array(),$e->getMessage(),true);
-        }	
+                    //Update Order
+                    if($product_item_size > 0){                
+                        $update_order_param = array('order_id'=>$order_id,'order_price'=>$order_price);
+                        $update_product_result = $this->OrderService->update("order_id",$update_order_param);
+                        if(empty($update_product_result['status']) || $update_product_result['status'] == 'fail')throw new Exception("Error To Update Order");
+                    }
+                DB::commit();
+            }catch(Exception $e){
+            $this->View_ProductAttributeService->throwException(array(),$e->getMessage(),true);
+            }	
+        }else {
+            return null;
+        }
+    
     }
 }
