@@ -264,4 +264,26 @@
         </div>
     </section>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        
+        //for multiple languages
+        @foreach($result['languages'] as $languages)
+            // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    console.log('language_array[{{$languages->languages_id}}][description]');
+            CKEDITOR.replace( 'language_array[{{$languages->languages_id}}][description]', {
+        filebrowserBrowseUrl: '{{url('uploads/images/')}}',
+        filebrowserUploadUrl: '{{url('admin/article/image')}}?_token={{csrf_token()}}'
+    });
+        
+        @endforeach
+        
+        //bootstrap WYSIHTML5 - text editor
+        $(".textarea").wysihtml5();
+        
+});
+</script>
+
 @endsection

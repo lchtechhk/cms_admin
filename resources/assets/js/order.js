@@ -339,8 +339,6 @@ $(function() {
         td += "<td>"+"<input oninput='calculate_final_price("+rowCount+")' name='order_product["+rowCount+"][product_quantity]' onkeypress='validate(event)' type='text' value='"+product_quantity+"'/>"+"</td>";
         td += "<td>"+"<input name='order_product["+rowCount+"][final_price]' onkeypress='validate(event)' type='text' value='"+final_price+"'/>"+"</td>";
         td += '<td>'+
-        '<a title="View Order Product" class="badge bg-light-blue part_edit_product">'+
-        '<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>'+
         '<a style="margin-left:5px;"title="Delete Order Product"  onclick="delete_item('+rowCount+')" class="badge bg-red">'+
         '<i class="fa fa-trash" aria-hidden="true"></i></a>'+
         '</td>';

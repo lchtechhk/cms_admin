@@ -120,10 +120,9 @@
 
                                     <div class="col-xs-12">
                                         <hr>
-                                        <p class="lead">{{ trans('labels.ChangeStatus') }}:</p>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>{{ trans('labels.PaymentStatus') }}:</label>
+                                                <label>{{ trans('labels.OrderStatus') }}:</label>
                                                 <select class="form-control select2" id="order_status" name="order_status" style="width: 100%;">
                                                         <option value="pending" 
                                                             @if(!empty($result['order']->order_status))
@@ -144,10 +143,19 @@
                                                             Cancel
                                                         </option>
                                                 </select>
-                                                <span class="help-block" style="font-weight: normal;font-size: 11px;margin-bottom: 0;">{{ trans('labels.ChooseStatus') }}</span>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-xs-12">
+                                        <p class="lead">{{ trans('labels.Remark') }}:</p>
+                                        <div class="form-group">
+                                            <textarea  id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+                                    
+
                                     {{-- <div class="col-xs-12">
                                         <hr>
                                         <p class="lead">{{ trans('labels.Comment') }}:</p>
@@ -203,10 +211,16 @@
         @include('admin/order/add/dialog_shipping_address')
         @include('admin/order/add/dialog_add_product')
         @include('admin/order/deleteOrderProduct')
-        <div class="modal fade" id="dialog_edit_product" tabindex="-1" role="dialog" aria-labelledby="dialog_edit_product">
-               @include('admin/order/add/dialog_edit_product')
-       </div>
-       
     </section>
 </div>
+
+<script type="text/javascript">
+    window.onload = function()
+    {
+        CKEDITOR.replace( 'order_remark', {
+            filebrowserBrowseUrl: '{{url('uploads/images/')}}',
+            filebrowserUploadUrl: '{{url('admin/article/image')}}?_token={{csrf_token()}}'
+        });
+    };
+</script>
 @endsection

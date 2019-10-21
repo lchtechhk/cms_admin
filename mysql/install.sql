@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.32-MariaDB
+-- Server version	5.5.5-10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1281,7 +1281,7 @@ CREATE TABLE `order` (
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `order_status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1290,7 +1290,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active',''),(3,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1500.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active','');
+INSERT INTO `order` VALUES (1,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1500.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:28:45',NULL,'2019-10-17 00:18:06',NULL,'active',''),(3,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1500.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active',''),(7,0,'-','','','','','','','','','','','','','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,0.00,'',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-14 00:24:07',NULL,'2019-10-14 00:24:07',NULL,'active','complete'),(8,15,'B User','CompanyB','4','China HongKong  九龍區 樂富  EstateBuildingRoom室','China','HongKong','九龍區','樂富','Estate','Building','Room','','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,0.00,'',NULL,NULL,0.00,NULL,NULL,NULL,0,NULL,NULL,0,NULL,'2019-10-15 00:50:11',NULL,'2019-10-15 00:50:11',NULL,'active','pending');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1307,6 +1307,7 @@ CREATE TABLE `order_comment` (
   `comment` mediumtext COLLATE utf8_general_mysql500_ci,
   `customer_notified` int(1) DEFAULT '0',
   `permission` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `comment_date` datetime NOT NULL,
   `create_date` datetime NOT NULL,
   `create_by_id` int(11) DEFAULT NULL,
   `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
@@ -1322,7 +1323,7 @@ CREATE TABLE `order_comment` (
 
 LOCK TABLES `order_comment` WRITE;
 /*!40000 ALTER TABLE `order_comment` DISABLE KEYS */;
-INSERT INTO `order_comment` VALUES (1,1,'comment',0,'Admin','2019-06-09 00:00:00',NULL,'',NULL,'active');
+INSERT INTO `order_comment` VALUES (1,1,'comment',0,'Admin','2019-06-09 00:00:00','2019-06-09 00:00:00',NULL,'',NULL,'active');
 /*!40000 ALTER TABLE `order_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1356,7 +1357,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (1,1,24,0,300.00,2,600.00,'2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(2,1,25,0,300.00,3,900.00,'2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(5,3,24,0,300.00,2,600.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(6,3,25,0,300.00,3,900.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active');
+INSERT INTO `order_product` VALUES (1,1,24,0,300.00,2,600.00,'2019-10-11 17:28:45',NULL,'2019-10-17 00:18:06',NULL,'active'),(2,1,25,0,300.00,3,900.00,'2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(5,3,24,0,300.00,2,600.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(6,3,25,0,300.00,3,900.00,'2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3316,6 +3317,14 @@ LOCK TABLES `zones_to_geo_zones` WRITE;
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'cms'
+--
+
+--
+-- Dumping routines for database 'cms'
+--
+
+--
 -- Final view structure for view `view_address_book`
 --
 
@@ -3594,4 +3603,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-11 18:14:42
+-- Dump completed on 2019-10-17  0:20:13

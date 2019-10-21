@@ -2,8 +2,7 @@
 
 <script>
     $( document ).ready(function() {
-        console.log("edit");
-        $("#edit_product_quantity" ).change(function() {
+        $("#edit_product_quantity" ).on('input',function(e){
             var price = $('#edit_product_price').val();
             var qty = $(this).val();
             if(price != '' && qty != ''){
