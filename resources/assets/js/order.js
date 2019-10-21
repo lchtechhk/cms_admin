@@ -40,12 +40,15 @@ function calculate_final_price(count){
 function check_vaildate(a){
     var id = $(a).attr('id');
     if(id){
-        console.log("id : " + id);
-        console.log("value : " + $(a).val());
+        // console.log("id : " + id);
+        // console.log("value : " + $(a).val());
         $( "#group_"+id ).removeClass( "has-error" );
+        $( "#error_display_"+id ).addClass( "hidden" );
+        console.log("error_display_"+id);
         if($(a).hasClass('field-validate')){
             if(!$(a).val()){
                 $( "#group_"+id ).addClass( "has-error" );
+                $( "#error_display_"+id ).removeClass( "hidden" );
                 return false;
             }
         }
@@ -102,7 +105,7 @@ $(function() {
         customer_change(phone,email);
         $.ajax({
             type: "POST",
-            url: "/cms/admin/findAddressByCustomerId",
+            url: "/admin/admin/findAddressByCustomerId",
             data: {customer_id:customer_id},
             success: function(msg) { 
                 console.log("msg : " + JSON.stringify(msg));
@@ -275,7 +278,7 @@ $(function() {
 
         $.ajax({
             type: "POST",
-            url: "/cms/admin/createOrder",
+            url: "/admin/admin/createOrder",
             data: json,
             success: function(msg) { 
                 console.log("msg : " + JSON.stringify(msg));
@@ -290,29 +293,74 @@ $(function() {
         console.log("json : " + JSON.stringify(json));
     });
 
+    function validate_order_form(){
+        var customer_name = localStorage.getItem('customer_name');
+        var customer_company = localStorage.getItem('customer_company');
+        var customer_street_address = localStorage.getItem('customer_street_address');
+        var display_customer_telephone = localStorage.getItem('display_customer_telephone');
+        var customer_telephone = localStorage.getItem('customer_telephone');
+        var customer_name = localStorage.getItem('customer_name');
+        var customer_name = localStorage.getItem('customer_name');
+        var customer_name = localStorage.getItem('customer_name');
+
+        $("#display_customer_name").html(localStorage.getItem('customer_name'));
+        $("#display_customer_company").html(localStorage.getItem('customer_company'));
+        $("#display_customer_street_address").html(localStorage.getItem('customer_street_address'));
+        $("#display_customer_telephone").html(localStorage.getItem('customer_telephone'));
+        $("#display_email").html(localStorage.getItem('email'));
+    }
     function fill_customer_address(){
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();
-        var customer_company = $("#customer_company").val();
         var customer_address_id = $("#customer_address_id").val();
-        var customer_street_address = $("#customer_street_address").val();
+        var customer_company = $("#customer_company").val();
 
+        var customer_country = $("#customer_country").val();
+        var customer_city = $("#customer_city").val();
+        var customer_area = $("#customer_area").val();
+        var customer_district = $("#customer_district").val();
+        var customer_estate = $("#customer_estate").val();
+        var customer_building = $("#customer_building").val();
+        var customer_room = $("#customer_room").val();
+
+        var customer_street_address = $("#customer_street_address").val();
         var customer_telephone = $("#customer_telephone").val();
         var email = $("#email").val();
-        $("#add_customer_name").html(customer_id_text);
-        $("#add_company_name").html(customer_company);
-        $("#add_customer_street_address").html(customer_street_address);
-        $("#add_customer_telephone").html(customer_telephone);
-        $("#add_email").html(email);
 
+        // localStorage.getItem('remove_slls');
+        localStorage.setItem('customer_id', customer_id);
+        localStorage.setItem('customer_name', customer_id_text);
+        localStorage.setItem('customer_company', customer_company);
+        localStorage.setItem('customer_address_id', customer_address_id);
+        localStorage.setItem('customer_country', customer_country);
+        localStorage.setItem('customer_city', customer_city);
+        localStorage.setItem('customer_area', customer_area);
+        localStorage.setItem('customer_district', customer_district);
+        localStorage.setItem('customer_estate', customer_estate);
+        localStorage.setItem('customer_building', customer_building);
+        localStorage.setItem('customer_room', customer_room);
+        localStorage.setItem('customer_street_address', customer_street_address);
+        localStorage.setItem('customer_telephone', customer_telephone);
+        localStorage.setItem('email', email);
+
+        $("#display_customer_name").html(localStorage.getItem('customer_name'));
+        $("#display_customer_company").html(localStorage.getItem('customer_company'));
+        $("#display_customer_street_address").html(localStorage.getItem('customer_street_address'));
+        $("#display_customer_telephone").html(localStorage.getItem('customer_telephone'));
+        $("#display_email").html(localStorage.getItem('email'));
+
+        // console.log("customer_id :" + localStorage.getItem('customer_id'));
     }
 
     function fill_shipping_address(){
         var shipping_method = $("#shipping_method").val();
         var shipping_cost = $("#shipping_cost").val();
        
-        $("#add_shipping_method").html(shipping_method);
-        $("#add_shipping_cost").html(shipping_cost);
+        localStorage.setItem('shipping_method', shipping_method);
+        localStorage.setItem('shipping_cost', shipping_cost);
+
+        $("#display_shipping_method").html(localStorage.getItem('shipping_method'));
+        $("#display_shipping_cost").html(localStorage.getItem('shipping_cost'));
 
     }
 
@@ -373,22 +421,22 @@ $(function() {
     }
     
     function json_customer_address(){
-        var customer_id = $("#customer_id").val();
-        var customer_id_text = $("#customer_id option:selected").text();
-        var customer_company = $("#customer_company").val();
-        var customer_address_id = $("#customer_address_id").val();
-        var customer_street_address = $("#customer_street_address").val();
+        var customer_id = localStorage.getItem('customer_id');
+        var customer_id_text = localStorage.getItem('customer_name');
+        var customer_company = localStorage.getItem('customer_company');
+        var customer_address_id = localStorage.getItem('customer_address_id');
+        var customer_street_address = localStorage.getItem('customer_street_address');
 
-        var customer_country = $('#customer_country').val();
-        var customer_city = $('#customer_city').val();
-        var customer_area = $('#customer_area').val();
-        var customer_district = $('#customer_district').val();
-        var customer_estate = $('#customer_estate').val();
-        var customer_building = $('#customer_building').val();
-        var customer_room = $('#customer_room').val();
+        var customer_country = localStorage.getItem('customer_country');
+        var customer_city = localStorage.getItem('customer_city');
+        var customer_area = localStorage.getItem('customer_area');
+        var customer_district = localStorage.getItem('customer_district');
+        var customer_estate = localStorage.getItem('customer_estate');
+        var customer_building = localStorage.getItem('customer_building');
+        var customer_room = localStorage.getItem('customer_room');
 
-        var customer_telephone = $("#customer_telephone").val();
-        var email = $("#email").val();
+        var customer_telephone = localStorage.getItem('customer_telephone');
+        var email = localStorage.getItem('email');
 
         var customer_address = {
                 customer_id : customer_id,
@@ -413,8 +461,8 @@ $(function() {
     }
 
     function json_shipping_address(){
-        var shipping_method = $("#shipping_method").val();
-        var shipping_cost = $("#shipping_cost").val();
+        var shipping_method = localStorage.getItem('shipping_method');
+        var shipping_cost = localStorage.getItem('shipping_cost');
        
         var shipping_address = {
             shipping_method : shipping_method,

@@ -33,23 +33,28 @@
                                                 <table>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CustomerName') }} : </div></td>
-                                                        <td style="padding:10px;"><div id="add_customer_name" ></div></td>
+                                                        <td style="padding:10px;"><div id="display_customer_name" ></div></td>
+                                                        <td style="padding:10px;"><span id="error_display_customer_id" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.CompanyName') }} : </div></td>
-                                                        <td style="padding:10px;"><div id="add_company_name" ></div></td>
+                                                        <td style="padding:10px;"><div id="display_customer_company" ></div></td>
+                                                        <td style="padding:10px;"><span id="error_display_customer_company" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Address') }} : </div></td>
-                                                        <td style="padding:10px;"><div id="add_customer_street_address" ></div></td>
+                                                        <td style="padding:10px;"><div id="display_customer_street_address" ></div></td>
+                                                        <td style="padding:10px;"><span id="error_display_customer_street_address" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Phone') }} : </div></td>
-                                                        <td style="padding:10px;"><div id="add_customer_telephone" ></div></td>
+                                                        <td style="padding:10px;"><div id="display_customer_telephone" ></div></td>
+                                                        <td style="padding:10px;"><span id="error_display_customer_telephone" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                     </tr>
                                                     <tr>
                                                         <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.Email') }} : </div></td>
-                                                        <td style="padding:10px;"><div id="add_email" ></div></td>
+                                                        <td style="padding:10px;"><div id="display_email" ></div></td>
+                                                        <td style="padding:10px;"><span id="error_display_email" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                     </tr>
                                                 </table>
                                             <div class="row text-center" >
@@ -65,11 +70,13 @@
                                             <table>
                                                 <tr>
                                                     <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingMethod') }} : </div></td>
-                                                    <td style="padding:10px;"><div id="add_shipping_method" ></div></td>
+                                                    <td style="padding:10px;"><div id="display_shipping_method" ></div></td>
+                                                    <td style="padding:10px;"><span id="error_display_shipping_method" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding:10px;"><div style="font-weight:bold;">{{ trans('labels.ShippingCost') }} : </div></td>
-                                                    <td style="padding:10px;"><div id="add_shipping_cost" ></div></td>
+                                                    <td style="padding:10px;"><div id="display_shipping_cost" ></div></td>
+                                                    <td style="padding:10px;"><span id="error_display_shipping_cost" class="help-block alert alert-danger hidden">{{ trans('labels.textRequiredFieldMessage') }}</span></td>
                                                 </tr>
                                             </table>
                                             <div class="row text-center" >
