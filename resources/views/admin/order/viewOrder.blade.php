@@ -64,8 +64,6 @@
                                         <div class="col-sm-4 invoice-col">
                                             {{ trans('labels.ShippingInfo') }}
                                             <address>
-                                                {{ trans('labels.DeliveryName') }}: <strong>{{ $result['order']->delivery_name }}</strong><br>
-                                                {{ trans('labels.Address') }}: {{ $result['order']->delivery_street_address }} <br>
                                                 <strong> {{ trans('labels.ShippingMethod') }}:</strong> {{ $result['order']->shipping_method }} <br>
                                                 <strong> {{ trans('labels.ShippingCost') }}:</strong> {{$result['order']->shipping_cost}}<br>
                                             </address>

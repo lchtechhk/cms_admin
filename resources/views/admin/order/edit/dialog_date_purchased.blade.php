@@ -15,7 +15,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_id', 
                             empty($result['order']->order_id) ? '' : print_value($result['operation'],$result['order']->order_id),
-                            array('class'=>'form-control','readonly')) !!}
+                            array('class'=>'form-control','readonly','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -23,7 +23,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('date_purchased', 
                             empty($result['order']->date_purchased) ? '' : print_value($result['operation'],$result['order']->date_purchased),
-                            array('class'=>'form-control datepicker','id'=>'date_purchased')) !!}
+                            array('class'=>'form-control datepicker','id'=>'date_purchased','required')) !!}
                         </div>
                     </div>
                 </div>

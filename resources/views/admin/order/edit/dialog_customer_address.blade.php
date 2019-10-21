@@ -48,7 +48,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_company', 
                             empty($result['order']->customer_company) ? '' : print_value($result['operation'],$result['order']->customer_company),
-                            array('class'=>'form-control','id'=>'customer_company')) !!}
+                            array('class'=>'form-control','id'=>'customer_company','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,7 +56,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_street_address', 
                             empty($result['order']->customer_company) ? '' : print_value($result['operation'],$result['order']->customer_street_address),
-                            array('class'=>'form-control','id'=>'customer_street_address')) !!}
+                            array('class'=>'form-control','id'=>'customer_street_address','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,7 +64,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('customer_telephone', 
                             empty($result['order']->customer_telephone) ? '' : print_value($result['operation'],$result['order']->customer_telephone),
-                            array('class'=>'form-control','id'=>'customer_telephone')) !!}
+                            array('class'=>'form-control','id'=>'customer_telephone','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,7 +72,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('email', 
                             empty($result['order']->email) ? '' : print_value($result['operation'],$result['order']->email),
-                            array('class'=>'form-control','id'=>'email')) !!}
+                            array('class'=>'form-control','id'=>'email','required')) !!}
                         </div>
                     </div>
                 </div>

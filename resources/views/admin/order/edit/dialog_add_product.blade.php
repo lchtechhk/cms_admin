@@ -51,7 +51,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_id', 
                             empty($result['order']->order_id) ? '' : print_value($result['operation'],$result['order']->order_id),
-                            array('class'=>'form-control','readonly')) !!}
+                            array('class'=>'form-control','readonly','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,28 +82,28 @@
                         <label for="label_product_name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ProductName') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_name', '',
-                            array('class'=>'form-control ','readonly','id'=>'add_product_name')) !!}
+                            array('class'=>'form-control ','readonly','id'=>'add_product_name','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Price') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_price','',
-                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"","onkeypress"=>'validate(event)')) !!}
+                            array('class'=>'form-control ','readonly','id'=>'add_product_price','value'=>"","onkeypress"=>'validate(event)','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Qty') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('product_quantity','',
-                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)')) !!}
+                            array('class'=>'form-control ','id'=>'add_product_quantity','readonly',"onkeypress"=>'validate(event)','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.FinalPrice') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('final_price','',
-                            array('class'=>'form-control ','id'=>'add_final_price','readonly',"onkeypress"=>'validate(event)')) !!}
+                            array('class'=>'form-control ','id'=>'add_final_price','readonly',"onkeypress"=>'validate(event)','required')) !!}
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('order_id', 
                             empty($result['order']->order_id) ? '' : print_value($result['operation'],$result['order']->order_id),
-                            array('class'=>'form-control','readonly')) !!}
+                            array('class'=>'form-control','readonly','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,27 +36,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.DeliveryName') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
-                            {!! Form::text('delivery_name', 
-                            empty($result['order']->delivery_name) ? '' : print_value($result['operation'],$result['order']->delivery_name),
-                            array('class'=>'form-control','id'=>'delivery_name')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.Address') }}<span style="color:red">★</span></label> 
-                        <div class="col-sm-10 col-md-4">
-                            {!! Form::text('delivery_street_address', 
-                            empty($result['order']->delivery_street_address) ? '' : print_value($result['operation'],$result['order']->delivery_street_address),
-                            array('class'=>'form-control','id'=>'delivery_street_address')) !!}
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-3 control-label">{{ trans('labels.ShippingMethod') }}<span style="color:red">★</span></label> 
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('shipping_method', 
                             empty($result['order']->shipping_method) ? '' : print_value($result['operation'],$result['order']->shipping_method),
-                            array('class'=>'form-control','id'=>'shipping_method')) !!}
+                            array('class'=>'form-control','id'=>'shipping_method','required')) !!}
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,7 +48,7 @@
                         <div class="col-sm-10 col-md-4">
                             {!! Form::text('shipping_cost', 
                             empty($result['order']->shipping_cost) ? '' : print_value($result['operation'],$result['order']->shipping_cost),
-                            array('class'=>'form-control','id'=>'shipping_cost')) !!}
+                            array('class'=>'form-control','id'=>'shipping_cost','required')) !!}
                         </div>
                     </div>
                 
