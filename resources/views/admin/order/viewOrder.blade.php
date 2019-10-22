@@ -208,7 +208,7 @@
                                             <div class="col-xs-6">
                                                 <p class="lead">{{ trans('labels.remark') }}:</p>
                                                 <div class="form-group">
-                                                    <textarea id="order_remark" name="order_remark" class="form-control" rows="3"></textarea>
+                                                <textarea id="order_remark" name="order_remark" class="form-control" rows="3">{{$result['order']->order_remark}}</textarea>
                                                 </div>
                                             </div>
                                         </div>
