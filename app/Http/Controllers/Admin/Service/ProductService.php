@@ -65,16 +65,16 @@ class ProductService extends BaseApiService{
             case 'listing':
                 $result['products'] = $this->View_ProductService->getListing();
                 Log::info('[listing] --  : ' . \json_encode($result));
-                return view("admin.Product.listingProduct", $title)->with('result', $result);
+                return view("admin.product.listingProduct", $title)->with('result', $result);
             break;
             case 'view_add':
                 Log::info('[view_add] --  : ' . \json_encode($result));
-                return view("admin.Product.viewProduct", $title)->with('result', $result);
+                return view("admin.product.viewProduct", $title)->with('result', $result);
             break;
             case 'view_edit':
                 // Log::info('[view_edit] --  : '. \json_encode($result));
                 $result['product'] = $this->getProduct($result['product_id']);
-                return view("admin.Product.viewProduct", $title)->with('result', $result);
+                return view("admin.product.viewProduct", $title)->with('result', $result);
             break;
             case 'add':
                 // Log::info('[add] --  : ' . \json_encode($result));
@@ -103,10 +103,10 @@ class ProductService extends BaseApiService{
                     $result['product'] = $this->getProduct($result['product_id']);
                     Log::info('[add] --  : ' . \json_encode($result));
                     DB::commit();
-                    return view("admin.Product.viewProduct", $title)->with('result', $result);
+                    return view("admin.product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.Product.viewProduct", $title)->with('result', $result);
+                    return view("admin.product.viewProduct", $title)->with('result', $result);
                 }
             break;
             case 'edit':
@@ -143,10 +143,10 @@ class ProductService extends BaseApiService{
                     Log::info('[EDIT] --  : ' . \json_encode($result));
 
                     DB::commit();
-                    return view("admin.Product.viewProduct", $title)->with('result', $result);
+                    return view("admin.product.viewProduct", $title)->with('result', $result);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
-                    return view("admin.Product.viewProduct", $title)->with('result', $result);
+                    return view("admin.product.viewProduct", $title)->with('result', $result);
                 }		
             break;
             case 'delete': 
@@ -161,7 +161,7 @@ class ProductService extends BaseApiService{
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }	
                 
-                return view("admin.Product.listingProduct", $title)->with('result', $result);
+                return view("admin.product.listingProduct", $title)->with('result', $result);
             break;
         }
     }

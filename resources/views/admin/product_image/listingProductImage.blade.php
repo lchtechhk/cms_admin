@@ -79,10 +79,10 @@
                     <!-- ProductImageDialog -->
                     <div class="modal fade" id="productImageDialog" tabindex="-1" role="dialog"
                         aria-labelledby="addressLabel">
-                        @include('admin/productImage/productImageDialog')
+                        @include('admin/product_image/productImageDialog')
                     </div>
                     <!-- deleteProductImageModal -->
-                    @include('admin/productImage/deleteProductImageDialog')
+                    @include('admin/product_image/deleteProductImageDialog')
                 </div>
             </div>
         </div>

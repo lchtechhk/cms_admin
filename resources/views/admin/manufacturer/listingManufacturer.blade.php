@@ -81,7 +81,7 @@
             </div>
         </div>
         <!-- delete -->
-        @include('admin/Manufacturer/deleteManufacturer')
+        @include('admin/manufacturer/deleteManufacturer')
     </section>
 </div>
 @endsection
