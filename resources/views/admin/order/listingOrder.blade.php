@@ -66,7 +66,7 @@
             </div>
         </div>
         <!-- delete -->
-        @include('admin/Order/deleteOrder')
+        @include('admin/order/deleteOrder')
     </section>
 </div>
 @endsection
