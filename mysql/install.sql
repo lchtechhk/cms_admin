@@ -151,7 +151,7 @@ CREATE TABLE `administrators` (
 
 LOCK TABLES `administrators` WRITE;
 /*!40000 ALTER TABLE `administrators` DISABLE KEYS */;
-INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin123',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'ZcGnzrXc1TbDiUVGM0CUJNbextsE1fiyLPIP7uzafdnL2unNAuVDISiGwq6p','0000-00-00 00:00:00','2017-12-11 20:58:51',''),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL,''),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49',''),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL,'');
+INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'jIYUi4pVVs46GXWJGf0XQcIZ5lYulfuwucU45LXipPuF0sOl7QklvIXMUSHi','0000-00-00 00:00:00','2017-12-11 20:58:51',''),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL,''),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49',''),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL,'');
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -406,6 +406,71 @@ LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
 INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-13 02:01:22',NULL,'active');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `company`
+--
+
+DROP TABLE IF EXISTS `company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `company` (
+  `company_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `district_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `estate` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `building` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `room` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `address_ch` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `address_en` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company`
+--
+
+LOCK TABLES `company` WRITE;
+/*!40000 ALTER TABLE `company` DISABLE KEYS */;
+/*!40000 ALTER TABLE `company` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `company_image`
+--
+
+DROP TABLE IF EXISTS `company_image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `company_image` (
+  `company_image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(10) unsigned NOT NULL,
+  `image` text COLLATE utf8_general_mysql500_ci NOT NULL,
+  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `sort_order` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`company_image_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_image`
+--
+
+LOCK TABLES `company_image` WRITE;
+/*!40000 ALTER TABLE `company_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `company_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1050,6 +1115,35 @@ CREATE TABLE `migrations` (
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `new_table`
+--
+
+DROP TABLE IF EXISTS `new_table`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `new_table` (
+  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `new_table`
+--
+
+LOCK TABLES `new_table` WRITE;
+/*!40000 ALTER TABLE `new_table` DISABLE KEYS */;
+/*!40000 ALTER TABLE `new_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1833,6 +1927,36 @@ LOCK TABLES `payments_setting` WRITE;
 /*!40000 ALTER TABLE `payments_setting` DISABLE KEYS */;
 INSERT INTO `payments_setting` VALUES (1,'0','Braintree','','','',0,'0','Stripe','','',0,1,'Cash On Delivery','Paypal','',0,0,'USD');
 /*!40000 ALTER TABLE `payments_setting` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `permission`
+--
+
+DROP TABLE IF EXISTS `permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `permission` (
+  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permission`
+--
+
+LOCK TABLES `permission` WRITE;
+/*!40000 ALTER TABLE `permission` DISABLE KEYS */;
+INSERT INTO `permission` VALUES (1,'root','System Author','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(2,'boss','Shop Boss','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1',''),(3,'manager','Shop Manager','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(4,'staff','Shop Staff','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active');
+/*!40000 ALTER TABLE `permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2788,6 +2912,72 @@ INSERT INTO `ups_shipping` VALUES (1,'07','','US_01,US_02,US_03,US_12,US_13,US_1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `permission` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `image` text COLLATE utf8_general_mysql500_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `user_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `password_str` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_to_company`
+--
+
+DROP TABLE IF EXISTS `user_to_company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `user_to_company` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `admin_type` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_to_company`
+--
+
+LOCK TABLES `user_to_company` WRITE;
+/*!40000 ALTER TABLE `user_to_company` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_to_company` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Temporary view structure for view `view_address_book`
 --
 
@@ -3604,4 +3794,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-22  1:51:27
+-- Dump completed on 2019-11-10 23:44:58
