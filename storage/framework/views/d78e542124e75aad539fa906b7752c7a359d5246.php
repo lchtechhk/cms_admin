@@ -279,6 +279,17 @@
         </a>
       </li>
 
+      <li
+        class="treeview 
+          <?php echo e(Request::is('admin/listingUser') ? 'active' : ''); ?> 
+          <?php echo e(Request::is('admin/view_addUser') ? 'active' : ''); ?> 
+          <?php echo e(Request::is('admin/view_editUser/*') ? 'active' : ''); ?>">
+        <a href="<?php echo e(URL::to('admin/listingUser')); ?>">
+          <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
+            <?php echo e(trans('labels.link_user')); ?></span>
+        </a>
+      </li>
+
       
 
       

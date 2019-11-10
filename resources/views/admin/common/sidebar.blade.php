@@ -282,6 +282,17 @@
         </a>
       </li>
 
+      <li
+        class="treeview 
+          {{ Request::is('admin/listingUser') ? 'active' : '' }} 
+          {{ Request::is('admin/view_addUser') ? 'active' : '' }} 
+          {{ Request::is('admin/view_editUser/*') ? 'active' : '' }}">
+        <a href="{{ URL::to('admin/listingUser')}}">
+          <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
+            {{ trans('labels.link_user') }}</span>
+        </a>
+      </li>
+
       {{-- <li class="treeview {{ Request::is('admin/shippingmethods') ? 'active' : '' }}
       {{ Request::is('admin/upsShipping') ? 'active' : '' }} {{ Request::is('admin/flateRate') ? 'active' : '' }}">
       <a href="{{ URL::to('admin/shippingmethods')}}"><i class="fa fa-truck" aria-hidden="true"></i> <span>

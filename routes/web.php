@@ -85,6 +85,14 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::get('/alertsetting', 'AdminSiteSettingController@alertSetting');
 		Route::post('/updateAlertSetting', 'AdminSiteSettingController@updateAlertSetting');
 		
+		//Jamie User
+		Route::get('/listingUser', 'AdminUserController@listingUser');
+		Route::get('/view_addUser', 'AdminUserController@view_addUser');
+		Route::get('/view_editUser/{user_id}', 'AdminUserController@view_editUser');
+		Route::post('/addUser', 'AdminUserController@addUser');
+		Route::post('/updateUser', 'AdminUserController@updateUser');
+		Route::post('/deleteUser', 'AdminUserController@deleteUser');
+
 		//Jamie product
 		Route::get('/listingProduct', 'AdminProductController@listingProduct');
 		Route::get('/view_addProduct', 'AdminProductController@view_addProduct');
