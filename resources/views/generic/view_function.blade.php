@@ -17,6 +17,14 @@
         }
         return $value;
     }
+    function print_radio_value($operation,$data,$selected_value){
+        $value = '';
+        if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data) && !empty($selected_value) && $data == $selected_value){
+            $value .= "checked";
+        }
+        return $value;
+    }
+
     function print_selected_value($operation,$data,$selected_value){
         $value = '';
         if( ($operation == 'edit' || $operation == 'view_edit' || $operation == 'listing' || $operation == 'changeable') && !empty($data) && !empty($selected_value) && $data == $selected_value){

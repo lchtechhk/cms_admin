@@ -12,22 +12,22 @@
         public function findAllByLanguage($language_id){
             
             $result = DB::table($this->getTable())->where('language_id',$language_id)->get();
-            Log::info('['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
             return $result;
         }
         public function findAll(){
             $result = DB::table($this->getTable())->get();
-            Log::info('['.$this->getTable().'] -- findAll : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findAll : ' . json_encode($result));
             return $result;
         }
         public function findByColumnAndId($field,$id){
             $result = DB::table($this->getTable())->where($field, $id)->get();
-            Log::info('['.$this->getTable().'] -- findByColumnAndId : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumnAndId : ' . json_encode($result));
             return $result;
         }
         public function findById($id){
             $result = DB::table($this->getTable())->where('id', $id)->get();
-            Log::info('['.$this->getTable().'] -- findById : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findById : ' . json_encode($result));
             return $result;
         }
         public function findByMultipleKeyValue(){
@@ -36,7 +36,7 @@
 
         public function findByColumnWithLanguage($field,$id){
             $result = DB::table($this->getTable())->where('language_id',session('language_id'))->where($field, $id)->get();
-            Log::info('['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
             return $result;
         }
         public function findByColumn_IdArray($column,$target_column,$id){
@@ -46,32 +46,41 @@
                 $id = $row->$target_column;
                 $id_array[] = $id;
             }
-            Log::info('['.$this->getTable().'] -- findByColumn_IdArray : ' . json_encode($id_array));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumn_IdArray : ' . json_encode($id_array));
             return $id_array;
         }
+
+        function getCountForEmailExisting($email){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email)
+            ->count();
+            Log::info('[BaseDao] -- getCountForEmailExisting : ] '. $result);
+            return $result;
+        }
+
         public function db_prepareDelete($id){
             try{
                 $result = DB::table($this->getTable())->where('id', $id)->delete();
-                Log::info('['.$this->getTable().'] -- Deleted : ' . json_encode($result));
+                Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- Deleted : ' . json_encode($result));
                 return $result;
             }catch(Exception $e){
-                Log::info('['.$this->getTable().'] -- DeleteKey_Value -- [Error] : ' .$e->getMessage());
+                Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- DeleteKey_Value -- [Error] : ' .$e->getMessage());
             }
             return null;
         }
         public function db_prepareDeleteKey_Value($key,$id){
             try{
                 $result = DB::table($this->getTable())->where($key, $id)->delete();
-                Log::info('['.$this->getTable().'] -- DeleteKey_Value : ' . json_encode($result));
+                Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- DeleteKey_Value : ' . json_encode($result));
                 return $result;
             }catch(Exception $e){
-                Log::info('['.$this->getTable().'] -- DeleteKey_Value -- [Error] : ' .$e->getMessage());
+                Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- DeleteKey_Value -- [Error] : ' .$e->getMessage());
             }
             return null;
         }
         public function customMultipleDelete($table,$id_array){
             $result = DB::table($table)->where('id', $id_array)->delete();
-            Log::info('['.$table.'] -- CustomMultipleDelete : ' . json_encode($result));
+            Log::info('[BaseDao] -- ' .'['.$table.'] -- CustomMultipleDelete : ' . json_encode($result));
             return $result;
         }
         public function db_prepareInsert($table, $data){
@@ -93,13 +102,13 @@
                 }
                 DB::enableQueryLog();
                 $insert_id = DB::table($table)->insertGetId($target_array);
-                Log::notice('[Insert SQL] --'.json_encode(DB::getQueryLog()));
+                Log::notice('[BaseDao] -- ' .'[Insert SQL] --'.json_encode(DB::getQueryLog()));
 
                 if($insert_id > 0 ){
-                    Log::info('Insert Effected Id --' . $insert_id);
+                    Log::info('[BaseDao] -- ' .'Insert Effected Id --' . $insert_id);
                     return $insert_id;
                 }else {
-                    Log::notice('[Insert Error] : '.$insert_id . ' Record' );
+                    Log::notice('[BaseDao] -- ' .'[Insert Error] : '.$insert_id . ' Record' );
                     return false;
                 }
         }
@@ -122,12 +131,12 @@
             }
             DB::enableQueryLog();
             $update_result = DB::table($table)->where($key, $id)->update($target_array);
-            Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
+            Log::notice('[BaseDao] -- ' .'[Update SQL] --'.json_encode(DB::getQueryLog()));
             if($update_result > 0 ){
-                Log::info('Update Effected Rows --' . $update_result);
+                Log::info('[BaseDao] -- ' .'Update Effected Rows --' . $update_result);
                 return $update_result;
             }else {
-                Log::notice('[Update Error] : '.$update_result . ' Record' );
+                Log::notice('[BaseDao] -- ' .'[Update Error] : '.$update_result . ' Record' );
                 return false;
             }
         }
@@ -138,9 +147,9 @@
                 $where[$key] =$id_array[$index];
              }
             $check_result = DB::table($this->getTable())->where($where)->get();
-            Log::info('[isExistingByMultipleKey_Value]  : ');
+            Log::info('[BaseDao] -- ' .'[isExistingByMultipleKey_Value]  : ');
 
-            Log::info('['.$this->getTable().'] -- isExistingByMultipleKey_Value : ' . json_encode($check_result));
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- isExistingByMultipleKey_Value : ' . json_encode($check_result));
             if(!empty($check_result) && sizeof($check_result) > 0 ){
                 return true;
             }else {
@@ -168,12 +177,12 @@
                $where[$key] =$id_array[$index];
             }
             $update_result = DB::table($table)->where($where)->update($target_array);
-            Log::notice('[Update SQL] --'.json_encode(DB::getQueryLog()));
+            Log::notice('[BaseDao] -- ' .'[Update SQL] --'.json_encode(DB::getQueryLog()));
             if($update_result > 0 ){
-                Log::info('Update Effected Rows --' . $update_result);
+                Log::info('[BaseDao] -- ' .'Update Effected Rows --' . $update_result);
                 return $update_result;
             }else {
-                Log::notice('[Update Error] : '.$update_result . ' Record' );
+                Log::notice('[BaseDao] -- ' .'[Update Error] : '.$update_result . ' Record' );
                 return false;
             }
         }

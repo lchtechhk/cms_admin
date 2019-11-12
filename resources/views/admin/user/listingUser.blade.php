@@ -51,8 +51,8 @@
                                                         <td>{{ $user->phone }}</td>
                                                         <td>{{ $user->create_date }}</td>
                                                         <td>
-                                                            <a data-toggle="tooltip" data-placement="bottom" title="View User" href="view_editUser/{{ $user->order_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete User" id="deleteOrderId" user_id ="{{ $user->order_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                            <a data-toggle="tooltip" data-placement="bottom" title="View User" href="view_editUser/{{ $user->user_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                            <a data-toggle="tooltip" data-placement="bottom" title="Delete User" id="deleteOrderId" user_id ="{{ $user->user_id }}" class="badge bg-red"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

@@ -79,7 +79,7 @@ class CustomersService extends BaseApiService{
                 $email = $result['email'];
                 $id = $result['id'];
                 $own_email_count = $this->View_CustomersService->getCountByEmailAndId($email,$id);
-                $duplicate_email_count = $this->View_CustomersService->getCountForEmailExisting($email,$id);
+                $duplicate_email_count = $this->getCountForEmailExisting($email);
                 if($own_email_count > 1 ){
                     unset($result['email']);
                 }else if($own_email_count == 0 && $duplicate_email_count > 0){

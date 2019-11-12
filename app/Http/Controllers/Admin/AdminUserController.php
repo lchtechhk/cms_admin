@@ -49,8 +49,7 @@ class AdminUserController extends Controller{
         $result = array();
         $result['request'] = $request;
         $result['operation'] = 'view_edit';
-        $result['User_id'] = $request->User_id;
-        $result['operation'] = 'view_edit';
+        $result['user_id'] = $request->user_id;
 		return $this->UserService->redirect_view($result,$title);
     }
 
