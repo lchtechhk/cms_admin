@@ -966,6 +966,13 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#delete_customer_id').val(customer_id);
 		$("#deleteCustomerModal").modal('show');
 	});
+
+	//deleteUserModal
+	$(document).on('click', '#deleteUserFrom', function(){
+		var user_id = $(this).attr('user_id');
+		$('#delete_user_id').val(user_id);
+		$("#deleteUserModal").modal('show');
+	});
 	
 	//manufacturerModal
 	$(document).on('click', '#manufacturerFrom', function(){

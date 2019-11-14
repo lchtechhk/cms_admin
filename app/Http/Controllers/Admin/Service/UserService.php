@@ -31,6 +31,10 @@ class UserService extends BaseApiService{
         return $result;
     }
 
+    private function getListing(){
+        return $this->findAll();
+    }
+
     function redirect_view($result,$title){
         $result['label'] = "User";
         $result['permissions'] = $this->PermissionService->findAll();
@@ -38,7 +42,7 @@ class UserService extends BaseApiService{
         switch($result['operation']){
             case 'listing':
                 Log::info('[listing] --  : ' . \json_encode($result));
-                $result['users'] = $this->findAll();
+                $result['users'] = $this->getListing();
                 return view("admin.user.listingUser", $title)->with('result', $result);
             break;
             case 'view_add':
@@ -46,7 +50,8 @@ class UserService extends BaseApiService{
                 return view("admin.user.viewUser", $title)->with('result', $result);
             break;
             case 'view_edit':
-                Log::info('[view_edit] --  : ' . \json_encode($result));
+                $user = $this->findByColumnAndId("user_id",$result['user_id']);
+                $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                 return view("admin.user.viewUser", $title)->with('result', $result);
             break;
             case 'add':
@@ -72,7 +77,6 @@ class UserService extends BaseApiService{
                 return view("admin.user.viewUser", $title)->with('result', $result);               
             break;
             case 'edit':
-                
                 try{
                     DB::beginTransaction();
                     $email = $result['email'];
@@ -86,7 +90,7 @@ class UserService extends BaseApiService{
                         $result['status'] = 'fail';
                         $result['message'] =  'Update Error, The Email Is Duplicate In DB';
                         $user = $this->findByColumnAndId("user_id",$user_id);
-                $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
+                        $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                         return view("admin.user.viewUser", $title)->with('result', $result);
                     }
     
@@ -103,7 +107,15 @@ class UserService extends BaseApiService{
                 return view("admin.user.viewUser", $title)->with('result', $result);        
             break;
             case 'delete': 
-                Log::info('[delete] --  : ');
+                try{
+                    $delete_user_result = $this->deleteByKey_Value("user_id",$result['user_id']);
+                    if(empty($delete_user_result['status']) || $delete_user_result['status'] == 'fail')throw new Exception("Error To Delete User");
+                    $result['users'] = $this->getListing();
+                    $result = $this->response($result,"Success To Delete User","view_edit");
+                }catch(Exception $e){
+                    $result = $this->throwException($result,$e->getMessage(),true);
+                }
+                return view("admin.user.listingUser", $title)->with('result', $result);
             break;
         }
     }
