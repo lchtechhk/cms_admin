@@ -2921,12 +2921,15 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `permission` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `image` text COLLATE utf8_general_mysql500_ci NOT NULL,
+  `image` text COLLATE utf8_general_mysql500_ci,
   `remember_token` varchar(100) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `first_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `phone_2` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `user_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `password_str` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
@@ -2936,7 +2939,7 @@ CREATE TABLE `user` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2945,6 +2948,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (13,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie1234@gmail.com','','','','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3794,4 +3798,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-10 23:44:58
+-- Dump completed on 2019-11-15  1:03:51
