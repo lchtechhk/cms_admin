@@ -285,11 +285,22 @@
       <li
         class="treeview 
           {{ Request::is('admin/listingUser') ? 'active' : '' }} 
-          {{ Request::is('admin/view_addUser') ? 'active' : '' }} 
-          {{ Request::is('admin/view_editUser/*') ? 'active' : '' }}">
+          {{ Request::is('admin/viewUser') ? 'active' : '' }} 
+          {{ Request::is('admin/viewUser/*') ? 'active' : '' }}">
         <a href="{{ URL::to('admin/listingUser')}}">
           <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
             {{ trans('labels.link_user') }}</span>
+        </a>
+      </li>
+
+      <li
+        class="treeview 
+          {{ Request::is('admin/listingCompany') ? 'active' : '' }} 
+          {{ Request::is('admin/viewCompany') ? 'active' : '' }} 
+          {{ Request::is('admin/viewCompany/*') ? 'active' : '' }}">
+        <a href="{{ URL::to('admin/listingCompany')}}">
+          <i class="fa fa-list-ul" aria-hidden="true"></i> <span>
+            {{ trans('labels.link_company') }}</span>
         </a>
       </li>
 
