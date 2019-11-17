@@ -417,7 +417,9 @@ DROP TABLE IF EXISTS `company`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `company` (
   `company_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `image` text COLLATE utf8_general_mysql500_ci,
+  `phone` int(11) DEFAULT NULL,
   `district_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `estate` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `building` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -430,7 +432,7 @@ CREATE TABLE `company` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,7 +441,39 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES (10,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `company_description`
+--
+
+DROP TABLE IF EXISTS `company_description`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `company_description` (
+  `company_description_id` int(100) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(32) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `language_id` int(11) NOT NULL DEFAULT '1',
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`company_description_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_description`
+--
+
+LOCK TABLES `company_description` WRITE;
+/*!40000 ALTER TABLE `company_description` DISABLE KEYS */;
+INSERT INTO `company_description` VALUES (1,7,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,7,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(3,8,'companyA_HongKong',1,'2019-11-17 01:31:56',NULL,'2019-11-17 01:31:56',NULL,'active'),(4,8,'companyA_English',2,'2019-11-17 01:31:56',NULL,'2019-11-17 01:31:56',NULL,'active'),(5,9,'companyA_HongKong1',1,'2019-11-17 01:34:21',NULL,'2019-11-17 01:37:44',NULL,'active'),(6,9,'companyA_English',2,'2019-11-17 01:34:21',NULL,'2019-11-17 01:37:44',NULL,'active'),(7,10,'companyA_HongKong',1,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active'),(8,10,'companyA_English',2,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
+/*!40000 ALTER TABLE `company_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3037,6 +3071,34 @@ SET character_set_client = utf8mb4;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_company`
+--
+
+DROP TABLE IF EXISTS `view_company`;
+/*!50001 DROP VIEW IF EXISTS `view_company`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `view_company` AS SELECT 
+ 1 AS `company_id`,
+ 1 AS `language_id`,
+ 1 AS `name`,
+ 1 AS `email`,
+ 1 AS `image`,
+ 1 AS `phone`,
+ 1 AS `district_id`,
+ 1 AS `estate`,
+ 1 AS `building`,
+ 1 AS `room`,
+ 1 AS `address_ch`,
+ 1 AS `address_en`,
+ 1 AS `create_date`,
+ 1 AS `create_by_id`,
+ 1 AS `edit_date`,
+ 1 AS `edit_by_id`,
+ 1 AS `status`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary view structure for view `view_country_city`
 --
 
@@ -3556,6 +3618,24 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `view_company`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_company`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_company` AS select `company`.`company_id` AS `company_id`,`company_description`.`language_id` AS `language_id`,`company_description`.`name` AS `name`,`company`.`email` AS `email`,`company`.`image` AS `image`,`company`.`phone` AS `phone`,`company`.`district_id` AS `district_id`,`company`.`estate` AS `estate`,`company`.`building` AS `building`,`company`.`room` AS `room`,`company`.`address_ch` AS `address_ch`,`company`.`address_en` AS `address_en`,`company`.`create_date` AS `create_date`,`company`.`create_by_id` AS `create_by_id`,`company`.`edit_date` AS `edit_date`,`company`.`edit_by_id` AS `edit_by_id`,`company`.`status` AS `status` from (`company` left join `company_description` on((`company_description`.`company_id` = `company`.`company_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `view_country_city`
 --
 
@@ -3798,4 +3878,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-15  1:03:51
+-- Dump completed on 2019-11-18  1:48:45
