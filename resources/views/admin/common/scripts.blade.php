@@ -973,6 +973,13 @@ $(document).on('click', '#updateAddress', function(e){
 		$('#delete_user_id').val(user_id);
 		$("#deleteUserModal").modal('show');
 	});
+
+	//deleteUserModal
+	$(document).on('click', '#deleteCompanyFrom', function(){
+		var company_id = $(this).attr('company_id');
+		$('#delete_company_id').val(company_id);
+		$("#deleteCompanyModal").modal('show');
+	});
 	
 	//manufacturerModal
 	$(document).on('click', '#manufacturerFrom', function(){

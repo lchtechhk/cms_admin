@@ -101,6 +101,8 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::post('/updateCompany', 'AdminCompanyController@updateCompany');
 		Route::post('/deleteCompany', 'AdminCompanyController@deleteCompany');
 
+		Route::get('/listingStaff/{company_id}', 'AdminCompanyController@listingStaff');
+
 		//Jamie product
 		Route::get('/listingProduct', 'AdminProductController@listingProduct');
 		Route::get('/view_addProduct', 'AdminProductController@view_addProduct');

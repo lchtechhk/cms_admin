@@ -55,6 +55,11 @@ class CompanyService extends BaseApiService{
         $result['languages'] = $this->LanguageService->findAll();
 
         switch($result['operation']){
+            case 'listingStaff':
+                Log::info('[listingStaff] --  : ' . \json_encode($result));
+                $result['companies'] = $this->View_CompanyService->getListing();
+                return view("admin.company.listingCompany", $title)->with('result', $result);
+            break;
             case 'listing':
                 Log::info('[listing] --  : ' . \json_encode($result));
                 $result['companies'] = $this->View_CompanyService->getListing();
@@ -127,7 +132,7 @@ class CompanyService extends BaseApiService{
                 try{
                     $delete_company_result = $this->deleteByKey_Value("company_id",$result['company_id']);
                     if(empty($delete_company_result['status']) || $delete_company_result['status'] == 'fail')throw new Exception("Error To Delete Company");
-                    $result['companies'] = $this->getListing();
+                    $result['companies'] = $this->View_CompanyService->getListing();
                     $result = $this->response($result,"Success To Delete Company","view_edit");
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);

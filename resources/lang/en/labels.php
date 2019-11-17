@@ -33,13 +33,15 @@ return [
 	'ListCity'=>'List All City',
 	'ListArea'=>'List All Area',
 	'ListZone'=>'List All Zone',
+	'link_user'=>'User',
+	'link_company'=>'Company',
 	//links labels
 	'login_text' => 'Sign in to start your session',
 	'welcome_message'	 =>	'Welcome',
 	'welcome_message_to'=>'To Admin Panel',
 	'login'=>'Login',
 	'login_page_name'=>'Login',
-	
+	'CompanyName'=>'CompanyName',
 	
 	//login page
 	'login_text' => 'Sign in to start your session',
