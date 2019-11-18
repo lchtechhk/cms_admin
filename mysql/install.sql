@@ -114,6 +114,36 @@ LOCK TABLES `address_format` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `admin_type`
+--
+
+DROP TABLE IF EXISTS `admin_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `admin_type` (
+  `admin_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `create_date` datetime NOT NULL,
+  `create_by_id` int(11) DEFAULT NULL,
+  `edit_date` datetime NOT NULL,
+  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
+  PRIMARY KEY (`admin_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_type`
+--
+
+LOCK TABLES `admin_type` WRITE;
+/*!40000 ALTER TABLE `admin_type` DISABLE KEYS */;
+INSERT INTO `admin_type` VALUES (1,'boss','Shop Boss','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(2,'manager','Shop Manager','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(3,'admin','Shop Admin','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(4,'staff','Shop Staff','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active');
+/*!40000 ALTER TABLE `admin_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `administrators`
 --
 
@@ -432,7 +462,7 @@ CREATE TABLE `company` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,7 +471,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (10,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
+INSERT INTO `company` VALUES (1,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -463,7 +493,7 @@ CREATE TABLE `company_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -472,7 +502,7 @@ CREATE TABLE `company_description` (
 
 LOCK TABLES `company_description` WRITE;
 /*!40000 ALTER TABLE `company_description` DISABLE KEYS */;
-INSERT INTO `company_description` VALUES (1,7,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,7,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(3,8,'companyA_HongKong',1,'2019-11-17 01:31:56',NULL,'2019-11-17 01:31:56',NULL,'active'),(4,8,'companyA_English',2,'2019-11-17 01:31:56',NULL,'2019-11-17 01:31:56',NULL,'active'),(5,9,'companyA_HongKong1',1,'2019-11-17 01:34:21',NULL,'2019-11-17 01:37:44',NULL,'active'),(6,9,'companyA_English',2,'2019-11-17 01:34:21',NULL,'2019-11-17 01:37:44',NULL,'active'),(7,10,'companyA_HongKong',1,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active'),(8,10,'companyA_English',2,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
+INSERT INTO `company_description` VALUES (1,1,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,1,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active');
 /*!40000 ALTER TABLE `company_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1989,7 +2019,7 @@ CREATE TABLE `permission` (
 
 LOCK TABLES `permission` WRITE;
 /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
-INSERT INTO `permission` VALUES (1,'root','System Author','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(2,'boss','Shop Boss','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1',''),(3,'manager','Shop Manager','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(4,'staff','Shop Staff','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active');
+INSERT INTO `permission` VALUES (1,'root','All Permission','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active'),(2,'user','Client','2019-11-11 00:00:00',1,'2019-11-11 00:00:00','1','active');
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2973,7 +3003,7 @@ CREATE TABLE `user` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2982,7 +3012,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (13,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie1234@gmail.com','','','','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active');
+INSERT INTO `user` VALUES (1,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie1234@gmail.com','','','','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active'),(2,'staff','',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3012,6 +3042,7 @@ CREATE TABLE `user_to_company` (
 
 LOCK TABLES `user_to_company` WRITE;
 /*!40000 ALTER TABLE `user_to_company` DISABLE KEYS */;
+INSERT INTO `user_to_company` VALUES (0,1,1,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1');
 /*!40000 ALTER TABLE `user_to_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3878,4 +3909,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-18  1:48:45
+-- Dump completed on 2019-11-19  1:07:16
