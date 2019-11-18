@@ -41,7 +41,6 @@
                                             <option value="">-</option>
                                             @foreach ($result['permissions'] as $permission)
                                             <option value="{{ $permission->name }}" 
-                                                {{Log::info('user : ' . json_encode($result['user']))}}
                                                 @if(!empty($result['user']->permission))
                                                     {{print_selected_value($result['operation'],$permission->name,$result['user']->permission)}}
                                                 @endif>

@@ -52,6 +52,7 @@ class UserService extends BaseApiService{
             case 'view_edit':
                 $user = $this->findByColumnAndId("user_id",$result['user_id']);
                 $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
+                Log::info('[view_edit] --  : ' . \json_encode($result));
                 return view("admin.user.viewUser", $title)->with('result', $result);
             break;
             case 'add':

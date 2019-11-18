@@ -9,12 +9,14 @@ use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\View_CompanyService;
 use App\Http\Controllers\Admin\Service\CompanyDescriptionService;
+use App\Http\Controllers\Admin\Service\UserService;
 
 class CompanyService extends BaseApiService{
     private $UploadService;
     private $LanguageService;
     private $View_CompanyService;
     private $CompanyDescriptionService;
+    private $UserService;
 
     function __construct(){
         $this->setTable('company');
@@ -22,6 +24,7 @@ class CompanyService extends BaseApiService{
         $this->UploadService = new UploadService();
         $this->View_CompanyService = new View_CompanyService();
         $this->CompanyDescriptionService = new CompanyDescriptionService();
+        $this->UserService = new UserService();
 
     }
 
@@ -57,7 +60,9 @@ class CompanyService extends BaseApiService{
         switch($result['operation']){
             case 'listingStaff':
                 Log::info('[listingStaff] --  : ' . \json_encode($result));
+                // $result['companies'] = $this->UserService->findByColumnAndId();
                 $result['companies'] = $this->View_CompanyService->getListing();
+
                 return view("admin.company.listingCompany", $title)->with('result', $result);
             break;
             case 'listing':
