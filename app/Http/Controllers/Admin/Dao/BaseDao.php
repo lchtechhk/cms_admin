@@ -39,6 +39,13 @@
             Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
             return $result;
         }
+
+        public function findByColumn_Values($column,$values){
+            $result = DB::table($this->getTable())->whereIn($column, $values)->get();
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumn_Values : ' . json_encode($result));
+            return $result;
+        }
+
         public function findByColumn_IdArray($column,$target_column,$id){
             $result = DB::table($this->getTable())->where($column, $id)->get();
             $id_array = array();

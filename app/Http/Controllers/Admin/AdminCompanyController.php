@@ -32,6 +32,8 @@ class AdminCompanyController extends Controller{
     function listingStaff(Request $request){
         $title = array('pageTitle' => Lang::get("labels.ListingStaff"));
         $result = array();
+        $result['request'] = $request;
+        $result['company_id'] = $request->company_id;
 		$result['operation'] = 'listingStaff';
 		return $this->CompanyService->redirect_view($result,$title);
     }

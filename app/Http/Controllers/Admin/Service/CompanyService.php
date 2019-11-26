@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\View_CompanyService;
 use App\Http\Controllers\Admin\Service\CompanyDescriptionService;
 use App\Http\Controllers\Admin\Service\UserService;
+use App\Http\Controllers\Admin\Service\UserToCompanyService;
 
 class CompanyService extends BaseApiService{
     private $UploadService;
@@ -17,6 +18,7 @@ class CompanyService extends BaseApiService{
     private $View_CompanyService;
     private $CompanyDescriptionService;
     private $UserService;
+    private $UserToCompanyService;
 
     function __construct(){
         $this->setTable('company');
@@ -25,6 +27,7 @@ class CompanyService extends BaseApiService{
         $this->View_CompanyService = new View_CompanyService();
         $this->CompanyDescriptionService = new CompanyDescriptionService();
         $this->UserService = new UserService();
+        $this->UserToCompanyService = new UserToCompanyService();
 
     }
 
@@ -59,11 +62,11 @@ class CompanyService extends BaseApiService{
 
         switch($result['operation']){
             case 'listingStaff':
-                Log::info('[listingStaff] --  : ' . \json_encode($result));
-                // $result['companies'] = $this->UserService->findByColumnAndId();
-                $result['companies'] = $this->View_CompanyService->getListing();
-
-                return view("admin.company.listingCompany", $title)->with('result', $result);
+                $result['label'] = "Staff";
+                $id_list = $this->UserToCompanyService->getUserIdsByCompany($result['company_id']);
+                $result['staffs'] = $this->UserService->findByColumn_Values('user_id',$id_list);
+                Log::info('[listing] --  : ' . \json_encode($result['staffs']));
+                return view("admin.staff.listingStaff", $title)->with('result', $result);
             break;
             case 'listing':
                 Log::info('[listing] --  : ' . \json_encode($result));
