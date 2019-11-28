@@ -317,11 +317,11 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::post('/updateAdminPassword', 'AdminController@updateAdminPassword');
 
 		//reports 
-		Route::get('/statscustomers', 'AdminReportsController@statsCustomers');
-		Route::get('/statsproductspurchased', 'AdminReportsController@statsProductsPurchased');
-		Route::get('/statsproductsliked', 'AdminReportsController@statsProductsLiked');
-		Route::get('/productsstock', 'AdminReportsController@productsStock');
-		Route::post('/productSaleReport', 'AdminReportsController@productSaleReport');
+		// Route::get('/statscustomers', 'AdminReportsController@statsCustomers');
+		// Route::get('/statsproductspurchased', 'AdminReportsController@statsProductsPurchased');
+		// Route::get('/statsproductsliked', 'AdminReportsController@statsProductsLiked');
+		// Route::get('/productsstock', 'AdminReportsController@productsStock');
+		// Route::post('/productSaleReport', 'AdminReportsController@productSaleReport');
 
 		//Devices and send notification
 		Route::get('/devices', 'AdminNotificationController@devices');

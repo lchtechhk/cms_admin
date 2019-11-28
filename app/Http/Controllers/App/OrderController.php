@@ -837,7 +837,7 @@ class OrderController extends Controller
 						 'products_price'	 =>  	$products['price'],
 						 'final_price' 		 =>  	$products['final_price']*$products['customers_basket_quantity'],
 						 'products_tax' 	 =>  	$products_tax,
-						 'products_quantity' =>  	$products['customers_basket_quantity'],
+						//  'products_quantity' =>  	$products['customers_basket_quantity'],
 					]);
 					 
 					

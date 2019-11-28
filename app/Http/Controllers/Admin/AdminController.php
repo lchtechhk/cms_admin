@@ -38,6 +38,7 @@ class AdminController extends Controller{
 		$this->LanguageService = new LanguageService();
 	}
 	public function dashboard(Request $request){
+		Log::info('message');
 		$title 			  = 	array('pageTitle' => Lang::get("labels.title_dashboard"));
 		$language_id      = 	'1';
 		$result 		  =		array();

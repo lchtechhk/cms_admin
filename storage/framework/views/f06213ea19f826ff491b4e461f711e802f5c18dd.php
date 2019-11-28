@@ -7,6 +7,19 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only"><?php echo e(trans('labels.toggle_navigation')); ?></span>
       </a>
+      <div class="navbar-custom-menu" style="float:left;">
+        <ul class="nav navbar-nav">
+          <li class="dropdown messages-menu">
+            <div  style="padding: 15px 15px;">
+              <select name="district_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
+                  <option value="1">
+                    222222222222222
+                  </option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div id="countdown" style="
           width: 350px;
           margin-top: 13px !important;

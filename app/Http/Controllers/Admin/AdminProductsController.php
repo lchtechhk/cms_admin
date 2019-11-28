@@ -171,7 +171,7 @@ class AdminProductsController extends Controller
 		$products_id = DB::table('product')->insertGetId([
 					'products_image'  		 =>   $uploadImage,
 					'manufacturers_id'		 =>   $request->manufacturers_id,
-					'products_quantity'		 =>   $request->products_quantity,
+					// 'products_quantity'		 =>   $request->products_quantity,
 					'products_model'		 =>   $request->products_model,
 					'products_price'		 =>   $request->products_price,
 					'products_date_added'	 =>   $date_added,
@@ -616,7 +616,7 @@ class AdminProductsController extends Controller
 		DB::table('products')->where('products_id','=',$products_id)->update([
 					'products_image'  		 =>   $uploadImage,
 					'manufacturers_id'		 =>   $request->manufacturers_id,
-					'products_quantity'		 =>   $request->products_quantity,
+					// 'products_quantity'		 =>   $request->products_quantity,
 					'products_model'		 =>   $request->products_model,
 					'products_price'		 =>   $request->products_price,
 					'products_last_modified' =>   $products_last_modified,

@@ -65,7 +65,7 @@
      @foreach($ordersData['orders_data'][0]->data as $key=>$products)
       <tr @if($key%2==0) style="background-color: #f9f9f9;" @endif>
       
-        @if($key%2==0) <td align="center" style="border-top: 1px solid #f4f4f4; padding: 8px;"> @else <td align="center" style="padding: 8px;"> @endif {{  $products->products_quantity }}</td>
+        {{-- @if($key%2==0) <td align="center" style="border-top: 1px solid #f4f4f4; padding: 8px;"> @else <td align="center" style="padding: 8px;"> @endif {{  $products->products_quantity }}</td> --}}
         @if($key%2==0) <td align="center" style="border-top: 1px solid #f4f4f4; padding: 8px;"> @else <td align="center" style="padding: 8px;"> @endif<img src="{{ asset('').$products->image }}" width="60px"> </td>
         @if($key%2==0) <td align="center" style="border-top: 1px solid #f4f4f4; padding: 8px;"> @else <td align="center" style="padding: 8px;"> @endif  {{  $products->products_name }}<br></td>
         @if($key%2==0) <td align="center" style="border-top: 1px solid #f4f4f4; padding: 8px;"> @else <td align="center" style="padding: 8px;"> @endif

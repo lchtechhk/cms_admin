@@ -72,7 +72,7 @@
                             </td>
                             
                             <td align="center">
-                            	{{ $result['currency'][19]->value }}{{ $products->products_quantity }}
+                            	{{-- {{ $result['currency'][19]->value }}{{ $products->products_quantity }} --}}
                             </td>
                            
                             <td>

@@ -48,7 +48,7 @@
                                         <strong>{{ $lowQunatityProducts->products_name }} ( {{ $lowQunatityProducts->products_model }} )</strong><br>
                                     </td>
                                     <td>
-                                        {{ $lowQunatityProducts->products_quantity }}
+                                        {{-- {{ $lowQunatityProducts->products_quantity }} --}}
                                     </td>
                                     <td>
                                         <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="editproduct/{{ $lowQunatityProducts->products_id }}" class="badge bg-light-blue"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
@@ -93,7 +93,7 @@
                                         <strong>{{ $outOfStockData->products_name }} ( {{ $outOfStockData->products_model }} )</strong><br>
                                     </td>
                                     <td>
-                                        {{ $outOfStockData->products_quantity }}
+                                        {{-- {{ $outOfStockData->products_quantity }} --}}
                                     </td>
                                    
                                     <td>
