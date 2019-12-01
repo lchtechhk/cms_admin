@@ -18,6 +18,7 @@ use Lang;
 use Log;
 
 use App\Admin;
+use App\Root;
 
 use DB;
 //for password encryption or hash protected
@@ -31,11 +32,18 @@ use Session;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Admin\Service\LanguageService;
+use App\Http\Controllers\Admin\Service\View_CompanyService;
+use App\Http\Controllers\Admin\Service\UserService;
 
 class AdminController extends Controller{
 	private $LanguageService;
+	private $UserService;
+	private $View_CompanyService;
+
 	function __construct(){
 		$this->LanguageService = new LanguageService();
+		$this->UserService = new UserService();
+		$this->View_CompanyService = new View_CompanyService();
 	}
 	public function dashboard(Request $request){
 		Log::info('message');
@@ -181,17 +189,19 @@ class AdminController extends Controller{
 		}else{
 			//check authentication of email and password
 			$adminInfo = array("email" => $request->email, "password" => $request->password);
-			
-			if(auth()->guard('admin')->attempt($adminInfo)) {
-				$admin = auth()->guard('admin')->user();
-				$administrators = DB::table('administrators')->where('myid', $admin->myid)->get();	
+
+			if(auth()->guard('user')->attempt($adminInfo)) {
+				$user_auth = auth()->guard('user')->user();
+				$user = $this->UserService->findByColumnAndId("user_id",$user_auth->user_id);
+				Log::info('message : ' . json_encode($user));
 				$language_id = $this->LanguageService->getDefault_languageId();
 				session(['language_id' => $language_id]);
-				return redirect()->intended('admin/dashboard/this_month')->with('administrators', $administrators);
+				return redirect()->intended('admin/dashboard/this_month')->with('administrators', $user);
 			}else{
 				return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));
 			}
-			
+				// return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));
+
 		}
 		
 	}
