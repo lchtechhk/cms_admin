@@ -169,7 +169,6 @@ CREATE TABLE `administrators` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `user_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`myid`),
   UNIQUE KEY `administrators_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -181,7 +180,7 @@ CREATE TABLE `administrators` (
 
 LOCK TABLES `administrators` WRITE;
 /*!40000 ALTER TABLE `administrators` DISABLE KEYS */;
-INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'jIYUi4pVVs46GXWJGf0XQcIZ5lYulfuwucU45LXipPuF0sOl7QklvIXMUSHi','0000-00-00 00:00:00','2017-12-11 20:58:51',''),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL,''),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49',''),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL,'');
+INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'snAwujE8c9SI563GQdgw5ZIw17WCOufZs49XEbXRsopyhhX6TVgn6KUmxITx','0000-00-00 00:00:00','2017-12-11 20:58:51'),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49'),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2067,7 +2066,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
+INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2168,7 +2167,7 @@ CREATE TABLE `product_description` (
 
 LOCK TABLES `product_description` WRITE;
 /*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
-INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active'),(2,2,1,'Product A (English) ★','Description (English)',NULL,0,'2019-06-09 14:46:18',NULL,'2019-09-11 23:18:37',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active');
+INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','<p>Description (HongKong)</p>',NULL,0,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active'),(2,2,1,'Product A (English) ★','<p>Description (English)</p>',NULL,0,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active');
 /*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2984,6 +2983,7 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `default_company_id` int(11) DEFAULT NULL,
   `permission` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `image` text COLLATE utf8_general_mysql500_ci,
   `remember_token` varchar(100) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -3012,7 +3012,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie1234@gmail.com','','','','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active'),(2,'staff','',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
+INSERT INTO `user` VALUES (1,NULL,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie123@gmail.com','','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','123123','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active'),(2,NULL,'staff','',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3909,4 +3909,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-27  1:02:03
+-- Dump completed on 2019-12-02  1:20:54
