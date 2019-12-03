@@ -189,9 +189,8 @@ class AdminController extends Controller{
 		}else{
 			//check authentication of email and password
 			$adminInfo = array("email" => $request->email, "password" => $request->password);
-
-			if(auth()->guard('user')->attempt($adminInfo)) {
-				$user_auth = auth()->guard('user')->user();
+			if(auth()->guard('admin')->attempt($adminInfo)) {
+				$user_auth = auth()->guard('admin')->user();
 				$user = $this->UserService->findByColumnAndId("user_id",$user_auth->user_id);
 				Log::info('message : ' . json_encode($user));
 				$language_id = $this->LanguageService->getDefault_languageId();
@@ -200,7 +199,6 @@ class AdminController extends Controller{
 			}else{
 				return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));
 			}
-				// return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));
 
 		}
 		

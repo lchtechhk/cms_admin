@@ -8,14 +8,17 @@
 <div class="login-box">
   <div class="login-logo">
         @if($web_setting[66]->value=='1' and $web_setting[67]->value=='0')
-      		<img src="{{asset('/resources/views/admin/images/admin_logo/logo-android-blue-v1.png')}}" class="ionic-hide"> 
-        	<img src="{{asset('/resources/views/admin/images/admin_logo/logo-ionic-blue-v1.png')}}" class="android-hide"> 
+      		{{-- <img src="{{asset('/resources/views/admin/images/admin_logo/logo-android-blue-v1.png')}}" class="ionic-hide"> 
+        	<img src="{{asset('/resources/views/admin/images/admin_logo/logo-ionic-blue-v1.png')}}" class="android-hide">  --}}
         @elseif($web_setting[66]->value=='1' and $web_setting[67]->value=='1' or $web_setting[66]->value=='0' and $web_setting[67]->value=='1') 
    			<img src="{{asset('/resources/views/admin/images/admin_logo/logo-laravel-blue-v1.png')}}" class="website-hide"> 
     	@endif
     <div style="
     font-size: 25px;
-"><b> {{ trans('labels.welcome_message') }}</b>{{ trans('labels.welcome_message_to') }}</div>
+">
+{{-- <b> {{ trans('labels.welcome_message') }}</b> --}}
+{{-- {{ trans('labels.welcome_message_to') }} --}}
+</div>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
