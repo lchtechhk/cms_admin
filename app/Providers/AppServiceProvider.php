@@ -5,13 +5,20 @@ use DB;
 use Illuminate\Support\ServiceProvider;
 use Session;
 use Log;
+use App\Http\Controllers\Admin\Service\View_OrderService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
      *
      * @return void
-     */
+	 */
+	 private $View_OrderService;
+
+	function __construct(){
+		$this->View_OrderService = new View_OrderService();
+	}
     public function boot(){
 		DB::listen(function ($query) {
 			// Log::notice($query->bindings);
@@ -21,24 +28,9 @@ class AppServiceProvider extends ServiceProvider
         });
          // Using Closure based composers...
 		$result = array();
-        $orders = DB::table('orders')
-				->leftJoin('customers','customers.id','=','orders.customers_id')
-				->where('orders.is_seen','=', 0)
-				->orderBy('orders_id','desc')
-				->get();
+        $orders = $this->View_OrderService->findAll();
 				
 		$index = 0;	
-		foreach($orders as $orders_data){
-			
-			array_push($result,$orders_data);			
-			$orders_products = DB::table('orders_products')
-				->where('orders_id', '=' ,$orders_data->orders_id)
-				->get();
-			
-			$result[$index]->price = $orders_products;
-			$result[$index]->total_products = count($orders_products);
-			$index++;
-		}
 		
 		//new customers
 		$newCustomers = DB::table('customers')

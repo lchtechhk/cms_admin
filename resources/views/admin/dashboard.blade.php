@@ -163,21 +163,21 @@
                   @foreach($result['orders'] as $total_orders)
                   @foreach($total_orders as $key=>$orders)
                   @if($key<=10) <tr>
-                    <td><a href="{{ URL::to('admin/vieworder') }}/{{ $orders->orders_id }}" data-toggle="tooltip"
-                        data-placement="bottom" title="Go to detail">{{ $orders->orders_id }}</a></td>
-                    <td>{{ $orders->customers_name }}</td>
-                    <td>{{ $result['currency'][19]->value }}{{ floatval($orders->total_price) }} </td>
+                    <td><a href="{{ URL::to('admin/vieworder') }}/{{ $orders->order_id }}" data-toggle="tooltip"
+                        data-placement="bottom" title="Go to detail">{{ $orders->order_id }}</a></td>
+                    <td>{{ $orders->customer_name }}</td>
+                    <td>{{ $result['currency'][19]->value }}{{ floatval($orders->order_price) }} </td>
                     <td>
-                      @if($orders->orders_status_id==1)
+                      @if($orders->status==1)
                       <span class="label label-warning">
-                        @elseif($orders->orders_status_id==2)
+                        @elseif($orders->status==2)
                         <span class="label label-success">
-                          @elseif($orders->orders_status_id==3)
+                          @elseif($orders->status==3)
                           <span class="label label-danger">
                             @else
                             <span class="label label-primary">
                               @endif
-                              {{ $orders->orders_status }}
+                              {{ $orders->status }}
                             </span>
 
 

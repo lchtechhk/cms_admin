@@ -202,22 +202,6 @@ function fill_pre_order_form(){
 
 }
 $(function() {
-    // $("#customer_id").change(function() {
-    //     var customer_id = this.value;
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/cms/admin/findAddressByCustomerId/"+customer_id,
-    //         // data: {customer_id:customer_id},
-    //         success: function( bolUpdated ) { 
-    //             if( bolUpdated ) { 
-    //                 alert('OK');
-    //             }   
-    //         },  
-    //         fail: function() {
-    //             alert('NO');
-    //         }   
-    //     });
-    // });
     initial_order();
     // Dialog Purchase
 

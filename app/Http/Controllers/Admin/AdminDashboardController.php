@@ -24,19 +24,22 @@ use Auth;
 use Illuminate\Http\Request;
 //use Illuminate\Routing\Controller;
 
+use App\Http\Controllers\Admin\Service\View_OrderService;
 
 class AdminDashboardController extends Controller
 {
+	private $View_OrderService;
+
+	function __construct(){
+		$this->View_OrderService = new View_OrderService();
+	}
+
 	//listingOrderStatus
 	public function dashboard(Request $request){
 		$title = array('pageTitle' => 'Dashboard');		
 		$result = array();
 		
-		$orders = DB::table('orders')
-			->LeftJoin('orders_status', 'orders_status.orders_status_id', '=', 'orders.orders_status')
-			->orderBy('date_purchased','DESC')
-			//->paginate(10);
-			->get();
+		$orders = $this->View_OrderService->findAll();
 			
 		$recentOrders = array_slice($input, 0, 10);
 		$result['recentOrders'] = $recentOrders;

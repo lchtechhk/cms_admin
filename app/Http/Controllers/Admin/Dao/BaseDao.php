@@ -5,12 +5,12 @@
     use Lang;
     use DB;
     use Log;
-
+    use Session;
+    
     abstract class BaseDao{
         protected $table;
 
         public function findAllByLanguage($language_id){
-            
             $result = DB::table($this->getTable())->where('language_id',$language_id)->get();
             Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
             return $result;
@@ -29,9 +29,6 @@
             $result = DB::table($this->getTable())->where('id', $id)->get();
             Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findById : ' . json_encode($result));
             return $result;
-        }
-        public function findByMultipleKeyValue(){
-            
         }
 
         public function findByColumnWithLanguage($field,$id){
@@ -63,6 +60,13 @@
             return $id_array;
         }
 
+        // Company
+        public function company_findAllByLanguage(){
+            $result = DB::table($this->getTable())->where('language_id',session('language_id'))->where('company_id',Session::get('default_company_id'))->get();
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findAllByLanguage : ' . json_encode($result));
+            return $result;
+        }
+        
         function getCountForEmailExisting($email){
             $result = DB::table($this->getTable())
             ->where('email','=',$email)

@@ -23,12 +23,27 @@ use App\Http\Controllers\Admin\Service\UserService;
 
 class AdminUserController extends Controller{
     private $UserService;
-    
 	public function __construct(){
 		$this->UserService = new UserService();
-
 	}
-	
+	function changeDefaultCompany(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.title_dashboard"));
+        $user_id = auth()->guard('admin')->user()->user_id;
+        $result = array();
+        try{
+            DB::beginTransaction();
+            $company_id = $request->company_id;
+            $result['user_id'] = $user_id;
+            $result['default_company_id'] = $company_id;
+            $add_user_result = $this->UserService->update("user_id",$result);
+            $result = $this->UserService->response($result,"Success To Change Default Company","change_default_company");
+            DB::commit();
+        }catch(Exception $e){
+            $result = $this->UserService->throwException($result,$e->getMessage(),true);
+        }
+        $user = $this->UserService->findByColumnAndId("user_id",$user_id);
+		return redirect()->intended('admin/dashboard/this_month')->with('administrators', $user);
+    }
 	function listingUser(Request $request){
         $title = array('pageTitle' => Lang::get("labels.ListUser"));
         $result = array();

@@ -98,6 +98,7 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::post('/addUser', 'AdminUserController@addUser');
 		Route::post('/updateUser', 'AdminUserController@updateUser');
 		Route::post('/deleteUser', 'AdminUserController@deleteUser');
+		Route::post('/changeDefaultCompany', 'AdminUserController@changeDefaultCompany');
 
 		//Jamie Company
 		Route::get('/listingCompany', 'AdminCompanyController@listingCompany');

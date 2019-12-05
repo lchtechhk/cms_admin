@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Dao\BaseDao;
 use Log;
 use DB;
+use Session;
 use App\Http\Controllers\Admin\AdminSiteSettingController;
 use League\Flysystem\Exception;
 
@@ -15,6 +16,7 @@ abstract class BaseApiService extends BaseDao{
                 $array['status'] = 'active';
                 $array['create_date'] = date("Y-m-d H:i:s");
                 $array['edit_date'] = date("Y-m-d H:i:s");
+                $array['company_id'] = Session::get('default_company_id');
                 Log::info('[add] -- :' . json_encode($array));	
                 $insert_id = $this->db_prepareInsert($this->getTable(),$array);
                 //

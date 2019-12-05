@@ -15,7 +15,9 @@ class View_CompanyService extends BaseApiService{
     }
 
     function getListing(){
-        return $this->findAllByLanguage(session('language_id') );
+        $user_id = auth()->guard('admin')->user()->user_id;
+        $company_ids = $this->UserToCompanyService->getCompanyIdsByUser($user_id);
+        return $this->findByColumn_ValuesWithLanguage("company_id",$company_ids);
     }
 
     function getCompanyBelongOwn($user_id){

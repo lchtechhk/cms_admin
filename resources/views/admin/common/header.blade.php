@@ -1,4 +1,5 @@
 @include('generic/header_function')
+<script src={{App::make('url')->to('/')."/resources/assets/js/header.js"}}></script>
 <header class="main-header">
     <a href="{{ URL::to('admin/dashboard/this_month')}}" class="logo">
       <span class="logo-mini" style="font-size:12px"><b>{{ trans('labels.admin') }}</b></span>
@@ -8,24 +9,26 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">{{ trans('labels.toggle_navigation') }}</span>
       </a>
-      <div class="navbar-custom-menu" style="float:left;">
-        <ul class="nav navbar-nav">
-          <li class="dropdown messages-menu">
-            <div  style="padding: 15px 15px;">
-              <select name="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
-                @foreach (Session::get('owner_companies') as $own_company)
-                  <option value="{{$own_company->company_id}}" 
-                    @if(Session::get('default_company_id'))
-                      {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
-                    @endif>
-                    {{$own_company->name}} || {{$own_company->email}}
-                  </option>
-                @endforeach
-              </select>
-            </div>
-          </li>
-        </ul>
-      </div>
+      {!! Form::open(array('id' => 'change_default_company_form' ,'url' =>'admin/changeDefaultCompany', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+        <div class="navbar-custom-menu" style="float:left;">
+          <ul class="nav navbar-nav">
+            <li class="dropdown messages-menu">
+              <div  style="padding: 15px 15px;">
+                <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
+                  @foreach (Session::get('owner_companies') as $own_company)
+                    <option value="{{$own_company->company_id}}" 
+                      @if(Session::get('default_company_id'))
+                        {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
+                      @endif>
+                      {{$own_company->name}} || {{$own_company->email}}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
+            </li>
+          </ul>
+        </div>
+      {!! Form::close() !!}
       <div id="countdown" style="
           width: 350px;
           margin-top: 13px !important;

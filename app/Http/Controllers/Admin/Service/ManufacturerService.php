@@ -45,7 +45,7 @@ class ManufacturerService extends BaseApiService{
         $result['label'] = "Manufacturer";
         switch($result['operation']){
             case 'listing':
-                Log::info('[listing] --  : ');
+                Log::info('[listing] --  : ' . session('company_id'));
                 $result['manufacturers'] = $this->View_ManufacturerService->getListing();
                 return view("admin.manufacturer.listingManufacturer", $title)->with('result', $result);
             break;

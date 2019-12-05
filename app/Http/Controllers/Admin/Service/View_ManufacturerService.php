@@ -13,7 +13,7 @@ class View_ManufacturerService extends BaseApiService{
     }
 
     function getListing(){
-        return $this->findAllByLanguage(session('language_id') );
+        return $this->company_findAllByLanguage();
     }
     function redirect_view($result,$title){
     }
