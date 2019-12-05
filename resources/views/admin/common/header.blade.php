@@ -1,3 +1,4 @@
+@include('generic/header_function')
 <header class="main-header">
     <a href="{{ URL::to('admin/dashboard/this_month')}}" class="logo">
       <span class="logo-mini" style="font-size:12px"><b>{{ trans('labels.admin') }}</b></span>
@@ -11,10 +12,15 @@
         <ul class="nav navbar-nav">
           <li class="dropdown messages-menu">
             <div  style="padding: 15px 15px;">
-              <select name="district_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
-                  <option value="1">
-                    222222222222222
+              <select name="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
+                @foreach (Session::get('owner_companies') as $own_company)
+                  <option value="{{$own_company->company_id}}" 
+                    @if(Session::get('default_company_id'))
+                      {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
+                    @endif>
+                    {{$own_company->name}} || {{$own_company->email}}
                   </option>
+                @endforeach
               </select>
             </div>
           </li>

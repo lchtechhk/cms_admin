@@ -14,7 +14,17 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             $id_list = array();
             if(sizeof($user_to_company) > 0){
                 foreach ($user_to_company AS $utc) {
-                    $id_list[] = $utc->id;
+                    $id_list[] = $utc->user_id;
+                }
+            }
+            return $id_list;
+        }
+        function getCompanyIdsByUser($user_id){
+            $user_to_company = $this->findByColumnAndId("user_id",$user_id);
+            $id_list = array();
+            if(sizeof($user_to_company) > 0){
+                foreach ($user_to_company AS $utc) {
+                    $id_list[] = $utc->company_id;
                 }
             }
             return $id_list;

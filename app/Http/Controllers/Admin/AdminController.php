@@ -191,6 +191,7 @@ class AdminController extends Controller{
 			$adminInfo = array("email" => $request->email, "password" => $request->password);
 			if(auth()->guard('admin')->attempt($adminInfo)) {
 				$user_auth = auth()->guard('admin')->user();
+				Log::info('user_auth : ' . json_encode($user_auth));
 				$user = $this->UserService->findByColumnAndId("user_id",$user_auth->user_id);
 				Log::info('message : ' . json_encode($user));
 				$language_id = $this->LanguageService->getDefault_languageId();

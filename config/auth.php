@@ -50,7 +50,7 @@ return [
         ],
 		'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
         ],
         'root' => [
             'driver' => 'session',
@@ -59,6 +59,10 @@ return [
 		'customer' => [
             'driver' => 'session',
             'provider' => 'customers',
+        ],
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'companies',
         ],
     ],
 
@@ -90,11 +94,15 @@ return [
         ],
 		'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' => App\User::class,
         ],
 		'customers' => [
             'driver' => 'eloquent',
             'model' => App\Customer::class,
+        ],
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Company::class,
         ]
     ],
 

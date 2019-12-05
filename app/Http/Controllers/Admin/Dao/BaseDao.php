@@ -46,6 +46,12 @@
             return $result;
         }
 
+        public function findByColumn_ValuesWithLanguage($column,$values){
+            $result = DB::table($this->getTable())->where('language_id',session('language_id'))->whereIn($column, $values)->get();
+            Log::info('[BaseDao] -- ' .'['.$this->getTable().'] -- findByColumn_ValuesWithLanguage : ' . json_encode($result));
+            return $result;
+        }
+
         public function findByColumn_IdArray($column,$target_column,$id){
             $result = DB::table($this->getTable())->where($column, $id)->get();
             $id_array = array();
