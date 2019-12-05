@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `cms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_mysql500_ci */;
 USE `cms`;
--- MySQL dump 10.13  Distrib 8.0.13, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: cms
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.37-MariaDB
+-- Server version	5.5.5-10.1.32-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -180,7 +180,7 @@ CREATE TABLE `administrators` (
 
 LOCK TABLES `administrators` WRITE;
 /*!40000 ALTER TABLE `administrators` DISABLE KEYS */;
-INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'snAwujE8c9SI563GQdgw5ZIw17WCOufZs49XEbXRsopyhhX6TVgn6KUmxITx','0000-00-00 00:00:00','2017-12-11 20:58:51'),(4,'Admin','','demo@ionic.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'fKgKDWq2EOujXJyZjYk3j7moCzpjLBccKw8bGDP1FUKrWPpvvXmpsjn1CFcz',NULL,NULL),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49'),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL);
+INSERT INTO `administrators` VALUES (1,'Admin','','admin@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'F7AgwbA1Ub95yyD2sEPXN7FvVeo1jShTWvmpK7jsQaNIdjRSObfN9jM39VP4','0000-00-00 00:00:00','2017-12-11 20:58:51'),(4,'Admin','','acornjamie123@gmail.com','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin',1,'address','Nivada','12','31271','223','+92 314 6681998','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'n1qqEd4mwEciYiLjXPDosdpmHDYTB91NOXEbu0vr1aXy5XfF8tVUfl4tQwAB',NULL,NULL),(5,'Vector','Coder','vectorcoder@gmail.com','$2y$10$TKJBNrT7bkFqz49XazJL7.mTa49DI9CeCcZipjuFer1h.OeZWsaHC','',1,'228 Park Ave S','New York','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,'AEuL3ix3r4xQpW1yvYYWsyojhRXnFobPWrWdYVLNI7BzQjUTGVyFjHt16nxY',NULL,'2018-02-07 07:54:49'),(6,'Admin','','demo@ecommerce.com','$2y$10$vbQE1Lbu1kXCAILSvaH0uOZ3oA6oZdCf/0kjQB16iGnjc3eTaFBeu','',1,'address','Nivada','1','10003','223','+1 656 458 787 87','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `administrators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,6 +351,7 @@ DROP TABLE IF EXISTS `category`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `image` mediumtext COLLATE utf8_unicode_ci,
   `icon` mediumtext COLLATE utf8_unicode_ci,
   `sort_order` int(3) DEFAULT NULL,
@@ -370,7 +371,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(4,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png','resources/assets/images/category_icons/1558067666.Screenshot_2019-05-16-17-39-07-522_com.android.settings.png',NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(9,'resources/assets/images/category_images/1558079165.Screenshot_2019-05-17-15-21-51-154_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 14:05:48',NULL,'2019-10-09 11:27:04',NULL,'active');
+INSERT INTO `category` VALUES (1,0,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(4,0,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png','resources/assets/images/category_icons/1558067666.Screenshot_2019-05-16-17-39-07-522_com.android.settings.png',NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(9,0,'resources/assets/images/category_images/1558079165.Screenshot_2019-05-17-15-21-51-154_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 14:05:48',NULL,'2019-10-09 11:27:04',NULL,'active');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +462,7 @@ CREATE TABLE `company` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,7 +471,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active');
+INSERT INTO `company` VALUES (1,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active'),(2,'companyB@gmail.com',NULL,33451123,NULL,NULL,NULL,NULL,NULL,NULL,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(3,'CompanyC@gmail.com',NULL,33333333,NULL,NULL,NULL,NULL,NULL,NULL,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,7 +493,7 @@ CREATE TABLE `company_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,7 +502,7 @@ CREATE TABLE `company_description` (
 
 LOCK TABLES `company_description` WRITE;
 /*!40000 ALTER TABLE `company_description` DISABLE KEYS */;
-INSERT INTO `company_description` VALUES (1,1,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,1,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active');
+INSERT INTO `company_description` VALUES (1,1,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,1,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(3,2,'CompanyB HongKong',1,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(4,2,'CompanyB English',2,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(5,3,'CompanyC HongKong',1,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active'),(6,3,'CompanyC English',2,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active');
 /*!40000 ALTER TABLE `company_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1022,6 +1023,7 @@ DROP TABLE IF EXISTS `languages`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `languages` (
   `languages_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `image` mediumtext COLLATE utf8_unicode_ci,
@@ -1040,7 +1042,7 @@ CREATE TABLE `languages` (
 
 LOCK TABLES `languages` WRITE;
 /*!40000 ALTER TABLE `languages` DISABLE KEYS */;
-INSERT INTO `languages` VALUES (1,'HongKong','hk','resources/assets/images/language_flags/1541783039.HK.png','hongkong',NULL,'rtl',1),(2,'English','eg','resources/assets/images/language_flags/1541783039.HK.png','English',NULL,'rtl',1);
+INSERT INTO `languages` VALUES (1,0,'HongKong','hk','resources/assets/images/language_flags/1541783039.HK.png','hongkong',NULL,'rtl',1),(2,0,'English','eg','resources/assets/images/language_flags/1541783039.HK.png','English',NULL,'rtl',0);
 /*!40000 ALTER TABLE `languages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1079,6 +1081,7 @@ DROP TABLE IF EXISTS `manufacturer`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `url` text COLLATE utf8_general_mysql500_ci,
   `image` mediumtext COLLATE utf8_general_mysql500_ci,
   `slug` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -1088,7 +1091,7 @@ CREATE TABLE `manufacturer` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1097,7 +1100,7 @@ CREATE TABLE `manufacturer` (
 
 LOCK TABLES `manufacturer` WRITE;
 /*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
-INSERT INTO `manufacturer` VALUES (1,'https://ionicframework.com/docs/installation/environment','resources/assets/images/manufacturer/1558087365.IMG-20190517-WA0005.jpg',NULL,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,'active');
+INSERT INTO `manufacturer` VALUES (1,1,'https://ionicframework.com/docs/installation/environment','resources/assets/images/manufacturer/1558087365.IMG-20190517-WA0005.jpg',NULL,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,'active'),(2,1,'',NULL,NULL,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(3,2,'',NULL,NULL,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active');
 /*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1119,7 +1122,7 @@ CREATE TABLE `manufacturer_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`manufacturer_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1128,34 +1131,8 @@ CREATE TABLE `manufacturer_description` (
 
 LOCK TABLES `manufacturer_description` WRITE;
 /*!40000 ALTER TABLE `manufacturer_description` DISABLE KEYS */;
-INSERT INTO `manufacturer_description` VALUES (1,'manufactuerer done',1,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,''),(2,'english123w',2,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,'');
+INSERT INTO `manufacturer_description` VALUES (1,'manufactuerer done',1,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,''),(2,'english123w',2,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,''),(3,'Manufacturer B  HongKong',1,2,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(4,'Manufacturer B  English',2,2,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(5,'Manufacturer C  HongKong',1,3,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active'),(6,'Manufacturer C  English',2,3,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active');
 /*!40000 ALTER TABLE `manufacturer_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `manufacturers_info`
---
-
-DROP TABLE IF EXISTS `manufacturers_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `manufacturers_info` (
-  `manufacturers_id` int(11) NOT NULL,
-  `languages_id` int(11) NOT NULL,
-  `manufacturers_url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `url_clicked` int(5) NOT NULL DEFAULT '0',
-  `date_last_click` datetime DEFAULT NULL,
-  PRIMARY KEY (`manufacturers_id`,`languages_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `manufacturers_info`
---
-
-LOCK TABLES `manufacturers_info` WRITE;
-/*!40000 ALTER TABLE `manufacturers_info` DISABLE KEYS */;
-/*!40000 ALTER TABLE `manufacturers_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1388,6 +1365,7 @@ DROP TABLE IF EXISTS `order`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `customer_company` varchar(255) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -1448,7 +1426,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:06:48',NULL,'2019-10-21 23:35:44',NULL,'active','pending'),(2,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>r</p>',NULL,'2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active','pending'),(3,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>re</p>',NULL,'2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active','pending'),(4,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,600.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active','pending'),(5,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,2.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:25:33',NULL,'2019-10-21 23:32:51',NULL,'active','pending'),(6,4,'A User','CompanyB','2','China HongKong  九龍區 樂富  Estatelabels.Buildingy室','China','HongKong','九龍區','樂富','Estate','labels.Building','y','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1800.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gf</p>',NULL,'2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active','complete'),(7,15,'B User','CompanyB','4','China HongKong  九龍區 樂富  EstateBuildingRoom室','China','HongKong','九龍區','樂富','Estate','Building','Room','2','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,6.00,'5',NULL,NULL,6000.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gffd</p>',NULL,'2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active','cancel');
+INSERT INTO `order` VALUES (1,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:06:48',NULL,'2019-10-21 23:35:44',NULL,'active','pending'),(2,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>r</p>',NULL,'2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active','pending'),(3,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>re</p>',NULL,'2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active','pending'),(4,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,600.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active','pending'),(5,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,2.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:25:33',NULL,'2019-10-21 23:32:51',NULL,'active','pending'),(6,0,4,'A User','CompanyB','2','China HongKong  九龍區 樂富  Estatelabels.Buildingy室','China','HongKong','九龍區','樂富','Estate','labels.Building','y','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1800.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gf</p>',NULL,'2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active','complete'),(7,0,15,'B User','CompanyB','4','China HongKong  九龍區 樂富  EstateBuildingRoom室','China','HongKong','九龍區','樂富','Estate','Building','Room','2','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,6.00,'5',NULL,NULL,6000.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gffd</p>',NULL,'2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active','cancel');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1584,290 +1562,6 @@ CREATE TABLE `order_status` (
 LOCK TABLES `order_status` WRITE;
 /*!40000 ALTER TABLE `order_status` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order_status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders`
---
-
-DROP TABLE IF EXISTS `orders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders` (
-  `orders_id` int(11) NOT NULL AUTO_INCREMENT,
-  `total_tax` decimal(7,0) DEFAULT NULL,
-  `customers_id` int(11) NOT NULL,
-  `customers_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `customers_company` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_street_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_suburb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_postcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customers_telephone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `customers_address_format_id` int(5) DEFAULT NULL,
-  `delivery_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `delivery_company` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_street_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `delivery_suburb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_postcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delivery_address_format_id` int(5) DEFAULT NULL,
-  `billing_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `billing_company` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_street_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `billing_suburb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_postcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `billing_address_format_id` int(5) DEFAULT NULL,
-  `payment_method` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cc_type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cc_owner` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cc_number` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cc_expires` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `date_purchased` datetime DEFAULT NULL,
-  `orders_date_finished` datetime DEFAULT NULL,
-  `currency` char(3) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `currency_value` decimal(14,6) DEFAULT NULL,
-  `order_price` decimal(10,2) NOT NULL,
-  `shipping_cost` decimal(10,2) DEFAULT NULL,
-  `shipping_method` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `shipping_duration` int(100) DEFAULT NULL,
-  `order_information` mediumtext COLLATE utf8_unicode_ci,
-  `is_seen` tinyint(1) DEFAULT '0',
-  `coupon_code` text COLLATE utf8_unicode_ci,
-  `coupon_amount` int(100) DEFAULT NULL,
-  `exclude_product_ids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `product_categories` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `excluded_product_categories` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `free_shipping` tinyint(1) DEFAULT '0',
-  `product_ids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ordered_source` tinyint(1) DEFAULT '0',
-  `customer_remark` tinytext COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`orders_id`),
-  KEY `idx_orders_customers_id` (`customers_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders`
---
-
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (16,NULL,5,'1 2',NULL,'3','','','','other',NULL,'4','test123@gmail.com',NULL,'1 2',NULL,'3','','','','other',NULL,NULL,'1 2',NULL,'3','','','','other',NULL,NULL,'cash_on_delivery',NULL,NULL,NULL,NULL,'2018-11-19 18:16:34','2018-11-19 18:16:34',NULL,'$',2018.000000,200.00,0.00,'',NULL,'[]',1,'',0,NULL,NULL,NULL,0,NULL,2,''),(17,NULL,5,'1 2',NULL,'3','','','','other',NULL,'4','test123@gmail.com',NULL,'1 2',NULL,'3','','','','other',NULL,NULL,'1 2',NULL,'3','','','','other',NULL,NULL,'cash_on_delivery',NULL,NULL,NULL,NULL,'2018-11-20 04:29:51','2018-11-20 04:29:51',NULL,'$',2018.000000,105.00,0.00,'',NULL,'[]',1,'',0,NULL,NULL,NULL,0,NULL,2,'快');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_products`
---
-
-DROP TABLE IF EXISTS `orders_products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_products` (
-  `orders_products_id` int(11) NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL,
-  `products_id` int(11) NOT NULL,
-  `product_attribute_id` int(11) DEFAULT NULL,
-  `products_model` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `products_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `products_price` decimal(15,2) NOT NULL,
-  `final_price` decimal(15,2) NOT NULL,
-  `products_tax` decimal(7,0) NOT NULL,
-  `products_quantity` int(2) NOT NULL,
-  PRIMARY KEY (`orders_products_id`),
-  KEY `idx_orders_products_orders_id` (`orders_id`),
-  KEY `idx_orders_products_products_id` (`products_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_products`
---
-
-LOCK TABLES `orders_products` WRITE;
-/*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;
-INSERT INTO `orders_products` VALUES (1,1,81,NULL,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(2,2,80,NULL,NULL,'FLAG COMBED COTTON SWEATER',99.99,99.99,1,1),(3,2,78,NULL,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,195.00,1,1),(4,3,81,NULL,NULL,'RUFFLED COTTON CARDIGAN',72.00,72.00,1,1),(5,4,78,NULL,NULL,'CABLE-KNIT CASHMERE SWEATER',195.00,390.00,1,2),(6,5,79,NULL,NULL,'FAIR ISLE HOODED SWEATER',45.00,90.00,1,2),(7,5,80,NULL,NULL,'FLAG COMBED COTTON SWEATER',99.99,199.98,1,2),(8,6,6,NULL,NULL,'cake',89.50,89.50,1,1),(9,6,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(10,6,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(11,7,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(12,8,82,NULL,NULL,'王老吉',3.00,6.00,1,2),(13,9,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(14,10,82,NULL,NULL,'王老吉',3.00,6.00,1,2),(15,11,6,NULL,NULL,'cake',89.50,268.50,1,3),(16,12,4,NULL,NULL,'Biscuits',85.00,85.00,1,1),(17,13,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(18,14,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(19,15,82,NULL,NULL,'王老吉',3.00,3.00,1,1),(20,16,2,NULL,NULL,'小蛋糕',100.00,100.00,1,1),(21,16,1,NULL,NULL,'酸奶',100.00,100.00,1,1),(22,17,5,NULL,NULL,'維他',100.00,100.00,1,1),(23,17,6,NULL,NULL,'水',5.00,5.00,1,1);
-/*!40000 ALTER TABLE `orders_products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_products_attributes`
---
-
-DROP TABLE IF EXISTS `orders_products_attributes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_products_attributes` (
-  `orders_products_attributes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL,
-  `orders_products_id` int(11) NOT NULL,
-  `products_id` int(11) NOT NULL,
-  `products_options` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `products_options_values` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `options_values_price` decimal(15,2) NOT NULL,
-  `price_prefix` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`orders_products_attributes_id`),
-  KEY `idx_orders_products_att_orders_id` (`orders_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_products_attributes`
---
-
-LOCK TABLES `orders_products_attributes` WRITE;
-/*!40000 ALTER TABLE `orders_products_attributes` DISABLE KEYS */;
-INSERT INTO `orders_products_attributes` VALUES (1,6,8,6,'Size','Small',0.00,'+'),(2,6,10,4,'Size','Small',0.00,'+'),(3,7,11,4,'Size','Small',0.00,'+'),(4,11,15,6,'Size','Small',0.00,'+'),(5,17,23,6,'Size','Small',0.00,'+');
-/*!40000 ALTER TABLE `orders_products_attributes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_products_download`
---
-
-DROP TABLE IF EXISTS `orders_products_download`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_products_download` (
-  `orders_products_download_id` int(11) NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL DEFAULT '0',
-  `orders_products_id` int(11) NOT NULL DEFAULT '0',
-  `orders_products_filename` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `download_maxdays` int(2) NOT NULL DEFAULT '0',
-  `download_count` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`orders_products_download_id`),
-  KEY `idx_orders_products_download_orders_id` (`orders_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_products_download`
---
-
-LOCK TABLES `orders_products_download` WRITE;
-/*!40000 ALTER TABLE `orders_products_download` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders_products_download` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_status`
---
-
-DROP TABLE IF EXISTS `orders_status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_status` (
-  `orders_status_id` int(11) NOT NULL DEFAULT '0',
-  `language_id` int(11) NOT NULL DEFAULT '1',
-  `orders_status_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `public_flag` int(11) DEFAULT '1',
-  `downloads_flag` int(11) DEFAULT '0',
-  PRIMARY KEY (`orders_status_id`,`language_id`),
-  KEY `idx_orders_status_name` (`orders_status_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_status`
---
-
-LOCK TABLES `orders_status` WRITE;
-/*!40000 ALTER TABLE `orders_status` DISABLE KEYS */;
-INSERT INTO `orders_status` VALUES (1,1,'Pending',1,0),(2,1,'Completed',1,0),(3,1,'Cancel',1,0);
-/*!40000 ALTER TABLE `orders_status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_status_description`
---
-
-DROP TABLE IF EXISTS `orders_status_description`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_status_description` (
-  `orders_status_description_id` int(100) NOT NULL AUTO_INCREMENT,
-  `orders_status_id` int(100) NOT NULL,
-  `orders_status_name` varchar(255) NOT NULL,
-  `language_id` int(100) NOT NULL,
-  PRIMARY KEY (`orders_status_description_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_status_description`
---
-
-LOCK TABLES `orders_status_description` WRITE;
-/*!40000 ALTER TABLE `orders_status_description` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders_status_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_status_history`
---
-
-DROP TABLE IF EXISTS `orders_status_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_status_history` (
-  `orders_status_history_id` int(11) NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL,
-  `orders_status_id` int(5) NOT NULL,
-  `date_added` datetime NOT NULL,
-  `customer_notified` int(1) DEFAULT '0',
-  `comments` mediumtext COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`orders_status_history_id`),
-  KEY `idx_orders_status_history_orders_id` (`orders_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_status_history`
---
-
-LOCK TABLES `orders_status_history` WRITE;
-/*!40000 ALTER TABLE `orders_status_history` DISABLE KEYS */;
-INSERT INTO `orders_status_history` VALUES (1,1,1,'2017-08-22 07:50:27',1,NULL),(2,2,1,'2017-09-07 01:23:50',1,NULL),(3,3,1,'2017-09-07 01:27:52',1,NULL),(4,4,1,'2017-09-07 01:38:22',1,NULL),(5,5,1,'2017-09-07 01:38:25',1,NULL),(6,6,1,'2017-09-07 01:38:28',1,NULL),(7,7,1,'2017-09-07 01:38:30',1,NULL),(8,8,1,'2017-09-08 10:13:10',1,NULL),(9,9,1,'2017-09-08 10:13:12',1,NULL),(10,10,1,'2017-09-08 10:13:15',1,NULL),(11,10,2,'2017-12-21 07:53:10',1,''),(12,9,3,'2017-12-21 07:53:31',1,''),(13,1,1,'2018-11-04 06:18:28',1,''),(14,2,1,'2018-11-04 06:23:08',1,'Ok'),(15,3,1,'2018-11-09 06:14:11',1,'你好'),(16,4,1,'2018-11-13 05:34:53',1,'卜'),(17,5,1,'2018-11-13 05:45:52',1,NULL),(18,6,1,'2018-11-15 11:53:44',1,''),(19,7,1,'2018-11-15 11:56:00',1,'Ijbbb'),(20,8,1,'2018-11-15 04:24:18',1,''),(21,9,1,'2018-11-15 04:25:19',1,''),(22,10,1,'2018-11-15 04:26:40',1,''),(23,11,1,'2018-11-15 04:39:39',1,''),(24,12,1,'2018-11-15 05:09:11',1,''),(25,13,1,'2018-11-17 08:17:20',1,''),(26,14,1,'2018-11-17 12:32:27',1,''),(27,15,1,'2018-11-19 01:52:16',1,''),(28,16,1,'2018-11-19 06:16:34',1,''),(29,16,2,'2018-11-19 06:16:47',1,''),(30,17,1,'2018-11-20 04:29:51',1,'快');
-/*!40000 ALTER TABLE `orders_status_history` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_total`
---
-
-DROP TABLE IF EXISTS `orders_total`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `orders_total` (
-  `orders_total_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `orders_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `value` decimal(15,4) NOT NULL,
-  `class` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `sort_order` int(11) NOT NULL,
-  PRIMARY KEY (`orders_total_id`),
-  KEY `idx_orders_total_orders_id` (`orders_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_total`
---
-
-LOCK TABLES `orders_total` WRITE;
-/*!40000 ALTER TABLE `orders_total` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders_total` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2031,6 +1725,7 @@ DROP TABLE IF EXISTS `product`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `quantity` int(4) NOT NULL,
   `low_limit` int(4) NOT NULL,
   `image` mediumtext COLLATE utf8_unicode_ci,
@@ -2066,7 +1761,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active','',0,0,0,NULL),(2,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
+INSERT INTO `product` VALUES (1,0,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active','',0,0,0,NULL),(2,0,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,0,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,0,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2323,214 +2018,6 @@ INSERT INTO `product_option_value_description` VALUES (5,1,3,'HongKong3','2019-0
 UNLOCK TABLES;
 
 --
--- Table structure for table `products_attributes`
---
-
-DROP TABLE IF EXISTS `products_attributes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_attributes` (
-  `products_attributes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `products_id` int(11) NOT NULL,
-  `options_id` int(11) NOT NULL,
-  `options_values_id` int(11) NOT NULL,
-  `options_values_price` decimal(15,2) NOT NULL,
-  `price_prefix` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `is_default` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`products_attributes_id`),
-  KEY `idx_products_attributes_products_id` (`products_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=423 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_attributes`
---
-
-LOCK TABLES `products_attributes` WRITE;
-/*!40000 ALTER TABLE `products_attributes` DISABLE KEYS */;
-INSERT INTO `products_attributes` VALUES (61,6,4,29,0.00,'+',0),(62,6,4,32,0.00,'+',0),(63,6,4,35,0.00,'+',0),(64,6,4,38,0.00,'+',0),(65,6,5,30,0.00,'+',0),(66,6,5,34,0.00,'+',0),(67,6,5,36,0.00,'+',0),(68,6,5,40,0.00,'+',0),(69,6,6,31,0.00,'+',0),(70,6,6,33,0.00,'+',0),(71,6,6,37,0.00,'+',0),(72,6,6,39,0.00,'+',0),(73,7,4,32,0.00,'+',0),(74,7,4,35,0.00,'+',0),(75,7,5,34,0.00,'+',0),(76,7,5,36,0.00,'+',0),(77,7,6,33,0.00,'+',0),(78,7,6,37,0.00,'+',0),(79,8,4,29,0.00,'+',0),(80,8,4,32,0.00,'+',0),(81,8,5,30,0.00,'+',0),(82,8,5,34,0.00,'+',0),(83,8,6,31,0.00,'+',0),(84,8,6,33,0.00,'+',0),(85,9,4,32,0.00,'+',0),(86,9,4,35,0.00,'+',0),(87,9,4,38,0.00,'+',0),(88,9,5,34,0.00,'+',0),(89,9,5,36,0.00,'+',0),(90,9,5,40,0.00,'+',0),(91,9,6,33,0.00,'+',0),(92,9,6,37,0.00,'+',0),(93,9,6,39,0.00,'+',0),(94,10,4,35,0.00,'+',0),(95,10,4,38,0.00,'+',0),(96,10,5,36,0.00,'+',0),(97,10,5,40,0.00,'+',0),(98,10,6,37,0.00,'+',0),(99,10,6,39,0.00,'+',0),(100,11,7,41,0.00,'+',0),(101,11,7,42,0.00,'+',0),(102,11,7,43,0.00,'+',0),(103,11,8,49,0.00,'+',0),(104,11,8,50,0.00,'+',0),(105,11,8,51,0.00,'+',0),(106,11,9,57,0.00,'+',0),(107,11,9,58,0.00,'+',0),(108,11,9,59,0.00,'+',0),(109,11,10,65,0.00,'+',0),(110,11,10,66,0.00,'+',0),(111,11,11,68,0.00,'+',0),(112,11,11,69,0.00,'+',0),(113,11,12,71,0.00,'+',0),(114,11,12,72,0.00,'+',0),(115,12,1,1,0.00,'+',0),(116,12,1,3,0.00,'+',0),(117,12,2,20,0.00,'+',0),(118,12,2,22,0.00,'+',0),(119,12,3,10,0.00,'+',0),(120,12,3,12,0.00,'+',0),(121,12,7,44,0.00,'+',0),(122,12,7,45,0.00,'+',0),(123,12,7,46,0.00,'+',0),(124,12,7,47,0.00,'+',0),(125,12,8,52,0.00,'+',0),(126,12,8,53,0.00,'+',0),(127,12,8,54,0.00,'+',0),(128,12,8,55,0.00,'+',0),(129,12,9,60,0.00,'+',0),(130,12,9,61,0.00,'+',0),(131,12,9,62,0.00,'+',0),(132,12,9,63,0.00,'+',0),(133,12,10,65,0.00,'+',0),(134,12,10,66,0.00,'+',0),(135,12,10,67,0.00,'+',0),(136,12,11,68,0.00,'+',0),(137,12,11,69,0.00,'+',0),(138,12,11,70,0.00,'+',0),(139,12,12,71,0.00,'+',0),(140,12,12,72,0.00,'+',0),(141,12,12,73,0.00,'+',0),(142,13,7,41,0.00,'+',0),(143,13,7,42,0.00,'+',0),(144,13,8,49,0.00,'+',0),(145,13,8,50,0.00,'+',0),(146,13,9,57,0.00,'+',0),(147,13,9,58,0.00,'+',0),(148,13,10,65,0.00,'+',0),(149,13,10,67,0.00,'+',0),(150,13,11,68,0.00,'+',0),(151,13,11,70,0.00,'+',0),(152,13,12,71,0.00,'+',0),(153,13,12,73,0.00,'+',0),(154,14,4,74,0.00,'+',0),(155,14,4,75,0.00,'+',0),(156,14,4,76,0.00,'+',0),(157,14,4,77,0.00,'+',0),(158,14,5,78,0.00,'+',0),(159,14,5,79,0.00,'+',0),(160,14,5,80,0.00,'+',0),(161,14,5,81,0.00,'+',0),(162,14,6,82,0.00,'+',0),(163,14,6,83,0.00,'+',0),(164,14,6,84,0.00,'+',0),(165,14,6,85,0.00,'+',0),(166,15,4,76,0.00,'+',0),(167,15,5,80,0.00,'+',0),(168,15,6,85,0.00,'+',0),(169,16,4,75,0.00,'+',0),(170,16,4,76,0.00,'+',0),(171,16,4,77,0.00,'+',0),(172,16,5,79,0.00,'+',0),(173,16,5,80,0.00,'+',0),(174,16,5,81,0.00,'+',0),(175,16,6,83,0.00,'+',0),(176,16,6,84,0.00,'+',0),(177,16,6,85,0.00,'+',0),(178,17,1,5,0.00,'+',0),(179,17,2,24,0.00,'+',0),(180,17,3,14,0.00,'+',0),(181,17,4,74,0.00,'+',0),(182,17,4,75,0.00,'+',0),(183,17,5,78,0.00,'+',0),(184,17,5,79,0.00,'+',0),(185,17,6,82,0.00,'+',0),(186,17,6,83,0.00,'+',0),(187,19,4,76,0.00,'+',0),(188,19,4,77,0.00,'+',0),(189,19,5,80,0.00,'+',0),(190,19,5,81,0.00,'+',0),(191,19,6,84,0.00,'+',0),(192,19,6,85,0.00,'+',0),(193,24,4,29,0.00,'+',0),(194,24,4,32,0.00,'+',0),(195,24,4,35,0.00,'+',0),(196,24,5,30,0.00,'+',0),(197,24,5,34,0.00,'+',0),(198,24,5,36,0.00,'+',0),(199,24,6,31,0.00,'+',0),(200,24,6,33,0.00,'+',0),(201,24,6,37,0.00,'+',0),(202,25,4,29,0.00,'+',0),(203,25,5,30,0.00,'+',0),(204,25,6,31,0.00,'+',0),(205,26,4,32,0.00,'+',0),(206,26,5,34,0.00,'+',0),(207,26,6,33,0.00,'+',0),(208,27,4,32,0.00,'+',0),(209,27,4,35,0.00,'+',0),(210,27,5,34,0.00,'+',0),(211,27,5,36,0.00,'+',0),(212,27,6,33,0.00,'+',0),(213,27,6,37,0.00,'+',0),(214,28,4,29,0.00,'+',0),(215,28,4,32,0.00,'+',0),(216,28,5,30,0.00,'+',0),(217,28,5,34,0.00,'+',0),(218,28,6,31,0.00,'+',0),(219,28,6,33,0.00,'+',0),(220,29,4,29,0.00,'+',0),(221,29,4,32,0.00,'+',0),(222,29,4,35,0.00,'+',0),(223,29,4,38,0.00,'+',0),(224,29,5,30,0.00,'+',0),(225,29,5,34,0.00,'+',0),(226,29,5,36,0.00,'+',0),(227,29,5,40,0.00,'+',0),(228,29,6,31,0.00,'+',0),(229,29,6,33,0.00,'+',0),(230,29,6,37,0.00,'+',0),(231,29,6,39,0.00,'+',0),(232,30,4,29,0.00,'+',0),(233,30,5,30,0.00,'+',0),(234,30,6,31,0.00,'+',0),(235,31,4,87,0.00,'+',0),(236,31,4,88,0.00,'+',0),(237,31,4,89,0.00,'+',0),(238,31,4,90,0.00,'+',0),(239,31,5,86,0.00,'+',0),(240,31,5,94,0.00,'+',0),(241,31,5,95,0.00,'+',0),(242,31,5,96,0.00,'+',0),(243,31,6,100,0.00,'+',0),(244,31,6,101,0.00,'+',0),(245,31,6,102,0.00,'+',0),(246,31,6,103,0.00,'+',0),(247,32,4,87,0.00,'+',0),(248,32,4,88,0.00,'+',0),(249,32,4,89,0.00,'+',0),(250,32,4,90,0.00,'+',0),(251,32,5,86,0.00,'+',0),(252,32,5,94,0.00,'+',0),(253,32,5,95,0.00,'+',0),(254,32,5,96,0.00,'+',0),(255,32,6,100,0.00,'+',0),(256,32,6,101,0.00,'+',0),(257,32,6,102,0.00,'+',0),(258,32,6,103,0.00,'+',0),(259,33,4,91,0.00,'+',0),(260,33,4,92,0.00,'+',0),(261,33,4,93,0.00,'+',0),(262,33,5,97,0.00,'+',0),(263,33,5,98,0.00,'+',0),(264,33,5,99,0.00,'+',0),(265,33,6,104,0.00,'+',0),(266,33,6,105,0.00,'+',0),(267,33,6,106,0.00,'+',0),(268,38,4,107,0.00,'+',0),(269,38,4,110,0.00,'+',0),(270,38,4,111,0.00,'+',0),(271,38,5,109,0.00,'+',0),(272,38,5,113,0.00,'+',0),(273,38,5,114,0.00,'+',0),(274,38,6,108,0.00,'+',0),(275,38,6,116,0.00,'+',0),(276,38,6,117,0.00,'+',0),(277,39,4,111,0.00,'+',0),(278,39,5,114,0.00,'+',0),(279,39,6,117,0.00,'+',0),(280,40,4,107,0.00,'+',0),(281,40,4,110,0.00,'+',0),(282,40,5,109,0.00,'+',0),(283,40,5,113,0.00,'+',0),(284,40,6,108,0.00,'+',0),(285,40,6,116,0.00,'+',0),(286,42,4,111,0.00,'+',0),(287,42,4,112,0.00,'+',0),(288,42,5,114,0.00,'+',0),(289,42,5,115,0.00,'+',0),(290,42,6,117,0.00,'+',0),(291,42,6,118,0.00,'+',0),(292,43,4,112,0.00,'+',0),(293,43,5,115,0.00,'+',0),(294,43,6,118,0.00,'+',0),(295,44,4,111,0.00,'+',0),(296,44,4,112,0.00,'+',0),(297,44,5,114,0.00,'+',0),(298,44,5,115,0.00,'+',0),(299,44,6,117,0.00,'+',0),(300,44,6,118,0.00,'+',0),(301,50,4,125,0.00,'+',0),(302,50,5,127,0.00,'+',0),(303,50,6,126,0.00,'+',0),(304,48,1,119,0.00,'+',0),(305,48,1,122,0.00,'+',0),(306,48,2,121,0.00,'+',0),(307,48,2,123,0.00,'+',0),(308,48,3,120,0.00,'+',0),(309,48,3,124,0.00,'+',0),(310,48,4,125,0.00,'+',0),(311,48,4,130,0.00,'+',0),(312,48,5,127,0.00,'+',0),(313,48,5,129,0.00,'+',0),(314,48,6,126,0.00,'+',0),(315,48,6,128,0.00,'+',0),(316,49,4,130,0.00,'+',0),(317,49,5,129,0.00,'+',0),(318,49,6,128,0.00,'+',0),(319,51,4,125,0.00,'+',0),(320,51,5,127,0.00,'+',0),(321,51,6,126,0.00,'+',0),(322,52,1,119,0.00,'+',0),(323,52,2,121,0.00,'+',0),(324,52,3,120,0.00,'+',0),(325,53,4,132,0.00,'+',0),(326,53,5,135,0.00,'+',0),(327,53,6,136,0.00,'+',0),(328,52,4,131,0.00,'+',0),(329,52,5,133,0.00,'+',0),(330,52,6,134,0.00,'+',0),(331,54,1,2,0.00,'+',0),(332,54,1,3,0.00,'+',0),(333,54,2,21,0.00,'+',0),(334,54,2,22,0.00,'+',0),(335,54,3,11,0.00,'+',0),(336,54,3,12,0.00,'+',0),(337,55,4,29,0.00,'+',0),(338,55,4,32,0.00,'+',0),(339,55,4,35,0.00,'+',0),(341,55,5,30,0.00,'+',0),(342,55,5,34,0.00,'+',0),(343,55,5,36,0.00,'+',0),(345,55,6,31,0.00,'+',0),(346,55,6,33,0.00,'+',0),(347,55,6,37,0.00,'+',0),(351,56,4,137,0.00,'+',0),(352,56,5,140,0.00,'+',0),(353,56,6,143,0.00,'+',0),(354,57,1,2,0.00,'+',0),(355,57,1,3,0.00,'+',0),(356,57,2,21,0.00,'+',0),(357,57,2,22,0.00,'+',0),(358,57,3,11,0.00,'+',0),(359,57,3,12,0.00,'+',0),(360,57,4,138,0.00,'+',0),(361,57,5,141,0.00,'+',0),(362,57,6,145,0.00,'+',0),(363,58,4,29,0.00,'+',0),(364,58,4,32,0.00,'+',0),(365,58,4,35,0.00,'+',0),(366,58,5,30,0.00,'+',0),(367,58,5,34,0.00,'+',0),(368,58,5,36,0.00,'+',0),(369,58,6,31,0.00,'+',0),(370,58,6,33,0.00,'+',0),(371,58,6,37,0.00,'+',0),(372,59,4,29,0.00,'+',0),(373,59,5,30,0.00,'+',0),(374,59,6,31,0.00,'+',0),(375,60,4,35,0.00,'+',0),(376,60,5,36,0.00,'+',0),(377,60,6,37,0.00,'+',0),(378,61,4,32,0.00,'+',0),(379,61,4,35,0.00,'+',0),(380,61,5,34,0.00,'+',0),(381,61,5,36,0.00,'+',0),(382,61,6,33,0.00,'+',0),(383,61,6,37,0.00,'+',0),(384,63,4,29,0.00,'+',0),(385,63,4,35,0.00,'+',0),(386,63,5,30,0.00,'+',0),(387,63,5,36,0.00,'+',0),(388,63,6,31,0.00,'+',0),(389,63,6,37,0.00,'+',0),(390,66,7,41,0.00,'+',0),(391,66,8,49,0.00,'+',0),(392,66,9,57,0.00,'+',0),(393,66,10,65,0.00,'+',0),(394,66,11,68,0.00,'+',0),(395,66,12,71,0.00,'+',0),(396,67,4,32,0.00,'+',0),(397,67,4,35,0.00,'+',0),(398,67,5,34,0.00,'+',0),(399,67,5,36,0.00,'+',0),(400,67,6,33,0.00,'+',0),(401,67,6,37,0.00,'+',0),(402,68,7,42,0.00,'+',0),(403,68,8,50,0.00,'+',0),(404,68,9,58,0.00,'+',0),(405,68,10,65,0.00,'+',0),(406,68,11,68,0.00,'+',0),(407,68,12,71,0.00,'+',0),(408,69,4,74,0.00,'+',0),(409,69,4,75,0.00,'+',0),(410,69,4,76,0.00,'+',0),(411,69,5,78,0.00,'+',0),(412,69,5,79,0.00,'+',0),(413,69,5,80,0.00,'+',0),(414,69,6,82,0.00,'+',0),(415,69,6,83,0.00,'+',0),(416,69,6,84,0.00,'+',0),(417,70,4,74,0.00,'+',0),(418,70,4,75,0.00,'+',0),(419,70,5,78,0.00,'+',0),(420,70,5,79,0.00,'+',0),(421,70,6,82,0.00,'+',0),(422,70,6,83,0.00,'+',0);
-/*!40000 ALTER TABLE `products_attributes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_attributes_download`
---
-
-DROP TABLE IF EXISTS `products_attributes_download`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_attributes_download` (
-  `products_attributes_id` int(11) NOT NULL,
-  `products_attributes_filename` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `products_attributes_maxdays` int(2) DEFAULT '0',
-  `products_attributes_maxcount` int(2) DEFAULT '0',
-  PRIMARY KEY (`products_attributes_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_attributes_download`
---
-
-LOCK TABLES `products_attributes_download` WRITE;
-/*!40000 ALTER TABLE `products_attributes_download` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_attributes_download` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_images`
---
-
-DROP TABLE IF EXISTS `products_images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_images` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `products_id` int(11) NOT NULL,
-  `image` mediumtext COLLATE utf8_unicode_ci,
-  `htmlcontent` mediumtext COLLATE utf8_unicode_ci,
-  `sort_order` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `products_images_prodid` (`products_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_images`
---
-
-LOCK TABLES `products_images` WRITE;
-/*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
-INSERT INTO `products_images` VALUES (1,81,'resources/assets/images/product_images/1535537687.Screenshot_2018-08-29-15-45-10-514_com.whatsapp.png','123',1),(2,81,'resources/assets/images/product_images/1535537719.IMG-20180829-WA0013.jpg','',2),(3,4,'resources/assets/images/product_images/1542681362.IMG_20181120_103525.jpg','',1);
-/*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_notifications`
---
-
-DROP TABLE IF EXISTS `products_notifications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_notifications` (
-  `products_id` int(11) NOT NULL,
-  `customers_id` int(11) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`products_id`,`customers_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_notifications`
---
-
-LOCK TABLES `products_notifications` WRITE;
-/*!40000 ALTER TABLE `products_notifications` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products_notifications` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_options`
---
-
-DROP TABLE IF EXISTS `products_options`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_options` (
-  `products_options_id` int(11) NOT NULL AUTO_INCREMENT,
-  `language_id` int(11) NOT NULL DEFAULT '1',
-  `products_options_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `categories_id` int(100) NOT NULL,
-  `session_regenerate_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`products_options_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_options`
---
-
-LOCK TABLES `products_options` WRITE;
-/*!40000 ALTER TABLE `products_options` DISABLE KEYS */;
-INSERT INTO `products_options` VALUES (1,1,'Colors',0,'1502106343'),(4,1,'Size',0,'1502106711'),(7,1,'Waist',0,'1502187895'),(10,1,'Length',0,'1502187939');
-/*!40000 ALTER TABLE `products_options` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_options_values`
---
-
-DROP TABLE IF EXISTS `products_options_values`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_options_values` (
-  `products_options_values_id` int(11) NOT NULL AUTO_INCREMENT,
-  `language_id` int(11) NOT NULL DEFAULT '1',
-  `products_options_values_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  PRIMARY KEY (`products_options_values_id`,`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_options_values`
---
-
-LOCK TABLES `products_options_values` WRITE;
-/*!40000 ALTER TABLE `products_options_values` DISABLE KEYS */;
-INSERT INTO `products_options_values` VALUES (1,1,'Brown'),(2,1,'Cream'),(3,1,'Blue'),(4,1,'Multi'),(5,1,'Black'),(6,1,'Grey'),(7,1,'White'),(8,1,'Purple'),(9,1,'Navy'),(29,1,'Small'),(32,1,'Medium'),(35,1,'Large'),(38,1,'Extra Large'),(41,1,'28W'),(42,1,'30W'),(43,1,'32W'),(44,1,'34W'),(45,1,'36W'),(46,1,'38W'),(47,1,'40W'),(48,1,'42W'),(65,1,'30L'),(66,1,'32L'),(67,1,'34L'),(74,1,'7D'),(75,1,'8D'),(76,1,'8.5D'),(77,1,'9D'),(87,1,'24'),(88,1,'25'),(89,1,'26'),(90,1,'27'),(91,1,'28'),(92,1,'29'),(93,1,'30'),(107,1,'New Born'),(110,1,'3 Mos'),(111,1,'6 Mos'),(112,1,'9 Mos'),(119,1,'Hollywood Cream'),(122,1,'Vintage Silver'),(125,1,'King'),(130,1,'Full'),(131,1,'15\"x20\"'),(132,1,'22\"x22\"'),(137,1,'3T'),(138,1,'4T'),(139,1,'5T');
-/*!40000 ALTER TABLE `products_options_values` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_options_values_to_products_options`
---
-
-DROP TABLE IF EXISTS `products_options_values_to_products_options`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_options_values_to_products_options` (
-  `products_options_values_to_products_options_id` int(11) NOT NULL AUTO_INCREMENT,
-  `products_options_id` int(11) NOT NULL,
-  `products_options_values_id` int(11) NOT NULL,
-  PRIMARY KEY (`products_options_values_to_products_options_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_options_values_to_products_options`
---
-
-LOCK TABLES `products_options_values_to_products_options` WRITE;
-/*!40000 ALTER TABLE `products_options_values_to_products_options` DISABLE KEYS */;
-INSERT INTO `products_options_values_to_products_options` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,3,10),(11,3,11),(12,3,12),(13,3,13),(14,3,14),(15,3,15),(16,3,16),(17,3,17),(18,3,18),(20,2,20),(21,2,21),(22,2,22),(23,2,23),(24,2,24),(25,2,25),(26,2,26),(27,2,27),(28,2,28),(29,4,29),(30,5,30),(31,6,31),(32,4,32),(33,6,33),(34,5,34),(35,4,35),(36,5,36),(37,6,37),(38,4,38),(39,6,39),(40,5,40),(41,7,41),(42,7,42),(43,7,43),(44,7,44),(45,7,45),(46,7,46),(47,7,47),(48,7,48),(49,8,49),(50,8,50),(51,8,51),(52,8,52),(53,8,53),(54,8,54),(55,8,55),(56,8,56),(57,9,57),(58,9,58),(59,9,59),(60,9,60),(61,9,61),(62,9,62),(63,9,63),(64,9,64),(65,10,65),(66,10,66),(67,10,67),(68,11,68),(69,11,69),(70,11,70),(71,12,71),(72,12,72),(73,12,73),(74,4,74),(75,4,75),(76,4,76),(77,4,77),(78,5,78),(79,5,79),(80,5,80),(81,5,81),(82,6,82),(83,6,83),(84,6,84),(85,6,85),(86,5,86),(87,4,87),(88,4,88),(89,4,89),(90,4,90),(91,4,91),(92,4,92),(93,4,93),(94,5,94),(95,5,95),(96,5,96),(97,5,97),(98,5,98),(99,5,99),(100,6,100),(101,6,101),(102,6,102),(103,6,103),(104,6,104),(105,6,105),(106,6,106),(107,4,107),(108,6,108),(109,5,109),(110,4,110),(111,4,111),(112,4,112),(113,5,113),(114,5,114),(115,5,115),(116,6,116),(117,6,117),(118,6,118),(119,1,119),(120,3,120),(121,2,121),(122,1,122),(123,2,123),(124,3,124),(125,4,125),(126,6,126),(127,5,127),(128,6,128),(129,5,129),(130,4,130),(131,4,131),(132,4,132),(133,5,133),(134,6,134),(135,5,135),(136,6,136),(137,4,137),(138,4,138),(139,4,139),(140,5,140),(141,5,141),(142,5,142),(143,6,143),(144,6,144),(145,6,145);
-/*!40000 ALTER TABLE `products_options_values_to_products_options` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `products_to_categories`
---
-
-DROP TABLE IF EXISTS `products_to_categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `products_to_categories` (
-  `products_id` int(11) NOT NULL,
-  `categories_id` int(11) NOT NULL,
-  PRIMARY KEY (`products_id`,`categories_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `products_to_categories`
---
-
-LOCK TABLES `products_to_categories` WRITE;
-/*!40000 ALTER TABLE `products_to_categories` DISABLE KEYS */;
-INSERT INTO `products_to_categories` VALUES (1,1),(1,2),(2,3),(2,4),(5,1),(5,2),(6,1),(6,2);
-/*!40000 ALTER TABLE `products_to_categories` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `reviews`
 --
 
@@ -2584,29 +2071,6 @@ CREATE TABLE `reviews_description` (
 LOCK TABLES `reviews_description` WRITE;
 /*!40000 ALTER TABLE `reviews_description` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reviews_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sec_directory_whitelist`
---
-
-DROP TABLE IF EXISTS `sec_directory_whitelist`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `sec_directory_whitelist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `directory` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sec_directory_whitelist`
---
-
-LOCK TABLES `sec_directory_whitelist` WRITE;
-/*!40000 ALTER TABLE `sec_directory_whitelist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sec_directory_whitelist` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2697,6 +2161,7 @@ DROP TABLE IF EXISTS `shipping_methods`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `shipping_methods` (
   `shipping_methods_id` int(100) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `methods_type_link` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `isDefault` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
@@ -2711,7 +2176,7 @@ CREATE TABLE `shipping_methods` (
 
 LOCK TABLES `shipping_methods` WRITE;
 /*!40000 ALTER TABLE `shipping_methods` DISABLE KEYS */;
-INSERT INTO `shipping_methods` VALUES (1,'upsShipping',0,0,'ups_shipping'),(2,'freeShipping',1,1,'free_shipping'),(3,'localPickup',0,1,'local_pickup'),(4,'flateRate',0,1,'flate_rate');
+INSERT INTO `shipping_methods` VALUES (1,0,'upsShipping',0,0,'ups_shipping'),(2,0,'freeShipping',1,1,'free_shipping'),(3,0,'localPickup',0,1,'local_pickup'),(4,0,'flateRate',0,1,'flate_rate');
 /*!40000 ALTER TABLE `shipping_methods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2789,6 +2254,7 @@ DROP TABLE IF EXISTS `sub_category`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `sub_category` (
   `sub_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `image` mediumtext COLLATE utf8_general_mysql500_ci,
   `icon` mediumtext COLLATE utf8_general_mysql500_ci,
   `sort_order` int(3) DEFAULT NULL,
@@ -2809,7 +2275,7 @@ CREATE TABLE `sub_category` (
 
 LOCK TABLES `sub_category` WRITE;
 /*!40000 ALTER TABLE `sub_category` DISABLE KEYS */;
-INSERT INTO `sub_category` VALUES (1,NULL,NULL,NULL,NULL,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active','1'),(2,NULL,NULL,NULL,NULL,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active','1'),(3,NULL,NULL,NULL,NULL,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active','4'),(4,NULL,NULL,NULL,NULL,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active','4'),(5,NULL,NULL,NULL,NULL,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active','9'),(6,NULL,NULL,NULL,NULL,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active','9');
+INSERT INTO `sub_category` VALUES (1,0,NULL,NULL,NULL,NULL,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active','1'),(2,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active','1'),(3,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active','4'),(4,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active','4'),(5,0,NULL,NULL,NULL,NULL,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active','9'),(6,0,NULL,NULL,NULL,NULL,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active','9');
 /*!40000 ALTER TABLE `sub_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2983,7 +2449,8 @@ DROP TABLE IF EXISTS `user`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `default_company_id` int(11) DEFAULT NULL,
+  `default_language` int(11) NOT NULL,
+  `default_company_id` int(11) NOT NULL,
   `permission` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `image` text COLLATE utf8_general_mysql500_ci,
   `remember_token` varchar(100) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
@@ -3012,7 +2479,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,NULL,'boss','',NULL,'admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie123@gmail.com','','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','123123','2019-11-13 00:58:30',NULL,'2019-11-15 01:02:10',NULL,'active'),(2,NULL,'staff','',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
+INSERT INTO `user` VALUES (1,1,1,'boss','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg','4LemaAD0TV5Aw6Pf1n66HK4AM5qv7FYma8WkxbcqJIEdGEQmI6xHLVBOK7Fu','admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie123@gmail.com','','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin','2019-11-13 00:58:30',NULL,'2019-12-05 17:54:33',NULL,'active'),(2,1,1,'staff','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3033,7 +2500,7 @@ CREATE TABLE `user_to_company` (
   `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3042,7 +2509,7 @@ CREATE TABLE `user_to_company` (
 
 LOCK TABLES `user_to_company` WRITE;
 /*!40000 ALTER TABLE `user_to_company` DISABLE KEYS */;
-INSERT INTO `user_to_company` VALUES (1,1,1,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1');
+INSERT INTO `user_to_company` VALUES (1,1,1,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1'),(2,1,2,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1'),(3,2,3,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1');
 /*!40000 ALTER TABLE `user_to_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3088,6 +2555,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_category` AS SELECT 
  1 AS `category_id`,
+ 1 AS `company_id`,
  1 AS `name`,
  1 AS `image`,
  1 AS `icon`,
@@ -3270,6 +2738,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_manufacturer` AS SELECT 
  1 AS `manufacturer_id`,
+ 1 AS `company_id`,
  1 AS `name`,
  1 AS `url`,
  1 AS `image`,
@@ -3292,6 +2761,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_order` AS SELECT 
  1 AS `order_id`,
+ 1 AS `company_id`,
  1 AS `customer_id`,
  1 AS `customer_name`,
  1 AS `customer_company`,
@@ -3383,6 +2853,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_product` AS SELECT 
  1 AS `product_id`,
+ 1 AS `company_id`,
  1 AS `category_id`,
  1 AS `sub_category_id`,
  1 AS `language_id`,
@@ -3499,6 +2970,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_sub_category` AS SELECT 
  1 AS `category_language_id`,
+ 1 AS `company_id`,
  1 AS `sub_category_language_id`,
  1 AS `sub_category_id`,
  1 AS `category_name`,
@@ -3577,42 +3049,6 @@ INSERT INTO `zones` VALUES (9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-
 UNLOCK TABLES;
 
 --
--- Table structure for table `zones_to_geo_zones`
---
-
-DROP TABLE IF EXISTS `zones_to_geo_zones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `zones_to_geo_zones` (
-  `association_id` int(11) NOT NULL AUTO_INCREMENT,
-  `zone_country_id` int(11) NOT NULL,
-  `zone_id` int(11) DEFAULT NULL,
-  `geo_zone_id` int(11) DEFAULT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`association_id`),
-  KEY `idx_zones_to_geo_zones_country_id` (`zone_country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `zones_to_geo_zones`
---
-
-LOCK TABLES `zones_to_geo_zones` WRITE;
-/*!40000 ALTER TABLE `zones_to_geo_zones` DISABLE KEYS */;
-/*!40000 ALTER TABLE `zones_to_geo_zones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'cms'
---
-
---
--- Dumping routines for database 'cms'
---
-
---
 -- Final view structure for view `view_address_book`
 --
 
@@ -3643,7 +3079,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_category` AS select `category`.`category_id` AS `category_id`,`category_description`.`name` AS `name`,`category`.`image` AS `image`,`category`.`icon` AS `icon`,`category`.`slug` AS `slug`,`category`.`sort_order` AS `sort_order`,`category`.`create_date` AS `create_date`,`category`.`create_by_id` AS `create_by_id`,`category`.`edit_date` AS `edit_date`,`category`.`edit_by_id` AS `edit_by_id`,`category`.`status` AS `status`,`category_description`.`language_id` AS `language_id` from (`category` left join `category_description` on((`category_description`.`category_id` = `category`.`category_id`))) */;
+/*!50001 VIEW `view_category` AS select `category`.`category_id` AS `category_id`,`category`.`company_id` AS `company_id`,`category_description`.`name` AS `name`,`category`.`image` AS `image`,`category`.`icon` AS `icon`,`category`.`slug` AS `slug`,`category`.`sort_order` AS `sort_order`,`category`.`create_date` AS `create_date`,`category`.`create_by_id` AS `create_by_id`,`category`.`edit_date` AS `edit_date`,`category`.`edit_by_id` AS `edit_by_id`,`category`.`status` AS `status`,`category_description`.`language_id` AS `language_id` from (`category` left join `category_description` on((`category_description`.`category_id` = `category`.`category_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3769,7 +3205,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_manufacturer` AS select `manufacturer`.`manufacturer_id` AS `manufacturer_id`,`manufacturer_description`.`name` AS `name`,`manufacturer`.`url` AS `url`,`manufacturer`.`image` AS `image`,`manufacturer`.`slug` AS `slug`,`manufacturer_description`.`language_id` AS `language_id`,`manufacturer`.`create_date` AS `create_date`,`manufacturer`.`create_by_id` AS `create_by_id`,`manufacturer`.`edit_date` AS `edit_date`,`manufacturer`.`edit_by_id` AS `edit_by_id`,`manufacturer`.`status` AS `status` from (`manufacturer` left join `manufacturer_description` on((`manufacturer`.`manufacturer_id` = `manufacturer_description`.`manufacturer_id`))) */;
+/*!50001 VIEW `view_manufacturer` AS select `manufacturer`.`manufacturer_id` AS `manufacturer_id`,`manufacturer`.`company_id` AS `company_id`,`manufacturer_description`.`name` AS `name`,`manufacturer`.`url` AS `url`,`manufacturer`.`image` AS `image`,`manufacturer`.`slug` AS `slug`,`manufacturer_description`.`language_id` AS `language_id`,`manufacturer`.`create_date` AS `create_date`,`manufacturer`.`create_by_id` AS `create_by_id`,`manufacturer`.`edit_date` AS `edit_date`,`manufacturer`.`edit_by_id` AS `edit_by_id`,`manufacturer`.`status` AS `status` from (`manufacturer` left join `manufacturer_description` on((`manufacturer`.`manufacturer_id` = `manufacturer_description`.`manufacturer_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3787,7 +3223,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_country` AS `customer_country`,`order`.`customer_city` AS `customer_city`,`order`.`customer_area` AS `customer_area`,`order`.`customer_district` AS `customer_district`,`order`.`customer_estate` AS `customer_estate`,`order`.`customer_building` AS `customer_building`,`order`.`customer_room` AS `customer_room`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`customer_address_id` AS `customer_address_id`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`order_date_finished` AS `order_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from (`order` left join `order_product` on((`order`.`order_id` = `order_product`.`order_id`))) */;
+/*!50001 VIEW `view_order` AS select `order`.`order_id` AS `order_id`,`order`.`company_id` AS `company_id`,`order`.`customer_id` AS `customer_id`,`order`.`customer_name` AS `customer_name`,`order`.`customer_company` AS `customer_company`,`order`.`customer_street_address` AS `customer_street_address`,`order`.`customer_country` AS `customer_country`,`order`.`customer_city` AS `customer_city`,`order`.`customer_area` AS `customer_area`,`order`.`customer_district` AS `customer_district`,`order`.`customer_estate` AS `customer_estate`,`order`.`customer_building` AS `customer_building`,`order`.`customer_room` AS `customer_room`,`order`.`customer_telephone` AS `customer_telephone`,`order`.`email` AS `email`,`order`.`delivery_name` AS `delivery_name`,`order`.`delivery_company` AS `delivery_company`,`order`.`customer_address_id` AS `customer_address_id`,`order`.`delivery_street_address` AS `delivery_street_address`,`order`.`delivery_suburb` AS `delivery_suburb`,`order`.`delivery_city` AS `delivery_city`,`order`.`delivery_postcode` AS `delivery_postcode`,`order`.`delivery_state` AS `delivery_state`,`order`.`delivery_country` AS `delivery_country`,`order`.`billing_name` AS `billing_name`,`order`.`billing_company` AS `billing_company`,`order`.`billing_street_address` AS `billing_street_address`,`order`.`billing_suburb` AS `billing_suburb`,`order`.`billing_city` AS `billing_city`,`order`.`billing_postcode` AS `billing_postcode`,`order`.`billing_state` AS `billing_state`,`order`.`billing_country` AS `billing_country`,`order`.`payment_method` AS `payment_method`,`order`.`date_purchased` AS `date_purchased`,`order`.`order_date_finished` AS `order_date_finished`,`order`.`order_price` AS `order_price`,`order`.`shipping_cost` AS `shipping_cost`,`order`.`shipping_method` AS `shipping_method`,`order`.`shipping_duration` AS `shipping_duration`,`order`.`order_information` AS `order_information`,`order`.`is_seen` AS `is_seen`,`order`.`coupon_code` AS `coupon_code`,`order`.`coupon_amount` AS `coupon_amount`,`order`.`free_shipping` AS `free_shipping`,`order`.`customer_remark` AS `customer_remark`,`order`.`create_date` AS `create_date`,`order`.`create_by_id` AS `create_by_id`,`order`.`edit_date` AS `edit_date`,`order`.`edit_by_id` AS `edit_by_id`,`order`.`status` AS `status` from (`order` left join `order_product` on((`order`.`order_id` = `order_product`.`order_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3823,7 +3259,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`product_description`.`language_id` AS `language_id`,`view_sub_category`.`sub_category_language_id` AS `sub_category_language_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`expiry_date` AS `expiry_date`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where ((`product_description`.`language_id` is not null) and (`product_description`.`language_id` = `view_sub_category`.`sub_category_language_id`)) */;
+/*!50001 VIEW `view_product` AS select `product`.`product_id` AS `product_id`,`product`.`company_id` AS `company_id`,`view_sub_category`.`category_id` AS `category_id`,`product`.`sub_category_id` AS `sub_category_id`,`product_description`.`language_id` AS `language_id`,`view_sub_category`.`sub_category_language_id` AS `sub_category_language_id`,`view_sub_category`.`category_name` AS `category_name`,`view_sub_category`.`sub_category_name` AS `sub_category_name`,`view_sub_category`.`image` AS `sub_category_image`,`view_sub_category`.`icon` AS `sub_category_icon`,`product_description`.`product_description_id` AS `product_description_id`,`product_description`.`name` AS `name`,`product_description`.`description` AS `description`,`product_description`.`url` AS `url`,`product_description`.`viewed` AS `viewed`,`product`.`quantity` AS `quantity`,`product`.`model` AS `model`,`product`.`image` AS `image`,`product`.`price` AS `price`,`product`.`special_status` AS `special_status`,`product`.`special_price` AS `special_price`,`product`.`expiry_date` AS `expiry_date`,`product`.`weight` AS `weight`,`product`.`weight_unit` AS `weight_unit`,`product`.`ordered` AS `ordered`,`product`.`tax_class_id` AS `tax_class_id`,`product`.`manufacturer_id` AS `manufacturer_id`,`product`.`liked` AS `liked`,`product`.`low_limit` AS `low_limit`,`product`.`is_feature` AS `is_feature`,`product`.`slug` AS `slug`,`product`.`create_date` AS `create_date`,`product`.`create_by_id` AS `create_by_id`,`product`.`edit_date` AS `edit_date`,`product`.`edit_by_id` AS `edit_by_id`,`product`.`status` AS `status` from ((`product` left join `product_description` on((`product`.`product_id` = `product_description`.`product_id`))) left join `view_sub_category` on((`view_sub_category`.`sub_category_id` = `product`.`sub_category_id`))) where ((`product_description`.`language_id` is not null) and (`product_description`.`language_id` = `view_sub_category`.`sub_category_language_id`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3895,7 +3331,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_sub_category` AS select `category_description`.`language_id` AS `category_language_id`,`sub_category_description`.`language_id` AS `sub_category_language_id`,`sub_category`.`sub_category_id` AS `sub_category_id`,`category_description`.`name` AS `category_name`,`sub_category`.`category_id` AS `category_id`,`sub_category_description`.`name` AS `sub_category_name`,`sub_category`.`image` AS `image`,`sub_category`.`icon` AS `icon`,`sub_category`.`slug` AS `slug`,`sub_category`.`sort_order` AS `sort_order`,`sub_category`.`create_date` AS `create_date`,`sub_category`.`create_by_id` AS `create_by_id`,`sub_category`.`edit_date` AS `edit_date`,`sub_category`.`edit_by_id` AS `edit_by_id`,`sub_category`.`status` AS `status` from ((`sub_category` left join `category_description` on((`category_description`.`category_id` = `sub_category`.`category_id`))) left join `sub_category_description` on((`sub_category_description`.`sub_category_id` = `sub_category`.`sub_category_id`))) where (`category_description`.`language_id` = `sub_category_description`.`language_id`) */;
+/*!50001 VIEW `view_sub_category` AS select `category_description`.`language_id` AS `category_language_id`,`sub_category`.`company_id` AS `company_id`,`sub_category_description`.`language_id` AS `sub_category_language_id`,`sub_category`.`sub_category_id` AS `sub_category_id`,`category_description`.`name` AS `category_name`,`sub_category`.`category_id` AS `category_id`,`sub_category_description`.`name` AS `sub_category_name`,`sub_category`.`image` AS `image`,`sub_category`.`icon` AS `icon`,`sub_category`.`slug` AS `slug`,`sub_category`.`sort_order` AS `sort_order`,`sub_category`.`create_date` AS `create_date`,`sub_category`.`create_by_id` AS `create_by_id`,`sub_category`.`edit_date` AS `edit_date`,`sub_category`.`edit_by_id` AS `edit_by_id`,`sub_category`.`status` AS `status` from ((`sub_category` left join `category_description` on((`category_description`.`category_id` = `sub_category`.`category_id`))) left join `sub_category_description` on((`sub_category_description`.`sub_category_id` = `sub_category`.`sub_category_id`))) where (`category_description`.`language_id` = `sub_category_description`.`language_id`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3909,4 +3345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02  1:20:54
+-- Dump completed on 2019-12-05 18:08:33
