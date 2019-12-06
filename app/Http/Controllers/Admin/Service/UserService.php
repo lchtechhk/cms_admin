@@ -8,17 +8,20 @@ use Exception;
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\LanguageService;
 use App\Http\Controllers\Admin\Service\PermissionService;
+use App\Http\Controllers\Admin\Service\UserToCompanyService;
 
 class UserService extends BaseApiService{
     private $UploadService;
     private $LanguageService;
     private $PermissionService;
+    private $UserToCompanyService;
 
     function __construct(){
         $this->setTable('user');
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->PermissionService = new PermissionService();
+        $this->UserToCompanyService = new UserToCompanyService();
 
     }
 
@@ -31,8 +34,14 @@ class UserService extends BaseApiService{
         return $result;
     }
 
+    function getUserBelongOwn(){
+        $user_ids = $this->UserToCompanyService->getUserIdsByCompany();
+        Log::info('user_ids : ' . json_encode($user_ids));
+        return $this->findByColumn_Values("user_id",$user_ids);
+    }
+
     private function getListing(){
-        return $this->findAll();
+        return $this->getUserBelongOwn();
     }
 
     function redirect_view($result,$title){

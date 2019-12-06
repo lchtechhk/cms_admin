@@ -4,6 +4,7 @@ use Log;
 use DB;
 use Lang;
 use Exception;
+use Session;
 
 use App\Http\Controllers\Admin\Service\UploadService;
 use App\Http\Controllers\Admin\Service\LanguageService;
@@ -63,7 +64,7 @@ class CompanyService extends BaseApiService{
         switch($result['operation']){
             case 'listingStaff':
                 $result['label'] = "Staff";
-                $id_list = $this->UserToCompanyService->getUserIdsByCompany($result['company_id']);
+                $id_list = $this->UserToCompanyService->getUserIdsByCompany();
                 $result['staffs'] = $this->UserService->findByColumn_Values('user_id',$id_list);
                 Log::info('[listing] --  : ' . \json_encode($result['staffs']));
                 return view("admin.staff.listingStaff", $title)->with('result', $result);

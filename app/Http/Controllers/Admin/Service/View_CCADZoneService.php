@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         function getListing(){
             $result = DB::table($this->getTable())
             ->where('zone_status','=','active')
+            ->where('company_id','=',Session::get('default_company_id'))
             ->orderBy('countries_id','ASC')
             ->orderBy('zone_id','ASC')
             ->paginate(60);
