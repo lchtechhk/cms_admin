@@ -18,38 +18,6 @@ USE `cms`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `action_recorder`
---
-
-DROP TABLE IF EXISTS `action_recorder`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `action_recorder` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `user_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `success` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_action_recorder_module` (`module`),
-  KEY `idx_action_recorder_user_id` (`user_id`),
-  KEY `idx_action_recorder_identifier` (`identifier`),
-  KEY `idx_action_recorder_date_added` (`date_added`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `action_recorder`
---
-
-LOCK TABLES `action_recorder` WRITE;
-/*!40000 ALTER TABLE `action_recorder` DISABLE KEYS */;
-/*!40000 ALTER TABLE `action_recorder` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `address_book`
 --
 
@@ -76,7 +44,7 @@ CREATE TABLE `address_book` (
   `is_default` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_address_book_customers_id` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,32 +53,7 @@ CREATE TABLE `address_book` (
 
 LOCK TABLES `address_book` WRITE;
 /*!40000 ALTER TABLE `address_book` DISABLE KEYS */;
-INSERT INTO `address_book` VALUES (1,4,'Company','First Name','A','9','Estate','Building','Room','address_ch 1','黃大仙 港島區 japan city1Japan1EstateBuildingRoom','2019-09-25 00:49:54',NULL,'2019-10-09 12:42:12',NULL,'active','active'),(2,4,'CompanyB','First Name','B','1','Estate','labels.Building','y','address_ch 2','樂富 九龍區 HongKongChinaEstatelabels.Buildingy','2019-09-25 00:50:13',NULL,'2019-10-09 12:42:08',NULL,'active','inactive'),(3,15,'Company B','B-','Address1','9','Estate','Building','Room','Japan1 japan city1 港島區 黃大仙EstateBuildingRoom室','黃大仙 港島區 japan city1Japan1EstateBuildingRoom室','2019-09-25 00:58:18',NULL,'2019-10-11 00:21:58',NULL,'active','inactive'),(4,15,'CompanyB','B-','Address2','1','Estate','Building','Room','China HongKong 九龍區 樂富EstateBuildingRoom室','樂富 九龍區 HongKongChinaEstateBuildingRoom室','2019-09-25 00:58:32',NULL,'2019-10-11 00:20:16',NULL,'active','active'),(7,15,'CompanyC','First NameC','Last NameC','9','牛池灣','彩華樓','801',NULL,NULL,'2019-10-11 00:36:33',NULL,'2019-10-11 00:36:33',NULL,'active','inactive');
 /*!40000 ALTER TABLE `address_book` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `address_format`
---
-
-DROP TABLE IF EXISTS `address_format`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `address_format` (
-  `address_format_id` int(11) NOT NULL AUTO_INCREMENT,
-  `address_format` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `address_summary` varchar(48) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`address_format_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `address_format`
---
-
-LOCK TABLES `address_format` WRITE;
-/*!40000 ALTER TABLE `address_format` DISABLE KEYS */;
-/*!40000 ALTER TABLE `address_format` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -256,6 +199,7 @@ DROP TABLE IF EXISTS `area`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `area` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `code` char(5) COLLATE utf8_general_mysql500_ci NOT NULL,
   `city_id` int(11) NOT NULL,
@@ -265,7 +209,7 @@ CREATE TABLE `area` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +218,6 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'九龍區','九龍區',1,'2019-01-19 23:58:20',NULL,'2019-10-08 00:35:52',NULL,'active'),(2,'港島區','港島區',2,'2019-02-28 23:58:03',NULL,'2019-10-08 00:41:11',NULL,'active'),(3,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,''),(4,'','',0,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'');
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,33 +259,6 @@ INSERT INTO `banners` VALUES (1,'banner-1','7','resources/assets/images/banner_i
 UNLOCK TABLES;
 
 --
--- Table structure for table `banners_history`
---
-
-DROP TABLE IF EXISTS `banners_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `banners_history` (
-  `banners_history_id` int(11) NOT NULL AUTO_INCREMENT,
-  `banners_id` int(11) NOT NULL,
-  `banners_shown` int(5) NOT NULL DEFAULT '0',
-  `banners_clicked` int(5) NOT NULL DEFAULT '0',
-  `banners_history_date` datetime NOT NULL,
-  PRIMARY KEY (`banners_history_id`),
-  KEY `idx_banners_history_banners_id` (`banners_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `banners_history`
---
-
-LOCK TABLES `banners_history` WRITE;
-/*!40000 ALTER TABLE `banners_history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `banners_history` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `category`
 --
 
@@ -362,7 +278,7 @@ CREATE TABLE `category` (
   `edit_by_id` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -371,7 +287,6 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,0,'resources/assets/images/category_images/1557766530.螢幕截圖 2019-05-11 下午2.05.14.png','resources/assets/images/category_icons/1557762999.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,NULL,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(4,0,'resources/assets/images/category_images/1557767383.螢幕截圖 2019-05-11 下午2.04.53.png','resources/assets/images/category_icons/1558067666.Screenshot_2019-05-16-17-39-07-522_com.android.settings.png',NULL,NULL,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(9,0,'resources/assets/images/category_images/1558079165.Screenshot_2019-05-17-15-21-51-154_com.instagram.android.png',NULL,NULL,NULL,'2019-05-17 14:05:48',NULL,'2019-10-09 11:27:04',NULL,'active');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +309,7 @@ CREATE TABLE `category_description` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`category_description_id`),
   KEY `idx_categories_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,7 +318,6 @@ CREATE TABLE `category_description` (
 
 LOCK TABLES `category_description` WRITE;
 /*!40000 ALTER TABLE `category_description` DISABLE KEYS */;
-INSERT INTO `category_description` VALUES (1,'HongKong category 1',1,1,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(2,'English category 1',2,1,'2019-05-13 23:55:56',NULL,'2019-09-11 22:32:34',NULL,'active'),(5,'HongKong category 2',1,4,'2019-05-14 01:09:43',NULL,'2019-09-11 22:32:17',NULL,'active'),(14,'English category 2',2,4,'2019-05-17 14:05:04',NULL,'2019-09-11 22:32:17',NULL,'active'),(15,'HongKong category 3',1,9,'2019-05-17 14:05:48',NULL,'2019-10-09 11:27:04',NULL,'active'),(16,'English category 3',2,9,'2019-05-17 14:05:48',NULL,'2019-10-09 11:27:04',NULL,'active');
 /*!40000 ALTER TABLE `category_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,6 +330,7 @@ DROP TABLE IF EXISTS `cities`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `cities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `code` char(5) COLLATE utf8_general_mysql500_ci NOT NULL,
   `countries_id` int(11) NOT NULL,
@@ -425,7 +340,7 @@ CREATE TABLE `cities` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -434,7 +349,6 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,'HongKong','HK',1,'2019-01-19 23:16:53',NULL,'2019-02-01 00:06:54',NULL,'active'),(2,'japan city1','japa1',2,'2019-02-27 23:45:54',NULL,'2019-05-13 02:01:22',NULL,'active');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,7 +376,7 @@ CREATE TABLE `company` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,7 +385,7 @@ CREATE TABLE `company` (
 
 LOCK TABLES `company` WRITE;
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
-INSERT INTO `company` VALUES (1,'company@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-11-17 23:59:19',NULL,'2019-11-17 23:59:19',NULL,'active'),(2,'companyB@gmail.com',NULL,33451123,NULL,NULL,NULL,NULL,NULL,NULL,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(3,'CompanyC@gmail.com',NULL,33333333,NULL,NULL,NULL,NULL,NULL,NULL,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active');
+INSERT INTO `company` VALUES (1,'admin@gmail.com',NULL,11111111,NULL,NULL,NULL,NULL,NULL,NULL,'2019-12-06 18:25:49',NULL,'2019-12-06 18:25:49',NULL,'active');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,7 +407,7 @@ CREATE TABLE `company_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`company_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -502,7 +416,7 @@ CREATE TABLE `company_description` (
 
 LOCK TABLES `company_description` WRITE;
 /*!40000 ALTER TABLE `company_description` DISABLE KEYS */;
-INSERT INTO `company_description` VALUES (1,1,'companyA_HongKong',1,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(2,1,'companyA_English',2,'2019-11-17 01:31:32',NULL,'2019-11-17 01:31:32',NULL,'active'),(3,2,'CompanyB HongKong',1,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(4,2,'CompanyB English',2,'2019-12-05 13:07:10',NULL,'2019-12-05 13:07:10',NULL,'active'),(5,3,'CompanyC HongKong',1,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active'),(6,3,'CompanyC English',2,'2019-12-05 16:49:53',NULL,'2019-12-05 16:49:53',NULL,'active');
+INSERT INTO `company_description` VALUES (15,1,'Hong Kong company 1',1,'2019-12-06 18:25:49',NULL,'2019-12-06 18:25:49',NULL,'active'),(16,1,'English company 1',2,'2019-12-06 18:25:49',NULL,'2019-12-06 18:25:49',NULL,'active');
 /*!40000 ALTER TABLE `company_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,6 +460,7 @@ DROP TABLE IF EXISTS `countries`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `iso_code_1` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `iso_code_2` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -557,7 +472,7 @@ CREATE TABLE `countries` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_COUNTRIES_NAME` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,7 +481,6 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'China','CH1','AFG',1,'2019-01-31 22:32:17',0,'2019-02-24 02:08:27',NULL,'active'),(2,'Japan1','Japan',NULL,NULL,'2019-02-27 23:45:36',0,'2019-05-13 02:01:05',NULL,'active'),(16,'Country','CountryCod',NULL,NULL,'2019-05-14 01:57:04',0,'2019-05-14 01:57:04',NULL,'active');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -656,6 +570,7 @@ DROP TABLE IF EXISTS `customers`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `customers_gender` char(1) COLLATE utf8_unicode_ci DEFAULT '0',
   `customers_firstname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `customers_lastname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -680,7 +595,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `idx_customers_email_address` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -689,95 +604,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (4,'M','User','A','2018-11-09','jamie951123@gmail.com','',NULL,'53403540','344444','',NULL,NULL,NULL,'resources/assets/images/user_profile/1569344224.icon.png',1,'','0000-00-00 00:00:00',NULL,'2019-09-25 00:57:04',NULL,'active'),(15,'M','User','B','0000-00-00','userb@gmail.com','',NULL,'','','',NULL,NULL,NULL,'resources/assets/images/user_profile/1569344239.HK.png',0,'','2019-09-25 00:56:53',NULL,'2019-09-25 00:57:19',NULL,'active');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `customers_basket`
---
-
-DROP TABLE IF EXISTS `customers_basket`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `customers_basket` (
-  `customers_basket_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customers_id` int(11) NOT NULL,
-  `products_id` text COLLATE utf8_unicode_ci NOT NULL,
-  `customers_basket_quantity` int(2) NOT NULL,
-  `final_price` decimal(15,4) DEFAULT NULL,
-  `customers_basket_date_added` char(8) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_order` tinyint(1) NOT NULL DEFAULT '0',
-  `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`customers_basket_id`),
-  KEY `idx_customers_basket_customers_id` (`customers_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customers_basket`
---
-
-LOCK TABLES `customers_basket` WRITE;
-/*!40000 ALTER TABLE `customers_basket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customers_basket` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `customers_basket_attributes`
---
-
-DROP TABLE IF EXISTS `customers_basket_attributes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `customers_basket_attributes` (
-  `customers_basket_attributes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `customers_basket_id` int(100) NOT NULL,
-  `customers_id` int(11) NOT NULL,
-  `products_id` text COLLATE utf8_unicode_ci NOT NULL,
-  `products_options_id` int(11) NOT NULL,
-  `products_options_values_id` int(11) NOT NULL,
-  `session_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`customers_basket_attributes_id`),
-  KEY `idx_customers_basket_att_customers_id` (`customers_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customers_basket_attributes`
---
-
-LOCK TABLES `customers_basket_attributes` WRITE;
-/*!40000 ALTER TABLE `customers_basket_attributes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customers_basket_attributes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `customers_info`
---
-
-DROP TABLE IF EXISTS `customers_info`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `customers_info` (
-  `customers_info_id` int(11) NOT NULL,
-  `customers_info_date_of_last_logon` datetime DEFAULT NULL,
-  `customers_info_number_of_logons` int(5) DEFAULT NULL,
-  `customers_info_date_account_created` datetime DEFAULT NULL,
-  `customers_info_date_account_last_modified` datetime DEFAULT NULL,
-  `global_product_notifications` int(1) DEFAULT '0',
-  PRIMARY KEY (`customers_info_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `customers_info`
---
-
-LOCK TABLES `customers_info` WRITE;
-/*!40000 ALTER TABLE `customers_info` DISABLE KEYS */;
-INSERT INTO `customers_info` VALUES (1,'2017-08-30 13:48:39',NULL,'2017-08-15 08:48:18','2017-08-15 08:52:17',1),(2,'2017-08-25 20:23:21',1,'2017-08-25 20:23:21',NULL,1),(3,'2017-09-08 10:06:03',4,'2017-09-07 13:05:38',NULL,1),(4,'2018-11-07 17:09:05',25,'2017-09-07 12:45:36','2018-11-09 06:09:12',1),(5,'2018-11-17 08:16:21',9,'2018-11-14 15:51:54','2018-11-19 02:06:40',1);
-/*!40000 ALTER TABLE `customers_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -830,6 +657,7 @@ DROP TABLE IF EXISTS `district`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `district` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_general_mysql500_ci NOT NULL,
   `code` char(5) COLLATE utf8_general_mysql500_ci NOT NULL,
   `area_id` int(11) NOT NULL,
@@ -839,7 +667,7 @@ CREATE TABLE `district` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -848,120 +676,7 @@ CREATE TABLE `district` (
 
 LOCK TABLES `district` WRITE;
 /*!40000 ALTER TABLE `district` DISABLE KEYS */;
-INSERT INTO `district` VALUES (1,'樂富','樂富',1,'2019-01-21 23:33:26',NULL,'2019-10-08 00:52:36',NULL,'active'),(9,'黃大仙','黃大仙',1,'2019-03-01 00:07:35',NULL,'2019-10-11 00:35:42',NULL,'active');
 /*!40000 ALTER TABLE `district` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `fedex_shipping`
---
-
-DROP TABLE IF EXISTS `fedex_shipping`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `fedex_shipping` (
-  `fedex_id` int(100) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `user_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `parcel_height` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `parcel_width` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `person_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `company_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `phone_number` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_1` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_2` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `state` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `post_code` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `no_of_package` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`fedex_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fedex_shipping`
---
-
-LOCK TABLES `fedex_shipping` WRITE;
-/*!40000 ALTER TABLE `fedex_shipping` DISABLE KEYS */;
-INSERT INTO `fedex_shipping` VALUES (1,'FedEx','','','','','','','','','','','','','','');
-/*!40000 ALTER TABLE `fedex_shipping` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `flate_rate`
---
-
-DROP TABLE IF EXISTS `flate_rate`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `flate_rate` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
-  `flate_rate` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `currency` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `flate_rate`
---
-
-LOCK TABLES `flate_rate` WRITE;
-/*!40000 ALTER TABLE `flate_rate` DISABLE KEYS */;
-INSERT INTO `flate_rate` VALUES (1,'10','USD');
-/*!40000 ALTER TABLE `flate_rate` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `geo_zones`
---
-
-DROP TABLE IF EXISTS `geo_zones`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `geo_zones` (
-  `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
-  `geo_zone_name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `geo_zone_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`geo_zone_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `geo_zones`
---
-
-LOCK TABLES `geo_zones` WRITE;
-/*!40000 ALTER TABLE `geo_zones` DISABLE KEYS */;
-INSERT INTO `geo_zones` VALUES (1,'Florida','Florida local sales tax zone','2017-01-10 00:00:00','2017-01-11 00:00:00');
-/*!40000 ALTER TABLE `geo_zones` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hula_our_infos`
---
-
-DROP TABLE IF EXISTS `hula_our_infos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `hula_our_infos` (
-  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hula_our_infos`
---
-
-LOCK TABLES `hula_our_infos` WRITE;
-/*!40000 ALTER TABLE `hula_our_infos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hula_our_infos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1047,32 +762,6 @@ INSERT INTO `languages` VALUES (1,0,'HongKong','hk','resources/assets/images/lan
 UNLOCK TABLES;
 
 --
--- Table structure for table `liked_products`
---
-
-DROP TABLE IF EXISTS `liked_products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `liked_products` (
-  `like_id` int(11) NOT NULL AUTO_INCREMENT,
-  `liked_products_id` int(100) NOT NULL,
-  `liked_customers_id` int(100) NOT NULL,
-  `date_liked` datetime DEFAULT NULL,
-  PRIMARY KEY (`like_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `liked_products`
---
-
-LOCK TABLES `liked_products` WRITE;
-/*!40000 ALTER TABLE `liked_products` DISABLE KEYS */;
-INSERT INTO `liked_products` VALUES (10,79,1,'2017-08-22 07:51:10'),(11,78,1,'2017-08-22 07:51:13'),(12,1,3,'2017-09-07 12:25:48'),(13,2,3,'2017-09-07 12:25:52'),(14,4,3,'2017-09-07 12:25:55'),(15,80,3,'2017-09-08 10:09:40'),(16,79,3,'2017-09-08 10:09:43'),(17,78,3,'2017-09-08 10:09:44'),(18,81,3,'2017-09-08 10:09:46'),(20,80,4,'2018-08-28 09:31:30'),(21,81,4,'2018-09-23 15:37:56'),(22,82,5,'2018-11-17 08:18:39');
-/*!40000 ALTER TABLE `liked_products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `manufacturer`
 --
 
@@ -1091,7 +780,7 @@ CREATE TABLE `manufacturer` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`manufacturer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1100,7 +789,6 @@ CREATE TABLE `manufacturer` (
 
 LOCK TABLES `manufacturer` WRITE;
 /*!40000 ALTER TABLE `manufacturer` DISABLE KEYS */;
-INSERT INTO `manufacturer` VALUES (1,1,'https://ionicframework.com/docs/installation/environment','resources/assets/images/manufacturer/1558087365.IMG-20190517-WA0005.jpg',NULL,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,'active'),(2,1,'',NULL,NULL,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(3,2,'',NULL,NULL,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active');
 /*!40000 ALTER TABLE `manufacturer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1122,7 +810,7 @@ CREATE TABLE `manufacturer_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`manufacturer_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1131,59 +819,7 @@ CREATE TABLE `manufacturer_description` (
 
 LOCK TABLES `manufacturer_description` WRITE;
 /*!40000 ALTER TABLE `manufacturer_description` DISABLE KEYS */;
-INSERT INTO `manufacturer_description` VALUES (1,'manufactuerer done',1,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,''),(2,'english123w',2,1,'2019-05-13 23:55:56',NULL,'2019-05-17 18:03:07',NULL,''),(3,'Manufacturer B  HongKong',1,2,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(4,'Manufacturer B  English',2,2,'2019-12-05 17:36:44',NULL,'2019-12-05 17:36:44',NULL,'active'),(5,'Manufacturer C  HongKong',1,3,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active'),(6,'Manufacturer C  English',2,3,'2019-12-05 17:37:11',NULL,'2019-12-05 17:37:11',NULL,'active');
 /*!40000 ALTER TABLE `manufacturer_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `migrations`
---
-
-DROP TABLE IF EXISTS `migrations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `migrations` (
-  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `migrations`
---
-
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `new_table`
---
-
-DROP TABLE IF EXISTS `new_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `new_table` (
-  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
-  `description` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
-  `create_date` datetime NOT NULL,
-  `create_by_id` int(11) DEFAULT NULL,
-  `edit_date` datetime NOT NULL,
-  `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
-  `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `new_table`
---
-
-LOCK TABLES `new_table` WRITE;
-/*!40000 ALTER TABLE `new_table` DISABLE KEYS */;
-/*!40000 ALTER TABLE `new_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1417,7 +1053,7 @@ CREATE TABLE `order` (
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `order_status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1426,7 +1062,6 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:06:48',NULL,'2019-10-21 23:35:44',NULL,'active','pending'),(2,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>r</p>',NULL,'2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active','pending'),(3,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>re</p>',NULL,'2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active','pending'),(4,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,600.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active','pending'),(5,0,4,'A User','Company','1','China HongKong  九龍區 黃大仙  EstateBuildingRoom室','China','HongKong','九龍區','黃大仙','Estate','Building','Room','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,2.00,'2019-10-21 00:00:00',NULL,NULL,0,NULL,NULL,0,'',NULL,'2019-10-21 23:25:33',NULL,'2019-10-21 23:32:51',NULL,'active','pending'),(6,0,4,'A User','CompanyB','2','China HongKong  九龍區 樂富  Estatelabels.Buildingy室','China','HongKong','九龍區','樂富','Estate','labels.Building','y','53403540','jamie951123@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,2.00,'1',NULL,NULL,1800.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gf</p>',NULL,'2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active','complete'),(7,0,15,'B User','CompanyB','4','China HongKong  九龍區 樂富  EstateBuildingRoom室','China','HongKong','九龍區','樂富','Estate','Building','Room','2','userb@gmail.com','',NULL,'',NULL,NULL,NULL,NULL,NULL,'',NULL,'',NULL,NULL,NULL,NULL,NULL,6.00,'5',NULL,NULL,6000.00,'2019-10-22 00:00:00',NULL,NULL,0,NULL,NULL,0,'<p>gffd</p>',NULL,'2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active','cancel');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1450,7 +1085,7 @@ CREATE TABLE `order_comment` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_comment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1459,7 +1094,6 @@ CREATE TABLE `order_comment` (
 
 LOCK TABLES `order_comment` WRITE;
 /*!40000 ALTER TABLE `order_comment` DISABLE KEYS */;
-INSERT INTO `order_comment` VALUES (1,1,'comment',0,'Admin','2019-06-09 00:00:00','2019-06-09 00:00:00',NULL,'',NULL,'active');
 /*!40000 ALTER TABLE `order_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1484,7 +1118,7 @@ CREATE TABLE `order_product` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1493,7 +1127,6 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (1,1,23,0,1.00,1,1.00,'2019-10-21 23:06:48',NULL,'2019-10-21 23:06:48',NULL,'active'),(2,2,23,0,1.00,1,1.00,'2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active'),(3,3,23,0,1.00,1,1.00,'2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active'),(4,4,24,0,300.00,2,600.00,'2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active'),(5,5,23,0,1.00,2,2.00,'2019-10-21 23:25:33',NULL,'2019-10-21 23:25:33',NULL,'active'),(6,6,24,0,300.00,6,1800.00,'2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active'),(7,7,24,0,300.00,20,6000.00,'2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active');
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1520,7 +1153,7 @@ CREATE TABLE `order_product_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`order_product_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1529,7 +1162,6 @@ CREATE TABLE `order_product_description` (
 
 LOCK TABLES `order_product_description` WRITE;
 /*!40000 ALTER TABLE `order_product_description` DISABLE KEYS */;
-INSERT INTO `order_product_description` VALUES (1,1,1,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(2,1,1,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(3,1,2,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(4,1,2,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:28:45',NULL,'2019-10-11 17:28:45',NULL,'active'),(9,3,5,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(10,3,5,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(11,3,6,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(12,3,6,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-11 17:36:08',NULL,'2019-10-11 17:36:08',NULL,'active'),(17,21,9,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:50:49',NULL,'2019-10-21 18:50:49',NULL,'active'),(18,21,9,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:50:49',NULL,'2019-10-21 18:50:49',NULL,'active'),(19,22,10,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:52:36',NULL,'2019-10-21 18:52:36',NULL,'active'),(20,22,10,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:52:36',NULL,'2019-10-21 18:52:36',NULL,'active'),(21,23,11,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:54:00',NULL,'2019-10-21 18:54:00',NULL,'active'),(22,23,11,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:54:00',NULL,'2019-10-21 18:54:00',NULL,'active'),(23,24,12,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:54:07',NULL,'2019-10-21 18:54:07',NULL,'active'),(24,24,12,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:54:07',NULL,'2019-10-21 18:54:07',NULL,'active'),(25,25,13,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(26,25,13,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(27,25,14,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(28,25,14,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:10',NULL,'2019-10-21 18:58:10',NULL,'active'),(29,26,15,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(30,26,15,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(31,26,16,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(32,26,16,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:38',NULL,'2019-10-21 18:58:38',NULL,'active'),(33,27,17,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(34,27,17,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(35,27,18,1,2,25,'Product B  (HongKong)','HongKong B1','Description (HongKong)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(36,27,18,2,2,25,'Product B(English) ★','English B1','Description (English)','2019-10-21 18:58:57',NULL,'2019-10-21 18:58:57',NULL,'active'),(37,1,1,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 23:06:48',NULL,'2019-10-21 23:06:48',NULL,'active'),(38,1,1,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 23:06:48',NULL,'2019-10-21 23:06:48',NULL,'active'),(39,2,2,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active'),(40,2,2,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 23:06:55',NULL,'2019-10-21 23:06:55',NULL,'active'),(41,3,3,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active'),(42,3,3,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 23:16:08',NULL,'2019-10-21 23:16:08',NULL,'active'),(43,4,4,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active'),(44,4,4,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-21 23:23:14',NULL,'2019-10-21 23:23:14',NULL,'active'),(45,5,5,1,1,23,'Product A  (HongKong)','HongKong A1','Description (HongKong)','2019-10-21 23:25:33',NULL,'2019-10-21 23:25:33',NULL,'active'),(46,5,5,2,1,23,'Product A (English) ★','English A1','Description (English)','2019-10-21 23:25:33',NULL,'2019-10-21 23:25:33',NULL,'active'),(47,6,6,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active'),(48,6,6,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-22 01:37:10',NULL,'2019-10-22 01:37:10',NULL,'active'),(49,7,7,1,1,24,'Product A  (HongKong)','HongKong A2','Description (HongKong)','2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active'),(50,7,7,2,1,24,'Product A (English) ★','English  A2','Description (English)','2019-10-22 01:49:21',NULL,'2019-10-22 01:49:21',NULL,'active');
 /*!40000 ALTER TABLE `order_product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1752,7 +1384,7 @@ CREATE TABLE `product` (
   `model` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`product_id`),
   KEY `idx_products_model` (`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1761,7 +1393,6 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,0,30,0,'resources/assets/images/product_images/1560064697.螢幕截圖 2019-05-11 下午2.04.53.png',NULL,300.00,'cancel',0.00,'0000-00-00','','',0,NULL,1,1,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active','',0,0,0,NULL),(2,0,30,0,NULL,NULL,300.00,'cancel',0.00,NULL,'','',0,NULL,2,1,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active','',0,0,0,NULL),(3,0,50,0,'resources/assets/images/product_images/1560063313.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,3,1,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active','',0,0,0,NULL),(4,0,50,0,'resources/assets/images/product_images/1560063362.螢幕截圖 2019-05-11 下午2.05.04.png',NULL,500.00,'cancel',0.00,'0000-00-00','','',0,NULL,4,1,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active','',0,0,0,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1787,7 +1418,7 @@ CREATE TABLE `product_attribute` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_attribute_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1796,7 +1427,6 @@ CREATE TABLE `product_attribute` (
 
 LOCK TABLES `product_attribute` WRITE;
 /*!40000 ALTER TABLE `product_attribute` DISABLE KEYS */;
-INSERT INTO `product_attribute` VALUES (23,1,'resources/assets/images/product_attribute/1562843415.5.png','15','5',1.00,'substract',0,'2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(24,1,'resources/assets/images/product_attribute/1563381854.螢幕截圖 2019-05-11 下午2.04.53.png','5','5',300.00,'add',0,'2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(25,2,NULL,'100','5',300.00,'add',0,'2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(26,2,NULL,'5','5',300.00,'add',0,'2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1818,7 +1448,7 @@ CREATE TABLE `product_attribute_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_attribute_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1827,7 +1457,6 @@ CREATE TABLE `product_attribute_description` (
 
 LOCK TABLES `product_attribute_description` WRITE;
 /*!40000 ALTER TABLE `product_attribute_description` DISABLE KEYS */;
-INSERT INTO `product_attribute_description` VALUES (27,1,19,'1HongKong','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(28,2,19,'2English','2019-07-11 14:08:58',NULL,'2019-07-11 17:53:22',NULL,'active'),(35,1,23,'HongKong A1','2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(36,2,23,'English A1','2019-07-11 19:09:06',NULL,'2019-09-11 23:35:05',NULL,'active'),(37,1,24,'HongKong A2','2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(38,2,24,'English  A2','2019-07-18 00:44:14',NULL,'2019-09-11 23:35:13',NULL,'active'),(39,1,25,'HongKong B1','2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(40,2,25,'English B1','2019-09-11 23:36:20',NULL,'2019-09-11 23:36:20',NULL,'active'),(41,1,26,'HongKong B2','2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active'),(42,2,26,'English B2','2019-09-11 23:36:36',NULL,'2019-09-11 23:36:36',NULL,'active');
 /*!40000 ALTER TABLE `product_attribute_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1853,7 +1482,7 @@ CREATE TABLE `product_description` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`product_description_id`,`language_id`),
   KEY `products_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1862,7 +1491,6 @@ CREATE TABLE `product_description` (
 
 LOCK TABLES `product_description` WRITE;
 /*!40000 ALTER TABLE `product_description` DISABLE KEYS */;
-INSERT INTO `product_description` VALUES (1,1,1,'Product A  (HongKong)','<p>Description (HongKong)</p>',NULL,0,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active'),(2,2,1,'Product A (English) ★','<p>Description (English)</p>',NULL,0,'2019-06-09 14:46:18',NULL,'2019-11-29 00:30:50',NULL,'active'),(3,1,2,'Product B  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(4,2,2,'Product B(English) ★','Description (English)',NULL,0,'2019-06-09 14:48:39',NULL,'2019-06-09 14:48:39',NULL,'active'),(5,1,3,'Product C  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(6,2,3,'Product C (English) ★','Description (English)',NULL,0,'2019-06-09 14:55:13',NULL,'2019-09-11 23:18:54',NULL,'active'),(7,1,4,'Product D  (HongKong)','Description (HongKong)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active'),(8,2,4,'Product D (English) ★','Description (English)',NULL,0,'2019-06-09 14:56:02',NULL,'2019-09-11 23:19:06',NULL,'active');
 /*!40000 ALTER TABLE `product_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1885,7 +1513,7 @@ CREATE TABLE `product_image` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_image_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1894,7 +1522,6 @@ CREATE TABLE `product_image` (
 
 LOCK TABLES `product_image` WRITE;
 /*!40000 ALTER TABLE `product_image` DISABLE KEYS */;
-INSERT INTO `product_image` VALUES (3,1,NULL,'',0,'2019-06-17 12:07:41',NULL,'2019-06-17 12:07:41',NULL,'active'),(5,1,'resources/assets/images/product_images/1560751874.IMG-20190617-WA0000.jpeg','Abcd',0,'2019-06-17 13:14:05',NULL,'2019-06-17 14:11:14',NULL,'active');
 /*!40000 ALTER TABLE `product_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1913,7 +1540,7 @@ CREATE TABLE `product_option` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1922,7 +1549,6 @@ CREATE TABLE `product_option` (
 
 LOCK TABLES `product_option` WRITE;
 /*!40000 ALTER TABLE `product_option` DISABLE KEYS */;
-INSERT INTO `product_option` VALUES (12,'2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(13,'2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(14,'2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active');
 /*!40000 ALTER TABLE `product_option` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1944,7 +1570,7 @@ CREATE TABLE `product_option_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1953,7 +1579,6 @@ CREATE TABLE `product_option_description` (
 
 LOCK TABLES `product_option_description` WRITE;
 /*!40000 ALTER TABLE `product_option_description` DISABLE KEYS */;
-INSERT INTO `product_option_description` VALUES (9,1,12,'Name (HongKong)','2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(10,2,12,'Name (English)','2019-07-04 16:50:38',NULL,'2019-07-05 15:54:47',NULL,'active'),(11,1,13,'option2 hk','2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(12,2,13,'option2 eng','2019-07-05 17:00:42',NULL,'2019-07-05 17:13:45',NULL,'active'),(13,1,14,'option3','2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active'),(14,2,14,'option3','2019-07-05 17:14:03',NULL,'2019-07-05 17:14:03',NULL,'active');
 /*!40000 ALTER TABLE `product_option_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1973,7 +1598,7 @@ CREATE TABLE `product_option_value` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1982,7 +1607,6 @@ CREATE TABLE `product_option_value` (
 
 LOCK TABLES `product_option_value` WRITE;
 /*!40000 ALTER TABLE `product_option_value` DISABLE KEYS */;
-INSERT INTO `product_option_value` VALUES (3,'12','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(4,'12','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(5,'12','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active');
 /*!40000 ALTER TABLE `product_option_value` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2004,7 +1628,7 @@ CREATE TABLE `product_option_value_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`product_option_value_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2013,7 +1637,6 @@ CREATE TABLE `product_option_value_description` (
 
 LOCK TABLES `product_option_value_description` WRITE;
 /*!40000 ALTER TABLE `product_option_value_description` DISABLE KEYS */;
-INSERT INTO `product_option_value_description` VALUES (5,1,3,'HongKong3','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(6,2,3,'English3','2019-07-05 16:15:29',NULL,'2019-07-05 17:10:52',NULL,'active'),(7,1,4,'red','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(8,2,4,'red','2019-07-05 17:11:17',NULL,'2019-07-05 17:11:17',NULL,'active'),(9,1,5,'red','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active'),(10,2,5,'red','2019-07-05 17:12:12',NULL,'2019-07-05 17:12:12',NULL,'active');
 /*!40000 ALTER TABLE `product_option_value_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2215,37 +1838,6 @@ INSERT INTO `sliders_images` VALUES (1,'Slider-1','81','resources/assets/images/
 UNLOCK TABLES;
 
 --
--- Table structure for table `specials`
---
-
-DROP TABLE IF EXISTS `specials`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `specials` (
-  `specials_id` int(11) NOT NULL AUTO_INCREMENT,
-  `products_id` int(11) NOT NULL,
-  `specials_new_products_price` decimal(15,2) NOT NULL,
-  `specials_date_added` int(100) NOT NULL,
-  `specials_last_modified` int(100) NOT NULL,
-  `expires_date` int(100) NOT NULL,
-  `date_status_change` int(100) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`specials_id`),
-  KEY `idx_specials_products_id` (`products_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `specials`
---
-
-LOCK TABLES `specials` WRITE;
-/*!40000 ALTER TABLE `specials` DISABLE KEYS */;
-INSERT INTO `specials` VALUES (1,25,150.00,1502195102,0,1667174400,0,1),(2,39,27.85,1502264917,0,1640995200,0,1),(3,43,21.99,1502268005,0,1640995200,0,1),(4,44,23.55,1502268706,0,1640995200,0,1),(5,48,450.00,1502274870,0,1640995200,0,1),(6,62,22.20,1502351882,0,1659398400,0,1),(7,65,23.50,1502353123,0,1646092800,0,1),(8,67,445.00,1502362089,0,1640995200,0,1),(9,70,23.99,1502363119,0,1640995200,0,1),(10,73,23.50,1502364697,0,1640995200,0,1),(11,80,99.99,1502366586,0,1640995200,0,1);
-/*!40000 ALTER TABLE `specials` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `sub_category`
 --
 
@@ -2266,7 +1858,7 @@ CREATE TABLE `sub_category` (
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   `category_id` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`sub_category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2275,7 +1867,6 @@ CREATE TABLE `sub_category` (
 
 LOCK TABLES `sub_category` WRITE;
 /*!40000 ALTER TABLE `sub_category` DISABLE KEYS */;
-INSERT INTO `sub_category` VALUES (1,0,NULL,NULL,NULL,NULL,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active','1'),(2,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active','1'),(3,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active','4'),(4,0,NULL,NULL,NULL,NULL,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active','4'),(5,0,NULL,NULL,NULL,NULL,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active','9'),(6,0,NULL,NULL,NULL,NULL,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active','9');
 /*!40000 ALTER TABLE `sub_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2297,7 +1888,7 @@ CREATE TABLE `sub_category_description` (
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   `status` varchar(45) COLLATE utf8_general_mysql500_ci NOT NULL,
   PRIMARY KEY (`sub_category_description_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2306,65 +1897,7 @@ CREATE TABLE `sub_category_description` (
 
 LOCK TABLES `sub_category_description` WRITE;
 /*!40000 ALTER TABLE `sub_category_description` DISABLE KEYS */;
-INSERT INTO `sub_category_description` VALUES (1,'HongKong subcategory 1-1',1,1,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active'),(2,'English subcategory 1-1',2,1,'2019-09-11 22:56:30',NULL,'2019-09-11 23:11:17',NULL,'active'),(3,'HongKong subcategory 1-2',1,2,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active'),(4,'English subcategory 1-2',2,2,'2019-09-11 23:11:08',NULL,'2019-09-11 23:11:08',NULL,'active'),(5,'HongKong subcategory 2-1',1,3,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active'),(6,'English subcategory 2-1',2,3,'2019-09-11 23:11:35',NULL,'2019-09-11 23:11:35',NULL,'active'),(7,'HongKong subcategory 2-2',1,4,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active'),(8,'English subcategory 2-2',2,4,'2019-09-11 23:11:46',NULL,'2019-09-11 23:11:46',NULL,'active'),(9,'HongKong subcategory 3-1',1,5,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active'),(10,'English subcategory 3-1',2,5,'2019-09-11 23:12:03',NULL,'2019-09-11 23:12:03',NULL,'active'),(11,'HongKong subcategory 3-2',1,6,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active'),(12,'English subcategory 3-2',2,6,'2019-09-11 23:12:24',NULL,'2019-09-11 23:12:24',NULL,'active');
 /*!40000 ALTER TABLE `sub_category_description` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tax_class`
---
-
-DROP TABLE IF EXISTS `tax_class`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `tax_class` (
-  `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tax_class_title` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `tax_class_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`tax_class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tax_class`
---
-
-LOCK TABLES `tax_class` WRITE;
-/*!40000 ALTER TABLE `tax_class` DISABLE KEYS */;
-INSERT INTO `tax_class` VALUES (1,'Sale Tax','This tax apply on products related to USA item.',NULL,'2017-08-07 07:06:53');
-/*!40000 ALTER TABLE `tax_class` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tax_rates`
---
-
-DROP TABLE IF EXISTS `tax_rates`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `tax_rates` (
-  `tax_rates_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tax_zone_id` int(11) NOT NULL,
-  `tax_class_id` int(11) NOT NULL,
-  `tax_priority` int(5) DEFAULT '1',
-  `tax_rate` decimal(7,2) NOT NULL,
-  `tax_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_modified` datetime DEFAULT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`tax_rates_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tax_rates`
---
-
-LOCK TABLES `tax_rates` WRITE;
-/*!40000 ALTER TABLE `tax_rates` DISABLE KEYS */;
-INSERT INTO `tax_rates` VALUES (1,43,1,1,7.00,'',NULL,'2017-08-07 07:07:45');
-/*!40000 ALTER TABLE `tax_rates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2395,49 +1928,6 @@ LOCK TABLES `unit` WRITE;
 /*!40000 ALTER TABLE `unit` DISABLE KEYS */;
 INSERT INTO `unit` VALUES (1,'Gram',1,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,''),(2,'Kilogram',1,'0000-00-00 00:00:00',NULL,'0000-00-00 00:00:00',NULL,'');
 /*!40000 ALTER TABLE `unit` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ups_shipping`
---
-
-DROP TABLE IF EXISTS `ups_shipping`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `ups_shipping` (
-  `ups_id` int(100) NOT NULL AUTO_INCREMENT,
-  `pickup_method` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `isDisplayCal` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `serviceType` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `shippingEnvironment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `access_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `person_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address_line_2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `post_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `no_of_package` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `parcel_height` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `parcel_width` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ups_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ups_shipping`
---
-
-LOCK TABLES `ups_shipping` WRITE;
-/*!40000 ALTER TABLE `ups_shipping` DISABLE KEYS */;
-INSERT INTO `ups_shipping` VALUES (1,'07','','US_01,US_02,US_03,US_12,US_13,US_14,US_59','0','','','','','','','D Ground','','US','NY','10312','New York City','','','','UPS Shipping');
-/*!40000 ALTER TABLE `ups_shipping` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2479,7 +1969,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,1,'boss','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg','4LemaAD0TV5Aw6Pf1n66HK4AM5qv7FYma8WkxbcqJIEdGEQmI6xHLVBOK7Fu','admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie123@gmail.com','','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin','2019-11-13 00:58:30',NULL,'2019-12-05 17:54:33',NULL,'active'),(2,1,1,'staff','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
+INSERT INTO `user` VALUES (1,1,1,'boss','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg','vLRtV9ft6E3G44pedJTB1pRtyUqHozS2qcyl9BpnvlE80YNhkDAH9AySBtSJ','admin3','lam','F','2019-11-20','534038482',NULL,'acornjamie123@gmail.com','','$2y$10$oG7Hz/ikZqsvAjQM06hA9uci8IUPFr77Jo/g/.uWwT8yDEeCmDdLi','admin','2019-11-13 00:58:30',NULL,'2019-12-06 13:46:35',NULL,'active'),(2,1,1,'staff','resources/views/admin/images/admin_profile/1505132393.1486628854.fast.jpg',NULL,'Staff','A','F','2019-11-07','11111111',NULL,'staff@gmail.com','','123123','','2019-11-19 00:55:46',NULL,'2019-11-19 00:55:46',NULL,'active');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2500,7 +1990,7 @@ CREATE TABLE `user_to_company` (
   `edit_date` datetime NOT NULL,
   `edit_by_id` varchar(45) COLLATE utf8_general_mysql500_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2509,7 +1999,7 @@ CREATE TABLE `user_to_company` (
 
 LOCK TABLES `user_to_company` WRITE;
 /*!40000 ALTER TABLE `user_to_company` DISABLE KEYS */;
-INSERT INTO `user_to_company` VALUES (1,1,1,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1'),(2,1,2,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1'),(3,2,3,'boss','2019-01-01 00:00:00',1,'2019-01-01 00:00:00','1');
+INSERT INTO `user_to_company` VALUES (1,1,1,'boss','2019-12-06 18:25:49',NULL,'2019-12-06 18:25:49',NULL);
 /*!40000 ALTER TABLE `user_to_company` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2607,6 +2097,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_country_city` AS SELECT 
  1 AS `countries_id`,
+ 1 AS `company_id`,
  1 AS `countries_name`,
  1 AS `cities_id`,
  1 AS `cities_name`,
@@ -2626,6 +2117,7 @@ SET character_set_client = utf8mb4;
  1 AS `countries_id`,
  1 AS `countries_name`,
  1 AS `cities_id`,
+ 1 AS `company_id`,
  1 AS `cities_name`,
  1 AS `cities_code`,
  1 AS `area_id`,
@@ -2652,6 +2144,7 @@ SET character_set_client = utf8mb4;
  1 AS `area_name`,
  1 AS `area_code`,
  1 AS `district_id`,
+ 1 AS `company_id`,
  1 AS `district_name`,
  1 AS `district_code`,
  1 AS `district_status`*/;
@@ -2679,6 +2172,7 @@ SET character_set_client = utf8mb4;
  1 AS `district_code`,
  1 AS `district_status`,
  1 AS `zone_id`,
+ 1 AS `company_id`,
  1 AS `zone_name`,
  1 AS `zone_code`,
  1 AS `zone_status`*/;
@@ -2694,6 +2188,7 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `view_customer` AS SELECT 
  1 AS `id`,
+ 1 AS `company_id`,
  1 AS `customers_gender`,
  1 AS `customers_firstname`,
  1 AS `customers_lastname`,
@@ -3025,6 +2520,7 @@ DROP TABLE IF EXISTS `zones`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `zones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
   `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `district_id` int(11) NOT NULL,
@@ -3035,7 +2531,7 @@ CREATE TABLE `zones` (
   `status` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_zones_country_id` (`district_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3044,7 +2540,6 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
-INSERT INTO `zones` VALUES (9,'Japan','Zone',7,'2019-02-25 00:20:57',NULL,'2019-02-25 00:20:57',NULL,'active');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3115,7 +2610,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_country_city` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`cities`.`status` AS `cities_status` from (`cities` left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where (`countries`.`id` is not null) */;
+/*!50001 VIEW `view_country_city` AS select `countries`.`id` AS `countries_id`,`countries`.`company_id` AS `company_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`cities`.`status` AS `cities_status` from (`cities` left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where (`countries`.`id` is not null) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3133,7 +2628,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_country_city_area` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`area`.`status` AS `area_status` from ((`area` left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`cities`.`id` is not null) and (`countries`.`id` is not null)) */;
+/*!50001 VIEW `view_country_city_area` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`company_id` AS `company_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`area`.`status` AS `area_status` from ((`area` left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`cities`.`id` is not null) and (`countries`.`id` is not null)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3151,7 +2646,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_country_city_area_district` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`district`.`id` AS `district_id`,`district`.`name` AS `district_name`,`district`.`code` AS `district_code`,`district`.`status` AS `district_status` from (((`district` left join `area` on((`district`.`area_id` = `area`.`id`))) left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`countries`.`id` is not null) and (`cities`.`id` is not null) and (`area`.`id` is not null)) */;
+/*!50001 VIEW `view_country_city_area_district` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`district`.`id` AS `district_id`,`district`.`company_id` AS `company_id`,`district`.`name` AS `district_name`,`district`.`code` AS `district_code`,`district`.`status` AS `district_status` from (((`district` left join `area` on((`district`.`area_id` = `area`.`id`))) left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`countries`.`id` is not null) and (`cities`.`id` is not null) and (`area`.`id` is not null)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3169,7 +2664,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_country_city_area_district_zone` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`district`.`id` AS `district_id`,`district`.`name` AS `district_name`,`district`.`code` AS `district_code`,`district`.`status` AS `district_status`,`zones`.`id` AS `zone_id`,`zones`.`name` AS `zone_name`,`zones`.`code` AS `zone_code`,`zones`.`status` AS `zone_status` from ((((`zones` left join `district` on((`zones`.`district_id` = `district`.`id`))) left join `area` on((`district`.`area_id` = `area`.`id`))) left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`countries`.`id` is not null) and (`cities`.`id` is not null) and (`area`.`id` is not null) and (`district`.`id` is not null)) */;
+/*!50001 VIEW `view_country_city_area_district_zone` AS select `countries`.`id` AS `countries_id`,`countries`.`name` AS `countries_name`,`cities`.`id` AS `cities_id`,`cities`.`name` AS `cities_name`,`cities`.`code` AS `cities_code`,`area`.`id` AS `area_id`,`area`.`name` AS `area_name`,`area`.`code` AS `area_code`,`district`.`id` AS `district_id`,`district`.`name` AS `district_name`,`district`.`code` AS `district_code`,`district`.`status` AS `district_status`,`zones`.`id` AS `zone_id`,`zones`.`company_id` AS `company_id`,`zones`.`name` AS `zone_name`,`zones`.`code` AS `zone_code`,`zones`.`status` AS `zone_status` from ((((`zones` left join `district` on((`zones`.`district_id` = `district`.`id`))) left join `area` on((`district`.`area_id` = `area`.`id`))) left join `cities` on((`area`.`city_id` = `cities`.`id`))) left join `countries` on((`cities`.`countries_id` = `countries`.`id`))) where ((`countries`.`id` is not null) and (`cities`.`id` is not null) and (`area`.`id` is not null) and (`district`.`id` is not null)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3187,7 +2682,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_customer` AS select `customers`.`id` AS `id`,`customers`.`customers_gender` AS `customers_gender`,`customers`.`customers_firstname` AS `customers_firstname`,`customers`.`customers_lastname` AS `customers_lastname`,`customers`.`customers_dob` AS `customers_dob`,`customers`.`email` AS `email`,`customers`.`user_name` AS `user_name`,`customers`.`customers_default_address_id` AS `customers_default_address_id`,`customers`.`customers_telephone` AS `customers_telephone`,`customers`.`customers_fax` AS `customers_fax`,`customers`.`password` AS `password`,`customers`.`customers_newsletter` AS `customers_newsletter`,`customers`.`fb_id` AS `fb_id`,`customers`.`google_id` AS `google_id`,`customers`.`customers_picture` AS `customers_picture`,`customers`.`is_seen` AS `is_seen`,`customers`.`remember_token` AS `remember_token`,`customers`.`create_date` AS `create_date`,`customers`.`create_by_id` AS `create_by_id`,`customers`.`edit_date` AS `edit_date`,`customers`.`edit_by_id` AS `edit_by_id`,`customers`.`status` AS `status`,`address_book`.`company` AS `entry_company`,`address_book`.`firstname` AS `entry_firstname`,`address_book`.`lastname` AS `entry_lastname`,`address_book`.`district_id` AS `district_id`,`address_book`.`address_ch` AS `address_ch`,`address_book`.`address_en` AS `address_en`,`address_book`.`create_date` AS `entry_create_date`,`address_book`.`create_by_id` AS `entry_create_by_id`,`address_book`.`edit_date` AS `entry_edit_date`,`address_book`.`edit_by_id` AS `entry_edit_by_id`,`address_book`.`status` AS `entry_status` from ((`customers` left join `address_book` on((`address_book`.`id` = `customers`.`customers_default_address_id`))) left join `customers_info` on((`customers_info`.`customers_info_id` = `customers`.`id`))) */;
+/*!50001 VIEW `view_customer` AS select `customers`.`id` AS `id`,`customers`.`company_id` AS `company_id`,`customers`.`customers_gender` AS `customers_gender`,`customers`.`customers_firstname` AS `customers_firstname`,`customers`.`customers_lastname` AS `customers_lastname`,`customers`.`customers_dob` AS `customers_dob`,`customers`.`email` AS `email`,`customers`.`user_name` AS `user_name`,`customers`.`customers_default_address_id` AS `customers_default_address_id`,`customers`.`customers_telephone` AS `customers_telephone`,`customers`.`customers_fax` AS `customers_fax`,`customers`.`password` AS `password`,`customers`.`customers_newsletter` AS `customers_newsletter`,`customers`.`fb_id` AS `fb_id`,`customers`.`google_id` AS `google_id`,`customers`.`customers_picture` AS `customers_picture`,`customers`.`is_seen` AS `is_seen`,`customers`.`remember_token` AS `remember_token`,`customers`.`create_date` AS `create_date`,`customers`.`create_by_id` AS `create_by_id`,`customers`.`edit_date` AS `edit_date`,`customers`.`edit_by_id` AS `edit_by_id`,`customers`.`status` AS `status`,`address_book`.`company` AS `entry_company`,`address_book`.`firstname` AS `entry_firstname`,`address_book`.`lastname` AS `entry_lastname`,`address_book`.`district_id` AS `district_id`,`address_book`.`address_ch` AS `address_ch`,`address_book`.`address_en` AS `address_en`,`address_book`.`create_date` AS `entry_create_date`,`address_book`.`create_by_id` AS `entry_create_by_id`,`address_book`.`edit_date` AS `entry_edit_date`,`address_book`.`edit_by_id` AS `entry_edit_by_id`,`address_book`.`status` AS `entry_status` from (`customers` left join `address_book` on((`address_book`.`id` = `customers`.`customers_default_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -3345,4 +2840,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-05 18:08:33
+-- Dump completed on 2019-12-06 18:29:47
