@@ -40,14 +40,16 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 	// 	Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
 	// });
 
-	// Route::group(['middleware' => 'admin'], function () {
+	Route::group(['middleware' => 'admin'], function () {
+		Route::get('/view_registerCompany', 'AdminRegisterController@view_registerCompany');
+		Route::post('/add_registerCompany', 'AdminRegisterController@add_registerCompany');
+	});
 	Route::group(['middleware' => 'admin', 'middleware' => 'company'], function () {
 		//orders API
 		Route::get('/getAPI/{customer_id}', 'AdminOrderController@findAddressByCustomerId');
 		Route::post('/findAddressByCustomerId', 'AdminOrderController@findAddressByCustomerId');
 		Route::post('/findAddressByAddressId', 'AdminOrderController@findAddressByAddressId');
 		Route::post('/createOrder', 'AdminOrderController@createOrder');
-
 		Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
 		Route::get('/post', 'AdminController@myPost');
 		//show admin personal info record

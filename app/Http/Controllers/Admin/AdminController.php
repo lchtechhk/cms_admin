@@ -76,9 +76,8 @@ class AdminController extends Controller{
 		
 		$result['inprocess'] = count($orders)-$pending_orders-$compeleted_orders;
 		//add to cart orders
-		$cart = DB::table('customers_basket')->get();
 		
-		$result['cart'] = count($cart);
+		$result['cart'] = 0;
 		
 		//Rencently added products
 		$recentProducts = DB::table('product')
@@ -111,13 +110,8 @@ class AdminController extends Controller{
 		$result['outOfStock'] = $outOfStock;	
 		$result['totalProducts'] = count($products);
 		
-		$customers = DB::table('customers')
-			->LeftJoin('customers_info','customers_info.customers_info_id','=', 'customers.id')
-			->orderBy('customers_info.customers_info_date_account_created','DESC')
-			->get();
-		
-		$result['recentCustomers'] = $customers->chunk(21);
-		$result['totalCustomers'] = count($customers);
+		$result['recentCustomers'] = array();
+		$result['totalCustomers'] = 0;
 		$result['reportBase'] = $reportBase;	
 		
 		//get function from other controller
@@ -176,7 +170,6 @@ class AdminController extends Controller{
 		}
 		
 	}
-	
 	
 	//logout
 	public function logout(){

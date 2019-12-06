@@ -36,7 +36,8 @@ class CompanyMiddleware
         if(\sizeof($own_companies) > 0){
             $request->session()->put('owner_companies', $own_companies);
         }else {
-            return redirect('admin/login');
+            // go to register company
+            return redirect('/admin/view_registerCompany');
         }
         return $next($request);
     }

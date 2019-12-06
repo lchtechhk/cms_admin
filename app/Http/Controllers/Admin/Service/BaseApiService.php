@@ -10,7 +10,27 @@ use App\Http\Controllers\Admin\AdminSiteSettingController;
 use League\Flysystem\Exception;
 
 abstract class BaseApiService extends AdminDao{ 
-        
+        public function register_add($array){
+            try{
+                $array['status'] = 'active';
+                $array['create_date'] = date("Y-m-d H:i:s");
+                $array['edit_date'] = date("Y-m-d H:i:s");
+                Log::info('[add] -- :' . json_encode($array));	
+                $insert_id = $this->db_prepareInsert($this->getTable(),$array);
+                //
+                $result = array();	
+                if(!empty($insert_id) && $insert_id > 0){
+                    $result['status'] = 'success';
+                    $result['response_id'] = $insert_id;
+                }else {
+                    $result['status'] = 'fail';
+                }
+                $result['operation'] = 'add';
+                return $result;
+            }catch (Exception $e){
+                $result = $this->throwException('fail',$e->getMessage(),false);
+            }
+        }
         public function add($array){
             try{
                 $array['status'] = 'active';
@@ -32,7 +52,6 @@ abstract class BaseApiService extends AdminDao{
             }catch (Exception $e){
                 $result = $this->throwException('fail',$e->getMessage(),false);
             }
-            
         }
         public function update($key,$array){
             $array['edit_date'] = date("Y-m-d H:i:s");
