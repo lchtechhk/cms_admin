@@ -38,11 +38,11 @@ class CountryService extends BaseApiService{
             try{
                 DB::connection()->getPdo()->beginTransaction();
                 Log::info('[CityService] : ' . $array['id']);
-                // $countries_id = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$request->id);
-                $cities_id_array = $this->View_CCityService->findByColumn_IdArray('countries_id','cities_id',$array['id']);
-                $area_id_array = $this->View_CCAreaService->findByColumn_IdArray('countries_id','area_id',$array['id']);
-                $district_id_array = $this->View_CCADistrictService->findByColumn_IdArray('countries_id','district_id',$array['id']);
-                $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$array['id']);
+                // $countries_id = $this->View_CCADZoneService->findByColumn_Values_Return_Array('countries_id','zone_id',$request->id);
+                $cities_id_array = $this->View_CCityService->findByColumn_Values_Return_Array('countries_id','cities_id',$array['id']);
+                $area_id_array = $this->View_CCAreaService->findByColumn_Values_Return_Array('countries_id','area_id',$array['id']);
+                $district_id_array = $this->View_CCADistrictService->findByColumn_Values_Return_Array('countries_id','district_id',$array['id']);
+                $zone_id_array = $this->View_CCADZoneService->findByColumn_Values_Return_Array('countries_id','zone_id',$array['id']);
                 
                 $delete_count = $this->delete($array['id']);
                 if($delete_count == 0) throw new Exception("Error To Delete Country", 1);

@@ -50,7 +50,7 @@ class AdminController extends Controller{
 
 	}
 	public function dashboard(Request $request){
-		Log::info('message');
+		Log::info('dashboard');
 		$title 			  = 	array('pageTitle' => Lang::get("labels.title_dashboard"));
 		$language_id      = 	'1';
 		$result 		  =		array();
@@ -58,7 +58,7 @@ class AdminController extends Controller{
 		$reportBase		  = 	$request->reportBase;
 		
 		//recently order placed
-		$orders = $this->View_OrderService->findAll();
+        $orders = $this->View_OrderService->findByColumn_Value('company_id',Session::get('default_company_id'));
 		
 			
 		
@@ -164,10 +164,10 @@ class AdminController extends Controller{
 			if(auth()->guard('admin')->attempt($adminInfo)) {
 				$user_auth = auth()->guard('admin')->user();
 				Log::info('user_auth : ' . json_encode($user_auth));
-				$user = $this->UserService->findByColumnAndId("user_id",$user_auth->user_id);
-				Log::info('message : ' . json_encode($user));
-				$language_id = $this->LanguageService->getDefault_languageId();
+				$language_id = $user_auth->default_language;
+				$user = $this->UserService->findByColumn_Value("user_id",$user_auth->user_id);
 				session(['language_id' => $language_id]);
+				Log::info('user : ' . json_encode($user));
 				return redirect()->intended('admin/dashboard/this_month')->with('administrators', $user);
 			}else{
 				return redirect('admin/login')->with('loginError',Lang::get("labels.EmailPasswordIncorrectText"));

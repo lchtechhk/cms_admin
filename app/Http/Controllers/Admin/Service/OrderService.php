@@ -42,7 +42,7 @@ class OrderService extends BaseApiService{
     }
 
     function update_order_total_price($order_id){
-        $order_array = $this->findByColumnAndId("order_id",$order_id);
+        $order_array = $this->findByColumn_Value("order_id",$order_id);
         $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
 
         $order_product_array = $this->View_OrderProductService->findByColumnWithLanguage("order_id",$order_id);
@@ -68,10 +68,10 @@ class OrderService extends BaseApiService{
         }
     }
     function getOrder($order_id){
-        $order_array = $this->findByColumnAndId("order_id",$order_id);
+        $order_array = $this->findByColumn_Value("order_id",$order_id);
         $order = !empty($order_array) && sizeof($order_array) > 0 ? $order_array[0] : array();
         $order_product_array = $this->View_OrderProductService->findByColumnWithLanguage("order_id",$order_id);
-        $order_comment_array = $this->OrderCommentService->findByColumnAndId("order_id",$order_id);
+        $order_comment_array = $this->OrderCommentService->findByColumn_Value("order_id",$order_id);
         $order->order_products = $order_product_array;
         $order->order_comments = $order_comment_array;
         Log::info('[order] -- getListing : ' .json_encode($order));
@@ -120,7 +120,7 @@ class OrderService extends BaseApiService{
 
         switch($result['operation']){
             case 'listing':
-                $result['orders'] = $this->findAll();
+                $result['orders'] = $this->View_OrderService->getListing();
                 Log::info('[listing] --  : ' . \json_encode($result));
                 return view("admin.order.listingOrder", $title)->with('result', $result);
             break;

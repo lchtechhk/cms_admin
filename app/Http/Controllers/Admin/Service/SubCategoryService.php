@@ -31,7 +31,7 @@ class SubCategoryService extends BaseApiService{
     }
 
     function getSubCategory($sub_category_id){
-        $sub_category_array = $this->View_SubCategoryService->findByColumnAndId("sub_category_id",$sub_category_id);
+        $sub_category_array = $this->View_SubCategoryService->findByColumn_Value("sub_category_id",$sub_category_id);
         $sub_category = !empty($sub_category_array) && sizeof($sub_category_array) > 0 ? $sub_category_array[0] : array();
         $sub_category->language_array = array();
         foreach ($sub_category_array as $obj) {

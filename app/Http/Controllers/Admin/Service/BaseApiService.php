@@ -2,14 +2,14 @@
 namespace App\Http\Controllers\Admin\Service;
 use Lang;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\Dao\BaseDao;
+use App\Http\Controllers\Admin\Dao\AdminDao;
 use Log;
 use DB;
 use Session;
 use App\Http\Controllers\Admin\AdminSiteSettingController;
 use League\Flysystem\Exception;
 
-abstract class BaseApiService extends BaseDao{ 
+abstract class BaseApiService extends AdminDao{ 
         
         public function add($array){
             try{
@@ -34,7 +34,6 @@ abstract class BaseApiService extends BaseDao{
             }
             
         }
-
         public function update($key,$array){
             $array['edit_date'] = date("Y-m-d H:i:s");
             $update_id = $this->db_prepareUpdate($this->getTable(),$array,$key,$array[$key]);
@@ -86,8 +85,14 @@ abstract class BaseApiService extends BaseDao{
             $result['operation'] = 'delete';
             return $result;
         }
-        // public function add_multiple();
-        // public function update_multiple();
+        
+        function getCountForEmailExisting($email){
+            $result = DB::table($this->getTable())
+            ->where('email','=',$email)
+            ->count();
+            Log::info('[AdminDao] -- getCountForEmailExisting : ] '. $result);
+            return $result;
+        }
 
         public function throwException($result,$error_msg,$is_rollback){
             Log::error("throwException : " . $error_msg);

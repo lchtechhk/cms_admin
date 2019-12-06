@@ -39,7 +39,7 @@ class AdminDashboardController extends Controller
 		$title = array('pageTitle' => 'Dashboard');		
 		$result = array();
 		
-		$orders = $this->View_OrderService->findAll();
+		$orders = $this->View_OrderService->findByColumn_Value('company_id',Session::get('default_company_id'));
 			
 		$recentOrders = array_slice($input, 0, 10);
 		$result['recentOrders'] = $recentOrders;

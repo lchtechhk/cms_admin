@@ -16,12 +16,12 @@ class ProductOptionValueDescService extends BaseApiService{
 
     }
     function getListing($product_id){
-        $product_image_array = $this->findByColumnAndId('product_id',$product_id);
+        $product_image_array = $this->findByColumn_Value('product_id',$product_id);
         Log::info('[ProductImage] -- getListing : ' .json_encode($product_image_array));
         return $product_image_array;
     }
     function getProductImage($product_image_id){
-        $product_image_array = $this->findByColumnAndId('product_image_id',$product_image_id);
+        $product_image_array = $this->findByColumn_Value('product_image_id',$product_image_id);
         $product_image = !empty($product_image_array) && sizeof($product_image_array) > 0 ? $product_image_array[0] : array();
         Log::info('[ProductImage] -- getProductImage : ' .json_encode($product_image));
         return $product_image;

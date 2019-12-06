@@ -27,7 +27,7 @@ class CategoryService extends BaseApiService{
 
     }
     function getCategory($category_id){
-        $category_array = $this->View_CategoryService->findByColumnAndId("category_id",$category_id);
+        $category_array = $this->View_CategoryService->findByColumn_Value("category_id",$category_id);
         $category = !empty($category_array) && sizeof($category_array) > 0 ? $category_array[0] : array();
         $category->language_array = array();
         foreach ($category_array as $obj) {

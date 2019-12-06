@@ -22,6 +22,7 @@ class View_CompanyService extends BaseApiService{
 
     function getCompanyBelongOwn($user_id){
         $company_ids = $this->UserToCompanyService->getCompanyIdsByUser($user_id);
+        Log::info('company_ids : ' . json_encode($company_ids));
         return $this->findByColumn_ValuesWithLanguage("company_id",$company_ids);
     }
     function redirect_view($result,$title){

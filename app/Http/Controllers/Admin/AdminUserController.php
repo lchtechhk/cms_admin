@@ -41,7 +41,7 @@ class AdminUserController extends Controller{
         }catch(Exception $e){
             $result = $this->UserService->throwException($result,$e->getMessage(),true);
         }
-        $user = $this->UserService->findByColumnAndId("user_id",$user_id);
+        $user = $this->UserService->findByColumn_Value("user_id",$user_id);
 		return redirect()->intended('admin/dashboard/this_month')->with('administrators', $user);
     }
 	function listingUser(Request $request){

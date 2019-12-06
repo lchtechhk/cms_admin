@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         }
 
         function getUserIdsByCompany($company_id){
-            $user_to_company = $this->findByColumnAndId("company_id",$company_id);
+            $user_to_company = $this->findByColumn_Value("company_id",$company_id);
             $id_list = array();
             if(sizeof($user_to_company) > 0){
                 foreach ($user_to_company AS $utc) {
@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
             return $id_list;
         }
         function getCompanyIdsByUser($user_id){
-            $user_to_company = $this->findByColumnAndId("user_id",$user_id);
+            $user_to_company = $this->findByColumn_Value("user_id",$user_id);
             $id_list = array();
             if(sizeof($user_to_company) > 0){
                 foreach ($user_to_company AS $utc) {

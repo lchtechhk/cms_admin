@@ -154,7 +154,7 @@ class AdminOrderController extends Controller{
 
     function findAddressByCustomerId(Request $request){
         $customer_id = $request->input("customer_id");
-        $result = $this->View_AddressBookService->findByColumnAndId("customer_id",$customer_id);
+        $result = $this->View_AddressBookService->findByColumn_Value("customer_id",$customer_id);
         Log::info('[findAddressByCustomerId] --  : ' . json_encode($result));
         return $result;
     }
@@ -162,7 +162,7 @@ class AdminOrderController extends Controller{
     function findAddressByAddressId(Request $request){
         $address_id = $request->input("address_id");
         
-        $result_array = $this->View_AddressBookService->findByColumnAndId("id",$address_id);
+        $result_array = $this->View_AddressBookService->findByColumn_Value("id",$address_id);
         $result = array();
         if(!empty($result_array) && \sizeof($result_array) > 0){
             $result = $result_array[0];

@@ -13,12 +13,12 @@ class View_ProductOptionService extends BaseApiService{
     }
 
     function getListing(){
-        $product_option_array = $this->findAllByLanguage(session('language_id') );
+        $product_option_array = $this->findAllWithLanguage();
         return $product_option_array;
     }
 
     function getProductOption($product_option_id){
-        $product_option_array = $this->findByColumnAndId("product_option_id",$product_option_id);
+        $product_option_array = $this->findByColumn_Value("product_option_id",$product_option_id);
         $product_option = !empty($product_option_array) && sizeof($product_option_array) > 0 ? $product_option_array[0] : array();
         $product_option->language_array = array();
         foreach ($product_option_array as $obj) {

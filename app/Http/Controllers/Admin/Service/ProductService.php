@@ -39,7 +39,7 @@ class ProductService extends BaseApiService{
     }
 
     function getProduct($product_id){
-        $product_array = $this->View_ProductService->findByColumnAndId("product_id",$product_id);
+        $product_array = $this->View_ProductService->findByColumn_Value("product_id",$product_id);
         $product = !empty($product_array) && sizeof($product_array) > 0 ? $product_array[0] : array();
         $product->language_array = array();
         Log::info('[product_array] -- getProduct : ' .json_encode($product_array));

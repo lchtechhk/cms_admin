@@ -4,6 +4,7 @@ use Log;
 use DB;
 use Lang;
 use Exception;
+use Session;
 
 use App\Http\Controllers\Admin\Service\View_CustomersService;
 use App\Http\Controllers\Admin\Service\AddressBookService;
@@ -25,24 +26,6 @@ class CustomersService extends BaseApiService{
         return $this->View_CustomersService->getListingWithOutStatus();
     }
 
-    // public function deleteCustomer($result){
-    //     $customer_id = $result['customer_id'];
-    //     try{
-	// 		DB::beginTransaction();
-	// 		$delete_customer_result = $this->delete($customer_id);
-	// 		if(!empty($delete_customer_result) && $delete_customer_result['status']  != 'success')throw new Exception ($delete_customer_result['message']);
-	// 		$delete_addressbook_result = $this->AddressBookService->deleteByKey_Value('customer_id',$customer_id);
-	// 		if(!empty($delete_addressbook_result) && $delete_addressbook_result['status']  != 'success')throw new Exception ($delete_addressbook_result['message']);
-            
-    //         $result['status'] = 'success';
-    //         $result['message'] = 'labels.DeletedCustomersAndAddressBookSuccess';
-    //         DB::commit();
-	// 	}catch(Exception $e){
-    //         $result = $this->throwException($result,$e->getMessage(),true);
-    //     }
-    //     $result['operation'] = 'delete';
-    //     return $result;
-    // }
     function redirect_view($result,$title){
         $result['label'] = "Customer";
         switch($result['operation']){

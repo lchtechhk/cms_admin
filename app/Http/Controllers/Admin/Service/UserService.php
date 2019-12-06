@@ -50,7 +50,7 @@ class UserService extends BaseApiService{
                 return view("admin.user.viewUser", $title)->with('result', $result);
             break;
             case 'view_edit':
-                $user = $this->findByColumnAndId("user_id",$result['user_id']);
+                $user = $this->findByColumn_Value("user_id",$result['user_id']);
                 $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                 Log::info('[view_edit] --  : ' . \json_encode($result));
                 return view("admin.user.viewUser", $title)->with('result', $result);
@@ -68,7 +68,7 @@ class UserService extends BaseApiService{
                     }        
                     $result['image'] = $this->UploadService->upload_image($result['request'],'newImage','resources/assets/images/user_profile/');
                     $add_user_result = $this->add($result);
-                    $user = $this->findByColumnAndId("user_id",$add_user_result['response_id']);
+                    $user = $this->findByColumn_Value("user_id",$add_user_result['response_id']);
                     $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                     $result = $this->response($result,"Success To Add User","view_edit");
                     DB::commit();
@@ -90,7 +90,7 @@ class UserService extends BaseApiService{
                         $result['operation'] = 'edit';
                         $result['status'] = 'fail';
                         $result['message'] =  'Update Error, The Email Is Duplicate In DB';
-                        $user = $this->findByColumnAndId("user_id",$user_id);
+                        $user = $this->findByColumn_Value("user_id",$user_id);
                         $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                         return view("admin.user.viewUser", $title)->with('result', $result);
                     }
@@ -102,7 +102,7 @@ class UserService extends BaseApiService{
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }
-                $user = $this->findByColumnAndId("user_id",$user_id);
+                $user = $this->findByColumn_Value("user_id",$user_id);
                 $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                 Log::info('result : ' . json_encode($result));
                 return view("admin.user.viewUser", $title)->with('result', $result);        

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         }
 
         function getListing(){
-            return $this->findAllByLanguage(session('language_id') );
+            return $this->findAllWithLanguage();
         }
         function redirect_view($result,$title){
         }

@@ -14,10 +14,8 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
 	 */
-	 private $View_OrderService;
 
 	function __construct(){
-		$this->View_OrderService = new View_OrderService();
 	}
     public function boot(){
 		DB::listen(function ($query) {
@@ -28,7 +26,6 @@ class AppServiceProvider extends ServiceProvider
         });
          // Using Closure based composers...
 		$result = array();
-        $orders = $this->View_OrderService->findAll();
 				
 		$index = 0;	
 		

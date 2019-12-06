@@ -27,7 +27,7 @@ class ManufacturerService extends BaseApiService{
 
     }
     function getManufacturer($manufacturer_id){
-        $manufacturers = $this->View_ManufacturerService->findByColumnAndId("manufacturer_id",$manufacturer_id);
+        $manufacturers = $this->View_ManufacturerService->findByColumn_Value("manufacturer_id",$manufacturer_id);
         $manufacturer = !empty($manufacturers) && sizeof($manufacturers) > 0 ? $manufacturers[0] : array();
         $manufacturer->language_array = array();
         foreach ($manufacturers as $obj) {

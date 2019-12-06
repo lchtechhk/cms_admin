@@ -29,7 +29,7 @@ class View_ProductAttributeService extends BaseApiService{
 
     function getProductAttribute($product_attribute_id){
         
-        $product_attribute_array = $this->findByColumnAndId("product_attribute_id",$product_attribute_id);
+        $product_attribute_array = $this->findByColumn_Value("product_attribute_id",$product_attribute_id);
         $product_attribute = !empty($product_attribute_array) && sizeof($product_attribute_array) > 0 ? $product_attribute_array[0] : array();
         $product_attribute->language_array = array();
         foreach ($product_attribute_array as $obj) {
@@ -42,7 +42,7 @@ class View_ProductAttributeService extends BaseApiService{
     }
 
     function getProductByAttributeId($product_attribute_id){
-        $product_attribute_array = $this->findByColumnAndId("product_attribute_id",$product_attribute_id);
+        $product_attribute_array = $this->findByColumn_Value("product_attribute_id",$product_attribute_id);
         $product_attribute = !empty($product_attribute_array) && sizeof($product_attribute_array) > 0 ? $product_attribute_array[0] : array();
         $product_attribute->language_array = array();
         foreach ($product_attribute_array as $obj) {
@@ -62,7 +62,7 @@ class View_ProductAttributeService extends BaseApiService{
     function send_to_orderDescription($order_id,$order_product_id,$product_attribute_id){
         $result =array();
         try{
-            $product_attribute_array = $this->findByColumnAndId('product_attribute_id',$product_attribute_id);
+            $product_attribute_array = $this->findByColumn_Value('product_attribute_id',$product_attribute_id);
             foreach ($product_attribute_array as $obj) {
                 $order_item_param["order_id"] = $order_id;
                 $order_item_param["order_product_id"] = $order_product_id;

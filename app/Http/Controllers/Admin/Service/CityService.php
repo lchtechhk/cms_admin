@@ -35,11 +35,11 @@ class CityService extends BaseApiService{
             try{
                 DB::connection()->getPdo()->beginTransaction();
                 Log::info('[CityService] : ' . json_encode($array));
-                // $countries_id = $this->View_CCADZoneService->findByColumn_IdArray('countries_id','zone_id',$request->id);
-                // $cities_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','cities_id',$request->id);
-                $area_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','area_id',$array['id']);
-                $district_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','district_id',$array['id']);
-                $zone_id_array = $this->View_CCADZoneService->findByColumn_IdArray('cities_id','zone_id',$array['id']);
+                // $countries_id = $this->View_CCADZoneService->findByColumn_Values_Return_Array('countries_id','zone_id',$request->id);
+                // $cities_id_array = $this->View_CCADZoneService->findByColumn_Values_Return_Array('cities_id','cities_id',$request->id);
+                $area_id_array = $this->View_CCADZoneService->findByColumn_Values_Return_Array('cities_id','area_id',$array['id']);
+                $district_id_array = $this->View_CCADZoneService->findByColumn_Values_Return_Array('cities_id','district_id',$array['id']);
+                $zone_id_array = $this->View_CCADZoneService->findByColumn_Values_Return_Array('cities_id','zone_id',$array['id']);
                 
                 
                 $delete_count = $this->delete($array['id']);

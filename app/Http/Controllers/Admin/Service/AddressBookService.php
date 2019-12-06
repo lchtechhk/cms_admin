@@ -25,7 +25,7 @@ class AddressBookService extends BaseApiService{
     }
     function getListing($result){
         $customer_id = $result['customer_id'];
-        $customer_address = $this->View_AddressBookService->findByColumnAndId('customer_id',$customer_id);
+        $customer_address = $this->View_AddressBookService->findByColumn_Value('customer_id',$customer_id);
         $result['customer_address'] = $customer_address;
         $result['customer_id'] = $customer_id;
         // Log::info('[Addressbooking] -- getListing : ' .json_encode($result));

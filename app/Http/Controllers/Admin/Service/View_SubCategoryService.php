@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Service;
 use Log;
 use DB;
+use Session;
 
 use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_SubCategoryService extends BaseApiService{
@@ -10,7 +11,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         }
 
         function getListing(){
-            return DB::table($this->getTable())->where('sub_category_language_id',session('language_id'))->get();
+            return $this->findByArray(array('company_id'=>Session::get('default_company_id'),'sub_category_language_id' => session('language_id')));
         }
         function redirect_view($result,$title){
         }

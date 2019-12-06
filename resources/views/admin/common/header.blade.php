@@ -14,16 +14,18 @@
           <ul class="nav navbar-nav">
             <li class="dropdown messages-menu">
               <div  style="padding: 15px 15px;">
-                <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
-                  @foreach (Session::get('owner_companies') as $own_company)
-                    <option value="{{$own_company->company_id}}" 
-                      @if(Session::get('default_company_id'))
-                        {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
-                      @endif>
-                      {{$own_company->name}} || {{$own_company->email}}
-                    </option>
-                  @endforeach
-                </select>
+                @if(count(Session::get('owner_companies')) >0 )
+                  <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
+                    @foreach (Session::get('owner_companies') as $own_company)
+                      <option value="{{$own_company->company_id}}" 
+                        @if(Session::get('default_company_id'))
+                          {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
+                        @endif>
+                        {{$own_company->name}} || {{$own_company->email}}
+                      </option>
+                    @endforeach
+                  </select>
+                @endif
               </div>
             </li>
           </ul>
@@ -148,7 +150,6 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="{{asset('').auth()->guard('admin')->user()->image}}" class="img-circle" alt="{{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }} Image">
-
                 <p>
                   {{ auth()->guard('admin')->user()->first_name }} {{ auth()->guard('admin')->user()->last_name }} 
                   <small>{{ trans('labels.administrator')}}</small>

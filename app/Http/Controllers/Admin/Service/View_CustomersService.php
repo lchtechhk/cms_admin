@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin\Service;
 use Log;
 use DB;
+use Session;
 
 use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_CustomersService extends BaseApiService{
@@ -11,6 +12,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
 
         function getListingWithOutStatus(){
             $result = DB::table($this->getTable())
+            ->where("company_id",Session::get('default_company_id'))
             // ->orderBy('countries_id','ASC')
             // ->orderBY('zones_id','ASC')
             ->paginate(60);
@@ -21,6 +23,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
         function getListing(){
             $result = DB::table($this->getTable())
             ->where('status','=','active')
+            ->where("company_id",Session::get('default_company_id'))
             // ->orderBy('countries_id','ASC')
             // ->orderBY('zones_id','ASC')
             ->paginate(60);
