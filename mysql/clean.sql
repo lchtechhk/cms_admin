@@ -27,7 +27,9 @@ DELETE FROM `cms`.`sub_category` WHERE (`sub_category_id` >= '1');
 DELETE FROM `cms`.`sub_category_description` WHERE (`sub_category_description_id` >= '1');
 DELETE FROM `cms`.`user_to_company` WHERE (`id` >= '1');
 DELETE FROM `cms`.`zones` WHERE (`id` >= '1');
+DELETE FROM `cms`.`user` WHERE (`user_id` >= '3');
 
+ALTER TABLE `cms`.`user` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`address_book` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`area` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`category` AUTO_INCREMENT = 1;
@@ -56,4 +58,4 @@ ALTER TABLE `cms`.`sub_category` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`sub_category_description` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`user_to_company` AUTO_INCREMENT = 1;
 ALTER TABLE `cms`.`zones` AUTO_INCREMENT = 1;
-
+ALTER TABLE `cms`.`company_description` AUTO_INCREMENT = 1;
