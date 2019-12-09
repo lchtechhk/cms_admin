@@ -10,7 +10,8 @@
         <span class="sr-only">{{ trans('labels.toggle_navigation') }}</span>
       </a>
       {!! Form::open(array('id' => 'change_default_company_form' ,'url' =>'admin/changeDefaultCompany', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-        <div class="navbar-custom-menu" style="float:left;">
+      {{URL::current()}}  
+      <div class="navbar-custom-menu" style="float:left;">
           <ul class="nav navbar-nav">
             <li class="dropdown messages-menu">
               <div  style="padding: 15px 15px;">

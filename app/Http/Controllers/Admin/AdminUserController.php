@@ -18,6 +18,7 @@ use Auth;
 //for requesting a value 
 use Illuminate\Http\Request;
 use function GuzzleHttp\json_encode;
+use Illuminate\Support\Facades\URL;
 
 use App\Http\Controllers\Admin\Service\UserService;
 
@@ -26,7 +27,7 @@ class AdminUserController extends Controller{
 	public function __construct(){
 		$this->UserService = new UserService();
 	}
-	function changeDefaultCompany(Request $request){
+	function changeDefaultCompany(Request $request){        
         $title = array('pageTitle' => Lang::get("labels.title_dashboard"));
         $user_id = auth()->guard('admin')->user()->user_id;
         $result = array();
@@ -42,7 +43,7 @@ class AdminUserController extends Controller{
             $result = $this->UserService->throwException($result,$e->getMessage(),true);
         }
         $user = $this->UserService->findByColumn_Value("user_id",$user_id);
-		return redirect()->intended('admin/dashboard/this_month')->with('administrators', $user);
+		return redirect()->back();
     }
 	function listingUser(Request $request){
         $title = array('pageTitle' => Lang::get("labels.ListUser"));
