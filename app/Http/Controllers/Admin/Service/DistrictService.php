@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Service\AreaService;
         private $View_CCADZoneService;
         function __construct(){
             $this->setTable('district');
+            $this->companyAuth = true;
             $this->CountryService = new CountryService();
             $this->CityService = new CityService();
             $this->AreaService = new AreaService();

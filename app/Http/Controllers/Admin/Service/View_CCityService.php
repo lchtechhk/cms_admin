@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_CCityService extends BaseApiService{
         function __construct(){
             $this->setTable('view_country_city');
+            $this->companyAuth = true;
+
         }
 
         function getListing(){

@@ -8,11 +8,12 @@ use App\Http\Controllers\Admin\Service\OrderProductDescriptionService;
 
 class View_ProductAttributeService extends BaseApiService{
     private $OrderProductDescriptionService;
+    
 
     function __construct(){
         $this->setTable('view_product_attribute');
         $this->OrderProductDescriptionService = new OrderProductDescriptionService();
-
+        $this->companyAuth = true;
     }
 
     function getAllProduct(){

@@ -21,6 +21,7 @@ class CityService extends BaseApiService{
         private $View_CCADZoneService;
         function __construct(){
             $this->setTable('cities');
+            $this->companyAuth = true;
             $this->CountryService = new CountryService();
             $this->View_CCityService = new View_CCityService();
             $this->View_CCADZoneService = new View_CCADZoneService();

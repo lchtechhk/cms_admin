@@ -28,7 +28,7 @@ class CompanyMiddleware
     public function handle($request, Closure $next)
     {
         $user_auth = auth()->guard('admin')->user();
-        // Log::info('CompanyMiddleware : ' . json_encode($user_auth));        
+        Log::info('CompanyMiddleware : ' . json_encode($user_auth));        
         $default_company_id = $user_auth->default_company_id;
         $request->session()->put('default_company_id', $default_company_id);
 

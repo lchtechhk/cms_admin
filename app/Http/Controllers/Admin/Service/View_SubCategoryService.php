@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_SubCategoryService extends BaseApiService{
         function __construct(){
             $this->setTable('view_sub_category');
+            $this->companyAuth = true;
         }
 
         function getListing(){

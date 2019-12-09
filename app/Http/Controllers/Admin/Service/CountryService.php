@@ -19,6 +19,7 @@ class CountryService extends BaseApiService{
 
         function __construct(){
             $this->setTable('countries');
+            $this->companyAuth = true;
             $this->View_CCADZoneService = new View_CCADZoneService();
             $this->View_CCADistrictService = new View_CCADistrictService();
             $this->View_CCAreaService = new View_CCAreaService();

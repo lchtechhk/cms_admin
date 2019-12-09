@@ -36,9 +36,16 @@
 Route::get('/', function() { return Redirect::to("admin/login"); });
 Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 
-	// Route::group(['middleware' => 'user'], function () {
-	// 	Route::get('/dashboard/{reportBase}', 'AdminController@dashboard');
-	// });
+	//log in
+	Route::get('/login', 'AdminController@login');
+	Route::post('/checkLogin', 'AdminController@checkLogin');
+
+	//log out
+	Route::get('/logout', 'AdminController@logout');
+
+	//Register
+	Route::get('/view_registerUser', 'AdminRegisterController@view_registerUser');
+	Route::post('/add_registerUser', 'AdminRegisterController@add_registerUser');
 
 	Route::group(['middleware' => 'admin'], function () {
 		Route::get('/view_registerCompany', 'AdminRegisterController@view_registerCompany');
@@ -383,13 +390,6 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 		Route::post('/updatewebpage', 'AdminPagesController@updatewebpage');
 		Route::get('/pageWebStatus', 'AdminPagesController@pageWebStatus');
 	});
-
-	//log in
-	Route::get('/login', 'AdminController@login');
-	Route::post('/checkLogin', 'AdminController@checkLogin');
-
-	//log out
-	Route::get('/logout', 'AdminController@logout');
 });
 
 /*

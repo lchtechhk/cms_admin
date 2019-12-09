@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_CCAreaService extends BaseApiService{
         function __construct(){
             $this->setTable('view_country_city_area');
+            $this->companyAuth = true;
+
         }
 
         function getListing(){

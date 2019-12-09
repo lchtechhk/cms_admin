@@ -46,7 +46,7 @@ class UserService extends BaseApiService{
 
     function redirect_view($result,$title){
         $result['label'] = "User";
-        $result['permissions'] = $this->PermissionService->findAll();
+        $result['permissions'] = $this->PermissionService->findByColumn_Value("is_public",1);
 
         switch($result['operation']){
             case 'listing':

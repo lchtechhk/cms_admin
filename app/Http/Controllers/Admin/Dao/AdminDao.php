@@ -10,55 +10,54 @@
 
     abstract class AdminDao extends BaseRepository{
         protected $table;
+        protected $companyAuth = false;
 
         public function findAll(){
             $result = DB::table($this->getTable());
+            if($this->companyAuth) $result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findAll : ' . json_encode($result));
             return $result;
         }
-        public function findById($id){
-            $result = DB::table($this->getTable())->where('id', $id);
-            $result = $result->get();
-            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findById : ' . json_encode($result));
-            return $result;
-        }
-        public function findByColumn_Value($field,$value){
-            $result = DB::table($this->getTable())->where($field, $value);
+        public function findByColumn_Value($field,$id){
+            $result = DB::table($this->getTable())->where($field, $id);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumn_Value : ' . json_encode($result));
             return $result;
         }
-        public function findByColumn_Values($column,$values){
-            $result = DB::table($this->getTable())->whereIn($column, $values);
+        public function findById($id){
+            $result = DB::table($this->getTable())->where('id', $id);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
-            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumn_Values : ' . json_encode($result));
+            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findById : ' . json_encode($result));
             return $result;
         }
-        public function findByArray($columns_values){
-            $result = DB::table($this->getTable());
-            foreach($columns_values as $key =>$value){
-                $result = $result->where($key,$value);
-            }
+        public function findByColumn_Values($column,$values){
+            $result = DB::table($this->getTable())->whereIn($column, $values);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
-            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByArray : ' . json_encode($result));
+            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumn_Values : ' . json_encode($result));
             return $result;
         }
         // With Language
         public function findAllWithLanguage(){
             $result = DB::table($this->getTable())->where('language_id',session('language_id'));
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findAllWithLanguage : ' . json_encode($result));
             return $result;
         }
-        public function findByColumn_ValueWithLanguage($field,$id){
+        public function findByColumnWithLanguage($field,$id){
             $result = DB::table($this->getTable())->where('language_id',session('language_id'))->where($field, $id);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
             return $result;
         }
         public function findByColumn_ValuesWithLanguage($column,$values){
             $result = DB::table($this->getTable())->where('language_id',session('language_id'))->whereIn($column, $values);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumn_ValuesWithLanguage : ' . json_encode($result));
             return $result;
@@ -66,6 +65,7 @@
 
         public function findByColumn_Values_Return_Array($column,$target_column,$id){
             $result = DB::table($this->getTable())->where($column, $id);
+            if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
             $id_array = array();
             foreach($result as $row){

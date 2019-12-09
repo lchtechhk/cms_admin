@@ -10,6 +10,7 @@ class View_OrderService extends BaseApiService{
 
     function __construct(){
         $this->setTable('view_order');
+        $this->companyAuth = true;
 
     }
 

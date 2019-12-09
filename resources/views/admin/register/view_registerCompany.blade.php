@@ -11,7 +11,7 @@
         <div class="form-group has-feedback">
             <div class="box-body">
                 {!! Form::open(array('url' =>'admin/add_registerCompany', 'method'=>'post', 'class' =>
-                'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
+                    'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
                     {{-- Content --}}
                     @foreach($result['languages'] as $language)
                         <div class="form-group">

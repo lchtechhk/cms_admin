@@ -29,6 +29,14 @@ class AdminRegisterController extends Controller{
 	
 	}
 
+    function view_registerUser(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.RegisterUser"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'view_registerUser';
+        return $this->RegisterService->redirect_view($result,$title);
+    }
     function view_registerCompany(Request $request){
         $title = array('pageTitle' => Lang::get("labels.RegisterCompany"));
         $result = array();
@@ -44,6 +52,15 @@ class AdminRegisterController extends Controller{
         $result = $request->input();
         $result['request'] = $request;
         $result['operation'] = 'add_registerCompany';
+        // Log::info('[result] --  : ' . json_encode($result));
+        return $this->RegisterService->redirect_view($result,$title);
+    }
+    function add_registerUser(Request $request){
+        $title = array('pageTitle' => Lang::get("labels.RegisterUser"));
+        $result = array();
+        $result = $request->input();
+        $result['request'] = $request;
+        $result['operation'] = 'add_registerUser';
         // Log::info('[result] --  : ' . json_encode($result));
         return $this->RegisterService->redirect_view($result,$title);
     }

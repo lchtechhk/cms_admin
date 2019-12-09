@@ -26,6 +26,7 @@ class ProductService extends BaseApiService{
 
     function __construct(){
         $this->setTable('product');
+        $this->companyAuth = true;
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
         $this->ProductDescriptionService = new ProductDescriptionService();

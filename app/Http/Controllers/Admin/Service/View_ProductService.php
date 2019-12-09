@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_ProductService extends BaseApiService{
         function __construct(){
             $this->setTable('view_product');
+            $this->companyAuth = true;
         }
 
         function getListing(){

@@ -20,6 +20,7 @@ class CategoryService extends BaseApiService{
 
     function __construct(){
         $this->setTable('category');
+        $this->companyAuth = true;
         $this->View_CategoryService = new View_CategoryService();
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();

@@ -17,6 +17,7 @@ class CustomersService extends BaseApiService{
 
     function __construct(){
         $this->setTable('customers');
+        $this->companyAuth = true;
         $this->View_CustomersService = new View_CustomersService();
         $this->AddressBookService = new AddressBookService();
 		$this->UploadService = new UploadService();

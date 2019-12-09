@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Service\BaseApiService;
      class View_CustomersService extends BaseApiService{
         function __construct(){
             $this->setTable('view_customer');
+            $this->companyAuth = true;
         }
 
         function getListingWithOutStatus(){

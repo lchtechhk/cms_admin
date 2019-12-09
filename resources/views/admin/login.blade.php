@@ -64,8 +64,11 @@
       <div class="row">
        
         <!-- /.col -->
-        <div class="col-xs-4">
+        <div class="col-xs-6">
           {!! Form::submit(trans('labels.login'), array('id'=>'login', 'class'=>'btn btn-primary btn-block btn-flat' )) !!}
+        </div>
+        <div class="col-xs-6">
+          <a href="{{ URL::to('admin/view_registerUser') }}" class='btn btn-primary btn-block btn-flat' >{{trans('labels.register')}}</a>
         </div>
         <!-- /.col -->
       </div>

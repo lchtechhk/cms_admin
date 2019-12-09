@@ -20,6 +20,7 @@ class ManufacturerService extends BaseApiService{
 
     function __construct(){
         $this->setTable('manufacturer');
+        $this->companyAuth = true;
         $this->View_ManufacturerService = new View_ManufacturerService();
         $this->LanguageService = new LanguageService();
         $this->UploadService = new UploadService();
