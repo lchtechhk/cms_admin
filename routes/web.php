@@ -39,6 +39,7 @@ Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 	//log in
 	Route::get('/login', 'AdminController@login');
 	Route::post('/checkLogin', 'AdminController@checkLogin');
+	Route::get('/forward_login', 'AdminController@forward_login');
 
 	//log out
 	Route::get('/logout', 'AdminController@logout');

@@ -14,6 +14,7 @@
           <ul class="nav navbar-nav">
             <li class="dropdown messages-menu">
               <div  style="padding: 15px 15px;">
+                {{Session::get('default_company_id')}}
                 @if(count(Session::get('owner_companies')) >0 )
                   <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
                     @foreach (Session::get('owner_companies') as $own_company)

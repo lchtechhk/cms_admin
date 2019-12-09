@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\Service\CompanyDescriptionService;
 use App\Http\Controllers\Admin\Service\UserToCompanyService;
 use App\Http\Controllers\Admin\Service\View_ManufacturerService;
 use App\Http\Controllers\Admin\Service\PermissionService;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\AdminController;
 use Hash;
 
 
@@ -25,6 +27,7 @@ class RegisterService extends BaseApiService{
     private $UserToCompanyService;
     private $View_ManufacturerService;
     private $PermissionService;
+    private $AdminController;
 
     function __construct(){
         $this->setTable('');
@@ -36,6 +39,7 @@ class RegisterService extends BaseApiService{
         $this->UserToCompanyService = new UserToCompanyService();
         $this->View_ManufacturerService = new View_ManufacturerService();
         $this->PermissionService = new PermissionService();
+        $this->AdminController = new AdminController();
 
     }
 
@@ -84,8 +88,6 @@ class RegisterService extends BaseApiService{
                 return view("admin.register.view_registerCompany", $title)->with('result', $result);      
             break;
             case 'add_registerUser':
-                Log::info('[result] --  : ' . \json_encode($result));
-
                 $res = $this->separate($result);
                 $user_param = $res['user_param'];
                 $company_param = $res['company_param'];
@@ -138,7 +140,7 @@ class RegisterService extends BaseApiService{
                     $result['user'] = !empty($user) && \sizeof($user)>0? $user[0] : array();
                     $result = $this->response($result,"Success To Add User","view_edit");
                     DB::commit();
-                    return redirect('/admin/login');
+                    return $this->AdminController->forward_login($user_param['email'],$user_param['password_str']);
                 }catch(Exception $e){
                     $result = $this->throwException($result,$e->getMessage(),true);
                 }
@@ -153,7 +155,6 @@ class RegisterService extends BaseApiService{
         $user_param['first_name'] = $result['first_name'];
         $user_param['last_name'] = $result['last_name'];
         $user_param['gender'] = $result['gender'];
-        $user_param['oldImage'] = $result['oldImage'];
         $user_param['dob'] = $result['dob'];
         $user_param['phone'] = $result['phone'];
         $user_param['email'] = $result['email'];

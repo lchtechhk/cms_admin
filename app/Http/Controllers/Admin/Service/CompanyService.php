@@ -29,7 +29,6 @@ class CompanyService extends BaseApiService{
         $this->CompanyDescriptionService = new CompanyDescriptionService();
         $this->UserService = new UserService();
         $this->UserToCompanyService = new UserToCompanyService();
-
     }
 
     function checkDuplicateOwnEmail($email,$id){
@@ -99,6 +98,14 @@ class CompanyService extends BaseApiService{
                         $add_company_description_result = $this->CompanyDescriptionService->add($param);
                         if(empty($add_company_description_result['status']) || $add_company_description_result['status'] == 'fail')throw new Exception("Error To Add Company Description");
                     }
+                    // Handle User To Company
+                    $user_to_company_param = array();
+                    $user_to_company_param['user_id'] = auth()->guard('admin')->user()->user_id;
+                    $user_to_company_param['company_id'] = $result['company_id'];
+                    $user_to_company_param['admin_type'] = 'boss';
+                    $add_user_to_company = $this->UserToCompanyService->register_add($user_to_company_param);
+                    if(empty($add_user_to_company['status']) || $add_user_to_company['status'] == 'fail')throw new Exception("Error To Add User To Company");
+
                     $result = $this->response($result,"Successful","view_edit");
                     DB::commit();
                 }catch(Exception $e){

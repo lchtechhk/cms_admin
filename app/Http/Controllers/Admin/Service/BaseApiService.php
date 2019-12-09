@@ -36,7 +36,7 @@ abstract class BaseApiService extends AdminDao{
                 $array['status'] = 'active';
                 $array['create_date'] = date("Y-m-d H:i:s");
                 $array['edit_date'] = date("Y-m-d H:i:s");
-                $array['company_id'] = Session::get('default_company_id');
+                if($this->companyAuth)$array['company_id'] = Session::get('default_company_id');
                 Log::info('[add] -- :' . json_encode($array));	
                 $insert_id = $this->db_prepareInsert($this->getTable(),$array);
                 //
