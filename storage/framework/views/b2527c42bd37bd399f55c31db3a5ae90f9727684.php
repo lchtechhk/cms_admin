@@ -165,21 +165,21 @@
                   <?php $__currentLoopData = $result['orders']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $total_orders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <?php $__currentLoopData = $total_orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$orders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <?php if($key<=10): ?> <tr>
-                    <td><a href="<?php echo e(URL::to('admin/vieworder')); ?>/<?php echo e($orders->orders_id); ?>" data-toggle="tooltip"
-                        data-placement="bottom" title="Go to detail"><?php echo e($orders->orders_id); ?></a></td>
-                    <td><?php echo e($orders->customers_name); ?></td>
-                    <td><?php echo e($result['currency'][19]->value); ?><?php echo e(floatval($orders->total_price)); ?> </td>
+                    <td><a href="<?php echo e(URL::to('admin/vieworder')); ?>/<?php echo e($orders->order_id); ?>" data-toggle="tooltip"
+                        data-placement="bottom" title="Go to detail"><?php echo e($orders->order_id); ?></a></td>
+                    <td><?php echo e($orders->customer_name); ?></td>
+                    <td><?php echo e($result['currency'][19]->value); ?><?php echo e(floatval($orders->order_price)); ?> </td>
                     <td>
-                      <?php if($orders->orders_status_id==1): ?>
+                      <?php if($orders->status==1): ?>
                       <span class="label label-warning">
-                        <?php elseif($orders->orders_status_id==2): ?>
+                        <?php elseif($orders->status==2): ?>
                         <span class="label label-success">
-                          <?php elseif($orders->orders_status_id==3): ?>
+                          <?php elseif($orders->status==3): ?>
                           <span class="label label-danger">
                             <?php else: ?>
                             <span class="label label-primary">
                               <?php endif; ?>
-                              <?php echo e($orders->orders_status); ?>
+                              <?php echo e($orders->status); ?>
 
                             </span>
 

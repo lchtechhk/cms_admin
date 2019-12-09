@@ -1,3 +1,5 @@
+<?php echo $__env->make('generic/header_function', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script src=<?php echo e(App::make('url')->to('/')."/resources/assets/js/header.js"); ?>></script>
 <header class="main-header">
     <a href="<?php echo e(URL::to('admin/dashboard/this_month')); ?>" class="logo">
       <span class="logo-mini" style="font-size:12px"><b><?php echo e(trans('labels.admin')); ?></b></span>
@@ -7,19 +9,32 @@
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only"><?php echo e(trans('labels.toggle_navigation')); ?></span>
       </a>
+      <?php echo Form::open(array('id' => 'change_default_company_form' ,'url' =>'admin/changeDefaultCompany', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')); ?>
+
       <div class="navbar-custom-menu" style="float:left;">
-        <ul class="nav navbar-nav">
-          <li class="dropdown messages-menu">
-            <div  style="padding: 15px 15px;">
-              <select name="district_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
-                  <option value="1">
-                    222222222222222
-                  </option>
-              </select>
-            </div>
-          </li>
-        </ul>
-      </div>
+          <ul class="nav navbar-nav">
+            <li class="dropdown messages-menu">
+              <div  style="padding: 15px 15px;">
+                <?php if(count(Session::get('owner_companies')) >0 ): ?>
+                  <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
+                    <?php $__currentLoopData = Session::get('owner_companies'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $own_company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <option value="<?php echo e($own_company->company_id); ?>" 
+                        <?php if(Session::get('default_company_id')): ?>
+                          <?php echo e(header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)); ?>
+
+                        <?php endif; ?>>
+                        <?php echo e($own_company->name); ?> || <?php echo e($own_company->email); ?>
+
+                      </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </select>
+                <?php endif; ?>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <?php echo Form::close(); ?>
+
       <div id="countdown" style="
           width: 350px;
           margin-top: 13px !important;
@@ -143,7 +158,6 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="<?php echo e(asset('').auth()->guard('admin')->user()->image); ?>" class="img-circle" alt="<?php echo e(auth()->guard('admin')->user()->first_name); ?> <?php echo e(auth()->guard('admin')->user()->last_name); ?> Image">
-
                 <p>
                   <?php echo e(auth()->guard('admin')->user()->first_name); ?> <?php echo e(auth()->guard('admin')->user()->last_name); ?> 
                   <small><?php echo e(trans('labels.administrator')); ?></small>

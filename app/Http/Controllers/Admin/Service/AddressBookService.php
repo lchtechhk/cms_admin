@@ -18,6 +18,7 @@ class AddressBookService extends BaseApiService{
 
     function __construct(){
         $this->setTable('address_book');
+        $this->companyAuth = true;
         $this->CountryService = new CountryService();
         $this->View_CCADistrictService = new View_CCADistrictService();
         $this->View_AddressBookService = new View_AddressBookService();

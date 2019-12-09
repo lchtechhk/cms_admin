@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <style>
 	.wrapper{
@@ -8,14 +7,16 @@
 <div class="login-box">
   <div class="login-logo">
         <?php if($web_setting[66]->value=='1' and $web_setting[67]->value=='0'): ?>
-      		<img src="<?php echo e(asset('/resources/views/admin/images/admin_logo/logo-android-blue-v1.png')); ?>" class="ionic-hide"> 
-        	<img src="<?php echo e(asset('/resources/views/admin/images/admin_logo/logo-ionic-blue-v1.png')); ?>" class="android-hide"> 
+      		
         <?php elseif($web_setting[66]->value=='1' and $web_setting[67]->value=='1' or $web_setting[66]->value=='0' and $web_setting[67]->value=='1'): ?> 
    			<img src="<?php echo e(asset('/resources/views/admin/images/admin_logo/logo-laravel-blue-v1.png')); ?>" class="website-hide"> 
     	<?php endif; ?>
     <div style="
     font-size: 25px;
-"><b> <?php echo e(trans('labels.welcome_message')); ?></b><?php echo e(trans('labels.welcome_message_to')); ?></div>
+">
+
+
+</div>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -65,9 +66,12 @@
       <div class="row">
        
         <!-- /.col -->
-        <div class="col-xs-4">
+        <div class="col-xs-6">
           <?php echo Form::submit(trans('labels.login'), array('id'=>'login', 'class'=>'btn btn-primary btn-block btn-flat' )); ?>
 
+        </div>
+        <div class="col-xs-6">
+          <a href="<?php echo e(URL::to('admin/view_registerUser')); ?>" class='btn btn-primary btn-block btn-flat' ><?php echo e(trans('labels.register')); ?></a>
         </div>
         <!-- /.col -->
       </div>

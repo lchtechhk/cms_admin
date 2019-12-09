@@ -20,6 +20,8 @@ class SubCategoryService extends BaseApiService{
     
     function __construct(){
         $this->setTable('sub_category');
+        $this->companyAuth = true;
+
         $this->View_CategoryService = new View_CategoryService();
         $this->View_SubCategoryService = new View_SubCategoryService();
         $this->LanguageService = new LanguageService();

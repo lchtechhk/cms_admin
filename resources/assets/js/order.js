@@ -133,7 +133,7 @@ function fill_pre_order_form(){
 
             // pre_customer_address_array
             console.log("pre_customer_address_array : " + JSON.stringify(pre_customer_address_array))
-            fill_customer_address_array(pre_customer_address_array);
+            if(pre_customer_address_array)fill_customer_address_array(pre_customer_address_array);
 
             // customer_address
             // console.log("customer_address : " + JSON.stringify(customer_address));
@@ -158,32 +158,6 @@ function fill_pre_order_form(){
             $('#view_order_table').find('tbody').append(item_html);
 
             console.log("item_html : " + item_html);
-           
-
-            // order_item.forEach(element => {
-            //     var product_attribute_id = element['product_attribute_id'];
-            //     var product_price = element['product_price'];
-            //     var product_attribute_id = element['product_attribute_id'];
-            //     var product_attribute_id = element['product_attribute_id'];
-
-
-            //     var td = "<td>"+dispay_rowCount+"<br/>"+
-            //     "<input type='hidden' name='order_product["+rowCount+"][product_attribute_id]' value='"+product_attribute_id+"'/>"+
-            //     "<input type='hidden' name='order_product["+rowCount+"][product_price]' value='"+product_price+"'/>"+
-            //     "</td>";
-            //     td += "<td>"+"<img src='"+add_order_product_image+"' width='60px'>"+"</td>";
-            //     td += "<td>"+product_attribute_text+"</td>";
-            //     td += "<td>"+product_price+"</td>";
-            //     td += "<td>"+"<input oninput='calculate_final_price("+rowCount+")' name='order_product["+rowCount+"][product_quantity]' onkeypress='validate(event)' type='text' value='"+product_quantity+"'/>"+'<span id="error_display_'+rowCount+'_product_quantity"'+' class="help-block alert alert-danger hidden">This Field Is Required.</span>'+"</td>";
-            //     td += "<td>"+"<input name='order_product["+rowCount+"][final_price]' onkeypress='validate(event)' type='text' value='"+final_price+"'/>"+'<span id="error_display_'+rowCount+'_final_price"'+' class="help-block alert alert-danger hidden">This Field Is Required.</span>'+"</td>";
-            //     td += '<td>'+
-            //     '<a style="margin-left:5px;"title="Delete Order Product"  onclick="delete_item('+rowCount+')" class="badge bg-red">'+
-            //     '<i class="fa fa-trash" aria-hidden="true"></i></a>'+
-            //     '</td>';
-
-            //     $('#view_order_table').find('tbody').append("<tr id='item_"+rowCount+"'>"+td+"</tr>");
-            // });
-            
 
             // order Form
             $("#date_purchased").val(date_purchased);
@@ -218,6 +192,7 @@ $(function() {
 
     // Dialog Customer
     $("#customer_country,#customer_city,#customer_area,#customer_district,#customer_estate,#customer_building,#customer_room").change(function() {
+        save_customer_address();
         var customer_address = json_customer_address();
         var full_address = 
         customer_address.customer_country+" "+
@@ -226,7 +201,7 @@ $(function() {
         customer_address.customer_district+" "+
         customer_address.customer_estate+customer_address.customer_building+customer_address.customer_room+"室";
         $('#customer_street_address').val(full_address);
-        // console.log("full_address : " + full_address);
+        console.log("full_address : " + full_address);
     });
 
     $("#customer_id").change(function() {
@@ -239,7 +214,7 @@ $(function() {
             url: "/cms/admin/findAddressByCustomerId",
             data: {customer_id:customer_id},
             success: function(msg) { 
-                // console.log("msg : " + JSON.stringify(msg));
+                console.log("msg : " + JSON.stringify(msg));
                 if(msg) { 
                     set_pre_order_form("pre_customer_address_array",msg)
                     $("#customer_address_id").attr('disabled', false);
@@ -315,7 +290,7 @@ $(function() {
                             .attr("customer_room", room));
                         }
                     });
-
+                    save_customer_address();
                 }   
             },  
             fail: function(msg) {
@@ -511,7 +486,7 @@ $(function() {
         // console.log("is_pass : " + is_pass)
         return is_pass;
     }
-    function fill_customer_address(){
+    function save_customer_address(){
         var customer_id = $("#customer_id").val();
         var customer_id_text = $("#customer_id option:selected").text();
         var customer_address_id = $("#customer_address_id").val();
@@ -548,9 +523,10 @@ $(function() {
             customer_telephone:customer_telephone,
             email:email
         };
-
-
-        var pre_order_form = set_pre_order_form("customer_address",customer_address);
+        return pre_order_form = set_pre_order_form("customer_address",customer_address);
+    }
+    function fill_customer_address(){
+        var pre_order_form = save_customer_address();
 
         // localStorage.getItem('remove_slls');
         $("#display_customer_name").html(pre_order_form['customer_address']['customer_name']);
@@ -652,22 +628,22 @@ $(function() {
 
         var c_a = 
         {
-            customer_id : customer_address['customer_id'],
-            customer_name : customer_address['customer_name'],
-            customer_company:customer_address['customer_company'],
-            customer_address_id:customer_address['customer_address_id'],
+            customer_id : customer_address['customer_id'] ? customer_address['customer_id'] : '',
+            customer_name : customer_address['customer_name'] ? customer_address['customer_name'] : '',
+            customer_company:customer_address['customer_company'] ? customer_address['customer_company'] : '',
+            customer_address_id:customer_address['customer_address_id'] ? customer_address['customer_address_id'] : '',
 
-            customer_street_address:customer_address['customer_street_address'],
-            customer_country:customer_address['customer_country'],
-            customer_city:customer_address['customer_city'],
-            customer_area:customer_address['customer_area'],
-            customer_district:customer_address['customer_district'],
-            customer_estate:customer_address['customer_estate'],
-            customer_building:customer_address['customer_building'],
-            customer_room:customer_address['customer_room'],
+            customer_street_address : customer_address['customer_street_address'] ? customer_address['customer_street_address'] : '',
+            customer_country: customer_address['customer_country'] ? customer_address['customer_country'] : '',
+            customer_city : customer_address['customer_city'] ? customer_address['customer_city'] : '',
+            customer_area : customer_address['customer_area'] ? customer_address['customer_area'] : '',
+            customer_district : customer_address['customer_district'] ? customer_address['customer_district'] : '',
+            customer_estate : customer_address['customer_estate'] ? customer_address['customer_estate'] : '',
+            customer_building : customer_address['customer_building'] ? customer_address['customer_building'] : '',
+            customer_room : customer_address['customer_room'] ? customer_address['customer_room'] : '',
 
-            customer_telephone:customer_address['customer_telephone'],
-            email:customer_address['email']
+            customer_telephone:customer_address['customer_telephone'] ? customer_address['customer_telephone'] : '',
+            email:customer_address['email'] ? customer_address['email'] : '',
         };
         return c_a;
         

@@ -62,7 +62,7 @@
             $result = DB::table($this->getTable())->where('language_id',session('language_id'))->where($field, $id);
             if($this->companyAuth)$result = $result->where('company_id',Session::get('default_company_id'));
             $result = $result->get();
-            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumnWithLanguage : ' . json_encode($result));
+            Log::info('[AdminDao] -- ' .'['.$this->getTable().'] -- findByColumn_ValueWithLanguage : ' . json_encode($result));
             return $result;
         }
         public function findByColumn_ValuesWithLanguage($column,$values){

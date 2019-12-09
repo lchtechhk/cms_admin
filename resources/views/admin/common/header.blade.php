@@ -10,12 +10,10 @@
         <span class="sr-only">{{ trans('labels.toggle_navigation') }}</span>
       </a>
       {!! Form::open(array('id' => 'change_default_company_form' ,'url' =>'admin/changeDefaultCompany', 'method'=>'post', 'class' => 'form-horizontal form-validate', 'enctype'=>'multipart/form-data')) !!}
-      {{URL::current()}}  
       <div class="navbar-custom-menu" style="float:left;">
           <ul class="nav navbar-nav">
             <li class="dropdown messages-menu">
               <div  style="padding: 15px 15px;">
-                {{Session::get('default_company_id')}}
                 @if(count(Session::get('owner_companies')) >0 )
                   <select name="company_id" id="company_id" class="" style="color:#000;-webkit-appearance: none;padding-left:5px;padding-right:5px;" >
                     @foreach (Session::get('owner_companies') as $own_company)
