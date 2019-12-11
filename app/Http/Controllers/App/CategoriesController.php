@@ -1,26 +1,13 @@
 <?php
-/*
-Project Name: IonicEcommerce
-Project URI: http://ionicecommerce.com
-Author: VectorCoder Team
-Author URI: http://vectorcoder.com/
-Version: 2.9.3
-*/
 namespace App\Http\Controllers\App;
 
-//validator is builtin class in laravel
 use Validator;
 
 use DB;
-//for password encryption or hash protected
 use Hash;
 use App\Administrator;
 
-//for authenitcate login data
 use Auth;
-
-//use Illuminate\Foundation\Auth\ThrottlesLogins;
-//use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 //for requesting a value 
 use Illuminate\Http\Request;

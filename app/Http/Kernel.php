@@ -63,5 +63,8 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\RedirectIfNotUser::class,
         'Customer' => \App\Http\Middleware\RedirectIfNotCustomer::class,
         'company' => \App\Http\Middleware\CompanyMiddleware::class,
+        'app_api'   => \App\Http\Middleware\ApiMiddleware::class,
+        'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+        'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
     ];
 }
