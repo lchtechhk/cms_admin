@@ -11,14 +11,13 @@ class ApiMiddleware{
 
     function __construct(){
         $this->AuthService = new AuthService();
-        Log::info('AuthService : ');  
 	}
     public function handle($request, Closure $next){
         try{
             $own = $this->AuthService->getOwner();
             if(!$own['success'])throw new Exception($own['msg']);
         }catch (Exception $e) {
-            Log::error('error : ' . $e->getMessage());
+            Log::error('[Error - ApiMiddleware] : ' . $e->getMessage());
             return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }
              
