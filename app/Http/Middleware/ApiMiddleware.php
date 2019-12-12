@@ -4,6 +4,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Log;
 use App\Http\Controllers\App\Service\AuthService;
+use Exception;
 
 class ApiMiddleware{
     private $AuthService;
@@ -15,14 +16,10 @@ class ApiMiddleware{
     public function handle($request, Closure $next){
         try{
             $own = $this->AuthService->getOwner();
-            Log::info('own : ' . $own);  
-
-            if($own){
-                return response()->json(['success' => true, 'own' => $own]);
-            }  
+            if(!$own['success'])throw new Exception($own['msg']);
         }catch (Exception $e) {
             Log::error('error : ' . $e->getMessage());
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            return response()->json(['success' => false, 'msg' => $e->getMessage()], 500);
         }
              
         return $next($request);

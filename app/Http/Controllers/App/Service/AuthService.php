@@ -16,10 +16,12 @@ class AuthService {
 
     public function getOwner(){
         try {    
-            return response()->json(JWTAuth::parseToken()->touser());
+            $owner = JWTAuth::parseToken()->touser();
+            if($owner)return ['success' => true, 'msg' => $owner];
+            throw new Exception("User is not existing");
         } catch (Exception $e) {
-            Log::error('error : ' . $e->getMessage());
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            Log::error('[Api Auth Error] - getOwner : ' . $e->getMessage());
+            return ['success' => false, 'msg' => $e->getMessage()];
         }
     }
 }

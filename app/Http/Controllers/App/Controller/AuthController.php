@@ -9,8 +9,15 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Validator, DB, Hash, Mail, Illuminate\Support\Facades\Password;
 use Illuminate\Routing\Controller;
 use Log;
+use App\Http\Controllers\App\Service\AuthService;
+
 class AuthController extends Controller
 {
+    private $AuthService;
+
+    function __construct(){
+        $this->AuthService = new AuthService();    }
+    
     public function test(){
         return "1233";
     }
@@ -65,8 +72,7 @@ class AuthController extends Controller
         }
     }
 
-    protected function respondWithToken(Request $request)
-    {
+    protected function respondWithToken(Request $request){
         $token = $request->input('token');
         Log::error('token : ' . $token);
 
@@ -76,10 +82,9 @@ class AuthController extends Controller
             'expires_in' => JWTAuth::factory()->getTTL() * 60
         ]);
     }
-    public function me()
-    {
-        return "1233";
-        return response()->json(JWTAuth::parseToken()->touser());
+    
+    public function me(){
+        return $this->AuthService->getOwner()['msg'];
     }
 
 }
