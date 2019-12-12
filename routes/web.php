@@ -1,38 +1,9 @@
 <?php
-	/*
-	Project Name: IonicEcommerce
-	Project URI: http://ionicecommerce.com
-	Author: VectorCoder Team
-	Author URI: http://vectorcoder.com/
-	Version: 3.0
-	*/
-	header("Cache-Control: no-cache, must-revalidate");
-	header('Access-Control-Allow-Origin:  *');
-	header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
-	header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
+header("Cache-Control: no-cache, must-revalidate");
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Admin controller Routes
-|--------------------------------------------------------------------------
-|
-| This section contains all admin Routes
-| 
-|
-*/
 Route::get('/', function() { return Redirect::to("admin/login"); });
 Route::group(['namespace' => 'Admin', 'prefix'=>'admin'], function () {
 
