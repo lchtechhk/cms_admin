@@ -21,7 +21,7 @@
                         @if(Session::get('default_company_id'))
                           {{header_print_selected_value('listing',Session::get('default_company_id'),$own_company->company_id)}}
                         @endif>
-                        {{$own_company->name}} || {{$own_company->email}}
+                        {{$own_company->company_id}} || {{$own_company->name}} || {{$own_company->email}}
                       </option>
                     @endforeach
                   </select>

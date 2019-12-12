@@ -82,9 +82,12 @@ class AuthController extends Controller
             'expires_in' => JWTAuth::factory()->getTTL() * 60
         ]);
     }
-    
+
     public function me(){
         return $this->AuthService->getOwner()['msg'];
     }
 
+    public function authenticate(){
+        return $owner = JWTAuth::parseToken()->authenticate()->default_company_id;
+    }
 }

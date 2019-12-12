@@ -21,13 +21,16 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'App', 'prefix'=>'app'], function () {
 	
-	Route::get('/test', 'Controller\AuthController@test');
 	Route::post('/login', 'Controller\AuthController@login');
-	Route::get('/logout', 'Controller\AuthController@logout');
 
 	Route::group(['middleware' => 'app_api'], function() {
 		Route::get('/respondWithToken', 'Controller\AuthController@respondWithToken');
+		Route::get('/logout', 'Controller\AuthController@logout');
 		Route::get('/me', 'Controller\AuthController@me');
+		Route::post('/authenticate', 'Controller\AuthController@authenticate');
+
+		// Product
+		Route::post('/listingProduct', 'Controller\AppProductController@listingProduct');
 	});
 
 	// ----------------------------------------------------------------------------------------
